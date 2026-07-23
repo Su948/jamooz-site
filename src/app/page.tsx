@@ -7,13 +7,14 @@ export default function Home() {
       <section className="relative min-h-[90vh] flex items-center pt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="z-10">
-            <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-brand-green leading-[0.9] mb-8">
+            <h1 className="sr-only">Jamooz: Leading B2B Massage Products and Equipment Supplier in China</h1>
+            <p className="text-6xl md:text-8xl font-bold tracking-tighter text-brand-green leading-[0.9] mb-8" aria-hidden="true">
               PROFESSIONAL <br />
               RECOVERY <br />
               ENGINEERED.
-            </h1>
+            </p>
             <p className="text-xl text-gray-700 max-w-md mb-10 font-light leading-relaxed">
-              Elevate your wellness brand with Jamooz. Premier B2B manufacturing for next-generation massage technology.
+              Elevate your wellness brand with Jamooz, a premier China massage manufacturer specializing in OEM/ODM massage device solutions and next-generation recovery technology.
             </p>
             <div className="flex flex-col sm:flex-row gap-5">
               <Link href="/rfq" className="btn-primary text-center">
@@ -46,9 +47,9 @@ export default function Home() {
       <section className="section-spacing">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-20">
-            <h2 className="text-xs font-semibold text-brand-green/60 uppercase tracking-[0.3em] mb-4">Targeted Solutions</h2>
+            <h2 className="text-xs font-semibold text-brand-green/60 uppercase tracking-[0.3em] mb-4">Our B2B Massage Products</h2>
             <p className="text-4xl font-bold tracking-tight text-brand-green max-w-2xl">
-              Wellness solutions designed for every environment.
+              Professional massage equipment solutions designed for every environment.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-1px bg-brand-green/10 border border-brand-green/10">

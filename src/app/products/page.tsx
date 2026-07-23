@@ -81,7 +81,7 @@ export default function ProductsPage() {
               <div className="md:w-1/3 aspect-square bg-gray-50 flex flex-col items-center justify-center overflow-hidden relative">
                 <img 
                   src={p.image} 
-                  alt={p.name}
+                  alt={`${p.name} - Professional B2B Massage Device ${p.id}`}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   onError={(e) => {
                     // Fallback to text if image is missing

@@ -15,8 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Jamooz | Professional Massage Equipment B2B",
-  description: "B2B catalog for high-quality massage equipment, including massage pillows, neck massagers, and heat pads.",
+  title: "Jamooz | Leading B2B Massage Products & Equipment Supplier in China",
+  description: "Jamooz is a premier China massage manufacturer providing high-quality B2B massage products. Specialized in OEM/ODM massage devices, neck massagers, and recovery solutions.",
+  keywords: "B2B massage products, Massage equipment supplier, OEM/ODM massage device, China massage manufacturer, Jamooz",
 };
 
 export default function RootLayout({
