@@ -1,42 +1,68 @@
+'use client';
+
 import Link from 'next/link';
 
 export default function ProductsPage() {
   const products = [
     {
       id: 'JMZ-001',
-      name: 'Advanced Neck & Shoulder Massager',
-      category: 'Neck Care',
-      moq: '500 Units',
-      power: '24W / 12V',
-      features: ['Heat Therapy', 'Bidirectional Rotation', '4D Massage Nodes'],
-      certs: 'CE / FCC / RoHS'
+      name: 'Kneading Vibration Massage Pillow',
+      category: 'Massage Pillow',
+      moq: '300 Units',
+      power: '24W',
+      features: ['Kneading & Vibration', 'Ergonomic Support', 'Home & Car Use'],
+      certs: 'CE',
+      image: '/assets/refined/JMZ-001.jpg'
     },
     {
       id: 'JMZ-801',
-      name: 'Deep Tissue Massage Pillow',
-      category: 'Lower Back',
-      moq: '1000 Units',
-      power: '30W',
-      features: ['Ergonomic Shape', 'Adjustable Speed', 'Memory Foam'],
-      certs: 'CE / RoHS'
+      name: 'Cloud Neck Comfort Massager',
+      category: 'Neck Care',
+      moq: '300 Units',
+      power: '5V (USB)',
+      features: ['Cloud-soft Foam', 'Acupressure Nodes', 'Adjustable Fit'],
+      certs: 'CE / FCC',
+      image: '/assets/refined/JMZ-801.jpg'
     },
     {
-      id: 'JMZ-305',
-      name: 'Portable Percussion Massage Gun',
-      category: 'Sport Recovery',
-      moq: '200 Units',
-      power: 'Brushless 24V',
-      features: ['6 Interchangeable Heads', 'Silent Tech', '8-Hour Battery'],
-      certs: 'CE / FCC'
-    },
-    {
-      id: 'JMZ-702',
-      name: 'Smart Heat Therapy Pad',
+      id: 'JMZ-H210',
+      name: 'Heating Therapy Massage Cushion',
       category: 'Heat Therapy',
-      moq: '2000 Units',
-      power: '100W / 220V',
-      features: ['Precise Temp Control', 'Auto Shut-off', 'Machine Washable'],
-      certs: 'RoHS / REACH'
+      moq: '500 Units',
+      power: '100W',
+      features: ['Infrared Heating', 'Multi-zone Massage', 'Remote Control'],
+      certs: 'RoHS',
+      image: '/assets/refined/JMZ-H210.jpg'
+    },
+    {
+      id: 'JMZ-G120',
+      name: 'Gift-ready Massage Pillow Set',
+      category: 'Gift Set',
+      moq: '500 Units',
+      power: '24W',
+      features: ['Premium Packaging', 'Complete Recovery Kit', 'Perfect for Gifting'],
+      certs: 'CE',
+      image: '/assets/refined/JMZ-G120.jpg'
+    },
+    {
+      id: 'CSPL002',
+      name: 'Pinch-kneading Massage Pillow Plus',
+      category: 'Massage Pillow',
+      moq: '300 Units',
+      power: '30W',
+      features: ['Upgraded Pinching Tech', 'Deep Tissue Relief', 'Silent Operation'],
+      certs: 'CE / RoHS',
+      image: '/assets/refined/CSPL002.jpg'
+    },
+    {
+      id: 'JMZ-N330',
+      name: 'Neck & Shoulder Relax Massager',
+      category: 'Neck Care',
+      moq: '300 Units',
+      power: '24W',
+      features: ['Shoulder Draping Design', 'Variable Intensity', 'Heat Function'],
+      certs: 'CE',
+      image: '/assets/refined/JMZ-N330.jpg'
     }
   ];
 
@@ -52,10 +78,22 @@ export default function ProductsPage() {
           {products.map((p) => (
             <div key={p.id} className="group bg-white/50 border border-brand-green/5 p-10 flex flex-col md:flex-row gap-10 hover:bg-white transition-all shadow-sm hover:shadow-xl">
               {/* Product Visual */}
-              <div className="md:w-1/3 aspect-square bg-gray-50 flex flex-col items-center justify-center p-4">
-                <span className="text-[10px] font-mono text-gray-300 mb-2">{p.id}</span>
-                <div className="w-16 h-1 border-b border-brand-green/10 mb-4"></div>
-                <span className="text-center text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-tight">{p.name}</span>
+              <div className="md:w-1/3 aspect-square bg-gray-50 flex flex-col items-center justify-center overflow-hidden relative">
+                <img 
+                  src={p.image} 
+                  alt={p.name}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  onError={(e) => {
+                    // Fallback to text if image is missing
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    target.parentElement!.classList.add('flex', 'flex-col', 'items-center', 'justify-center');
+                    const span = document.createElement('span');
+                    span.className = 'text-[10px] font-mono text-gray-300';
+                    span.innerText = p.id;
+                    target.parentElement!.appendChild(span);
+                  }}
+                />
               </div>
               
               {/* Product Specs */}
