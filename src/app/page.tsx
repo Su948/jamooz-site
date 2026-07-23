@@ -2,79 +2,112 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div>
+    <div className="bg-background">
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center justify-center bg-gray-50 overflow-hidden">
-        <div className="absolute inset-0 z-0 flex items-center justify-center opacity-10 pointer-events-none">
-          <div className="text-[20rem] font-black tracking-tighter text-black">JAMOOZ</div>
-        </div>
-        <div className="relative z-10 text-center px-4">
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-black mb-6">
-            REDESIGNING RECOVERY.
-          </h1>
-          <p className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto mb-10 font-light">
-            Professional B2B massage equipment solutions for global health and wellness brands. 
-            OEM/ODM excellence in every detail.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/products" className="bg-black text-white px-10 py-4 font-medium hover:bg-gray-800 transition-all">
-              Explore Products
-            </Link>
-            <Link href="/rfq" className="border border-black text-black px-10 py-4 font-medium hover:bg-black hover:text-white transition-all">
-              Request a Sample
-            </Link>
+      <section className="relative min-h-[90vh] flex items-center pt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="z-10">
+            <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-brand-green leading-[0.9] mb-8">
+              PROFESSIONAL <br />
+              RECOVERY <br />
+              ENGINEERED.
+            </h1>
+            <p className="text-xl text-gray-700 max-w-md mb-10 font-light leading-relaxed">
+              Elevate your wellness brand with Jamooz. Premier B2B manufacturing for next-generation massage technology.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-5">
+              <Link href="/rfq" className="btn-primary text-center">
+                Start RFQ
+              </Link>
+              <Link href="/products" className="btn-secondary text-center">
+                View Collection
+              </Link>
+            </div>
+          </div>
+          <div className="relative aspect-square bg-white/30 rounded-full flex items-center justify-center overflow-hidden border border-white/50 shadow-2xl">
+            <div className="text-brand-green/10 text-9xl font-black rotate-12">JAMOOZ</div>
+            {/* Placeholder for high-quality product image */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-brand-green/5 to-transparent"></div>
           </div>
         </div>
       </section>
 
-      {/* Featured Categories */}
-      <section className="py-24 bg-white">
+      {/* B2B Trust Bar */}
+      <section className="bg-brand-green py-10">
+        <div className="max-w-7xl mx-auto px-4 flex flex-wrap justify-between items-center gap-8 text-white/70 uppercase tracking-widest text-[10px] font-bold">
+          <span>ISO 9001:2015 Plant</span>
+          <span>CE / FCC / RoHS Certified</span>
+          <span>500k+ Monthly Capacity</span>
+          <span>Global Shipping (DDP/DDU)</span>
+        </div>
+      </section>
+
+      {/* Solutions / Scenario Section */}
+      <section className="section-spacing">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-end mb-16">
-            <div>
-              <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-[0.2em] mb-3">Our Expertise</h2>
-              <p className="text-3xl font-bold text-black tracking-tight">Core Product Categories</p>
-            </div>
-            <Link href="/products" className="text-sm font-semibold border-b border-black pb-1 hover:text-gray-500 hover:border-gray-500 transition-all">
-              View All
-            </Link>
+          <div className="mb-20">
+            <h2 className="text-xs font-semibold text-brand-green/60 uppercase tracking-[0.3em] mb-4">Targeted Solutions</h2>
+            <p className="text-4xl font-bold tracking-tight text-brand-green max-w-2xl">
+              Wellness solutions designed for every environment.
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-1px bg-brand-green/10 border border-brand-green/10">
             {[
-              { name: 'Massage Pillows', desc: 'Ergonomic support for home and office.' },
-              { name: 'Neck Massagers', desc: 'Precision relief for neck and shoulders.' },
-              { name: 'Heat Pads', desc: 'Advanced thermal therapy solutions.' },
-              { name: 'Gift Sets', desc: 'Premium wellness packages for corporate.' }
-            ].map((cat) => (
-              <div key={cat.name} className="group cursor-pointer">
-                <div className="aspect-[3/4] bg-gray-50 mb-6 flex items-center justify-center transition-all group-hover:bg-gray-100">
-                  <span className="text-gray-300 font-bold uppercase tracking-widest group-hover:scale-110 transition-transform">{cat.name}</span>
+              { title: 'Office Productivity', desc: 'Compact neck and back massagers for professional desk setups.' },
+              { title: 'Post-Sport Recovery', desc: 'Deep tissue therapy devices for athletic recovery brands.' },
+              { title: 'Home Relaxation', desc: 'Premium heat pads and pillows for consumer wellness lines.' }
+            ].map((sol) => (
+              <div key={sol.title} className="bg-background p-12 hover:bg-white transition-colors">
+                <div className="w-12 h-12 bg-brand-green/5 flex items-center justify-center mb-8 rounded-full">
+                  <div className="w-2 h-2 bg-brand-green rounded-full"></div>
                 </div>
-                <h3 className="text-lg font-bold text-black mb-2 tracking-tight">{cat.name}</h3>
-                <p className="text-sm text-gray-500 font-light">{cat.desc}</p>
+                <h3 className="text-xl font-bold text-brand-green mb-4">{sol.title}</h3>
+                <p className="text-gray-500 font-light leading-relaxed">{sol.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Quick RFQ Section */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-black mb-6 tracking-tight">Start Your Order</h2>
-          <p className="text-gray-500 mb-12 font-light">
-            Interested in our products or need a custom manufacturing solution? 
-            Send us a message and our B2B team will get back to you within 24 hours.
-          </p>
-          <div className="bg-white p-8 border border-gray-100 shadow-sm">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <input type="text" placeholder="Your Name" className="w-full px-4 py-3 bg-gray-50 border-none text-sm focus:ring-1 focus:ring-black outline-none" />
-              <input type="email" placeholder="Business Email" className="w-full px-4 py-3 bg-gray-50 border-none text-sm focus:ring-1 focus:ring-black outline-none" />
+      {/* B2B Endorsement / Strength */}
+      <section className="bg-white section-spacing">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+          <div className="order-2 lg:order-1 aspect-video bg-gray-50 flex items-center justify-center">
+            <span className="text-gray-200 font-bold uppercase tracking-widest">Factory Video / Photo</span>
+          </div>
+          <div className="order-1 lg:order-2">
+            <h2 className="text-3xl font-bold tracking-tight text-brand-green mb-8">Your Trusted Manufacturing Partner</h2>
+            <div className="space-y-8">
+              {[
+                { label: 'OEM/ODM Capability', text: 'Full custom tooling and private labeling for global brands.' },
+                { label: 'Quality Assurance', text: '4-stage inspection process from raw material to shipping.' },
+                { label: 'B2B Logistics', text: 'Expert handling of bulk freight, customs, and documentation.' }
+              ].map((item) => (
+                <div key={item.label} className="flex gap-6">
+                  <div className="shrink-0 font-mono text-brand-green/30 font-bold text-xl pt-1">/0{item.label[0]}</div>
+                  <div>
+                    <h4 className="font-bold text-brand-green mb-1">{item.label}</h4>
+                    <p className="text-gray-500 text-sm font-light leading-relaxed">{item.text}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-            <textarea placeholder="Tell us about your requirements..." rows={4} className="w-full px-4 py-3 bg-gray-50 border-none text-sm mb-4 focus:ring-1 focus:ring-black outline-none"></textarea>
-            <button className="w-full bg-black text-white py-4 font-bold tracking-widest text-xs uppercase hover:bg-gray-800 transition-all">
-              Send Inquiry
-            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* RFQ Call to Action */}
+      <section className="section-spacing bg-background relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-brand-green mb-10 leading-tight">
+            READY TO <br />
+            PARTNER WITH US?
+          </h2>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link href="/rfq" className="btn-primary px-16">
+              Get A Custom Quote
+            </Link>
+            <span className="text-brand-green/40 text-sm font-mono tracking-tighter">MOQ 500 UNITS</span>
           </div>
         </div>
       </section>
