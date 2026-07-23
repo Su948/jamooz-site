@@ -1,4 +1,48 @@
+'use client';
+
+import { useState } from 'react';
+
 export default function RFQPage() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    projectType: 'Bulk Order (Stock Models)',
+    quantity: '',
+    requirements: ''
+  });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+
+    try {
+      const response = await fetch('/api/rfq', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          projectType: 'Bulk Order (Stock Models)',
+          quantity: '',
+          requirements: ''
+        });
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      console.error('Submission failed:', error);
+      setStatus('error');
+    }
+  };
+
   return (
     <div className="bg-background min-h-screen pt-40 pb-32">
       <div className="max-w-5xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-20">
@@ -23,59 +67,111 @@ export default function RFQPage() {
 
         {/* Right Column: Form */}
         <div className="lg:col-span-2 bg-white p-12 border border-brand-green/5 shadow-sm">
-          <form className="space-y-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
-              <div className="relative group">
-                <label className="block text-[10px] font-bold text-brand-green uppercase tracking-widest mb-3">Company Name</label>
-                <input 
-                  type="text" 
-                  className="w-full bg-transparent border-b border-gray-200 py-2 outline-none focus:border-brand-green transition-colors text-sm font-light"
-                  placeholder="e.g. Wellness Brands Inc."
-                />
-              </div>
-              <div className="relative group">
-                <label className="block text-[10px] font-bold text-brand-green uppercase tracking-widest mb-3">Professional Email</label>
-                <input 
-                  type="email" 
-                  className="w-full bg-transparent border-b border-gray-200 py-2 outline-none focus:border-brand-green transition-colors text-sm font-light"
-                  placeholder="work@email.com"
-                />
-              </div>
-              <div className="relative group">
-                <label className="block text-[10px] font-bold text-brand-green uppercase tracking-widest mb-3">Project Type</label>
-                <select className="w-full bg-transparent border-b border-gray-200 py-2 outline-none focus:border-brand-green transition-colors text-sm font-light appearance-none">
-                  <option>Bulk Order (Stock Models)</option>
-                  <option>OEM (Brand Labeling)</option>
-                  <option>ODM (Custom Design)</option>
-                  <option>Sample Request</option>
-                </select>
-              </div>
-              <div className="relative group">
-                <label className="block text-[10px] font-bold text-brand-green uppercase tracking-widest mb-3">Target Volume</label>
-                <input 
-                  type="text" 
-                  className="w-full bg-transparent border-b border-gray-200 py-2 outline-none focus:border-brand-green transition-colors text-sm font-light"
-                  placeholder="500 - 5000 units"
-                />
-              </div>
+          {status === 'success' ? (
+            <div className="h-full flex flex-col items-center justify-center py-20 text-center">
+              <div className="w-16 h-16 bg-brand-green text-white rounded-full flex items-center justify-center mb-6 text-2xl">✓</div>
+              <h2 className="text-2xl font-bold text-brand-green mb-4">Inquiry Sent Successfully</h2>
+              <p className="text-gray-500 font-light max-w-xs mx-auto mb-8">
+                Thank you for your interest. Our B2B team will review your requirements and respond within 24 hours.
+              </p>
+              <button 
+                onClick={() => setStatus('idle')}
+                className="text-xs font-bold uppercase tracking-widest border-b border-black pb-1 hover:opacity-60"
+              >
+                Send Another Inquiry
+              </button>
             </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+                <div className="relative group">
+                  <label className="block text-[10px] font-bold text-brand-green uppercase tracking-widest mb-3">Contact Person Name</label>
+                  <input 
+                    required
+                    type="text" 
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    className="w-full bg-transparent border-b border-gray-200 py-2 outline-none focus:border-brand-green transition-colors text-sm font-light"
+                    placeholder="e.g. John Doe"
+                  />
+                </div>
+                <div className="relative group">
+                  <label className="block text-[10px] font-bold text-brand-green uppercase tracking-widest mb-3">Professional Email</label>
+                  <input 
+                    required
+                    type="email" 
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    className="w-full bg-transparent border-b border-gray-200 py-2 outline-none focus:border-brand-green transition-colors text-sm font-light"
+                    placeholder="work@email.com"
+                  />
+                </div>
+                <div className="relative group">
+                  <label className="block text-[10px] font-bold text-brand-green uppercase tracking-widest mb-3">Company Name</label>
+                  <input 
+                    required
+                    type="text" 
+                    value={formData.company}
+                    onChange={(e) => setFormData({...formData, company: e.target.value})}
+                    className="w-full bg-transparent border-b border-gray-200 py-2 outline-none focus:border-brand-green transition-colors text-sm font-light"
+                    placeholder="e.g. Wellness Brands Inc."
+                  />
+                </div>
+                <div className="relative group">
+                  <label className="block text-[10px] font-bold text-brand-green uppercase tracking-widest mb-3">Project Type</label>
+                  <select 
+                    value={formData.projectType}
+                    onChange={(e) => setFormData({...formData, projectType: e.target.value})}
+                    className="w-full bg-transparent border-b border-gray-200 py-2 outline-none focus:border-brand-green transition-colors text-sm font-light appearance-none"
+                  >
+                    <option>Bulk Order (Stock Models)</option>
+                    <option>OEM (Brand Labeling)</option>
+                    <option>ODM (Custom Design)</option>
+                    <option>Sample Request</option>
+                  </select>
+                </div>
+                <div className="relative group">
+                  <label className="block text-[10px] font-bold text-brand-green uppercase tracking-widest mb-3">Target Volume</label>
+                  <input 
+                    type="text" 
+                    value={formData.quantity}
+                    onChange={(e) => setFormData({...formData, quantity: e.target.value})}
+                    className="w-full bg-transparent border-b border-gray-200 py-2 outline-none focus:border-brand-green transition-colors text-sm font-light"
+                    placeholder="500 - 5000 units"
+                  />
+                </div>
+              </div>
 
-            <div className="relative group pt-4">
-              <label className="block text-[10px] font-bold text-brand-green uppercase tracking-widest mb-3">Detailed Requirements</label>
-              <textarea 
-                rows={5} 
-                className="w-full bg-gray-50 p-6 outline-none focus:ring-1 focus:ring-brand-green transition-all text-sm font-light leading-relaxed"
-                placeholder="Tell us about your brand goals, specific product features, or certification needs..."
-              ></textarea>
-            </div>
+              <div className="relative group pt-4">
+                <label className="block text-[10px] font-bold text-brand-green uppercase tracking-widest mb-3">Detailed Requirements</label>
+                <textarea 
+                  rows={5} 
+                  value={formData.requirements}
+                  onChange={(e) => setFormData({...formData, requirements: e.target.value})}
+                  className="w-full bg-gray-50 p-6 outline-none focus:ring-1 focus:ring-brand-green transition-all text-sm font-light leading-relaxed"
+                  placeholder="Tell us about your brand goals, specific product features, or certification needs..."
+                ></textarea>
+              </div>
 
-            <button type="submit" className="w-full btn-primary py-6 text-xs font-bold tracking-[0.3em] uppercase">
-              Submit Request
-            </button>
-            <p className="text-center text-[9px] text-gray-400 tracking-wider">
-              BY SUBMITTING YOU AGREE TO OUR DATA PROTECTION POLICY FOR B2B PARTNERS.
-            </p>
-          </form>
+              <button 
+                type="submit" 
+                disabled={status === 'loading'}
+                className="w-full btn-primary py-6 text-xs font-bold tracking-[0.3em] uppercase disabled:opacity-50"
+              >
+                {status === 'loading' ? 'Sending Inquiry...' : 'Submit Request'}
+              </button>
+              
+              {status === 'error' && (
+                <p className="text-center text-xs text-red-500 font-bold uppercase tracking-widest">
+                  Submission failed. Please try again.
+                </p>
+              )}
+              
+              <p className="text-center text-[9px] text-gray-400 tracking-wider">
+                BY SUBMITTING YOU AGREE TO OUR DATA PROTECTION POLICY FOR B2B PARTNERS.
+              </p>
+            </form>
+          )}
         </div>
       </div>
     </div>
