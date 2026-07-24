@@ -24,43 +24,46 @@ export default function Home() {
   return (
     <div className="bg-background">
       {/* SECTION 1: HERO */}
-      <section className="relative overflow-hidden border-b border-border-warm bg-cream-soft" data-component="home-hero">
-        <div className="mx-auto grid min-h-[720px] max-w-7xl grid-cols-1 items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
-          <div>
-            <p className="mono-label mb-5 text-xs font-bold text-navy">B2B Massage Wellness Solutions</p>
-            <h1 className="serif-display max-w-3xl text-[54px] font-semibold leading-[0.92] text-foreground md:text-[78px] lg:text-[88px]">
+      <section className="relative min-h-[85vh] w-full overflow-hidden border-b border-border-warm bg-cream-soft flex items-center" data-component="home-hero">
+        {/* Background Image Container */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/wellness/hero_banner.png"
+            alt="Jamooz professional wellness technology hero"
+            className="h-full w-full object-cover object-[center_25%] md:object-center"
+          />
+          {/* Subtle overlay for text legibility - light to transparent */}
+          <div className="absolute inset-0 bg-gradient-to-r from-cream-soft/90 via-cream-soft/30 to-transparent hidden md:block" />
+          {/* Mobile overlay - bottom up */}
+          <div className="absolute inset-0 bg-gradient-to-t from-cream-soft/95 via-cream-soft/40 to-transparent md:hidden" />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 w-full">
+          <div className="max-w-3xl">
+            <p className="mono-label mb-6 text-xs font-bold text-navy tracking-[0.2em] uppercase">B2B Massage Wellness Solutions</p>
+            <h1 className="serif-display text-[54px] font-semibold leading-[0.92] text-foreground md:text-[82px] lg:text-[102px] tracking-tight">
               Massage Wellness Products Built for Global Buyers
             </h1>
-            <p className="mt-8 max-w-xl text-lg leading-8 text-muted">
+            <p className="mt-10 max-w-xl text-lg md:text-xl leading-8 text-muted font-medium">
               Custom massage pillows, neck massagers and wellness gift products for importers, distributors and private-label brands. Science-backed recovery technology for professional results.
             </p>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <Link href="/rfq" className="btn-primary">Send RFQ</Link>
-              <Link href="/products" className="btn-secondary">View Product Range</Link>
+            <div className="mt-12 flex flex-col gap-4 sm:flex-row">
+              <Link href="/rfq" className="btn-primary px-12 py-5 text-base shadow-2xl">Send RFQ</Link>
+              <Link href="/products" className="btn-secondary px-12 py-5 text-base bg-white/40 backdrop-blur-md border-navy/20">View Product Range</Link>
             </div>
-            <div className="mt-12 grid max-w-3xl grid-cols-2 gap-6 md:grid-cols-3">
-              {['CE / FCC / RoHS Support', 'Factory Direct Quality', 'Global Export Experience'].map((item) => (
-                <div key={item} className="flex items-center gap-3 text-sm font-semibold text-navy">
-                  <span className="grid h-9 w-9 place-items-center rounded-full border border-border-warm bg-white text-xs">✓</span>
-                  {item}
+            
+            {/* Trust Badges / Stats Row */}
+            <div className="mt-20 flex flex-wrap items-center gap-x-12 gap-y-8">
+              {[
+                ['50+', 'Countries Served'],
+                ['10+', 'Years Experience'],
+                ['300+', 'Global Partners']
+              ].map(([val, label]) => (
+                <div key={label} className="flex flex-col">
+                  <span className="serif-display text-4xl font-bold text-navy tracking-tighter leading-none">{val}</span>
+                  <span className="mono-label text-[10px] text-muted font-bold tracking-[0.1em] mt-3 uppercase">{label}</span>
                 </div>
               ))}
-            </div>
-          </div>
-
-          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-[#e8d8c5] shadow-2xl">
-            <img
-              src="/images/wellness/hero_banner.png"
-              alt="Jamooz professional wellness technology hero"
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute bottom-8 right-8 left-8 rounded-xl border border-white/25 bg-black/65 p-6 text-white backdrop-blur-md">
-              <p className="text-sm text-white/80 font-medium">B2B Wellness Technology Partner</p>
-              <div className="mt-5 flex justify-between gap-4">
-                {['50+ Countries', '300+ Partners', '10+ Years'].map((stat) => (
-                  <div key={stat}><p className="serif-display text-2xl">{stat.split(' ')[0]}</p><p className="text-[10px] uppercase tracking-wider text-white/70">{stat.split(' ').slice(1).join(' ')}</p></div>
-                ))}
-              </div>
             </div>
           </div>
         </div>
