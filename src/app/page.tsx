@@ -28,20 +28,20 @@ export default function Home() {
         {/* Background Image Container */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/images/wellness/hero_banner.png"
+            src="/images/wellness/hero_banner_clean.png"
             alt="Jamooz professional wellness technology hero"
-            className="h-full w-full object-cover object-[center_25%] md:object-center"
+            className="h-full w-full object-cover object-[center_25%] md:object-right"
           />
           {/* Subtle overlay for text legibility - light to transparent */}
-          <div className="absolute inset-0 bg-gradient-to-r from-cream-soft/90 via-cream-soft/30 to-transparent hidden md:block" />
+          <div className="absolute inset-0 bg-gradient-to-r from-cream-soft/95 via-cream-soft/40 to-transparent hidden md:block" />
           {/* Mobile overlay - bottom up */}
-          <div className="absolute inset-0 bg-gradient-to-t from-cream-soft/95 via-cream-soft/40 to-transparent md:hidden" />
+          <div className="absolute inset-0 bg-gradient-to-t from-cream-soft/95 via-cream-soft/60 to-transparent md:hidden" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 w-full">
           <div className="max-w-3xl">
             <p className="mono-label mb-6 text-xs font-bold text-navy tracking-[0.2em] uppercase">B2B Massage Wellness Solutions</p>
-            <h1 className="serif-display text-[54px] font-semibold leading-[0.92] text-foreground md:text-[82px] lg:text-[102px] tracking-tight">
+            <h1 className="serif-display text-[48px] font-semibold leading-[0.92] text-foreground md:text-[72px] lg:text-[92px] tracking-tight">
               Massage Wellness Products Built for Global Buyers
             </h1>
             <p className="mt-10 max-w-xl text-lg md:text-xl leading-8 text-muted font-medium">
