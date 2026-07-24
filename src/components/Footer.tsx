@@ -2,42 +2,51 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-white border-t border-gray-100 pt-20 pb-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-          <div className="col-span-1 md:col-span-2">
-            <Link href="/" className="text-xl font-bold tracking-tighter text-black">
-              JAMOOZ
-            </Link>
-            <p className="mt-4 text-sm text-gray-500 max-w-xs leading-relaxed">
-              Leading manufacturer of professional massage equipment. Dedicated to providing high-quality recovery solutions for B2B partners worldwide.
-            </p>
-          </div>
+    <footer className="border-t border-border-warm bg-surface-dark text-white">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <h3 className="text-xs font-semibold text-black uppercase tracking-widest">Sitemap</h3>
-            <ul className="mt-6 space-y-4">
-              <li><Link href="/products" className="text-sm text-gray-500 hover:text-black">Products</Link></li>
-              <li><Link href="/custom" className="text-sm text-gray-500 hover:text-black">Customization (OEM/ODM)</Link></li>
-              <li><Link href="/about" className="text-sm text-gray-500 hover:text-black">About Certifications</Link></li>
-              <li><Link href="/rfq" className="text-sm text-gray-500 hover:text-black">RFQ / Contact</Link></li>
+            <Link href="/" className="serif-display text-5xl font-semibold tracking-[-0.08em] text-white">Jamooz</Link>
+            <p className="mt-5 max-w-sm leading-7 text-white/62">Professional recovery and scalp care technology for global wellness brands, OEM/ODM partners, and clinical retail channels.</p>
+            <div className="mt-7 flex flex-wrap gap-2 text-xs font-bold text-white/72">
+              {['CE', 'FCC', 'SGS', 'RoHS', 'IPX7'].map((item) => <span key={item} className="rounded border border-white/15 px-3 py-1">{item}</span>)}
+            </div>
+          </div>
+
+          <div>
+            <h3 className="mono-label text-xs font-bold text-white/50">Solutions</h3>
+            <ul className="mt-5 space-y-3 text-sm text-white/68">
+              <li><Link href="/products" className="hover:text-white">Scalp massagers</Link></li>
+              <li><Link href="/products" className="hover:text-white">Recovery devices</Link></li>
+              <li><Link href="/products" className="hover:text-white">Red light therapy</Link></li>
+              <li><Link href="/custom" className="hover:text-white">Custom product lines</Link></li>
             </ul>
           </div>
+
           <div>
-            <h3 className="text-xs font-semibold text-black uppercase tracking-widest">Contact</h3>
-            <ul className="mt-6 space-y-4 text-sm text-gray-500">
-              <li>Email: info@jamooz.com</li>
-              <li>Phone: +86 123 4567 890</li>
-              <li>Location: Shenzhen, China</li>
+            <h3 className="mono-label text-xs font-bold text-white/50">Partner services</h3>
+            <ul className="mt-5 space-y-3 text-sm text-white/68">
+              <li>OEM/ODM engineering</li>
+              <li>Private label branding</li>
+              <li>Gift box packaging</li>
+              <li>Global delivery support</li>
             </ul>
+          </div>
+
+          <div>
+            <h3 className="mono-label text-xs font-bold text-white/50">Contact</h3>
+            <ul className="mt-5 space-y-3 text-sm text-white/68">
+              <li>info@jamooz.com</li>
+              <li>Shenzhen, China</li>
+              <li>24-hour B2B inquiry response</li>
+            </ul>
+            <Link href="/rfq" className="btn-primary mt-7">Request Quote</Link>
           </div>
         </div>
-        <div className="mt-20 pt-8 border-t border-gray-50 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-gray-400">
-            &copy; {new Date().getFullYear()} Jamooz Massage Equipment. All rights reserved.
-          </p>
-          <div className="flex space-x-6">
-            <span className="text-xs text-gray-400">CE / FCC / RoHS Certified</span>
-          </div>
+
+        <div className="mt-14 flex flex-col justify-between gap-4 border-t border-white/10 pt-7 text-xs text-white/45 md:flex-row">
+          <p>© {new Date().getFullYear()} Jamooz Wellness Technology. All rights reserved.</p>
+          <p>Science-backed recovery technology · Built for partners</p>
         </div>
       </div>
     </footer>
