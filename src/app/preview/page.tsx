@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const R2 = 'https://pub-7c0fef674c514e7d8b3844cdeadf9c48.r2.dev/JAMOOZ_preview_web_assets';
 const asset = (group: string, file: string) => `${R2}/${group}/${file}`;
 const ali = (path: string) => `https:${path}`;
 const pct = (n:number,total:number) => `${(n/total)*100}%`;
+const heroBanners = ['banner1.webp','banner4.webp','banner2.webp'] as const;
 
 const painStates = [
   { id:'p1',x:609,y:185,w:68,h:93,image:ali('//sc04.alicdn.com/kf/Hd2b7d5ddb4a34689872369aa618d57ffz/252717039/Hd2b7d5ddb4a34689872369aa618d57ffz.png') },
@@ -64,14 +65,29 @@ const companyImage = ali('//sc02.alicdn.com/kf/H3475d9f36ecf4328a0599a56c3dcc924
 const certificateImage = ali('//sc02.alicdn.com/kf/H99de7b20e65046c896d63f96a166fde27.png');
 
 export default function HomepagePreview(){
+  const [bannerIndex,setBannerIndex] = useState(0);
   const [painImage,setPainImage] = useState(painStates[0].image);
   const [customGroup,setCustomGroup] = useState(0);
   const [customVariant,setCustomVariant] = useState(0);
   const group = customGroups[customGroup];
   const chooseGroup = (i:number) => { setCustomGroup(i); setCustomVariant(0); };
+  const prevBanner = () => setBannerIndex(i => (i - 1 + heroBanners.length) % heroBanners.length);
+  const nextBanner = () => setBannerIndex(i => (i + 1) % heroBanners.length);
+
+  useEffect(() => {
+    const timer = window.setInterval(nextBanner, 5500);
+    return () => window.clearInterval(timer);
+  }, []);
 
   return <div className="bg-white text-zinc-900">
-    <section className="overflow-hidden bg-black"><img src={asset('banner','banner1.webp')} alt="JAMOOZ" className="block h-auto w-full" /></section>
+    <section className="group relative overflow-hidden bg-black" style={{aspectRatio:'1920 / 650'}}>
+      {heroBanners.map((banner,i)=><img key={banner} src={asset('banner',banner)} alt={`JAMOOZ banner ${i+1}`} className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-700 ${bannerIndex===i?'opacity-100':'pointer-events-none opacity-0'}`} />)}
+      <button type="button" onClick={prevBanner} aria-label="Previous banner" className="absolute left-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-2xl text-white opacity-0 backdrop-blur-sm transition hover:bg-black/55 group-hover:opacity-100 md:left-6">‹</button>
+      <button type="button" onClick={nextBanner} aria-label="Next banner" className="absolute right-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-2xl text-white opacity-0 backdrop-blur-sm transition hover:bg-black/55 group-hover:opacity-100 md:right-6">›</button>
+      <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-2 rounded-full bg-black/25 px-3 py-2 backdrop-blur-sm">
+        {heroBanners.map((banner,i)=><button key={banner} type="button" onClick={()=>setBannerIndex(i)} aria-label={`Show banner ${i+1}`} className={`h-2.5 rounded-full transition-all ${bannerIndex===i?'w-7 bg-white':'w-2.5 bg-white/55 hover:bg-white/80'}`} />)}
+      </div>
+    </section>
 
     <section className="bg-white py-10 md:py-14"><div className="mx-auto max-w-[1440px] px-3 md:px-6"><div className="relative mx-auto overflow-hidden" style={{aspectRatio:'1920 / 1059'}}><img src={painImage} alt="JAMOOZ body pain solution" className="absolute inset-0 h-full w-full object-contain" />{painStates.map(p=><button key={p.id} aria-label={p.id} onMouseEnter={()=>setPainImage(p.image)} onFocus={()=>setPainImage(p.image)} onClick={()=>setPainImage(p.image)} className="absolute z-10 bg-transparent" style={{left:pct(p.x,1920),top:pct(p.y,1059),width:pct(p.w,1920),height:pct(p.h,1059)}} />)}</div></div></section>
 
