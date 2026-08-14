@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PreviewContactSection from "@/components/PreviewContactSection";
 
 export const metadata: Metadata = {
   title: "Jamooz | Professional Recovery & Wellness Technology",
@@ -19,6 +20,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <Navbar />
         <main className="flex-grow">{children}</main>
+        <PreviewContactSection />
         <Footer />
       </body>
     </html>
