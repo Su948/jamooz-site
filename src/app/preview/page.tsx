@@ -5,26 +5,28 @@ import { useState } from 'react';
 const R2 = 'https://pub-7c0fef674c514e7d8b3844cdeadf9c48.r2.dev/JAMOOZ_preview_web_assets';
 const asset = (group: string, file: string) => `${R2}/${group}/${file}`;
 const ali = (path: string) => `https:${path}`;
+const pct = (n:number,total:number) => `${(n/total)*100}%`;
 
 const painStates = [
-  { id: 'p1', x:609, y:185, w:68, h:93, image: ali('//sc04.alicdn.com/kf/Hd2b7d5ddb4a34689872369aa618d57ffz/252717039/Hd2b7d5ddb4a34689872369aa618d57ffz.png') },
-  { id: 'p2', x:579, y:393, w:115, h:105, image: ali('//sc04.alicdn.com/kf/Ha7597fb64c9949ef9ed169d4b659806bE/252717039/Ha7597fb64c9949ef9ed169d4b659806bE.png') },
-  { id: 'p3', x:645, y:775, w:78, h:159, image: ali('//sc04.alicdn.com/kf/H07535359442b4b909ab787fc36acba76K/252717039/H07535359442b4b909ab787fc36acba76K.png') },
-  { id: 'p4', x:546, y:769, w:71, h:163, image: ali('//sc04.alicdn.com/kf/H07535359442b4b909ab787fc36acba76K/252717039/H07535359442b4b909ab787fc36acba76K.png') },
-  { id: 'p5', x:639, y:553, w:66, h:128, image: ali('//sc04.alicdn.com/kf/H5b413e14344a456bbe57c4b1a6eb95a6T/252717039/H5b413e14344a456bbe57c4b1a6eb95a6T.png') },
-  { id: 'p6', x:566, y:551, w:66, h:129, image: ali('//sc04.alicdn.com/kf/H5b413e14344a456bbe57c4b1a6eb95a6T/252717039/H5b413e14344a456bbe57c4b1a6eb95a6T.png') },
-  { id: 'p7', x:710, y:507, w:49, h:98, image: ali('//sc04.alicdn.com/kf/H221e3a936b6741758d1718b3bbec1a4ai/252717039/H221e3a936b6741758d1718b3bbec1a4ai.png') },
-  { id: 'p8', x:514, y:507, w:50, h:99, image: ali('//sc04.alicdn.com/kf/H221e3a936b6741758d1718b3bbec1a4ai/252717039/H221e3a936b6741758d1718b3bbec1a4ai.png') },
-  { id: 'p9', x:608, y:263, w:65, h:60, image: ali('//sc04.alicdn.com/kf/Hadfb85f0a827454a8ebf62c26e7dd5db8/252717039/Hadfb85f0a827454a8ebf62c26e7dd5db8.png') },
+  { id:'p1',x:609,y:185,w:68,h:93,image:ali('//sc04.alicdn.com/kf/Hd2b7d5ddb4a34689872369aa618d57ffz/252717039/Hd2b7d5ddb4a34689872369aa618d57ffz.png') },
+  { id:'p2',x:579,y:393,w:115,h:105,image:ali('//sc04.alicdn.com/kf/Ha7597fb64c9949ef9ed169d4b659806bE/252717039/Ha7597fb64c9949ef9ed169d4b659806bE.png') },
+  { id:'p3',x:645,y:775,w:78,h:159,image:ali('//sc04.alicdn.com/kf/H07535359442b4b909ab787fc36acba76K/252717039/H07535359442b4b909ab787fc36acba76K.png') },
+  { id:'p4',x:546,y:769,w:71,h:163,image:ali('//sc04.alicdn.com/kf/H07535359442b4b909ab787fc36acba76K/252717039/H07535359442b4b909ab787fc36acba76K.png') },
+  { id:'p5',x:639,y:553,w:66,h:128,image:ali('//sc04.alicdn.com/kf/H5b413e14344a456bbe57c4b1a6eb95a6T/252717039/H5b413e14344a456bbe57c4b1a6eb95a6T.png') },
+  { id:'p6',x:566,y:551,w:66,h:129,image:ali('//sc04.alicdn.com/kf/H5b413e14344a456bbe57c4b1a6eb95a6T/252717039/H5b413e14344a456bbe57c4b1a6eb95a6T.png') },
+  { id:'p7',x:710,y:507,w:49,h:98,image:ali('//sc04.alicdn.com/kf/H221e3a936b6741758d1718b3bbec1a4ai/252717039/H221e3a936b6741758d1718b3bbec1a4ai.png') },
+  { id:'p8',x:514,y:507,w:50,h:99,image:ali('//sc04.alicdn.com/kf/H221e3a936b6741758d1718b3bbec1a4ai/252717039/H221e3a936b6741758d1718b3bbec1a4ai.png') },
+  { id:'p9',x:608,y:263,w:65,h:60,image:ali('//sc04.alicdn.com/kf/Hadfb85f0a827454a8ebf62c26e7dd5db8/252717039/Hadfb85f0a827454a8ebf62c26e7dd5db8.png') },
 ] as const;
 
 const customGroups = [
-  { id:'c1', x:1017,y:96,w:149,h:173, files:['1.1.webp','1.2.webp','1.3.webp','1.4.webp'], swatches:[{x:1021,y:268,w:57,h:76},{x:1084,y:270,w:55,h:75},{x:1153,y:266,w:55,h:81},{x:1221,y:268,w:57,h:78}] },
-  { id:'c2', x:1170,y:95,w:157,h:167, files:['2.1.webp','2.2.webp'], swatches:[{x:1020,y:271,w:55,h:71},{x:1089,y:267,w:53,h:73}] },
-  { id:'c3', x:1344,y:97,w:146,h:163, files:['3.1.webp','3.2.webp','3.3.webp'], swatches:[{x:1022,y:273,w:50,h:69},{x:1091,y:271,w:47,h:67},{x:1162,y:274,w:46,h:67}] },
-  { id:'c4', x:1501,y:106,w:146,h:158, files:['4.1.webp','4.2.webp','4.3.webp'], swatches:[{x:1014,y:262,w:60,h:76},{x:1087,y:270,w:52,h:78},{x:1160,y:269,w:51,h:75}] },
+  { id:'c1',x:1017,y:96,w:149,h:173,files:['1.1.webp','1.2.webp','1.3.webp','1.4.webp'],swatches:[{x:1021,y:268,w:57,h:76},{x:1084,y:270,w:55,h:75},{x:1153,y:266,w:55,h:81},{x:1221,y:268,w:57,h:78}] },
+  { id:'c2',x:1170,y:95,w:157,h:167,files:['2.1.webp','2.2.webp'],swatches:[{x:1020,y:271,w:55,h:71},{x:1089,y:267,w:53,h:73}] },
+  { id:'c3',x:1344,y:97,w:146,h:163,files:['3.1.webp','3.2.webp','3.3.webp'],swatches:[{x:1022,y:273,w:50,h:69},{x:1091,y:271,w:47,h:67},{x:1162,y:274,w:46,h:67}] },
+  { id:'c4',x:1501,y:106,w:146,h:158,files:['4.1.webp','4.2.webp','4.3.webp'],swatches:[{x:1014,y:262,w:60,h:76},{x:1087,y:270,w:52,h:78},{x:1160,y:269,w:51,h:75}] },
 ] as const;
 
+const scrollBg = ali('//sc04.alicdn.com/kf/Hd94f7581c62d4edaa1393c4d63bc2c4fK/252717039/Hd94f7581c62d4edaa1393c4d63bc2c4fK.png');
 const scrollImage = ali('//sc04.alicdn.com/kf/Ha436492285ff4327be16f9091707abb00/252717039/Ha436492285ff4327be16f9091707abb00.png');
 const scrollLinks = [
   {x:289,y:421,w:164,h:244,href:'https://www.alibaba.com/product-detail/Electric-Hand-Vibration-Massager-Product-with_1601807652970.html'},
@@ -36,68 +38,65 @@ const scrollLinks = [
   {x:1650,y:435,w:251,h:226,href:'https://www.alibaba.com/product-detail/Custom-Designed-Luxury-Modern-Multi-Functional_1601400310978.html'},
 ];
 
-function pct(n:number,total:number){ return `${(n/total)*100}%`; }
+const collectionBg = ali('//sc04.alicdn.com/kf/H469e2db625db44f6bc64935cc98366b0r/252717039/H469e2db625db44f6bc64935cc98366b0r.png');
+const collectionItems = [
+  {x:1040,y:86,w:527,h:352,img:ali('//sc04.alicdn.com/kf/H8e3115ca790f499e953f19c01998e217y/252717039/H8e3115ca790f499e953f19c01998e217y.png'),href:'https://jamooz.m.en.alibaba.com/productgrouplist-927686627/U_shaped_massage_pillow.html'},
+  {x:358,y:467,w:392,h:352,img:ali('//sc04.alicdn.com/kf/H4dbedbb220ff45a7a4f89627a1efc017a/252717039/H4dbedbb220ff45a7a4f89627a1efc017a.png'),href:'https://jamooz.m.en.alibaba.com/productgrouplist-829339617/Massage_chair.html'},
+  {x:765,y:467,w:392,h:352,img:ali('//sc04.alicdn.com/kf/H2025407316334f0a85313640130714e9Z/252717039/H2025407316334f0a85313640130714e9Z.png'),href:'https://jamooz.m.en.alibaba.com/productgrouplist-964368605/Abdominal_massage.html'},
+  {x:1175,y:467,w:392,h:352,img:ali('//sc04.alicdn.com/kf/H83987d9d85764c28a6d49136d9f5a9dec/252717039/H83987d9d85764c28a6d49136d9f5a9dec.png'),href:'https://jamooz.m.en.alibaba.com/productgrouplist-964118558/scalp_massager.html'},
+];
+
+const categoryPages = [
+  {name:'Massage Gun',h:1362,bg:ali('//sc04.alicdn.com/kf/H42269ee3d363461685c2bc242f4eaa10w/252717039/H42269ee3d363461685c2bc242f4eaa10w.jpg'),links:[{x:85,y:0,w:1195,h:340,href:'https://jamooz.m.en.alibaba.com/productgrouplist-963657820/'},{x:715,y:500,w:765,h:267,href:'https://www.alibaba.com/product-detail/Hot-Selling-Mini-Portable-Massage-Gun_1601806822298.html'},{x:352,y:893,w:309,h:401,href:'https://www.alibaba.com/product-detail/2026-New-Electric-Massage-Gun-Smart_1601777950076.html'},{x:658,y:893,w:304,h:398,href:'https://www.alibaba.com/product-detail/JAMOOZ-Double-Head-High-Power-3_1601441437669.html'},{x:959,y:888,w:299,h:407,href:'https://www.alibaba.com/product-detail/Portable-Mini-Electric-Massage-Gun-Deep_1601806789203.html'},{x:1259,y:892,w:302,h:401,href:'https://www.alibaba.com/product-detail/Smart-Electric-Massage-Gun-One-hand_1601806789959.html'}]},
+  {name:'Face & Eye',h:1399,bg:ali('//sc04.alicdn.com/kf/Hb7d680b041594d96a8ad3e0fd5fe0ca4V/252717039/Hb7d680b041594d96a8ad3e0fd5fe0ca4V.jpg'),links:[{x:85,y:0,w:1195,h:340,href:'https://jamooz.m.en.alibaba.com/productgrouplist-916843355/'},{x:715,y:500,w:765,h:267,href:'https://www.alibaba.com/product-detail/Eye-Massager-With-Heat-Cold-Vibration_1601675044291.html'},{x:352,y:893,w:309,h:401,href:'https://www.alibaba.com/product-detail/2026-Most-Selling-Product-Women-s_11000030235200.html'},{x:658,y:893,w:304,h:398,href:'https://www.alibaba.com/product-detail/Skin-Tightening-Facial-Massager-with-Red_1601794009991.html'},{x:959,y:888,w:299,h:407,href:'https://www.alibaba.com/product-detail/Portable-Rechargeable-Eye-Massager-Airbag-Compression_1601784338402.html'},{x:1259,y:892,w:302,h:401,href:'https://www.alibaba.com/product-detail/Eye-Massager-With-Heat-Cold-Vibration_1601675044291.html'}]},
+  {name:'Scalp Massage',h:1354,bg:ali('//sc04.alicdn.com/kf/H1cecd2d0beac4601ab0900ed3963c9bbY/252717039/H1cecd2d0beac4601ab0900ed3963c9bbY.jpg'),links:[{x:85,y:0,w:1195,h:340,href:'https://jamooz.m.en.alibaba.com/productgrouplist-964339889/'},{x:715,y:500,w:765,h:267,href:'https://www.alibaba.com/product-detail/JAMOOZ-Portable-Healthy-Technology-Electric-Scalp_1601708387462.html'},{x:352,y:893,w:309,h:401,href:'https://www.alibaba.com/product-detail/2026-Upgraded-Electric-Scalp-Massage-Comb_1601809224462.html'},{x:656,y:892,w:302,h:401,href:'https://www.alibaba.com/product-detail/Best-Selling-Products-2025-Hair-Growth_11000031623897.html'},{x:956,y:894,w:304,h:398,href:'https://www.alibaba.com/product-detail/Electric-Head-Massager-Sleep-Monitor-Migraine_1600878255438.html'},{x:1260,y:888,w:299,h:407,href:'https://www.alibaba.com/product-detail/Cat-Smart-Handy-Automatic-Silicone-Rechargeable_1600295060563.html'}]},
+  {name:'U-Shaped Pillow',h:1363,bg:ali('//sc04.alicdn.com/kf/H48dd9a59c44b435c991f3e1999a84d63F/252717039/H48dd9a59c44b435c991f3e1999a84d63F.jpg'),links:[{x:85,y:0,w:1195,h:340,href:'https://jamooz.m.en.alibaba.com/productgrouplist-927686627/'},{x:715,y:500,w:765,h:267,href:'https://www.alibaba.com/product-detail/2026-Portable-Best-Selling-Intelligent-3D_1601594698148.html'},{x:352,y:893,w:309,h:401,href:'https://www.alibaba.com/product-detail/Portable-Massagers-Products-Travel-Hot-Sale_1601233871632.html'},{x:656,y:892,w:302,h:401,href:'https://www.alibaba.com/product-detail/Portable-Massagers-Products-Travel-Hot-Sale_1601233871632.html'},{x:956,y:894,w:304,h:398,href:'https://www.alibaba.com/product-detail/Infrared_Light_Hot_Compress_USB_Charge_Neck_Pillow_Massage_Travel_Neck_Pillow_Massage_Cordless_Travel_Massage_Pillow_1600307030163.html'},{x:1260,y:888,w:299,h:407,href:'https://www.alibaba.com/product-detail/Best-selling-Products-2025-Estate-Car_1601377613813.html'}]},
+];
+
+const reviewBg = ali('//sc04.alicdn.com/kf/H9d354770c4b14f6ea84599d5cb42df7cw/252717039/H9d354770c4b14f6ea84599d5cb42df7cw.png');
+const reviews = [
+  {x:360,y:286,w:362,h:517,img:ali('//sc04.alicdn.com/kf/H8a20f2689d164b6184b3b9a7541d1075D/252717039/H8a20f2689d164b6184b3b9a7541d1075D.png'),speed:'25s'},
+  {x:780,y:286,w:362,h:707,img:ali('//sc04.alicdn.com/kf/H9f69f1787ffe4ce093b5364efaaaed9dW/252717039/H9f69f1787ffe4ce093b5364efaaaed9dW.png'),speed:'31s'},
+  {x:1198,y:286,w:362,h:517,img:ali('//sc04.alicdn.com/kf/H0afcafb90e0740d6842ae09a714d44dfm/252717039/H0afcafb90e0740d6842ae09a714d44dfm.png'),speed:'27s'},
+];
+
+const companyImage = ali('//sc02.alicdn.com/kf/H3475d9f36ecf4328a0599a56c3dcc924B.jpg');
+const certificateImage = ali('//sc02.alicdn.com/kf/H99de7b20e65046c896d63f96a166fde27.png');
 
 export default function HomepagePreview(){
   const [painImage,setPainImage] = useState(painStates[0].image);
   const [customGroup,setCustomGroup] = useState(0);
   const [customVariant,setCustomVariant] = useState(0);
   const group = customGroups[customGroup];
-
-  const chooseGroup = (index:number) => { setCustomGroup(index); setCustomVariant(0); };
+  const chooseGroup = (i:number) => { setCustomGroup(i); setCustomVariant(0); };
 
   return <div className="bg-white text-zinc-900">
-    <section className="overflow-hidden bg-black">
-      <img src={asset('banner','banner1.webp')} alt="JAMOOZ" className="block h-auto w-full" />
-    </section>
+    <section className="overflow-hidden bg-black"><img src={asset('banner','banner1.webp')} alt="JAMOOZ" className="block h-auto w-full" /></section>
 
-    <section className="bg-white py-10 md:py-14">
-      <div className="mx-auto max-w-[1440px] px-3 md:px-6">
-        <div className="mb-6 text-center"><p className="text-xs font-bold uppercase tracking-[.22em] text-violet-700">Targeted Pain Relief</p><h2 className="mt-2 text-3xl font-semibold md:text-4xl">Move Your Mouse To Find Targeted Relief</h2></div>
-        <div className="relative mx-auto overflow-hidden bg-white" style={{aspectRatio:'1920 / 1059'}}>
-          <img src={painImage} alt="JAMOOZ body pain solution" className="absolute inset-0 h-full w-full object-contain" />
-          {painStates.map((p)=><button key={p.id} aria-label={p.id} onMouseEnter={()=>setPainImage(p.image)} onFocus={()=>setPainImage(p.image)} onClick={()=>setPainImage(p.image)} className="absolute z-10 bg-transparent" style={{left:pct(p.x,1920),top:pct(p.y,1059),width:pct(p.w,1920),height:pct(p.h,1059)}} />)}
-        </div>
-      </div>
-    </section>
+    <section className="bg-white py-10 md:py-14"><div className="mx-auto max-w-[1440px] px-3 md:px-6"><div className="relative mx-auto overflow-hidden" style={{aspectRatio:'1920 / 1059'}}><img src={painImage} alt="JAMOOZ body pain solution" className="absolute inset-0 h-full w-full object-contain" />{painStates.map(p=><button key={p.id} aria-label={p.id} onMouseEnter={()=>setPainImage(p.image)} onFocus={()=>setPainImage(p.image)} onClick={()=>setPainImage(p.image)} className="absolute z-10 bg-transparent" style={{left:pct(p.x,1920),top:pct(p.y,1059),width:pct(p.w,1920),height:pct(p.h,1059)}} />)}</div></div></section>
 
-    <section className="bg-[#f7f4fb] py-10 md:py-14">
-      <div className="mb-6 text-center"><p className="text-xs font-bold uppercase tracking-[.22em] text-violet-700">Popular Products</p><h2 className="mt-2 text-3xl font-semibold md:text-4xl">Continuous Product Showcase</h2></div>
-      <div className="overflow-hidden">
-        <div className="jamooz-marquee flex w-[200%]">
-          {[0,1].map((copy)=><div key={copy} className="relative w-1/2 shrink-0" style={{aspectRatio:'1920 / 788'}}>
-            <img src={scrollImage} alt="JAMOOZ products" className="absolute inset-0 h-full w-full object-contain" />
-            {scrollLinks.map((l,i)=><a key={i} href={l.href} target="_blank" rel="noreferrer" className="absolute z-10" style={{left:pct(l.x,1920),top:pct(l.y,788),width:pct(l.w,1920),height:pct(l.h,788)}} aria-label={`product-${i+1}`} />)}
-          </div>)}
-        </div>
-      </div>
-    </section>
+    <section className="relative overflow-hidden" style={{aspectRatio:'1920 / 788'}}><img src={scrollBg} alt="" className="absolute inset-0 h-full w-full object-cover" /><div className="absolute inset-0 overflow-hidden"><div className="jamooz-marquee flex h-full w-[200%]">{[0,1].map(copy=><div key={copy} className="relative h-full w-1/2 shrink-0"><img src={scrollImage} alt="JAMOOZ products" className="absolute inset-0 h-full w-full object-contain" />{scrollLinks.map((l,i)=><a key={i} href={l.href} target="_blank" rel="noreferrer" className="absolute z-10" style={{left:pct(l.x,1920),top:pct(l.y,788),width:pct(l.w,1920),height:pct(l.h,788)}} aria-label={`product-${i+1}`} />)}</div>)}</div></div></section>
 
-    <section className="bg-white py-10 md:py-14">
-      <div className="mx-auto max-w-[1440px] px-3 md:px-6">
-        <div className="mb-6 text-center"><p className="text-xs font-bold uppercase tracking-[.22em] text-violet-700">Product Categories</p><h2 className="mt-2 text-3xl font-semibold md:text-4xl">Product Category Display</h2></div>
-        <div className="grid gap-4 md:grid-cols-2">
-          {['banner_03.webp','banner_04.webp','banner_05.webp','banner_06.webp'].map(f=><img key={f} src={asset('product_categories',f)} alt="category" className="block h-auto w-full" />)}
-        </div>
-      </div>
-    </section>
+    <section className="bg-white py-10 md:py-14"><div className="mx-auto max-w-[1440px] px-3 md:px-6"><div className="relative overflow-hidden" style={{aspectRatio:'1920 / 913'}}><img src={collectionBg} alt="JAMOOZ categories" className="absolute inset-0 h-full w-full object-contain" />{collectionItems.map((it,i)=><a key={i} href={it.href} target="_blank" rel="noreferrer" className="absolute z-10 overflow-hidden" style={{left:pct(it.x,1920),top:pct(it.y,913),width:pct(it.w,1920),height:pct(it.h,913)}}><img src={it.img} alt="category" className="h-full w-full object-contain" /></a>)}</div></div></section>
 
-    <section className="bg-[#faf8ff] py-10 md:py-14">
-      <div className="mx-auto max-w-[1440px] px-3 md:px-6">
-        <div className="mb-6 text-center"><p className="text-xs font-bold uppercase tracking-[.22em] text-violet-700">Customization</p><h2 className="mt-2 text-3xl font-semibold md:text-4xl">Interactive Customization Preview</h2></div>
-        <div className="relative mx-auto overflow-hidden bg-white" style={{aspectRatio:'1920 / 640'}}>
-          <img src={asset('customization',group.files[customVariant])} alt="customization preview" className="absolute inset-0 h-full w-full object-contain" />
-          {customGroups.map((g,i)=><button key={g.id} aria-label={g.id} onMouseEnter={()=>chooseGroup(i)} onFocus={()=>chooseGroup(i)} onClick={()=>chooseGroup(i)} className="absolute z-20 bg-transparent" style={{left:pct(g.x,1920),top:pct(g.y,640),width:pct(g.w,1920),height:pct(g.h,640)}} />)}
-          {group.swatches.map((s,i)=><button key={i} aria-label={`variant-${i+1}`} onMouseEnter={()=>setCustomVariant(i)} onFocus={()=>setCustomVariant(i)} onClick={()=>setCustomVariant(i)} className="absolute z-30 bg-transparent" style={{left:pct(s.x,1920),top:pct(s.y,640),width:pct(s.w,1920),height:pct(s.h,640)}} />)}
-        </div>
-      </div>
-    </section>
+    {categoryPages.map(page=><section key={page.name} className="bg-white"><div className="relative mx-auto overflow-hidden" style={{aspectRatio:`1920 / ${page.h}`}}><img src={page.bg} alt={page.name} className="absolute inset-0 h-full w-full object-contain" />{page.links.map((l,i)=><a key={i} href={l.href} target="_blank" rel="noreferrer" className="absolute z-10" style={{left:pct(l.x,1920),top:pct(l.y,page.h),width:pct(l.w,1920),height:pct(l.h,page.h)}} aria-label={`${page.name}-${i+1}`} />)}</div></section>)}
+
+    <section className="bg-[#faf8ff] py-10 md:py-14"><div className="mx-auto max-w-[1440px] px-3 md:px-6"><div className="relative mx-auto overflow-hidden" style={{aspectRatio:'1920 / 640'}}><img src={asset('customization',group.files[customVariant])} alt="customization preview" className="absolute inset-0 h-full w-full object-contain" />{customGroups.map((g,i)=><button key={g.id} aria-label={g.id} onMouseEnter={()=>chooseGroup(i)} onFocus={()=>chooseGroup(i)} onClick={()=>chooseGroup(i)} className="absolute z-20 bg-transparent" style={{left:pct(g.x,1920),top:pct(g.y,640),width:pct(g.w,1920),height:pct(g.h,640)}} />)}{group.swatches.map((s,i)=><button key={i} aria-label={`variant-${i+1}`} onMouseEnter={()=>setCustomVariant(i)} onFocus={()=>setCustomVariant(i)} onClick={()=>setCustomVariant(i)} className="absolute z-30 bg-transparent" style={{left:pct(s.x,1920),top:pct(s.y,640),width:pct(s.w,1920),height:pct(s.h,640)}} />)}</div></div></section>
+
+    <section className="bg-white"><img src={companyImage} alt="JAMOOZ company introduction" className="block h-auto w-full" /></section>
+
+    <section className="relative overflow-hidden bg-white" style={{aspectRatio:'1920 / 1110'}}><img src={reviewBg} alt="Customer reviews" className="absolute inset-0 h-full w-full object-contain" />{reviews.map((r,i)=><div key={i} className="absolute overflow-hidden" style={{left:pct(r.x,1920),top:pct(r.y,1110),width:pct(r.w,1920),height:pct(r.h,1110)}}><div className="review-roll" style={{animationDuration:r.speed}}><img src={r.img} alt="buyer reviews" className="block h-auto w-full" /><img src={r.img} alt="" aria-hidden className="block h-auto w-full" /></div></div>)}</section>
+
+    <section className="bg-white"><img src={certificateImage} alt="JAMOOZ certificates" className="block h-auto w-full" /></section>
 
     <style jsx global>{`
       @keyframes jamoozScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
       .jamooz-marquee { animation: jamoozScroll 26s linear infinite; }
       .jamooz-marquee:hover { animation-play-state: paused; }
-      @media (prefers-reduced-motion: reduce){ .jamooz-marquee{ animation:none; } }
+      @keyframes reviewScroll { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+      .review-roll { animation: reviewScroll 26s linear infinite; }
+      .review-roll:hover { animation-play-state: paused; }
+      @media (prefers-reduced-motion: reduce){ .jamooz-marquee,.review-roll{animation:none;} }
     `}</style>
   </div>;
 }
