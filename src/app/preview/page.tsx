@@ -1,53 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const R2 = 'https://pub-7c0fef674c514e7d8b3844cdeadf9c48.r2.dev/JAMOOZ_preview_web_assets';
 const asset = (group: string, file: string) => `${R2}/${group}/${file}`;
 const ali = (path: string) => `https:${path}`;
 const pct = (n:number,total:number) => `${(n/total)*100}%`;
-const heroSlides = [
-  {
-    image:'/preview-assets/hero/factory-selective.webp',
-    eyebrow:'',
-    title:'Global Smart Massage Solutions Provider',
-    body:'Factory Strength • OEM/ODM Customization • Stable Quality & Delivery',
-    cta:'Discover JAMOOZ',
-    href:'#about',
-    theme:'dark',
-    align:'left',
-    overlay:true,
-    compact:false,
-    showCta:false,
-  },
-  {
-    image:'/preview-assets/hero/products.webp',
-    eyebrow:'Professional Massage Device Manufacturer',
-    title:'Wellness Products Built for Your Market',
-    body:'Flexible bulk supply, custom branding and product development for global B2B partners.',
-    cta:'Explore Products',
-    href:'#product-range',
-    theme:'dark',
-    align:'left',
-    overlay:true,
-    compact:true,
-    showCta:true,
-  },
-  {
-    image:'/preview-assets/hero/odm-selective.webp',
-    eyebrow:'One-Stop Custom Scalp Massage Comb Development',
-    title:'ODM From 0 to 1',
-    body:'From idea to mass production, we turn concepts into market-ready wellness products.',
-    cta:'Start Your Project',
-    href:'#inquiry',
-    theme:'light',
-    align:'center',
-    overlay:true,
-    compact:true,
-    showCta:false,
-  },
-] as const;
-
 const painStates = [
   { id:'p1',x:609,y:185,w:68,h:93,image:ali('//sc04.alicdn.com/kf/Hd2b7d5ddb4a34689872369aa618d57ffz/252717039/Hd2b7d5ddb4a34689872369aa618d57ffz.png') },
   { id:'p2',x:579,y:393,w:115,h:105,image:ali('//sc04.alicdn.com/kf/Ha7597fb64c9949ef9ed169d4b659806bE/252717039/Ha7597fb64c9949ef9ed169d4b659806bE.png') },
@@ -112,35 +70,24 @@ const companyLinks = [
 const certificateImage = ali('//sc02.alicdn.com/kf/H99de7b20e65046c896d63f96a166fde27.png');
 
 export default function HomepagePreview(){
-  const [bannerIndex,setBannerIndex] = useState(0);
   const [painImage,setPainImage] = useState(painStates[0].image);
   const [customGroup,setCustomGroup] = useState(0);
   const [customVariant,setCustomVariant] = useState(0);
   const group = customGroups[customGroup];
   const chooseGroup = (i:number) => { setCustomGroup(i); setCustomVariant(0); };
-  const prevBanner = () => setBannerIndex(i => (i - 1 + heroSlides.length) % heroSlides.length);
-  const nextBanner = () => setBannerIndex(i => (i + 1) % heroSlides.length);
-
-  useEffect(() => {
-    const timer = window.setInterval(nextBanner, 5500);
-    return () => window.clearInterval(timer);
-  }, []);
-
   return <div className="bg-white text-zinc-900">
-    <section aria-label="JAMOOZ highlights" className="group relative min-h-[500px] overflow-hidden bg-[#171229] sm:min-h-[460px] lg:min-h-0" style={{aspectRatio:'1920 / 650'}}>
-      {heroSlides.map((slide,i)=><div key={slide.image} aria-hidden={bannerIndex!==i} className={`absolute inset-0 transition-opacity duration-700 ${bannerIndex===i?'opacity-100':'pointer-events-none opacity-0'}`}>
-        <img src={slide.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
-        {slide.overlay&&<div className={`absolute z-10 ${slide.theme==='dark'?'text-white':'text-[#211544]'} ${i===0?'left-[29.5%] top-[20%] w-[34%] text-left':i===1?'left-[6.5%] top-[16%] w-[27%] text-left':'left-[34%] top-[7%] w-[33%] text-left'}`}>
-          {slide.eyebrow&&<p className={`mb-[1.2%] font-bold ${i===1?'text-[clamp(8px,0.8vw,14px)] uppercase tracking-[0.22em]':'text-[clamp(10px,1vw,18px)]'} ${slide.theme==='dark'?'text-violet-100':'text-[#211080]'}`}>{slide.eyebrow}</p>}
-          {i===0?<h1 className="font-semibold leading-[1.06] tracking-tight text-[clamp(20px,2.65vw,52px)]">{slide.title}</h1>:<h2 className={`font-semibold leading-[1.07] tracking-tight ${i===1?'text-[clamp(22px,2.25vw,42px)]':'text-[clamp(22px,2.8vw,54px)]'}`}>{slide.title}</h2>}
-          <p className={`mt-[2%] ${i===1?'max-w-[290px] text-[clamp(10px,0.9vw,16px)] leading-[1.45]':i===0?'text-[clamp(10px,1.05vw,18px)] leading-[1.45]':'text-[clamp(10px,0.95vw,17px)] leading-[1.45]'} ${slide.theme==='dark'?'text-white/80':'text-[#3d3260]'}`}>{slide.body}</p>
-          {slide.showCta&&<a href={slide.href} className="mt-[4%] inline-flex min-h-9 items-center justify-center rounded-full bg-white px-5 py-2 text-[clamp(10px,0.8vw,14px)] font-bold text-[#241746] transition hover:-translate-y-0.5 hover:bg-violet-100">{slide.cta}<span aria-hidden className="ml-2">→</span></a>}
-        </div>}
-      </div>)}
-      <button type="button" onClick={prevBanner} aria-label="Previous banner" className="absolute left-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-2xl text-white opacity-0 backdrop-blur-sm transition hover:bg-black/55 group-hover:opacity-100 md:left-6">‹</button>
-      <button type="button" onClick={nextBanner} aria-label="Next banner" className="absolute right-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-2xl text-white opacity-0 backdrop-blur-sm transition hover:bg-black/55 group-hover:opacity-100 md:right-6">›</button>
-      <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-2 rounded-full bg-black/25 px-3 py-2 backdrop-blur-sm">
-        {heroSlides.map((slide,i)=><button key={slide.image} type="button" onClick={()=>setBannerIndex(i)} aria-label={`Show banner ${i+1}`} className={`h-2.5 rounded-full transition-all ${bannerIndex===i?'w-7 bg-white':'w-2.5 bg-white/55 hover:bg-white/80'}`} />)}
+    <section aria-label="JAMOOZ massage device manufacturing" className="relative min-h-[480px] overflow-hidden bg-[#5f4790] sm:min-h-0" style={{aspectRatio:'1920 / 650'}}>
+      <img src="/preview-assets/hero/products.webp" alt="JAMOOZ massage and wellness product range" className="absolute inset-0 h-full w-full object-cover object-center" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#4c397d]/45 via-transparent to-transparent" />
+      <div className="relative z-10 flex h-full min-h-[480px] items-center px-[5%] sm:min-h-0">
+        <div className="w-full max-w-[310px] text-white sm:w-[28%] sm:max-w-none">
+          <h1 className="text-[clamp(30px,2.15vw,42px)] font-semibold leading-[1.08] tracking-tight">Your <span className="text-[#e7b6ff]">Trusted</span> Massage Device OEM/ODM Manufacturing Partner</h1>
+          <p className="mt-4 text-[clamp(13px,0.95vw,17px)] leading-[1.55] text-white/85">20+ Years Manufacturing Experience Supporting Global Brands With Product Design, Customization And Mass Production</p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <a href="#inquiry" className="inline-flex min-h-11 items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-bold text-[#34205f] transition hover:-translate-y-0.5 hover:bg-violet-100">Request <span className="ml-1 text-[#e14c69]">A Quote</span></a>
+            <a href="#product-range" className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/70 bg-white/10 px-5 py-2.5 text-sm font-bold text-white backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/20"><span className="mr-1 text-[#86e39c]">Explore</span> Products</a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -148,7 +95,7 @@ export default function HomepagePreview(){
 
     <section id="oem-odm" className="scroll-mt-24 bg-[#faf8ff] py-10 md:py-14"><div className="mx-auto max-w-[1440px] px-3 md:px-6"><div className="relative mx-auto overflow-hidden" style={{aspectRatio:'1920 / 640'}}><img src={asset('customization',group.files[customVariant])} alt="customization preview" className="absolute inset-0 h-full w-full object-contain" />{customGroups.map((g,i)=><button key={g.id} aria-label={g.id} onMouseEnter={()=>chooseGroup(i)} onFocus={()=>chooseGroup(i)} onClick={()=>chooseGroup(i)} className="absolute z-20 bg-transparent" style={{left:pct(g.x,1920),top:pct(g.y,640),width:pct(g.w,1920),height:pct(g.h,640)}} />)}{group.swatches.map((s,i)=><button key={i} aria-label={`variant-${i+1}`} onMouseEnter={()=>setCustomVariant(i)} onFocus={()=>setCustomVariant(i)} onClick={()=>setCustomVariant(i)} className="absolute z-30 bg-transparent" style={{left:pct(s.x,1920),top:pct(s.y,640),width:pct(s.w,1920),height:pct(s.h,640)}} />)}</div></div></section>
 
-    <section className="relative overflow-hidden" style={{aspectRatio:'1920 / 788'}}><img src={scrollBg} alt="" className="absolute inset-0 h-full w-full object-cover" /><div className="absolute inset-0 overflow-hidden"><div className="jamooz-marquee flex h-full w-[200%]">{[0,1].map(copy=><div key={copy} className="relative h-full w-1/2 shrink-0"><img src={scrollImage} alt="JAMOOZ products" className="absolute inset-0 h-full w-full object-contain" />{scrollLinks.map((l,i)=><a key={i} href={l.href} target="_blank" rel="noreferrer" className="absolute z-10" style={{left:pct(l.x,1920),top:pct(l.y,788),width:pct(l.w,1920),height:pct(l.h,788)}} aria-label={`product-${i+1}`} />)}</div>)}</div></div></section>
+    <section id="product-range" className="scroll-mt-24 relative overflow-hidden" style={{aspectRatio:'1920 / 788'}}><img src={scrollBg} alt="" className="absolute inset-0 h-full w-full object-cover" /><div className="absolute inset-0 overflow-hidden"><div className="jamooz-marquee flex h-full w-[200%]">{[0,1].map(copy=><div key={copy} className="relative h-full w-1/2 shrink-0"><img src={scrollImage} alt="JAMOOZ products" className="absolute inset-0 h-full w-full object-contain" />{scrollLinks.map((l,i)=><a key={i} href={l.href} target="_blank" rel="noreferrer" className="absolute z-10" style={{left:pct(l.x,1920),top:pct(l.y,788),width:pct(l.w,1920),height:pct(l.h,788)}} aria-label={`product-${i+1}`} />)}</div>)}</div></div></section>
 
     <section className="bg-white py-10 md:py-14"><div className="mx-auto max-w-[1440px] px-3 md:px-6"><div className="relative overflow-hidden" style={{aspectRatio:'1920 / 913'}}><img src={collectionBg} alt="JAMOOZ categories" className="absolute inset-0 h-full w-full object-contain" />{collectionItems.map((it,i)=><a key={i} href={it.href} target="_blank" rel="noreferrer" className="absolute z-10 overflow-hidden" style={{left:pct(it.x,1920),top:pct(it.y,913),width:pct(it.w,1920),height:pct(it.h,913)}}><img src={it.img} alt="category" className="h-full w-full object-contain" /></a>)}</div></div></section>
 
