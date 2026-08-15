@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 const ali = (path: string) => `https:${path}`;
 const pct = (n:number,total:number) => `${(n/total)*100}%`;
@@ -25,19 +25,13 @@ const painStates = [
 ] as const;
 
 const customGroups = [
-  { id:'c1',name:'Scalp Massager',files:['1.1.webp','1.2.webp','1.3.webp','1.4.webp'],fabric:false },
-  { id:'c2',name:'Neck Massager',files:['2.1.webp','2.2.webp'],fabric:false },
-  { id:'c3',name:'Massage Belt',files:['3.1.webp','3.2.webp','3.3.webp'],fabric:false },
-  { id:'c4',name:'Massage Pillow',files:['4.1.webp','4.2.webp','4.3.webp'],fabric:true },
+  { id:'c1',name:'Scalp Massager',fabric:false,logo:{x:72,y:75},colors:[{name:'White',hex:'#ffffff',file:'1.1.webp'},{name:'Green',hex:'#315d34',file:'1.2.webp'},{name:'Red',hex:'#d84d4d',file:'1.3.webp'},{name:'Purple',hex:'#8f86b9',file:'1.4.webp'}] },
+  { id:'c2',name:'Neck Massager',fabric:false,logo:{x:72,y:56},colors:[{name:'Blue',hex:'#253c86',file:'2.1.webp'},{name:'Grey',hex:'#a7a7a7',file:'2.2.webp'}] },
+  { id:'c3',name:'Massage Belt',fabric:false,logo:{x:58,y:55},colors:[{name:'Black',hex:'#171717',file:'3.1.webp'},{name:'Grey',hex:'#8f8f8f',file:'3.2.webp'},{name:'White',hex:'#ffffff',file:'3.3.webp'}] },
+  { id:'c4',name:'Massage Pillow',fabric:true,logo:{x:53,y:40},colors:[{name:'Blue',hex:'#6d8fc0',file:'4.1.webp'},{name:'Red',hex:'#d84a3a',file:'4.2.webp'},{name:'Green',hex:'#5f8589',file:'4.3.webp'}] },
 ] as const;
 const customizationCapabilities = ['Custom Logo','Colors & Materials','Functions & Features','Packaging Design','Private Label','New Product Development'] as const;
 const customizationServices = ['Logo Printing','Custom Color','Custom Packaging','Function Customization','Private Label'] as const;
-const customizationColors = [
-  {name:'White',hex:'#ffffff'},
-  {name:'Green',hex:'#517553'},
-  {name:'Red',hex:'#d95656'},
-  {name:'Purple',hex:'#8d78b8'},
-] as const;
 
 const scrollBg = ali('//sc04.alicdn.com/kf/Hd94f7581c62d4edaa1393c4d63bc2c4fK/252717039/Hd94f7581c62d4edaa1393c4d63bc2c4fK.png');
 const scrollImage = ali('//sc04.alicdn.com/kf/Ha436492285ff4327be16f9091707abb00/252717039/Ha436492285ff4327be16f9091707abb00.png');
@@ -88,13 +82,18 @@ export default function HomepagePreview(){
   const [customGroup,setCustomGroup] = useState(0);
   const [customVariant,setCustomVariant] = useState(0);
   const [selectedServices,setSelectedServices] = useState<string[]>(['Logo Printing','Custom Packaging']);
+  const [logoPreview,setLogoPreview] = useState<string | null>(null);
+  const [logoPosition,setLogoPosition] = useState<{x:number;y:number}>({x:customGroups[0].logo.x,y:customGroups[0].logo.y});
+  const [draggingLogo,setDraggingLogo] = useState(false);
+  const previewRef = useRef<HTMLDivElement>(null);
   const group = customGroups[customGroup];
-  const chooseGroup = (i:number) => { setCustomGroup(i); setCustomVariant(0); };
+  const activeColor = group.colors[customVariant] || group.colors[0];
+  const chooseGroup = (i:number) => { setCustomGroup(i); setCustomVariant(0); setLogoPosition({x:customGroups[i].logo.x,y:customGroups[i].logo.y}); };
   const toggleService = (service:string) => setSelectedServices(current => current.includes(service) ? current.filter(item => item !== service) : [...current,service]);
   const selectionServiceNames = selectedServices.map(service => service === 'Logo Printing' ? 'Custom Logo' : service);
   const requestCustomQuote = () => {
     const form = document.getElementById('preview-inquiry-form') as HTMLFormElement | null;
-    const selection = `${group.name} · ${customizationColors[customVariant].name}${selectionServiceNames.length ? ` · ${selectionServiceNames.join(' · ')}` : ''}`;
+    const selection = `${group.name} · ${activeColor.name}${selectionServiceNames.length ? ` · ${selectionServiceNames.join(' · ')}` : ''}`;
     if (form) {
       const product = form.elements.namedItem('product') as HTMLInputElement | null;
       const oem = form.elements.namedItem('oem') as HTMLSelectElement | null;
@@ -104,6 +103,17 @@ export default function HomepagePreview(){
       if (message) message.value = `Custom configuration: ${selection}\nAvailable branding: ${group.fabric ? 'Embroidery · Woven Label · Printed Label · Custom Packaging' : 'Silk-Screen Printing · Laser Engraving · UV Printing'}`;
     }
     document.getElementById('inquiry')?.scrollIntoView({behavior:'smooth'});
+  };
+  const handleLogoUpload = (file:File | undefined) => {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => setLogoPreview(typeof reader.result === 'string' ? reader.result : null);
+    reader.readAsDataURL(file);
+  };
+  const moveLogo = (clientX:number,clientY:number) => {
+    const rect = previewRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    setLogoPosition({x:Math.max(8,Math.min(92,((clientX-rect.left)/rect.width)*100)),y:Math.max(8,Math.min(92,((clientY-rect.top)/rect.height)*100))});
   };
   return <div className="bg-white text-zinc-900">
     <section aria-label="JAMOOZ massage device manufacturing" className="relative min-h-[480px] overflow-hidden bg-[#5f4790] sm:min-h-0" style={{aspectRatio:'1920 / 650'}}>
@@ -148,19 +158,20 @@ export default function HomepagePreview(){
         <div className="mt-10 grid gap-7 lg:grid-cols-[.9fr_1.1fr]">
           <div className="relative min-h-[520px] overflow-hidden rounded-3xl border border-violet-100 bg-white p-5 shadow-xl shadow-violet-900/5 sm:p-7">
             <div className="flex items-center justify-between gap-4"><p className="text-xs font-black uppercase tracking-[0.18em] text-violet-700">Live Product Preview</p><span className="rounded-full bg-violet-50 px-3 py-1.5 text-xs font-semibold text-violet-700">{group.name}</span></div>
-            <img src={`/preview-assets/customization-clean/${group.files[Math.min(customVariant,group.files.length-1)]}`} alt={`${group.name} product and custom packaging preview`} className="mt-3 h-[390px] w-full object-contain" />
+            <div ref={previewRef} className="relative mt-3 h-[390px] touch-none"><img src={`/preview-assets/customization-clean/${activeColor.file}`} alt={`${activeColor.name} ${group.name} product and custom packaging preview`} className="h-full w-full object-contain" />{selectedServices.includes('Logo Printing')&&<button type="button" title="Drag to reposition logo" aria-label="Logo placement preview. Drag to reposition." onPointerDown={event=>{event.currentTarget.setPointerCapture(event.pointerId);setDraggingLogo(true);moveLogo(event.clientX,event.clientY)}} onPointerMove={event=>{if(draggingLogo)moveLogo(event.clientX,event.clientY)}} onPointerUp={()=>setDraggingLogo(false)} onPointerCancel={()=>setDraggingLogo(false)} className="absolute z-10 -translate-x-1/2 -translate-y-1/2 cursor-move rounded-md border border-dashed border-violet-400 bg-white/85 px-2 py-1 shadow-md backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" style={{left:`${logoPosition.x}%`,top:`${logoPosition.y}%`}}>{logoPreview?<img src={logoPreview} alt="Uploaded custom logo" className="max-h-10 max-w-24 object-contain" />:<span className="text-xs font-black tracking-[0.12em] text-violet-800">JAMOOZ</span>}</button>}</div>
             <div className="absolute bottom-6 left-6 right-6 flex flex-wrap gap-2"><span className="rounded-full border border-violet-200 bg-white/95 px-3 py-2 text-xs font-semibold text-violet-800 shadow-sm">Custom Packaging</span><span className="rounded-full border border-violet-200 bg-white/95 px-3 py-2 text-xs font-semibold text-violet-800 shadow-sm">Logo Placement</span></div>
+            <div className="absolute bottom-20 left-6 right-6 flex flex-wrap items-center gap-2"><label className="cursor-pointer rounded-full bg-violet-700 px-4 py-2 text-xs font-bold text-white transition hover:bg-violet-800 focus-within:ring-2 focus-within:ring-violet-500 focus-within:ring-offset-2">Upload Your Logo<input type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" onChange={event=>handleLogoUpload(event.target.files?.[0])} className="sr-only" /></label>{logoPreview&&<button type="button" onClick={()=>setLogoPreview(null)} className="rounded-full border border-violet-200 bg-white px-4 py-2 text-xs font-semibold text-violet-800 hover:bg-violet-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500">Use JAMOOZ Logo</button>}<span className="text-xs text-zinc-500">Drag the logo on the preview to reposition it.</span></div>
           </div>
 
           <div className="rounded-3xl border border-violet-100 bg-white p-5 shadow-xl shadow-violet-900/5 sm:p-7">
-            <fieldset><legend className="text-base font-bold text-[#3d2758]">1. Choose a Product</legend><div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">{customGroups.map((product,i)=><button key={product.id} type="button" onClick={()=>chooseGroup(i)} aria-pressed={customGroup===i} className={`group rounded-2xl border p-2 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 ${customGroup===i?'border-violet-500 bg-violet-50 shadow-md':'border-zinc-200 bg-white hover:border-violet-300 hover:bg-violet-50/50'}`}><img src={`/preview-assets/customization-clean/${product.files[0]}`} alt="" className="h-20 w-full rounded-xl object-contain" /><span className="mt-2 block text-center text-xs font-semibold text-zinc-700 group-hover:text-violet-800">{product.name}</span></button>)}</div></fieldset>
+            <fieldset><legend className="text-base font-bold text-[#3d2758]">1. Choose a Product</legend><div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">{customGroups.map((product,i)=><button key={product.id} type="button" onClick={()=>chooseGroup(i)} aria-pressed={customGroup===i} className={`group rounded-2xl border p-2 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 ${customGroup===i?'border-violet-500 bg-violet-50 shadow-md':'border-zinc-200 bg-white hover:border-violet-300 hover:bg-violet-50/50'}`}><img src={`/preview-assets/customization-clean/${product.colors[0].file}`} alt="" className="h-20 w-full rounded-xl object-contain" /><span className="mt-2 block text-center text-xs font-semibold text-zinc-700 group-hover:text-violet-800">{product.name}</span></button>)}</div></fieldset>
 
-            <fieldset className="mt-7"><legend className="text-base font-bold text-[#3d2758]">2. Select a Color</legend><div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">{customizationColors.map((color,i)=><button key={color.name} type="button" title={color.name} aria-label={`Select ${color.name}`} aria-pressed={customVariant===i} onClick={()=>setCustomVariant(i)} className={`flex items-center gap-2 rounded-xl border px-3 py-2.5 text-xs font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 ${customVariant===i?'border-violet-500 bg-violet-50 text-violet-800':'border-zinc-200 text-zinc-600 hover:border-violet-300 hover:bg-violet-50/50'}`}><span aria-hidden className="h-5 w-5 shrink-0 rounded-full border border-zinc-300 shadow-sm" style={{backgroundColor:color.hex}} />{color.name}</button>)}</div></fieldset>
+            <fieldset className="mt-7"><legend className="text-base font-bold text-[#3d2758]">2. Select a Color</legend><div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">{group.colors.map((color,i)=><button key={color.name} type="button" title={color.name} aria-label={`Select ${color.name} for ${group.name}`} aria-pressed={customVariant===i} onClick={()=>setCustomVariant(i)} className={`flex items-center gap-2 rounded-xl border px-3 py-2.5 text-xs font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 ${customVariant===i?'border-violet-500 bg-violet-50 text-violet-800':'border-zinc-200 text-zinc-600 hover:border-violet-300 hover:bg-violet-50/50'}`}><span aria-hidden className="h-5 w-5 shrink-0 rounded-full border border-zinc-300 shadow-sm" style={{backgroundColor:color.hex}} />{color.name}</button>)}</div></fieldset>
 
             <fieldset className="mt-7"><legend className="text-base font-bold text-[#3d2758]">3. Select Customization Services</legend><div className="mt-4 flex flex-wrap gap-2.5">{customizationServices.map(service=>{const selected=selectedServices.includes(service);return <button key={service} type="button" aria-pressed={selected} onClick={()=>toggleService(service)} className={`inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-xs font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 ${selected?'border-violet-600 bg-violet-700 text-white':'border-zinc-200 bg-white text-zinc-600 hover:border-violet-300 hover:bg-violet-50'}`}><span aria-hidden>{selected?'✓':'+'}</span>{service}</button>})}</div></fieldset>
 
             <div className="mt-7 rounded-2xl bg-violet-50 p-4 text-sm text-violet-950"><span className="font-bold">Available Branding:</span> {group.fabric?'Embroidery · Woven Label · Printed Label · Custom Packaging':'Silk-Screen Printing · Laser Engraving · UV Printing'}</div>
-            <div className="mt-5 rounded-2xl border border-violet-100 bg-[#fcfaff] p-4"><p className="text-xs font-black uppercase tracking-[0.16em] text-violet-700">Your Selection</p><p className="mt-2 text-sm font-semibold leading-6 text-[#3d2758]">{group.name} · {customizationColors[customVariant].name}{selectionServiceNames.length?` · ${selectionServiceNames.join(' · ')}`:''}</p><button type="button" onClick={requestCustomQuote} className="mt-4 inline-flex min-h-11 items-center justify-center rounded-full bg-violet-700 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-violet-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2">Request a Custom Quote</button></div>
+            <div className="mt-5 rounded-2xl border border-violet-100 bg-[#fcfaff] p-4"><p className="text-xs font-black uppercase tracking-[0.16em] text-violet-700">Your Selection</p><p className="mt-2 text-sm font-semibold leading-6 text-[#3d2758]">{group.name} · {activeColor.name}{selectionServiceNames.length?` · ${selectionServiceNames.join(' · ')}`:''}</p><button type="button" onClick={requestCustomQuote} className="mt-4 inline-flex min-h-11 items-center justify-center rounded-full bg-violet-700 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-violet-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2">Request a Custom Quote</button></div>
           </div>
         </div>
       </div>
