@@ -13,7 +13,9 @@ const standardMenuColumns = [
 
 function PreviewNavbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const previewLink = (hash: string) => `/preview${hash}`;
+  const pathname = usePathname();
+  const homepage = pathname.startsWith('/preview') ? '/preview' : '/';
+  const previewLink = (hash: string) => `${homepage}${hash}`;
   const navigation = [
     ['HOME', ''],
     ['PRODUCTS', '#product-range'],
@@ -25,14 +27,14 @@ function PreviewNavbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white/95 text-zinc-900 shadow-sm backdrop-blur-xl">
       <div className="mx-auto flex h-[76px] max-w-[1500px] items-center gap-6 px-4 sm:px-6 lg:px-8">
-        <Link href="/preview" className="mr-auto flex shrink-0 flex-col leading-none" aria-label="JAMOOZ preview home"><span className="text-[30px] font-black tracking-[-0.06em] text-violet-800">JAMOOZ</span><span className="mt-1 text-[8px] font-bold uppercase tracking-[0.22em] text-zinc-500">Wellness Technology</span></Link>
+        <Link href={homepage} className="mr-auto flex shrink-0 flex-col leading-none" aria-label="JAMOOZ home"><span className="text-[30px] font-black tracking-[-0.06em] text-violet-800">JAMOOZ</span><span className="mt-1 text-[8px] font-bold uppercase tracking-[0.22em] text-zinc-500">Wellness Technology</span></Link>
         <nav className="hidden h-full items-center gap-7 text-[12px] font-bold tracking-[0.045em] xl:flex" aria-label="Preview navigation">
-          {navigation.map(([label, hash]) => <Link key={label} href={hash ? previewLink(hash) : '/preview'} className="flex h-full items-center whitespace-nowrap transition hover:text-violet-700">{label}</Link>)}
+          {navigation.map(([label, hash]) => <Link key={label} href={hash ? previewLink(hash) : homepage} className="flex h-full items-center whitespace-nowrap transition hover:text-violet-700">{label}</Link>)}
         </nav>
         <Link href={previewLink('#inquiry')} className="hidden shrink-0 rounded-full bg-violet-700 px-5 py-3 text-[11px] font-black tracking-[0.08em] text-white hover:bg-violet-800 sm:inline-flex">REQUEST A QUOTE</Link>
         <button type="button" onClick={() => setMobileOpen((open) => !open)} className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 text-xl xl:hidden" aria-expanded={mobileOpen} aria-label="Toggle preview menu">{mobileOpen ? '×' : '☰'}</button>
       </div>
-      {mobileOpen && <nav className="border-t border-zinc-100 bg-white px-5 py-5 shadow-lg xl:hidden" aria-label="Preview mobile navigation"><div className="mx-auto flex max-w-2xl flex-col text-sm font-bold">{navigation.map(([label, hash]) => <Link key={label} href={hash ? previewLink(hash) : '/preview'} onClick={() => setMobileOpen(false)} className="border-b border-zinc-100 py-3">{label}</Link>)}<Link href={previewLink('#inquiry')} onClick={() => setMobileOpen(false)} className="mt-4 rounded-full bg-violet-700 px-5 py-3 text-center text-xs text-white">REQUEST A QUOTE</Link></div></nav>}
+      {mobileOpen && <nav className="border-t border-zinc-100 bg-white px-5 py-5 shadow-lg xl:hidden" aria-label="Mobile navigation"><div className="mx-auto flex max-w-2xl flex-col text-sm font-bold">{navigation.map(([label, hash]) => <Link key={label} href={hash ? previewLink(hash) : homepage} onClick={() => setMobileOpen(false)} className="border-b border-zinc-100 py-3">{label}</Link>)}<Link href={previewLink('#inquiry')} onClick={() => setMobileOpen(false)} className="mt-4 rounded-full bg-violet-700 px-5 py-3 text-center text-xs text-white">REQUEST A QUOTE</Link></div></nav>}
     </header>
   );
 }
@@ -48,4 +50,4 @@ function StandardNavbar() {
   );
 }
 
-export default function Navbar() { const pathname = usePathname(); return pathname.startsWith('/preview') ? <PreviewNavbar /> : <StandardNavbar />; }
+export default function Navbar() { const pathname = usePathname(); return pathname === '/' || pathname.startsWith('/preview') ? <PreviewNavbar /> : <StandardNavbar />; }
