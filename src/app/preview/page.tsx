@@ -6,7 +6,38 @@ const R2 = 'https://pub-7c0fef674c514e7d8b3844cdeadf9c48.r2.dev/JAMOOZ_preview_w
 const asset = (group: string, file: string) => `${R2}/${group}/${file}`;
 const ali = (path: string) => `https:${path}`;
 const pct = (n:number,total:number) => `${(n/total)*100}%`;
-const heroBanners = ['banner1.webp','banner4.webp','banner2.webp'] as const;
+const heroSlides = [
+  {
+    image:'/preview-assets/hero/factory.webp',
+    eyebrow:'20+ Years of Manufacturing Expertise',
+    title:'Global Smart Massage Solutions Provider',
+    body:'Factory strength, OEM/ODM customization, stable quality and reliable global delivery.',
+    cta:'Discover JAMOOZ',
+    href:'#about',
+    theme:'dark',
+    align:'left',
+  },
+  {
+    image:'/preview-assets/hero/products.webp',
+    eyebrow:'Professional Massage Device Manufacturer',
+    title:'Wellness Products Built for Your Market',
+    body:'Flexible bulk supply, custom branding and product development for global B2B partners.',
+    cta:'Explore Products',
+    href:'#product-range',
+    theme:'dark',
+    align:'left',
+  },
+  {
+    image:'/preview-assets/hero/odm.webp',
+    eyebrow:'From Concept to Mass Production',
+    title:'OEM & ODM Development from 0 to 1',
+    body:'Turn your idea into a market-ready wellness product with one experienced manufacturing partner.',
+    cta:'Start Your Project',
+    href:'#inquiry',
+    theme:'light',
+    align:'center',
+  },
+] as const;
 
 const painStates = [
   { id:'p1',x:609,y:185,w:68,h:93,image:ali('//sc04.alicdn.com/kf/Hd2b7d5ddb4a34689872369aa618d57ffz/252717039/Hd2b7d5ddb4a34689872369aa618d57ffz.png') },
@@ -78,8 +109,8 @@ export default function HomepagePreview(){
   const [customVariant,setCustomVariant] = useState(0);
   const group = customGroups[customGroup];
   const chooseGroup = (i:number) => { setCustomGroup(i); setCustomVariant(0); };
-  const prevBanner = () => setBannerIndex(i => (i - 1 + heroBanners.length) % heroBanners.length);
-  const nextBanner = () => setBannerIndex(i => (i + 1) % heroBanners.length);
+  const prevBanner = () => setBannerIndex(i => (i - 1 + heroSlides.length) % heroSlides.length);
+  const nextBanner = () => setBannerIndex(i => (i + 1) % heroSlides.length);
 
   useEffect(() => {
     const timer = window.setInterval(nextBanner, 5500);
@@ -87,12 +118,23 @@ export default function HomepagePreview(){
   }, []);
 
   return <div className="bg-white text-zinc-900">
-    <section className="group relative overflow-hidden bg-black" style={{aspectRatio:'1920 / 650'}}>
-      {heroBanners.map((banner,i)=><img key={banner} src={asset('banner',banner)} alt={`JAMOOZ banner ${i+1}`} className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-700 ${bannerIndex===i?'opacity-100':'pointer-events-none opacity-0'}`} />)}
+    <section aria-label="JAMOOZ highlights" className="group relative min-h-[500px] overflow-hidden bg-[#171229] sm:min-h-[460px] lg:min-h-0" style={{aspectRatio:'1920 / 650'}}>
+      {heroSlides.map((slide,i)=><div key={slide.image} aria-hidden={bannerIndex!==i} className={`absolute inset-0 transition-opacity duration-700 ${bannerIndex===i?'opacity-100':'pointer-events-none opacity-0'}`}>
+        <img src={slide.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <div className={`absolute inset-0 ${slide.theme==='dark'?'bg-gradient-to-r from-[#15102b]/45 via-transparent to-transparent':'bg-white/5'}`} />
+        <div className={`relative mx-auto flex h-full max-w-[1440px] items-center px-6 py-16 sm:px-10 lg:px-16 ${slide.align==='center'?'justify-center text-center':'justify-start text-left'}`}>
+          <div className={`max-w-[720px] ${slide.theme==='dark'?'text-white':'text-[#211544]'} ${slide.align==='center'?'lg:-translate-y-2':''}`}>
+            <p className={`mb-3 text-xs font-bold uppercase tracking-[0.22em] sm:text-sm ${slide.theme==='dark'?'text-violet-200':'text-violet-700'}`}>{slide.eyebrow}</p>
+            {i===0?<h1 className="text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">{slide.title}</h1>:<h2 className="text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">{slide.title}</h2>}
+            <p className={`mt-5 max-w-2xl text-base leading-7 sm:text-lg ${slide.theme==='dark'?'text-white/80':'text-[#3d3260]'}`}>{slide.body}</p>
+            <a href={slide.href} className={`mt-7 inline-flex min-h-12 items-center justify-center rounded-full px-7 py-3 text-sm font-bold transition hover:-translate-y-0.5 ${slide.theme==='dark'?'bg-white text-[#241746] hover:bg-violet-100':'bg-[#63338f] text-white hover:bg-[#512775]'}`}>{slide.cta}<span aria-hidden className="ml-2">→</span></a>
+          </div>
+        </div>
+      </div>)}
       <button type="button" onClick={prevBanner} aria-label="Previous banner" className="absolute left-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-2xl text-white opacity-0 backdrop-blur-sm transition hover:bg-black/55 group-hover:opacity-100 md:left-6">‹</button>
       <button type="button" onClick={nextBanner} aria-label="Next banner" className="absolute right-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-2xl text-white opacity-0 backdrop-blur-sm transition hover:bg-black/55 group-hover:opacity-100 md:right-6">›</button>
       <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-2 rounded-full bg-black/25 px-3 py-2 backdrop-blur-sm">
-        {heroBanners.map((banner,i)=><button key={banner} type="button" onClick={()=>setBannerIndex(i)} aria-label={`Show banner ${i+1}`} className={`h-2.5 rounded-full transition-all ${bannerIndex===i?'w-7 bg-white':'w-2.5 bg-white/55 hover:bg-white/80'}`} />)}
+        {heroSlides.map((slide,i)=><button key={slide.image} type="button" onClick={()=>setBannerIndex(i)} aria-label={`Show banner ${i+1}`} className={`h-2.5 rounded-full transition-all ${bannerIndex===i?'w-7 bg-white':'w-2.5 bg-white/55 hover:bg-white/80'}`} />)}
       </div>
     </section>
 
