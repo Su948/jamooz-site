@@ -62,6 +62,7 @@ const reviews = [
 ];
 
 const companyImage = ali('//sc04.alicdn.com/kf/H074a318c1d1a4f568d94181d93a09474F/252717039/H074a318c1d1a4f568d94181d93a09474F.png');
+const companyVideo = 'https://play.video.alibaba.com/global/play/6000299682943.mp4?dft=hd';
 const companyLinks = [
   {x:1187,y:294,w:174,h:159,href:'https://www.alibaba.com/product-detail/JAMOOZ-Portable-Healthy-Technology-Electric-Scalp_1601708387462.html'},
   {x:1369,y:284,w:171,h:173,href:'https://www.alibaba.com/product-detail/2026-Portable-Best-Selling-Intelligent-3D_1601594698148.html'},
@@ -107,6 +108,18 @@ export default function HomepagePreview(){
 
     <section className="relative overflow-hidden bg-white" style={{aspectRatio:'1920 / 2020'}}>
       <img src={companyImage} alt="JAMOOZ company introduction" className="absolute inset-0 h-full w-full object-contain" />
+      <video
+        src={companyVideo}
+        aria-label="JAMOOZ company introduction video"
+        className="absolute z-10 h-full w-full bg-black object-cover"
+        style={{left:pct(360,1920),top:pct(30,2020),width:pct(800,1920),height:pct(450,2020)}}
+        autoPlay
+        muted
+        loop
+        playsInline
+        controls
+        preload="metadata"
+      />
       {companyLinks.map((link,i)=><a key={link.href} href={link.href} target="_blank" rel="noreferrer" aria-label={`JAMOOZ featured company product ${i+1}`} className="absolute z-10" style={{left:pct(link.x,1920),top:pct(link.y,2020),width:pct(link.w,1920),height:pct(link.h,2020)}} />)}
     </section>
 
