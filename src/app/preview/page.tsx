@@ -84,6 +84,8 @@ export default function HomepagePreview(){
   const [selectedServices,setSelectedServices] = useState<string[]>(['Logo Printing','Custom Packaging']);
   const [logoPreview,setLogoPreview] = useState<string | null>(null);
   const [logoPosition,setLogoPosition] = useState<{x:number;y:number}>({x:customGroups[0].logo.x,y:customGroups[0].logo.y});
+  const [logoScale,setLogoScale] = useState(1);
+  const [logoRotation,setLogoRotation] = useState(0);
   const [draggingLogo,setDraggingLogo] = useState(false);
   const previewRef = useRef<HTMLDivElement>(null);
   const group = customGroups[customGroup];
@@ -107,7 +109,31 @@ export default function HomepagePreview(){
   const handleLogoUpload = (file:File | undefined) => {
     if (!file) return;
     const reader = new FileReader();
-    reader.onload = () => setLogoPreview(typeof reader.result === 'string' ? reader.result : null);
+    reader.onload = () => {
+      if (typeof reader.result !== 'string') return;
+      const image = new Image();
+      image.onload = () => {
+        const maxDimension = 900;
+        const ratio = Math.min(1,maxDimension/Math.max(image.width,image.height));
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.max(1,Math.round(image.width*ratio));
+        canvas.height = Math.max(1,Math.round(image.height*ratio));
+        const context = canvas.getContext('2d');
+        if (!context) return;
+        context.drawImage(image,0,0,canvas.width,canvas.height);
+        const pixels = context.getImageData(0,0,canvas.width,canvas.height);
+        for (let i=0;i<pixels.data.length;i+=4) {
+          const minimum = Math.min(pixels.data[i],pixels.data[i+1],pixels.data[i+2]);
+          if (minimum>=245) pixels.data[i+3]=0;
+          else if (minimum>220) pixels.data[i+3]=Math.round(pixels.data[i+3]*((245-minimum)/25));
+        }
+        context.putImageData(pixels,0,0);
+        setLogoPreview(canvas.toDataURL('image/png'));
+        setLogoScale(1);
+        setLogoRotation(0);
+      };
+      image.src = reader.result;
+    };
     reader.readAsDataURL(file);
   };
   const moveLogo = (clientX:number,clientY:number) => {
@@ -158,9 +184,9 @@ export default function HomepagePreview(){
         <div className="mt-10 grid gap-7 lg:grid-cols-[.9fr_1.1fr]">
           <div className="relative min-h-[520px] overflow-hidden rounded-3xl border border-violet-100 bg-white p-5 shadow-xl shadow-violet-900/5 sm:p-7">
             <div className="flex items-center justify-between gap-4"><p className="text-xs font-black uppercase tracking-[0.18em] text-violet-700">Live Product Preview</p><span className="rounded-full bg-violet-50 px-3 py-1.5 text-xs font-semibold text-violet-700">{group.name}</span></div>
-            <div ref={previewRef} className="relative mt-3 h-[390px] touch-none"><img src={`/preview-assets/customization-clean/${activeColor.file}`} alt={`${activeColor.name} ${group.name} product and custom packaging preview`} className="h-full w-full object-contain" />{selectedServices.includes('Logo Printing')&&<button type="button" title="Drag to reposition logo" aria-label="Logo placement preview. Drag to reposition." onPointerDown={event=>{event.currentTarget.setPointerCapture(event.pointerId);setDraggingLogo(true);moveLogo(event.clientX,event.clientY)}} onPointerMove={event=>{if(draggingLogo)moveLogo(event.clientX,event.clientY)}} onPointerUp={()=>setDraggingLogo(false)} onPointerCancel={()=>setDraggingLogo(false)} className="absolute z-10 -translate-x-1/2 -translate-y-1/2 cursor-move rounded-md border border-dashed border-violet-400 bg-white/85 px-2 py-1 shadow-md backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" style={{left:`${logoPosition.x}%`,top:`${logoPosition.y}%`}}>{logoPreview?<img src={logoPreview} alt="Uploaded custom logo" className="max-h-10 max-w-24 object-contain" />:<span className="text-xs font-black tracking-[0.12em] text-violet-800">JAMOOZ</span>}</button>}</div>
+            <div ref={previewRef} className="relative mt-3 h-[390px] touch-none"><img src={`/preview-assets/customization-clean/${activeColor.file}`} alt={`${activeColor.name} ${group.name} product and custom packaging preview`} className="h-full w-full object-contain" />{selectedServices.includes('Logo Printing')&&<button type="button" title="Drag to reposition logo" aria-label="Logo placement preview. Drag to reposition." onPointerDown={event=>{event.currentTarget.setPointerCapture(event.pointerId);setDraggingLogo(true);moveLogo(event.clientX,event.clientY)}} onPointerMove={event=>{if(draggingLogo)moveLogo(event.clientX,event.clientY)}} onPointerUp={()=>setDraggingLogo(false)} onPointerCancel={()=>setDraggingLogo(false)} className={`absolute z-10 cursor-move rounded-md border border-dashed border-violet-400 px-2 py-1 shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 ${logoPreview?'bg-transparent':'bg-white/85 backdrop-blur-sm'}`} style={{left:`${logoPosition.x}%`,top:`${logoPosition.y}%`,transform:`translate(-50%, -50%) rotate(${logoRotation}deg) scale(${logoScale})`}}>{logoPreview?<img src={logoPreview} alt="Uploaded custom logo with transparent background" className="max-h-12 max-w-28 object-contain" />:<span className="text-xs font-black tracking-[0.12em] text-violet-800">JAMOOZ</span>}</button>}</div>
             <div className="absolute bottom-6 left-6 right-6 flex flex-wrap gap-2"><span className="rounded-full border border-violet-200 bg-white/95 px-3 py-2 text-xs font-semibold text-violet-800 shadow-sm">Custom Packaging</span><span className="rounded-full border border-violet-200 bg-white/95 px-3 py-2 text-xs font-semibold text-violet-800 shadow-sm">Logo Placement</span></div>
-            <div className="absolute bottom-20 left-6 right-6 flex flex-wrap items-center gap-2"><label className="cursor-pointer rounded-full bg-violet-700 px-4 py-2 text-xs font-bold text-white transition hover:bg-violet-800 focus-within:ring-2 focus-within:ring-violet-500 focus-within:ring-offset-2">Upload Your Logo<input type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" onChange={event=>handleLogoUpload(event.target.files?.[0])} className="sr-only" /></label>{logoPreview&&<button type="button" onClick={()=>setLogoPreview(null)} className="rounded-full border border-violet-200 bg-white px-4 py-2 text-xs font-semibold text-violet-800 hover:bg-violet-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500">Use JAMOOZ Logo</button>}<span className="text-xs text-zinc-500">Drag the logo on the preview to reposition it.</span></div>
+            <div className="absolute bottom-20 left-6 right-6 space-y-2"><div className="flex flex-wrap items-center gap-2"><label className="cursor-pointer rounded-full bg-violet-700 px-4 py-2 text-xs font-bold text-white transition hover:bg-violet-800 focus-within:ring-2 focus-within:ring-violet-500 focus-within:ring-offset-2">Upload Your Logo<input type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" onChange={event=>handleLogoUpload(event.target.files?.[0])} className="sr-only" /></label>{logoPreview&&<button type="button" onClick={()=>{setLogoPreview(null);setLogoScale(1);setLogoRotation(0)}} className="rounded-full border border-violet-200 bg-white px-4 py-2 text-xs font-semibold text-violet-800 hover:bg-violet-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500">Use JAMOOZ Logo</button>}<span className="text-xs text-zinc-500">White backgrounds are removed automatically. Drag the logo to reposition it.</span></div>{selectedServices.includes('Logo Printing')&&<div className="flex flex-wrap items-center gap-4 rounded-xl border border-violet-100 bg-white/95 px-3 py-2 text-xs text-zinc-600 shadow-sm"><label className="flex items-center gap-2"><span className="font-semibold text-violet-800">Logo Size</span><input type="range" min="50" max="200" step="5" value={Math.round(logoScale*100)} onChange={event=>setLogoScale(Number(event.target.value)/100)} aria-label="Logo size" className="w-24 accent-violet-700" /><output>{Math.round(logoScale*100)}%</output></label><label className="flex items-center gap-2"><span className="font-semibold text-violet-800">Rotation</span><input type="range" min="-180" max="180" step="5" value={logoRotation} onChange={event=>setLogoRotation(Number(event.target.value))} aria-label="Logo rotation" className="w-24 accent-violet-700" /><output>{logoRotation}°</output></label></div>}</div>
           </div>
 
           <div className="rounded-3xl border border-violet-100 bg-white p-5 shadow-xl shadow-violet-900/5 sm:p-7">
