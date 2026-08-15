@@ -8,16 +8,17 @@ const ali = (path: string) => `https:${path}`;
 const pct = (n:number,total:number) => `${(n/total)*100}%`;
 const heroSlides = [
   {
-    image:'/preview-assets/hero/factory-preserved.webp',
-    eyebrow:'20+ Years of Manufacturing Expertise',
+    image:'/preview-assets/hero/factory-selective.webp',
+    eyebrow:'',
     title:'Global Smart Massage Solutions Provider',
-    body:'Factory strength, OEM/ODM customization, stable quality and reliable global delivery.',
+    body:'Factory Strength • OEM/ODM Customization • Stable Quality & Delivery',
     cta:'Discover JAMOOZ',
     href:'#about',
     theme:'dark',
     align:'left',
-    overlay:false,
+    overlay:true,
     compact:false,
+    showCta:false,
   },
   {
     image:'/preview-assets/hero/products.webp',
@@ -30,6 +31,7 @@ const heroSlides = [
     align:'left',
     overlay:true,
     compact:true,
+    showCta:true,
   },
   {
     image:'/preview-assets/hero/odm-selective.webp',
@@ -42,6 +44,7 @@ const heroSlides = [
     align:'center',
     overlay:true,
     compact:true,
+    showCta:false,
   },
 ] as const;
 
@@ -127,16 +130,12 @@ export default function HomepagePreview(){
     <section aria-label="JAMOOZ highlights" className="group relative min-h-[500px] overflow-hidden bg-[#171229] sm:min-h-[460px] lg:min-h-0" style={{aspectRatio:'1920 / 650'}}>
       {heroSlides.map((slide,i)=><div key={slide.image} aria-hidden={bannerIndex!==i} className={`absolute inset-0 transition-opacity duration-700 ${bannerIndex===i?'opacity-100':'pointer-events-none opacity-0'}`}>
         <img src={slide.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
-        {slide.overlay&&<><div className={`absolute inset-0 ${slide.theme==='dark'?'bg-gradient-to-r from-[#15102b]/25 via-transparent to-transparent':'bg-white/5'}`} />
-        <div className={`relative mx-auto flex h-full max-w-[1440px] px-6 sm:px-10 lg:px-16 ${slide.align==='center'?'items-start justify-center pt-[5%] text-center':'items-center justify-start text-left'}`}>
-          <div className={`${slide.compact?'max-w-[520px]':'max-w-[720px]'} ${slide.theme==='dark'?'text-white':'text-[#211544]'}`}>
-            <p className={`mb-3 text-xs font-bold uppercase tracking-[0.22em] sm:text-sm ${slide.theme==='dark'?'text-violet-200':'text-violet-700'}`}>{slide.eyebrow}</p>
-            <h2 className="text-3xl font-semibold leading-[1.08] tracking-tight sm:text-4xl lg:text-[44px]">{slide.title}</h2>
-            <p className={`mt-3 max-w-xl text-sm leading-6 sm:text-base ${slide.theme==='dark'?'text-white/80':'text-[#3d3260]'}`}>{slide.body}</p>
-            <a href={slide.href} className={`mt-5 inline-flex min-h-10 items-center justify-center rounded-full px-6 py-2.5 text-sm font-bold transition hover:-translate-y-0.5 ${slide.theme==='dark'?'bg-white text-[#241746] hover:bg-violet-100':'bg-[#63338f] text-white hover:bg-[#512775]'}`}>{slide.cta}<span aria-hidden className="ml-2">→</span></a>
-          </div>
-        </div></>}
-        {i===0&&<h1 className="sr-only">Global Smart Massage Solutions Provider</h1>}
+        {slide.overlay&&<div className={`absolute z-10 ${slide.theme==='dark'?'text-white':'text-[#211544]'} ${i===0?'left-[29.5%] top-[20%] w-[34%] text-left':i===1?'left-[6.5%] top-[16%] w-[27%] text-left':'left-[34%] top-[7%] w-[33%] text-left'}`}>
+          {slide.eyebrow&&<p className={`mb-[1.2%] font-bold ${i===1?'text-[clamp(8px,0.8vw,14px)] uppercase tracking-[0.22em]':'text-[clamp(10px,1vw,18px)]'} ${slide.theme==='dark'?'text-violet-100':'text-[#211080]'}`}>{slide.eyebrow}</p>}
+          {i===0?<h1 className="font-semibold leading-[1.06] tracking-tight text-[clamp(20px,2.65vw,52px)]">{slide.title}</h1>:<h2 className={`font-semibold leading-[1.07] tracking-tight ${i===1?'text-[clamp(22px,2.25vw,42px)]':'text-[clamp(22px,2.8vw,54px)]'}`}>{slide.title}</h2>}
+          <p className={`mt-[2%] ${i===1?'max-w-[290px] text-[clamp(10px,0.9vw,16px)] leading-[1.45]':i===0?'text-[clamp(10px,1.05vw,18px)] leading-[1.45]':'text-[clamp(10px,0.95vw,17px)] leading-[1.45]'} ${slide.theme==='dark'?'text-white/80':'text-[#3d3260]'}`}>{slide.body}</p>
+          {slide.showCta&&<a href={slide.href} className="mt-[4%] inline-flex min-h-9 items-center justify-center rounded-full bg-white px-5 py-2 text-[clamp(10px,0.8vw,14px)] font-bold text-[#241746] transition hover:-translate-y-0.5 hover:bg-violet-100">{slide.cta}<span aria-hidden className="ml-2">→</span></a>}
+        </div>}
       </div>)}
       <button type="button" onClick={prevBanner} aria-label="Previous banner" className="absolute left-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-2xl text-white opacity-0 backdrop-blur-sm transition hover:bg-black/55 group-hover:opacity-100 md:left-6">‹</button>
       <button type="button" onClick={nextBanner} aria-label="Next banner" className="absolute right-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-2xl text-white opacity-0 backdrop-blur-sm transition hover:bg-black/55 group-hover:opacity-100 md:right-6">›</button>
