@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 
-const R2 = 'https://pub-7c0fef674c514e7d8b3844cdeadf9c48.r2.dev/JAMOOZ_preview_web_assets';
-const asset = (group: string, file: string) => `${R2}/${group}/${file}`;
 const ali = (path: string) => `https:${path}`;
 const pct = (n:number,total:number) => `${(n/total)*100}%`;
 const seoCategories = [
@@ -27,10 +25,18 @@ const painStates = [
 ] as const;
 
 const customGroups = [
-  { id:'c1',x:1017,y:96,w:149,h:173,files:['1.1.webp','1.2.webp','1.3.webp','1.4.webp'],swatches:[{x:1021,y:268,w:57,h:76},{x:1084,y:270,w:55,h:75},{x:1153,y:266,w:55,h:81},{x:1221,y:268,w:57,h:78}] },
-  { id:'c2',x:1170,y:95,w:157,h:167,files:['2.1.webp','2.2.webp'],swatches:[{x:1020,y:271,w:55,h:71},{x:1089,y:267,w:53,h:73}] },
-  { id:'c3',x:1344,y:97,w:146,h:163,files:['3.1.webp','3.2.webp','3.3.webp'],swatches:[{x:1022,y:273,w:50,h:69},{x:1091,y:271,w:47,h:67},{x:1162,y:274,w:46,h:67}] },
-  { id:'c4',x:1501,y:106,w:146,h:158,files:['4.1.webp','4.2.webp','4.3.webp'],swatches:[{x:1014,y:262,w:60,h:76},{x:1087,y:270,w:52,h:78},{x:1160,y:269,w:51,h:75}] },
+  { id:'c1',name:'Scalp Massager',files:['1.1.webp','1.2.webp','1.3.webp','1.4.webp'],fabric:false },
+  { id:'c2',name:'Neck Massager',files:['2.1.webp','2.2.webp'],fabric:false },
+  { id:'c3',name:'Massage Belt',files:['3.1.webp','3.2.webp','3.3.webp'],fabric:false },
+  { id:'c4',name:'Massage Pillow',files:['4.1.webp','4.2.webp','4.3.webp'],fabric:true },
+] as const;
+const customizationCapabilities = ['Custom Logo','Colors & Materials','Functions & Features','Packaging Design','Private Label','New Product Development'] as const;
+const customizationServices = ['Logo Printing','Custom Color','Custom Packaging','Function Customization','Private Label'] as const;
+const customizationColors = [
+  {name:'White',hex:'#ffffff'},
+  {name:'Green',hex:'#517553'},
+  {name:'Red',hex:'#d95656'},
+  {name:'Purple',hex:'#8d78b8'},
 ] as const;
 
 const scrollBg = ali('//sc04.alicdn.com/kf/Hd94f7581c62d4edaa1393c4d63bc2c4fK/252717039/Hd94f7581c62d4edaa1393c4d63bc2c4fK.png');
@@ -81,8 +87,24 @@ export default function HomepagePreview(){
   const [painImage,setPainImage] = useState(painStates[0].image);
   const [customGroup,setCustomGroup] = useState(0);
   const [customVariant,setCustomVariant] = useState(0);
+  const [selectedServices,setSelectedServices] = useState<string[]>(['Logo Printing','Custom Packaging']);
   const group = customGroups[customGroup];
   const chooseGroup = (i:number) => { setCustomGroup(i); setCustomVariant(0); };
+  const toggleService = (service:string) => setSelectedServices(current => current.includes(service) ? current.filter(item => item !== service) : [...current,service]);
+  const selectionServiceNames = selectedServices.map(service => service === 'Logo Printing' ? 'Custom Logo' : service);
+  const requestCustomQuote = () => {
+    const form = document.getElementById('preview-inquiry-form') as HTMLFormElement | null;
+    const selection = `${group.name} · ${customizationColors[customVariant].name}${selectionServiceNames.length ? ` · ${selectionServiceNames.join(' · ')}` : ''}`;
+    if (form) {
+      const product = form.elements.namedItem('product') as HTMLInputElement | null;
+      const oem = form.elements.namedItem('oem') as HTMLSelectElement | null;
+      const message = form.elements.namedItem('message') as HTMLTextAreaElement | null;
+      if (product) product.value = group.name;
+      if (oem) oem.value = 'ODM — Product Customization';
+      if (message) message.value = `Custom configuration: ${selection}\nAvailable branding: ${group.fabric ? 'Embroidery · Woven Label · Printed Label · Custom Packaging' : 'Silk-Screen Printing · Laser Engraving · UV Printing'}`;
+    }
+    document.getElementById('inquiry')?.scrollIntoView({behavior:'smooth'});
+  };
   return <div className="bg-white text-zinc-900">
     <section aria-label="JAMOOZ massage device manufacturing" className="relative min-h-[480px] overflow-hidden bg-[#5f4790] sm:min-h-0" style={{aspectRatio:'1920 / 650'}}>
       <img src="/preview-assets/hero/products.webp" alt="JAMOOZ massage and wellness product range" className="absolute inset-0 h-full w-full object-cover object-center" />
@@ -118,7 +140,31 @@ export default function HomepagePreview(){
 
     <section id="solutions" className="scroll-mt-24 bg-white py-10 md:py-14"><div className="mx-auto max-w-[1440px] px-3 md:px-6"><div className="relative mx-auto overflow-hidden" style={{aspectRatio:'1920 / 1059'}}><img src={painImage} alt="JAMOOZ body pain solution" className="absolute inset-0 h-full w-full object-contain" /><div className="absolute inset-x-0 top-0 z-[5] flex h-[16%] items-center justify-center bg-[#faf8ff] px-4"><h2 className="text-center text-[clamp(18px,2.2vw,38px)] font-semibold tracking-tight text-[#45245f]">Hover Over the Body to Explore Products</h2></div>{painStates.map(p=><button key={p.id} aria-label={p.id} onMouseEnter={()=>setPainImage(p.image)} onFocus={()=>setPainImage(p.image)} onClick={()=>setPainImage(p.image)} className="absolute z-10 bg-transparent" style={{left:pct(p.x,1920),top:pct(p.y,1059),width:pct(p.w,1920),height:pct(p.h,1059)}} />)}</div></div></section>
 
-    <section id="oem-odm" className="scroll-mt-24 bg-[#faf8ff] py-10 md:py-14"><div className="mx-auto max-w-[1440px] px-3 md:px-6"><div className="relative mx-auto overflow-hidden" style={{aspectRatio:'1920 / 640'}}><img src={asset('customization',group.files[customVariant])} alt="customization preview" className="absolute inset-0 h-full w-full object-contain" />{customGroups.map((g,i)=><button key={g.id} aria-label={g.id} onMouseEnter={()=>chooseGroup(i)} onFocus={()=>chooseGroup(i)} onClick={()=>chooseGroup(i)} className="absolute z-20 bg-transparent" style={{left:pct(g.x,1920),top:pct(g.y,640),width:pct(g.w,1920),height:pct(g.h,640)}} />)}{group.swatches.map((s,i)=><button key={i} aria-label={`variant-${i+1}`} onMouseEnter={()=>setCustomVariant(i)} onFocus={()=>setCustomVariant(i)} onClick={()=>setCustomVariant(i)} className="absolute z-30 bg-transparent" style={{left:pct(s.x,1920),top:pct(s.y,640),width:pct(s.w,1920),height:pct(s.h,640)}} />)}</div></div></section>
+    <section id="oem-odm" className="scroll-mt-24 bg-[#faf8ff] py-16 md:py-20">
+      <div className="mx-auto max-w-[1380px] px-4 sm:px-6 lg:px-8">
+        <header className="mx-auto max-w-3xl text-center"><p className="text-xs font-black uppercase tracking-[0.24em] text-violet-700">OEM/ODM Customization</p><h2 className="mt-3 text-3xl font-semibold tracking-tight text-[#342050] sm:text-4xl">Build Your Custom Massage Product</h2><p className="mt-4 text-sm leading-6 text-zinc-600 sm:text-base sm:leading-7">Choose a product, explore available colors and select the customization services you need. Our team will help turn your idea into a production-ready solution.</p></header>
+        <div className="mt-7 flex flex-wrap justify-center gap-2.5">{customizationCapabilities.map(capability=><span key={capability} className="inline-flex items-center gap-2 rounded-full border border-violet-200 bg-white px-4 py-2 text-xs font-semibold text-violet-800 shadow-sm"><span aria-hidden className="h-1.5 w-1.5 rounded-full bg-violet-500" />{capability}</span>)}</div>
+
+        <div className="mt-10 grid gap-7 lg:grid-cols-[.9fr_1.1fr]">
+          <div className="relative min-h-[520px] overflow-hidden rounded-3xl border border-violet-100 bg-white p-5 shadow-xl shadow-violet-900/5 sm:p-7">
+            <div className="flex items-center justify-between gap-4"><p className="text-xs font-black uppercase tracking-[0.18em] text-violet-700">Live Product Preview</p><span className="rounded-full bg-violet-50 px-3 py-1.5 text-xs font-semibold text-violet-700">{group.name}</span></div>
+            <img src={`/preview-assets/customization-clean/${group.files[Math.min(customVariant,group.files.length-1)]}`} alt={`${group.name} product and custom packaging preview`} className="mt-3 h-[390px] w-full object-contain" />
+            <div className="absolute bottom-6 left-6 right-6 flex flex-wrap gap-2"><span className="rounded-full border border-violet-200 bg-white/95 px-3 py-2 text-xs font-semibold text-violet-800 shadow-sm">Custom Packaging</span><span className="rounded-full border border-violet-200 bg-white/95 px-3 py-2 text-xs font-semibold text-violet-800 shadow-sm">Logo Placement</span></div>
+          </div>
+
+          <div className="rounded-3xl border border-violet-100 bg-white p-5 shadow-xl shadow-violet-900/5 sm:p-7">
+            <fieldset><legend className="text-base font-bold text-[#3d2758]">1. Choose a Product</legend><div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">{customGroups.map((product,i)=><button key={product.id} type="button" onClick={()=>chooseGroup(i)} aria-pressed={customGroup===i} className={`group rounded-2xl border p-2 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 ${customGroup===i?'border-violet-500 bg-violet-50 shadow-md':'border-zinc-200 bg-white hover:border-violet-300 hover:bg-violet-50/50'}`}><img src={`/preview-assets/customization-clean/${product.files[0]}`} alt="" className="h-20 w-full rounded-xl object-contain" /><span className="mt-2 block text-center text-xs font-semibold text-zinc-700 group-hover:text-violet-800">{product.name}</span></button>)}</div></fieldset>
+
+            <fieldset className="mt-7"><legend className="text-base font-bold text-[#3d2758]">2. Select a Color</legend><div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">{customizationColors.map((color,i)=><button key={color.name} type="button" title={color.name} aria-label={`Select ${color.name}`} aria-pressed={customVariant===i} onClick={()=>setCustomVariant(i)} className={`flex items-center gap-2 rounded-xl border px-3 py-2.5 text-xs font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 ${customVariant===i?'border-violet-500 bg-violet-50 text-violet-800':'border-zinc-200 text-zinc-600 hover:border-violet-300 hover:bg-violet-50/50'}`}><span aria-hidden className="h-5 w-5 shrink-0 rounded-full border border-zinc-300 shadow-sm" style={{backgroundColor:color.hex}} />{color.name}</button>)}</div></fieldset>
+
+            <fieldset className="mt-7"><legend className="text-base font-bold text-[#3d2758]">3. Select Customization Services</legend><div className="mt-4 flex flex-wrap gap-2.5">{customizationServices.map(service=>{const selected=selectedServices.includes(service);return <button key={service} type="button" aria-pressed={selected} onClick={()=>toggleService(service)} className={`inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-xs font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 ${selected?'border-violet-600 bg-violet-700 text-white':'border-zinc-200 bg-white text-zinc-600 hover:border-violet-300 hover:bg-violet-50'}`}><span aria-hidden>{selected?'✓':'+'}</span>{service}</button>})}</div></fieldset>
+
+            <div className="mt-7 rounded-2xl bg-violet-50 p-4 text-sm text-violet-950"><span className="font-bold">Available Branding:</span> {group.fabric?'Embroidery · Woven Label · Printed Label · Custom Packaging':'Silk-Screen Printing · Laser Engraving · UV Printing'}</div>
+            <div className="mt-5 rounded-2xl border border-violet-100 bg-[#fcfaff] p-4"><p className="text-xs font-black uppercase tracking-[0.16em] text-violet-700">Your Selection</p><p className="mt-2 text-sm font-semibold leading-6 text-[#3d2758]">{group.name} · {customizationColors[customVariant].name}{selectionServiceNames.length?` · ${selectionServiceNames.join(' · ')}`:''}</p><button type="button" onClick={requestCustomQuote} className="mt-4 inline-flex min-h-11 items-center justify-center rounded-full bg-violet-700 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-violet-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2">Request a Custom Quote</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section id="product-range" className="scroll-mt-24 relative overflow-hidden" style={{aspectRatio:'1920 / 788'}}><img src={scrollBg} alt="" className="absolute inset-0 h-full w-full object-cover" /><div className="absolute inset-0 overflow-hidden"><div className="jamooz-marquee flex h-full w-[200%]">{[0,1].map(copy=><div key={copy} className="relative h-full w-1/2 shrink-0"><img src={scrollImage} alt="JAMOOZ products" className="absolute inset-0 h-full w-full object-contain" />{scrollLinks.map((l,i)=><a key={i} href={l.href} target="_blank" rel="noreferrer" className="absolute z-10" style={{left:pct(l.x,1920),top:pct(l.y,788),width:pct(l.w,1920),height:pct(l.h,788)}} aria-label={`product-${i+1}`} />)}</div>)}</div></div></section>
 
