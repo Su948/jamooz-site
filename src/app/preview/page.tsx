@@ -61,7 +61,13 @@ const reviews = [
   {x:1198,y:286,w:362,h:517,img:ali('//sc04.alicdn.com/kf/H0afcafb90e0740d6842ae09a714d44dfm/252717039/H0afcafb90e0740d6842ae09a714d44dfm.png'),speed:'27s'},
 ];
 
-const companyImage = ali('//sc02.alicdn.com/kf/H3475d9f36ecf4328a0599a56c3dcc924B.jpg');
+const companyImage = ali('//sc04.alicdn.com/kf/H074a318c1d1a4f568d94181d93a09474F/252717039/H074a318c1d1a4f568d94181d93a09474F.png');
+const companyLinks = [
+  {x:1187,y:294,w:174,h:159,href:'https://www.alibaba.com/product-detail/JAMOOZ-Portable-Healthy-Technology-Electric-Scalp_1601708387462.html'},
+  {x:1369,y:284,w:171,h:173,href:'https://www.alibaba.com/product-detail/2026-Portable-Best-Selling-Intelligent-3D_1601594698148.html'},
+  {x:1549,y:290,w:169,h:167,href:'https://www.alibaba.com/product-detail/Premium-Ergonomic-Memory-Foam-Bread-Pillow_1601803716499.html'},
+  {x:1729,y:288,w:172,h:168,href:'https://www.alibaba.com/product-detail/JAMOOZ-2024-Luxury-Zero-Gravity-Full_1601084511260.html'},
+] as const;
 const certificateImage = ali('//sc02.alicdn.com/kf/H99de7b20e65046c896d63f96a166fde27.png');
 
 export default function HomepagePreview(){
@@ -99,7 +105,10 @@ export default function HomepagePreview(){
 
     <section id="oem-odm" className="scroll-mt-24 bg-[#faf8ff] py-10 md:py-14"><div className="mx-auto max-w-[1440px] px-3 md:px-6"><div className="relative mx-auto overflow-hidden" style={{aspectRatio:'1920 / 640'}}><img src={asset('customization',group.files[customVariant])} alt="customization preview" className="absolute inset-0 h-full w-full object-contain" />{customGroups.map((g,i)=><button key={g.id} aria-label={g.id} onMouseEnter={()=>chooseGroup(i)} onFocus={()=>chooseGroup(i)} onClick={()=>chooseGroup(i)} className="absolute z-20 bg-transparent" style={{left:pct(g.x,1920),top:pct(g.y,640),width:pct(g.w,1920),height:pct(g.h,640)}} />)}{group.swatches.map((s,i)=><button key={i} aria-label={`variant-${i+1}`} onMouseEnter={()=>setCustomVariant(i)} onFocus={()=>setCustomVariant(i)} onClick={()=>setCustomVariant(i)} className="absolute z-30 bg-transparent" style={{left:pct(s.x,1920),top:pct(s.y,640),width:pct(s.w,1920),height:pct(s.h,640)}} />)}</div></div></section>
 
-    <section className="bg-white"><img src={companyImage} alt="JAMOOZ company introduction" className="block h-auto w-full" /></section>
+    <section className="relative overflow-hidden bg-white" style={{aspectRatio:'1920 / 2020'}}>
+      <img src={companyImage} alt="JAMOOZ company introduction" className="absolute inset-0 h-full w-full object-contain" />
+      {companyLinks.map((link,i)=><a key={link.href} href={link.href} target="_blank" rel="noreferrer" aria-label={`JAMOOZ featured company product ${i+1}`} className="absolute z-10" style={{left:pct(link.x,1920),top:pct(link.y,2020),width:pct(link.w,1920),height:pct(link.h,2020)}} />)}
+    </section>
 
     <section id="products" className="scroll-mt-24 relative overflow-hidden bg-white" style={{aspectRatio:'1920 / 1110'}}><img src={reviewBg} alt="Customer reviews" className="absolute inset-0 h-full w-full object-contain" />{reviews.map((r,i)=><div key={i} className="absolute overflow-hidden" style={{left:pct(r.x,1920),top:pct(r.y,1110),width:pct(r.w,1920),height:pct(r.h,1110)}}><div className="review-roll" style={{animationDuration:r.speed}}><img src={r.img} alt="buyer reviews" className="block h-auto w-full" /><img src={r.img} alt="" aria-hidden className="block h-auto w-full" /></div></div>)}</section>
 
