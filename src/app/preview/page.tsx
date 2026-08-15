@@ -6,6 +6,14 @@ const R2 = 'https://pub-7c0fef674c514e7d8b3844cdeadf9c48.r2.dev/JAMOOZ_preview_w
 const asset = (group: string, file: string) => `${R2}/${group}/${file}`;
 const ali = (path: string) => `https:${path}`;
 const pct = (n:number,total:number) => `${(n/total)*100}%`;
+const seoCategories = [
+  'Head & Scalp',
+  'Neck & Shoulder',
+  'Back & Waist',
+  'Handheld Massage',
+  'Foot Care',
+  'Cupping & Guasha',
+] as const;
 const painStates = [
   { id:'p1',x:609,y:185,w:68,h:93,image:ali('//sc04.alicdn.com/kf/Hd2b7d5ddb4a34689872369aa618d57ffz/252717039/Hd2b7d5ddb4a34689872369aa618d57ffz.png') },
   { id:'p2',x:579,y:393,w:115,h:105,image:ali('//sc04.alicdn.com/kf/Ha7597fb64c9949ef9ed169d4b659806bE/252717039/Ha7597fb64c9949ef9ed169d4b659806bE.png') },
@@ -85,7 +93,7 @@ export default function HomepagePreview(){
             <span className="text-[clamp(9px,0.68vw,12px)] font-extrabold tracking-[0.18em] text-[#ead4ff]">20+ YEARS EXPERIENCE</span>
             <span className="mt-1 text-[clamp(8px,0.6vw,11px)] font-semibold tracking-[0.08em] text-white/80">OEM / ODM&nbsp;&nbsp;|&nbsp;&nbsp;CUSTOM DESIGN&nbsp;&nbsp;|&nbsp;&nbsp;MASS PRODUCTION</span>
           </div>
-          <h1 className="mt-5 text-[clamp(28px,2vw,39px)] font-semibold leading-[1.08] tracking-tight">Your <span className="text-[#e7b6ff]">Trusted</span> Massage Device<br />OEM/ODM Manufacturing Partner</h1>
+          <h2 className="mt-5 text-[clamp(28px,2vw,39px)] font-semibold leading-[1.08] tracking-tight">Your <span className="text-[#e7b6ff]">Trusted</span> Massage Device<br />OEM/ODM Manufacturing Partner</h2>
           <div className="mt-5 border-l-2 border-[#d8a9ff] pl-3.5">
             <p className="text-[clamp(12px,0.82vw,15px)] font-semibold leading-[1.45] text-white">20+ Years Manufacturing Experience</p>
             <p className="mt-2 text-[clamp(11px,0.76vw,14px)] leading-[1.5] text-white/78">From Product Design To Mass Production,<br />We Help Global Brands Build Successful<br />Wellness Products.</p>
@@ -98,7 +106,17 @@ export default function HomepagePreview(){
       </div>
     </section>
 
-    <section id="solutions" className="scroll-mt-24 bg-white py-10 md:py-14"><div className="mx-auto max-w-[1440px] px-3 md:px-6"><div className="relative mx-auto overflow-hidden" style={{aspectRatio:'1920 / 1059'}}><img src={painImage} alt="JAMOOZ body pain solution" className="absolute inset-0 h-full w-full object-contain" />{painStates.map(p=><button key={p.id} aria-label={p.id} onMouseEnter={()=>setPainImage(p.image)} onFocus={()=>setPainImage(p.image)} onClick={()=>setPainImage(p.image)} className="absolute z-10 bg-transparent" style={{left:pct(p.x,1920),top:pct(p.y,1059),width:pct(p.w,1920),height:pct(p.h,1059)}} />)}</div></div></section>
+    <section aria-labelledby="body-solutions-title" className="flex min-h-[220px] items-center border-b border-violet-100/70 bg-[#fcfbff] py-9 md:h-[260px] md:py-10">
+      <div className="mx-auto w-full max-w-[1240px] px-5 text-center sm:px-8">
+        <h1 id="body-solutions-title" className="text-3xl font-semibold tracking-tight text-[#302050] sm:text-4xl">Massage Solutions for Every Part of the Body</h1>
+        <p className="mx-auto mt-4 max-w-[980px] text-sm leading-6 text-zinc-600 sm:text-base sm:leading-7">Discover our range of scalp massagers, neck and shoulder massagers, massage pillows, back massagers, foot massagers and electric cupping devices—designed for different wellness needs and global markets.</p>
+        <nav aria-label="Product solution categories" className="mt-6 flex flex-wrap justify-center gap-2.5 md:flex-nowrap">
+          {seoCategories.map(category=><a key={category} href="#product-range" className="inline-flex min-h-9 items-center justify-center whitespace-nowrap rounded-full border border-violet-200 bg-white px-4 py-2 text-xs font-semibold text-violet-800 transition hover:border-violet-400 hover:bg-violet-50">{category}</a>)}
+        </nav>
+      </div>
+    </section>
+
+    <section id="solutions" className="scroll-mt-24 bg-white py-10 md:py-14"><div className="mx-auto max-w-[1440px] px-3 md:px-6"><div className="relative mx-auto overflow-hidden" style={{aspectRatio:'1920 / 1059'}}><img src={painImage} alt="JAMOOZ body pain solution" className="absolute inset-0 h-full w-full object-contain" /><div className="absolute inset-x-0 top-0 z-[5] flex h-[16%] items-center justify-center bg-[#faf8ff] px-4"><h2 className="text-center text-[clamp(18px,2.2vw,38px)] font-semibold tracking-tight text-[#45245f]">Hover Over the Body to Explore Products</h2></div>{painStates.map(p=><button key={p.id} aria-label={p.id} onMouseEnter={()=>setPainImage(p.image)} onFocus={()=>setPainImage(p.image)} onClick={()=>setPainImage(p.image)} className="absolute z-10 bg-transparent" style={{left:pct(p.x,1920),top:pct(p.y,1059),width:pct(p.w,1920),height:pct(p.h,1059)}} />)}</div></div></section>
 
     <section id="oem-odm" className="scroll-mt-24 bg-[#faf8ff] py-10 md:py-14"><div className="mx-auto max-w-[1440px] px-3 md:px-6"><div className="relative mx-auto overflow-hidden" style={{aspectRatio:'1920 / 640'}}><img src={asset('customization',group.files[customVariant])} alt="customization preview" className="absolute inset-0 h-full w-full object-contain" />{customGroups.map((g,i)=><button key={g.id} aria-label={g.id} onMouseEnter={()=>chooseGroup(i)} onFocus={()=>chooseGroup(i)} onClick={()=>chooseGroup(i)} className="absolute z-20 bg-transparent" style={{left:pct(g.x,1920),top:pct(g.y,640),width:pct(g.w,1920),height:pct(g.h,640)}} />)}{group.swatches.map((s,i)=><button key={i} aria-label={`variant-${i+1}`} onMouseEnter={()=>setCustomVariant(i)} onFocus={()=>setCustomVariant(i)} onClick={()=>setCustomVariant(i)} className="absolute z-30 bg-transparent" style={{left:pct(s.x,1920),top:pct(s.y,640),width:pct(s.w,1920),height:pct(s.h,640)}} />)}</div></div></section>
 
