@@ -1,28 +1,23 @@
 'use client';
 
+import { FormEvent, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
-const bg = 'https://sc04.alicdn.com/kf/H7abbd5ea9de54060b126f9cb24a2ca22f/252717039/H7abbd5ea9de54060b126f9cb24a2ca22f.jpg';
-const pct = (n:number,total:number) => `${(n/total)*100}%`;
-
-const contacts = [
-  {x:397,y:215,w:175,h:233,href:'https://onetalk.alibaba.com/message/weblitePWA.htm?activeAccountId=286256674&productId=1601761623132'},
-  {x:583,y:208,w:172,h:241,href:'https://onetalk.alibaba.com/message/weblitePWA.htm?activeAccountId=271098113&productId=1601548309608'},
-  {x:775,y:208,w:179,h:239,href:'https://onetalk.alibaba.com/message/weblitePWA.htm?activeAccountId=286510297&productId=1601803383603'},
-  {x:975,y:209,w:165,h:239,href:'https://onetalk.alibaba.com/message/weblitePWA.htm?activeAccountId=258248507&productId=1600556869813'},
-  {x:1160,y:209,w:186,h:241,href:'https://onetalk.alibaba.com/message/weblitePWA.htm?activeAccountId=286175886&productId=1601740819419'},
-  {x:1357,y:210,w:170,h:240,href:'https://onetalk.alibaba.com/message/weblitePWA.htm?activeAccountId=285937306&productId=1601695574506'},
+const fields = [
+  { name: 'name', label: 'Name', type: 'text', required: true }, { name: 'company', label: 'Company', type: 'text', required: true },
+  { name: 'email', label: 'Business Email', type: 'email', required: true }, { name: 'phone', label: 'WhatsApp / Phone', type: 'tel', required: false },
+  { name: 'product', label: 'Product Interested In', type: 'text', required: true }, { name: 'quantity', label: 'Estimated Quantity', type: 'text', required: false },
 ] as const;
 
-export default function PreviewContactSection(){
-  const pathname = usePathname();
-  if (!pathname.startsWith('/preview')) return null;
-
+export default function PreviewContactSection() {
+  const pathname = usePathname(); const [prepared, setPrepared] = useState(false); if (!pathname.startsWith('/preview')) return null;
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); const data = new FormData(event.currentTarget); const body = [`Name: ${data.get('name')}`, `Company: ${data.get('company')}`, `Business Email: ${data.get('email')}`, `WhatsApp / Phone: ${data.get('phone') || 'Not provided'}`, `Product Interested In: ${data.get('product')}`, `Estimated Quantity: ${data.get('quantity') || 'Not provided'}`, `OEM / ODM Requirement: ${data.get('oem')}`, '', 'Message:', String(data.get('message') || '')].join('\n'); setPrepared(true); window.location.href = `mailto:info@jamooz.com?subject=${encodeURIComponent('JAMOOZ B2B Request for Quote')}&body=${encodeURIComponent(body)}`; };
   return (
-    <section className="relative overflow-hidden bg-white" style={{aspectRatio:'1920 / 854'}}>
-      <img src={bg} alt="JAMOOZ customer service" className="absolute inset-0 h-full w-full object-contain" />
-      {contacts.map((c,i)=><a key={i} href={c.href} target="_blank" rel="noreferrer" aria-label={`Contact sales ${i+1}`} className="absolute z-10" style={{left:pct(c.x,1920),top:pct(c.y,854),width:pct(c.w,1920),height:pct(c.h,854)}} />)}
-      <button type="button" aria-label="Back to top" onClick={()=>window.scrollTo({top:0,behavior:'smooth'})} className="absolute z-20 bg-transparent" style={{left:pct(707,1920),top:pct(659,854),width:pct(492,1920),height:pct(150,854)}} />
+    <section id="inquiry" className="scroll-mt-24 bg-gradient-to-br from-[#151028] via-[#211345] to-[#3d1a6d] py-16 text-white md:py-24">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1.45fr_.75fr] lg:px-8"><div><p className="text-xs font-black uppercase tracking-[0.24em] text-violet-300">Inquiry / Request A Quote</p><h2 className="mt-4 text-4xl font-black tracking-tight md:text-5xl">Tell us what you want to build.</h2><p className="mt-4 max-w-2xl leading-7 text-white/65">Share your product, volume and customization requirements. This preview prepares a complete inquiry in your email app so you can review it before sending.</p>
+        <form onSubmit={handleSubmit} className="mt-10 grid gap-5 sm:grid-cols-2">{fields.map((field) => <label key={field.name} className="text-xs font-bold uppercase tracking-wider text-white/70">{field.label}{field.required && ' *'}<input name={field.name} type={field.type} required={field.required} className="mt-2 w-full rounded-xl border border-white/15 bg-white/10 px-4 py-3.5 text-sm font-normal normal-case tracking-normal text-white outline-none focus:border-violet-300 focus:bg-white/15" /></label>)}<label className="text-xs font-bold uppercase tracking-wider text-white/70 sm:col-span-2">OEM / ODM Requirement<select name="oem" defaultValue="No customization required" className="mt-2 w-full rounded-xl border border-white/15 bg-[#2b1852] px-4 py-3.5 text-sm font-normal normal-case tracking-normal text-white outline-none"><option>No customization required</option><option>OEM — Logo / Packaging</option><option>ODM — Product Customization</option><option>Not sure — Need recommendation</option></select></label><label className="text-xs font-bold uppercase tracking-wider text-white/70 sm:col-span-2">Message<textarea name="message" rows={5} className="mt-2 w-full resize-y rounded-xl border border-white/15 bg-white/10 px-4 py-3.5 text-sm font-normal normal-case tracking-normal text-white outline-none focus:border-violet-300" /></label><div className="sm:col-span-2"><button type="submit" className="w-full rounded-full bg-white px-7 py-4 text-sm font-black tracking-[0.08em] text-violet-800 transition hover:-translate-y-0.5 sm:w-auto">PREPARE INQUIRY EMAIL →</button>{prepared && <p className="mt-3 text-sm text-violet-200">Your email app should now be open. Please review and send the message there.</p>}</div></form></div>
+        <aside className="h-fit rounded-3xl border border-white/15 bg-white/10 p-8 backdrop-blur-sm lg:mt-20"><p className="text-xs font-black uppercase tracking-[0.22em] text-violet-300">Contact JAMOOZ</p><a href="mailto:info@jamooz.com" className="mt-7 block text-2xl font-bold hover:text-violet-200">info@jamooz.com</a><div className="mt-8 space-y-5 border-t border-white/15 pt-8 text-sm text-white/70"><p><span className="block text-xs font-bold uppercase tracking-wider text-white/40">Location</span><span className="mt-1 block text-lg text-white">Shenzhen, China</span></p><p><span className="block text-xs font-bold uppercase tracking-wider text-white/40">Response</span><span className="mt-1 block text-lg text-white">24-hour B2B inquiry response</span></p></div><p className="mt-8 rounded-2xl bg-black/15 p-4 text-xs leading-6 text-white/55">No unverified phone or WhatsApp number is shown in this preview.</p></aside></div>
+      <a href="#inquiry" aria-label="WhatsApp contact placeholder — number pending" title="WhatsApp number pending confirmation" className="fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-2xl font-black text-white shadow-xl ring-4 ring-white/70 transition hover:scale-105"><span aria-hidden>◔</span><span className="sr-only">WhatsApp number pending confirmation</span></a>
     </section>
   );
 }
