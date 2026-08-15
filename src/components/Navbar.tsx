@@ -4,13 +4,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
-const productGroups = [
-  { title: 'Massage & Recovery', items: ['Massage Guns', 'Handheld Massagers', 'Massage Chairs', 'Abdominal Massagers'] },
-  { title: 'Head & Beauty Care', items: ['Scalp Massagers', 'Face Massagers', 'Eye Massagers', 'Massage Combs'] },
-  { title: 'Neck & Body Care', items: ['U-Shaped Massage Pillows', 'Neck & Shoulder Massagers', 'Back Massagers', 'Foot & Leg Massagers'] },
-  { title: 'Featured Collections', items: ['New Arrivals', 'Best Sellers', 'Portable Massagers', 'All Products'] },
-];
-
 const standardMenuColumns = [
   { title: 'Enhance fitness & recovery', items: ['Massage Guns', 'Compression Therapy', 'Red Light Therapy', 'Recovery Tools'] },
   { title: 'Reduce aches & pains', items: ['Neck & Shoulder Relief', 'Back & Spine Care', 'Foot & Leg Massagers', 'Heat Therapy'] },
@@ -20,29 +13,26 @@ const standardMenuColumns = [
 
 function PreviewNavbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobileProducts, setMobileProducts] = useState(false);
   const previewLink = (hash: string) => `/preview${hash}`;
+  const navigation = [
+    ['HOME', ''],
+    ['PRODUCTS', '#product-range'],
+    ['OEM / ODM', '#oem-odm'],
+    ['ABOUT US', '#about-us'],
+    ['QUALITY', '#quality'],
+    ['CONTACT', '#inquiry'],
+  ] as const;
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white/95 text-zinc-900 shadow-sm backdrop-blur-xl">
       <div className="mx-auto flex h-[76px] max-w-[1500px] items-center gap-6 px-4 sm:px-6 lg:px-8">
         <Link href="/preview" className="mr-auto flex shrink-0 flex-col leading-none" aria-label="JAMOOZ preview home"><span className="text-[30px] font-black tracking-[-0.06em] text-violet-800">JAMOOZ</span><span className="mt-1 text-[8px] font-bold uppercase tracking-[0.22em] text-zinc-500">Wellness Technology</span></Link>
-        <nav className="hidden h-full items-center gap-6 text-[12px] font-bold tracking-[0.04em] xl:flex" aria-label="Preview navigation">
-          <Link href="/preview" className="flex h-full items-center hover:text-violet-700">HOME</Link>
-          <div className="group/products flex h-full items-center">
-            <button type="button" className="flex h-full items-center gap-1 hover:text-violet-700" aria-haspopup="true">PRODUCTS <span aria-hidden>▾</span></button>
-            <div className="pointer-events-none absolute left-1/2 top-[76px] w-[min(1180px,calc(100vw-40px))] -translate-x-1/2 translate-y-2 opacity-0 transition duration-200 group-hover/products:pointer-events-auto group-hover/products:translate-y-0 group-hover/products:opacity-100 group-focus-within/products:pointer-events-auto group-focus-within/products:translate-y-0 group-focus-within/products:opacity-100">
-              <div className="grid grid-cols-4 gap-8 rounded-b-2xl border border-zinc-200 bg-white p-8 shadow-2xl shadow-black/15">
-                {productGroups.map((group) => <div key={group.title}><h3 className="border-b border-violet-100 pb-3 text-sm font-black text-violet-800">{group.title}</h3><ul className="mt-4 space-y-3 text-sm font-medium normal-case tracking-normal text-zinc-600">{group.items.map((item) => <li key={item}><Link href={previewLink('#products')} className="hover:text-violet-700">{item}</Link></li>)}</ul></div>)}
-                <div className="col-span-4 flex items-center justify-between border-t border-zinc-100 pt-5"><p className="text-xs font-medium normal-case tracking-normal text-zinc-500">Product groups reflect JAMOOZ&apos;s current Alibaba collections.</p><Link href={previewLink('#products')} className="rounded-full bg-violet-700 px-5 py-2.5 text-xs text-white hover:bg-violet-800">VIEW ALL PRODUCTS →</Link></div>
-              </div>
-            </div>
-          </div>
-          <Link href={previewLink('#solutions')} className="hover:text-violet-700">SOLUTIONS ▾</Link><Link href={previewLink('#oem-odm')} className="hover:text-violet-700">OEM &amp; ODM ▾</Link><Link href={previewLink('#about')} className="hover:text-violet-700">ABOUT JAMOOZ ▾</Link><Link href={previewLink('#inquiry')} className="hover:text-violet-700">CONTACT</Link>
+        <nav className="hidden h-full items-center gap-7 text-[12px] font-bold tracking-[0.045em] xl:flex" aria-label="Preview navigation">
+          {navigation.map(([label, hash]) => <Link key={label} href={hash ? previewLink(hash) : '/preview'} className="flex h-full items-center whitespace-nowrap transition hover:text-violet-700">{label}</Link>)}
         </nav>
         <Link href={previewLink('#inquiry')} className="hidden shrink-0 rounded-full bg-violet-700 px-5 py-3 text-[11px] font-black tracking-[0.08em] text-white hover:bg-violet-800 sm:inline-flex">REQUEST A QUOTE</Link>
         <button type="button" onClick={() => setMobileOpen((open) => !open)} className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 text-xl xl:hidden" aria-expanded={mobileOpen} aria-label="Toggle preview menu">{mobileOpen ? '×' : '☰'}</button>
       </div>
-      {mobileOpen && <nav className="border-t border-zinc-100 bg-white px-5 py-5 shadow-lg xl:hidden" aria-label="Preview mobile navigation"><div className="mx-auto flex max-w-2xl flex-col text-sm font-bold"><Link href="/preview" onClick={() => setMobileOpen(false)} className="border-b border-zinc-100 py-3">HOME</Link><button type="button" onClick={() => setMobileProducts((open) => !open)} className="flex items-center justify-between border-b border-zinc-100 py-3 text-left">PRODUCTS <span>{mobileProducts ? '▴' : '▾'}</span></button>{mobileProducts && <div className="grid grid-cols-2 gap-4 bg-zinc-50 p-4 text-xs font-medium text-zinc-600">{productGroups.flatMap((group) => group.items).map((item) => <Link key={item} href={previewLink('#products')} onClick={() => setMobileOpen(false)}>{item}</Link>)}</div>}{[['SOLUTIONS', '#solutions'], ['OEM & ODM', '#oem-odm'], ['ABOUT JAMOOZ', '#about'], ['CONTACT', '#inquiry']].map(([label, hash]) => <Link key={label} href={previewLink(hash)} onClick={() => setMobileOpen(false)} className="border-b border-zinc-100 py-3">{label}{label !== 'CONTACT' ? ' ▾' : ''}</Link>)}<Link href={previewLink('#inquiry')} onClick={() => setMobileOpen(false)} className="mt-4 rounded-full bg-violet-700 px-5 py-3 text-center text-xs text-white">REQUEST A QUOTE</Link></div></nav>}
+      {mobileOpen && <nav className="border-t border-zinc-100 bg-white px-5 py-5 shadow-lg xl:hidden" aria-label="Preview mobile navigation"><div className="mx-auto flex max-w-2xl flex-col text-sm font-bold">{navigation.map(([label, hash]) => <Link key={label} href={hash ? previewLink(hash) : '/preview'} onClick={() => setMobileOpen(false)} className="border-b border-zinc-100 py-3">{label}</Link>)}<Link href={previewLink('#inquiry')} onClick={() => setMobileOpen(false)} className="mt-4 rounded-full bg-violet-700 px-5 py-3 text-center text-xs text-white">REQUEST A QUOTE</Link></div></nav>}
     </header>
   );
 }

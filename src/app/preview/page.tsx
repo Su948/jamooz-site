@@ -108,7 +108,7 @@ export default function HomepagePreview(){
 
     {categoryPages.map(page=><section key={page.name} className="bg-white"><div className="relative mx-auto overflow-hidden" style={{aspectRatio:`1920 / ${page.h}`}}><img src={page.bg} alt={page.name} className="absolute inset-0 h-full w-full object-contain" />{page.links.map((l,i)=><a key={i} href={l.href} target="_blank" rel="noreferrer" className="absolute z-10" style={{left:pct(l.x,1920),top:pct(l.y,page.h),width:pct(l.w,1920),height:pct(l.h,page.h)}} aria-label={`${page.name}-${i+1}`} />)}</div></section>)}
 
-    <section className="relative overflow-hidden bg-white" style={{aspectRatio:'1920 / 2020'}}>
+    <section id="about-us" className="scroll-mt-24 relative overflow-hidden bg-white" style={{aspectRatio:'1920 / 2020'}}>
       <img src={companyImage} alt="JAMOOZ company introduction" className="absolute inset-0 h-full w-full object-contain" />
       <video
         src={companyVideo}
@@ -127,7 +127,7 @@ export default function HomepagePreview(){
 
     <section id="products" className="scroll-mt-24 relative overflow-hidden bg-white" style={{aspectRatio:'1920 / 1110'}}><img src={reviewBg} alt="Customer reviews" className="absolute inset-0 h-full w-full object-contain" />{reviews.map((r,i)=><div key={i} className="absolute overflow-hidden" style={{left:pct(r.x,1920),top:pct(r.y,1110),width:pct(r.w,1920),height:pct(r.h,1110)}}><div className="review-roll" style={{animationDuration:r.speed}}><img src={r.img} alt="buyer reviews" className="block h-auto w-full" /><img src={r.img} alt="" aria-hidden className="block h-auto w-full" /></div></div>)}</section>
 
-    <section id="about" className="scroll-mt-24 bg-white"><img src={certificateImage} alt="JAMOOZ certificates" className="block h-auto w-full" /></section>
+    <section id="quality" className="scroll-mt-24 bg-white"><img src={certificateImage} alt="JAMOOZ certificates" className="block h-auto w-full" /></section>
 
     <style jsx global>{`
       @keyframes jamoozScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
