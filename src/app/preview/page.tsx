@@ -80,12 +80,19 @@ export default function HomepagePreview(){
       <img src="/preview-assets/hero/products.webp" alt="JAMOOZ massage and wellness product range" className="absolute inset-0 h-full w-full object-cover object-center" />
       <div className="absolute inset-0 bg-gradient-to-r from-[#4c397d]/45 via-transparent to-transparent" />
       <div className="relative z-10 flex h-full min-h-[480px] items-center px-[5%] sm:min-h-0">
-        <div className="w-full max-w-[310px] text-white sm:w-[28%] sm:max-w-none">
-          <h1 className="text-[clamp(30px,2.15vw,42px)] font-semibold leading-[1.08] tracking-tight">Your <span className="text-[#e7b6ff]">Trusted</span> Massage Device OEM/ODM Manufacturing Partner</h1>
-          <p className="mt-4 text-[clamp(13px,0.95vw,17px)] leading-[1.55] text-white/85">20+ Years Manufacturing Experience Supporting Global Brands With Product Design, Customization And Mass Production</p>
+        <div className="w-full max-w-[330px] text-white sm:w-[29%] sm:max-w-none">
+          <div className="inline-flex flex-col rounded-lg border border-white/20 bg-[#302057]/45 px-3.5 py-2.5 shadow-lg shadow-purple-950/10 backdrop-blur-md">
+            <span className="text-[clamp(9px,0.68vw,12px)] font-extrabold tracking-[0.18em] text-[#ead4ff]">20+ YEARS EXPERIENCE</span>
+            <span className="mt-1 text-[clamp(8px,0.6vw,11px)] font-semibold tracking-[0.08em] text-white/80">OEM / ODM&nbsp;&nbsp;|&nbsp;&nbsp;CUSTOM DESIGN&nbsp;&nbsp;|&nbsp;&nbsp;MASS PRODUCTION</span>
+          </div>
+          <h1 className="mt-5 text-[clamp(28px,2vw,39px)] font-semibold leading-[1.08] tracking-tight">Your <span className="text-[#e7b6ff]">Trusted</span> Massage Device<br />OEM/ODM Manufacturing Partner</h1>
+          <div className="mt-5 border-l-2 border-[#d8a9ff] pl-3.5">
+            <p className="text-[clamp(12px,0.82vw,15px)] font-semibold leading-[1.45] text-white">20+ Years Manufacturing Experience</p>
+            <p className="mt-2 text-[clamp(11px,0.76vw,14px)] leading-[1.5] text-white/78">From Product Design To Mass Production,<br />We Help Global Brands Build Successful<br />Wellness Products.</p>
+          </div>
           <div className="mt-6 flex flex-wrap gap-3">
-            <a href="#inquiry" className="inline-flex min-h-11 items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-bold text-[#34205f] transition hover:-translate-y-0.5 hover:bg-violet-100">Request <span className="ml-1 text-[#e14c69]">A Quote</span></a>
-            <a href="#product-range" className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/70 bg-white/10 px-5 py-2.5 text-sm font-bold text-white backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/20"><span className="mr-1 text-[#86e39c]">Explore</span> Products</a>
+            <a href="#inquiry" className="inline-flex min-h-11 items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-bold text-[#34205f] shadow-lg shadow-purple-950/15 transition hover:-translate-y-0.5 hover:bg-violet-100">Request A Quote</a>
+            <a href="#product-range" className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/65 bg-white/10 px-5 py-2.5 text-sm font-bold text-white backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/20">Explore Products</a>
           </div>
         </div>
       </div>
