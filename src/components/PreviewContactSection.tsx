@@ -15,7 +15,7 @@ const fields = [
 ] as const;
 
 export default function PreviewContactSection() {
-  const pathname = usePathname(); const [prepared, setPrepared] = useState(false); if (!pathname.startsWith('/preview')) return null;
+  const pathname = usePathname(); const [prepared, setPrepared] = useState(false); if (pathname !== '/' && !pathname.startsWith('/preview')) return null;
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); const data = new FormData(event.currentTarget); const body = [`Name: ${data.get('name')}`, `Company: ${data.get('company')}`, `Business Email: ${data.get('email')}`, `WhatsApp / Phone: ${data.get('phone') || 'Not provided'}`, `Product Interested In: ${data.get('product')}`, `Estimated Quantity: ${data.get('quantity') || 'Not provided'}`, `OEM / ODM Requirement: ${data.get('oem')}`, '', 'Message:', String(data.get('message') || '')].join('\n'); setPrepared(true); window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent('JAMOOZ B2B Request for Quote')}&body=${encodeURIComponent(body)}`; };
   return (
     <section id="inquiry" className="scroll-mt-24 bg-gradient-to-br from-[#151028] via-[#211345] to-[#3d1a6d] py-16 text-white md:py-24">
