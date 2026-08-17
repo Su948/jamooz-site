@@ -36,11 +36,11 @@ export default function Footer() {
           <div>
             <h3 className="mono-label text-xs font-bold text-white/50">Contact</h3>
             <ul className="mt-5 space-y-3 text-sm text-white/68">
-              <li>info@jamooz.com</li>
+              <li><a href="mailto:lee@jamooz.cn" className="hover:text-white">lee@jamooz.cn</a></li>
               <li>Shenzhen, China</li>
               <li>24-hour B2B inquiry response</li>
             </ul>
-            <Link href="/rfq" className="btn-primary mt-7">Request Quote</Link>
+            <Link href="/#inquiry" className="btn-primary mt-7">Request Quote</Link>
           </div>
         </div>
 
