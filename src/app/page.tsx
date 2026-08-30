@@ -1,1 +1,9 @@
-export { default } from './preview/page';
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
+
+export { default } from "./preview/page";
