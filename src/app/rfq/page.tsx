@@ -16,16 +16,15 @@ export default function RFQPage() {
           <div className="mt-16 space-y-12">
             <div>
               <h4 className="mono-label text-[10px] font-bold text-muted uppercase tracking-[0.2em] mb-4">Response Time</h4>
-              <p className="text-xl font-bold text-navy tracking-tight">Guaranteed 24-hour turnaround on all formal inquiries.</p>
+              <p className="text-xl font-bold text-navy tracking-tight">We aim to respond to business inquiries within 24 hours on working days.</p>
             </div>
             <div>
               <h4 className="mono-label text-[10px] font-bold text-muted uppercase tracking-[0.2em] mb-4">Sampling Policy</h4>
-              <p className="text-muted leading-relaxed">Fast prototyping and sample delivery via DHL/FedEx available upon request for qualified buyers.</p>
+              <p className="text-muted leading-relaxed">Sample availability, cost, and delivery time are confirmed according to the selected product and customization requirements.</p>
             </div>
-            <div className="pt-10 border-t border-border-warm flex gap-8">
-              {['CE', 'FCC', 'RoHS', 'ISO 9001'].map((cert) => (
-                <span key={cert} className="text-xs font-bold text-muted uppercase tracking-widest">{cert}</span>
-              ))}
+            <div className="pt-10 border-t border-border-warm">
+              <h4 className="mono-label text-[10px] font-bold text-muted uppercase tracking-[0.2em] mb-4">Compliance Documentation</h4>
+              <p className="text-muted leading-relaxed">Available documentation varies by product model and destination market. Please contact us to confirm the applicable certificates before ordering.</p>
             </div>
           </div>
         </div>
