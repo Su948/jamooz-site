@@ -8,8 +8,11 @@ export default function Footer() {
           <div>
             <Link href="/" className="serif-display text-5xl font-semibold tracking-[-0.08em] text-white">Jamooz</Link>
             <p className="mt-5 max-w-sm leading-7 text-white/62">Professional recovery and scalp care technology for global wellness brands, OEM/ODM partners, and clinical retail channels.</p>
-            <div className="mt-7 flex flex-wrap gap-2 text-xs font-bold text-white/72">
-              {['CE', 'FCC', 'SGS', 'RoHS', 'IPX7'].map((item) => <span key={item} className="rounded border border-white/15 px-3 py-1">{item}</span>)}
+            <div className="mt-7 max-w-sm">
+              <h3 className="mono-label text-xs font-bold text-white/50">Compliance Support</h3>
+              <p className="mt-3 text-sm leading-6 text-white/68">
+                Compliance documentation is available according to the product model and destination market. Please contact us to confirm applicable certificates and test reports before ordering.
+              </p>
             </div>
           </div>
 
@@ -38,7 +41,7 @@ export default function Footer() {
             <ul className="mt-5 space-y-3 text-sm text-white/68">
               <li><a href="mailto:lee@jamooz.cn" className="hover:text-white">lee@jamooz.cn</a></li>
               <li>Shenzhen, China</li>
-              <li>24-hour B2B inquiry response</li>
+              <li>Responses typically provided within 24 hours on working days</li>
             </ul>
             <Link href="/#inquiry" className="btn-primary mt-7">Request Quote</Link>
           </div>
