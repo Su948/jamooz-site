@@ -49,7 +49,7 @@ export default function Footer() {
 
         <div className="mt-14 flex flex-col justify-between gap-4 border-t border-white/10 pt-7 text-xs text-white/45 md:flex-row">
           <p>© {new Date().getFullYear()} Jamooz Wellness Technology. All rights reserved.</p>
-          <p>Science-backed recovery technology · Built for partners</p>
+          <p>Massage and wellness technology · Built for partners</p>
         </div>
       </div>
     </footer>
