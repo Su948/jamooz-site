@@ -30,7 +30,7 @@ export default function AboutPage() {
             </div>
             <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3">
               {['ISO 9001', 'CE', 'FCC', 'RoHS', 'FDA Registered', 'Custom Certification Support'].map((cert) => (
-                <div key={cert} className="premium-card flex min-h-32 flex-col items-center justify-center p-4 text-center sm:p-6">
+                <div key={cert} className="premium-card flex h-40 flex-col items-center justify-center p-4 text-center sm:p-6">
                   <div className="w-10 h-10 bg-navy text-white flex items-center justify-center mb-4 rounded-full font-bold">✓</div>
                   <p className="font-bold text-navy text-xs uppercase tracking-wider sm:text-sm">{cert}</p>
                 </div>
