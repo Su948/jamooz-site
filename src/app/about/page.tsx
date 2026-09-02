@@ -14,16 +14,25 @@ export default function AboutPage() {
       <section className="max-w-7xl mx-auto px-4 py-24 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
           <div>
-            <h2 className="serif-display text-4xl font-semibold mb-8">Certified Excellence</h2>
-            <p className="text-muted leading-8 text-lg mb-10">
-              Founded on the principle of effective recovery, Jamooz has grown into a leading manufacturer of professional massage equipment. 
-              Our factory is ISO 9001 certified, and all products undergo rigorous testing to meet international safety standards including CE, FCC, and RoHS.
+            <p className="mono-label text-xs font-bold text-navy uppercase tracking-widest">
+              CERTIFICATIONS &amp; COMPLIANCE
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              {['CE Certified', 'FCC Compliant', 'RoHS Tested'].map((cert) => (
-                <div key={cert} className="premium-card p-6 flex flex-col items-center justify-center text-center">
+            <h2 className="serif-display mt-5 text-4xl font-semibold leading-tight">
+              Certified Quality for Global Markets
+            </h2>
+            <div className="mt-8 space-y-5 text-lg leading-8 text-muted">
+              <p>
+                Most JAMOOZ products are supported by CE, FCC and RoHS compliance documentation, with FDA registration available for applicable product models. Our manufacturing facility is ISO 9001 certified.
+              </p>
+              <p>
+                We also support product testing and certification according to the buyer&apos;s target market and project requirements. Contact us to confirm the available documents for your selected product.
+              </p>
+            </div>
+            <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3">
+              {['ISO 9001', 'CE', 'FCC', 'RoHS', 'FDA Registered', 'Custom Certification Support'].map((cert) => (
+                <div key={cert} className="premium-card flex min-h-32 flex-col items-center justify-center p-4 text-center sm:p-6">
                   <div className="w-10 h-10 bg-navy text-white flex items-center justify-center mb-4 rounded-full font-bold">✓</div>
-                  <p className="font-bold text-navy text-sm uppercase tracking-wider">{cert}</p>
+                  <p className="font-bold text-navy text-xs uppercase tracking-wider sm:text-sm">{cert}</p>
                 </div>
               ))}
             </div>
