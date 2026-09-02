@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { companyFacts, contactLinks } from '@/lib/company';
+import { operationalClaims } from '@/lib/operational-claims';
 
 export default function Footer() {
   return (
@@ -8,7 +9,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             <Link href="/" className="serif-display text-5xl font-semibold tracking-[-0.08em] text-white">Jamooz</Link>
-            <p className="mt-5 max-w-sm leading-7 text-white/62">Professional recovery and scalp care technology for global wellness brands, OEM/ODM partners, and clinical retail channels.</p>
+            <p className="mt-5 max-w-sm leading-7 text-white/62">Massage and scalp care technology for global wellness brands, OEM/ODM partners, and specialty retail channels.</p>
             <div className="mt-7 max-w-sm">
               <h3 className="mono-label text-xs font-bold text-white/50">Compliance Support</h3>
               <p className="mt-3 text-sm leading-6 text-white/68">
@@ -42,7 +43,7 @@ export default function Footer() {
             <ul className="mt-5 space-y-3 text-sm text-white/68">
               <li><a href={contactLinks.email} className="hover:text-white">{companyFacts.contact.email}</a></li>
               <li>{companyFacts.location.label}</li>
-              <li>Responses typically provided within 24 hours on working days</li>
+              <li>{operationalClaims.responseShort}</li>
             </ul>
             <Link href="/#inquiry" className="btn-primary mt-7">Request Quote</Link>
           </div>
