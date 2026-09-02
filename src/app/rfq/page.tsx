@@ -1,4 +1,5 @@
 import { companyFacts, contactLinks } from "@/lib/company";
+import { operationalClaims } from "@/lib/operational-claims";
 
 const whatsappMessage = "Hello JAMOOZ, I would like to discuss a product inquiry.";
 const whatsappUrl = contactLinks.whatsapp(whatsappMessage);
@@ -17,7 +18,7 @@ export default function RFQPage() {
           <div className="mt-16 space-y-12">
             <div>
               <h4 className="mono-label text-[10px] font-bold text-muted uppercase tracking-[0.2em] mb-4">Response Time</h4>
-              <p className="text-xl font-bold text-navy tracking-tight">We aim to respond to business inquiries within 24 hours on working days.</p>
+              <p className="text-xl font-bold text-navy tracking-tight">{operationalClaims.response}</p>
             </div>
             <div>
               <h4 className="mono-label text-[10px] font-bold text-muted uppercase tracking-[0.2em] mb-4">Sampling Policy</h4>
