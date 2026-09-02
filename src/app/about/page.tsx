@@ -1,3 +1,5 @@
+import { companyFacts } from "@/lib/company";
+
 export default function AboutPage() {
   return (
     <div className="bg-background min-h-screen">
@@ -6,7 +8,7 @@ export default function AboutPage() {
           <p className="mono-label text-xs font-bold text-navy uppercase tracking-widest">Our Story</p>
           <h1 className="serif-display mt-6 text-[58px] font-semibold leading-none text-foreground md:text-[78px]">About Jamooz</h1>
           <p className="mt-8 max-w-2xl mx-auto text-lg leading-8 text-muted">
-            Empowering global brands with science-backed massage technology and reliable B2B manufacturing solutions.
+            Based in {companyFacts.location.label}, JAMOOZ supports global brands with massage technology and B2B manufacturing solutions.
           </p>
         </div>
       </section>

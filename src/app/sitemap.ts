@@ -1,11 +1,10 @@
 import type { MetadataRoute } from "next";
-
-const SITE_URL = "https://www.jmz.global";
+import { companyFacts } from "@/lib/company";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: `${SITE_URL}/`,
+      url: `${companyFacts.website}/`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
