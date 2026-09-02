@@ -18,7 +18,7 @@ export default function AboutPage() {
           <div>
             <h2 className="serif-display text-4xl font-semibold mb-8">Certified Excellence</h2>
             <p className="text-muted leading-8 text-lg mb-10">
-              Founded on the principle of effective recovery, Jamooz has grown into a leading manufacturer of professional massage equipment. 
+              Founded on the principle of practical wellness and recovery, Jamooz is an experienced manufacturer of massage equipment.
               Our factory is ISO 9001 certified, and all products undergo rigorous testing to meet international safety standards including CE, FCC, and RoHS.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -40,7 +40,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="serif-display text-4xl font-semibold mb-8">Our Mission</h2>
           <p className="text-white/60 leading-8 text-xl max-w-3xl mx-auto">
-            To provide global B2B clients with the most reliable, innovative, and user-friendly massage devices that enhance wellness and recovery for end-users worldwide. We bridge the gap between advanced technology and accessible human care.
+            To provide global B2B clients with reliable, innovative, and user-friendly massage devices that support everyday wellness and recovery. We connect practical product development with accessible human care.
           </p>
         </div>
       </section>

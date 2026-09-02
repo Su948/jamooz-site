@@ -18,7 +18,7 @@ const colors: Choice[] = [
 ];
 
 const finishes = ['Premium Matte', 'Soft-touch Silicone', 'Metallic Pearl', 'Glossy Mirror'];
-const nodes = ['Medical Silicone', 'Firm TPR Nodes', 'Hybrid Comfort Nodes'];
+const nodes = ['Soft Silicone', 'Firm TPR Nodes', 'Hybrid Comfort Nodes'];
 const branding = ['Laser Engraving', 'Silk-screen Print', 'Metal Badge'];
 const packaging = ['Luxury Gift Box', 'Eco-friendly Kraft', 'Retail Window Box'];
 const steps = ['Body Color & Finish', 'Function & Nodes', 'Branding & Logo', 'Packaging Options', 'Review & Quote'];

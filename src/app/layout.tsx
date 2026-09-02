@@ -8,7 +8,7 @@ import { companyFacts } from "@/lib/company";
 export const metadata: Metadata = {
   metadataBase: new URL(companyFacts.website),
   title: "Jamooz | Professional Recovery & Wellness Technology",
-  description: "Jamooz delivers science-backed recovery and scalp care devices for global B2B wellness brands, with OEM/ODM customization and scalable manufacturing.",
+  description: "Jamooz develops massage and scalp care devices for global B2B wellness brands, with OEM/ODM customization and scalable manufacturing.",
   keywords: "Jamooz, scalp massager, red light therapy brush, OEM ODM wellness devices, B2B massage products, recovery technology",
 };
 

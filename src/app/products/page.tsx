@@ -65,7 +65,7 @@ export default function ProductsPage() {
             <div>
               <p className="mono-label text-xs font-bold text-navy uppercase tracking-widest">Product Catalog</p>
               <h1 className="serif-display mt-6 text-[58px] font-semibold leading-none text-foreground md:text-[78px]">Wellness Tech</h1>
-              <p className="mt-8 max-w-md text-lg leading-8 text-muted">A curated range of high-performance wellness technologies designed for retail, medical, and corporate gift channels.</p>
+              <p className="mt-8 max-w-md text-lg leading-8 text-muted">A curated range of massage and wellness devices designed for retail, specialty wellness, and corporate gift channels.</p>
               <Link href="/rfq" className="mt-10 btn-primary">Request Volume Pricing</Link>
             </div>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
@@ -128,7 +128,7 @@ export default function ProductsPage() {
             <h2 className="serif-display mt-6 text-5xl font-semibold leading-tight">Comprehensive OEM/ODM Solutions</h2>
             <p className="mt-8 text-lg text-white/60 leading-8">Whether you need custom color matching (Pantone), laser-engraved logos, or high-end gift box development, our engineering team is ready to bring your brand vision to life.</p>
             <div className="mt-12 flex flex-wrap gap-6">
-              {['Logo Embossing', 'Laser Engraving', 'Custom Color Box', 'Sample in 7 Days', 'CE / RoHS Reports'].map((item) => (
+              {['Logo Embossing', 'Laser Engraving', 'Custom Color Box', 'Sample Timing Confirmation', 'CE / RoHS Reports'].map((item) => (
                 <div key={item} className="flex items-center gap-3 text-sm font-semibold text-white/90">
                   <span className="h-2 w-2 rounded-full bg-accent" />
                   {item}
