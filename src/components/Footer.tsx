@@ -40,7 +40,7 @@ export default function Footer() {
             <h3 className="mono-label text-xs font-bold text-white/50">Contact</h3>
             <ul className="mt-5 space-y-3 text-sm text-white/68">
               <li><a href="mailto:lee@jamooz.cn" className="hover:text-white">lee@jamooz.cn</a></li>
-              <li>Shenzhen, China</li>
+              <li>Xiamen, China</li>
               <li>Responses typically provided within 24 hours on working days</li>
             </ul>
             <Link href="/#inquiry" className="btn-primary mt-7">Request Quote</Link>
