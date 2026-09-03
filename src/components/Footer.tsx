@@ -41,7 +41,7 @@ export default function Footer() {
           <div>
             <h3 className="mono-label text-xs font-bold text-white/50">Contact</h3>
             <ul className="mt-5 space-y-3 text-sm text-white/68">
-              <li><a href={contactLinks.email} className="hover:text-white">{companyFacts.contact.email}</a></li>
+              <li><a href={contactLinks.email} data-analytics-location="footer" className="hover:text-white">{companyFacts.contact.email}</a></li>
               <li>{companyFacts.location.label}</li>
               <li>{operationalClaims.responseShort}</li>
             </ul>
