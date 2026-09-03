@@ -36,7 +36,8 @@ the JAMOOZ GA4 property (`G-DGGY4HJPN3`).
 ## DebugView acceptance test
 
 Use GTM Preview against the deployment URL and confirm each event appears once
-in GA4 DebugView. Test the live homepage actions for form, WhatsApp, and email.
-Until JAMOOZ publishes a phone link and catalogue, use controlled GTM Preview
-data-layer pushes for `phone_click` and `catalog_download`; do not add fake links
-or contact details to production.
+in GA4 DebugView. The Vercel preview deployment exposes `/analytics-test` with
+one safe control for each fixed event name. The route returns 404 outside
+`VERCEL_ENV=preview`; its controls only push non-PII test events and do not
+contact users or download files. Do not add fake links or contact details to
+production.
