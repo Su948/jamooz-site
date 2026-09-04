@@ -25,10 +25,10 @@ jobs:
     timeout-minutes: 4
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Use Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: '22'
 
@@ -43,7 +43,7 @@ jobs:
 
       - name: Create, update, or close incident issue
         if: always()
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const fs = require('fs');
@@ -71,7 +71,7 @@ jobs:
 
             **P1 response target:** acknowledge within 4 business hours; resolve within 1 business day.
 
-            Runbook: `docs/availability-monitoring.md``;
+            Runbook: \`docs/availability-monitoring.md\``;
 
             const existing = await github.paginate(github.rest.issues.listForRepo, {
               owner: context.repo.owner,
