@@ -17,6 +17,10 @@ the JAMOOZ GA4 property (`G-DGGY4HJPN3`).
 
 - Never send form field values, email addresses, phone numbers, message text,
   names, company names, or WhatsApp message contents to GTM or GA4.
+- Microsoft Clarity uses project `ycuqa9xing`. The inquiry form's input,
+  select, and textarea elements are explicitly protected with
+  `data-clarity-mask="true"`; do not remove those attributes when editing the
+  form. Clarity must never receive visitor-entered form values.
 - `page_path` contains only the current path, without query parameters.
 - `form_submit` is tracked before opening the visitor's email application. It
   must not be reported as a successfully delivered inquiry.
