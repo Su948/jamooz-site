@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PreviewContactSection from "@/components/PreviewContactSection";
+import GoogleTagManager from "@/components/GoogleTagManager";
 import { companyFacts } from "@/lib/company";
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <GoogleTagManager />
         <Navbar />
         <main className="flex-grow">{children}</main>
         <PreviewContactSection />

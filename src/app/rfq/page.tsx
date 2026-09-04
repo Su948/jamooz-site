@@ -39,11 +39,12 @@ export default function RFQPage() {
           </p>
 
           <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2">
-            <a href={contactLinks.email} className="btn-primary py-5 text-center text-sm font-bold">
+            <a href={contactLinks.email} data-analytics-location="rfq_actions" className="btn-primary py-5 text-center text-sm font-bold">
               Email JAMOOZ
             </a>
             <a
               href={whatsappUrl}
+              data-analytics-location="rfq_actions"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary py-5 text-center text-sm font-bold"
@@ -54,11 +55,12 @@ export default function RFQPage() {
 
           <div className="mt-12 border-t border-border-warm pt-10">
             <p className="mono-label text-[10px] font-bold text-muted uppercase tracking-[0.2em]">Direct contact</p>
-            <a href={contactLinks.email} className="mt-4 block text-xl font-bold text-navy hover:text-accent">
+            <a href={contactLinks.email} data-analytics-location="rfq_direct_contact" className="mt-4 block text-xl font-bold text-navy hover:text-accent">
               {companyFacts.contact.email}
             </a>
             <a
               href={whatsappUrl}
+              data-analytics-location="rfq_direct_contact"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-3 block text-lg text-muted hover:text-accent"
