@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "indexnow:submit": "node scripts/submit-indexnow.mjs"
+    "indexnow:submit": "node scripts/submit-indexnow.mjs",
+    "monitor:availability": "node scripts/check-availability.mjs"
   },
   "dependencies": {
     "next": "16.2.11",

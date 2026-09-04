@@ -12,6 +12,7 @@
 
 # testing
 /coverage
+/monitor-result.json
 
 # next.js
 /.next/
