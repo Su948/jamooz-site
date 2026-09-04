@@ -1,0 +1,119 @@
+name: D010 Availability Monitor
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+    inputs:
+      simulate_failure:
+        description: Create a controlled test alert without affecting the website
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: d010-availability-monitor
+  cancel-in-progress: true
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Check production website
+        id: monitor
+        continue-on-error: true
+        env:
+          MONITOR_SITE_URL: https://www.jmz.global
+          MONITOR_RESULT_PATH: monitor-result.json
+          MONITOR_SIMULATE_FAILURE: ${{ github.event_name == 'workflow_dispatch' && inputs.simulate_failure || false }}
+        run: node scripts/check-availability.mjs
+
+      - name: Create, update, or close incident issue
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const marker = '<!-- jamooz-d010-availability-monitor -->';
+            const title = '[D010 Monitor] JAMOOZ production availability incident';
+            const result = JSON.parse(fs.readFileSync('monitor-result.json', 'utf8'));
+            const failures = result.checks.filter((check) => !check.ok);
+            const rows = result.checks.map((check) =>
+              `| ${check.ok ? 'PASS' : 'FAIL'} | ${check.label} | ${check.status ?? '-'} | ${check.durationMs ?? '-'} | ${check.error ?? '-'} |`
+            ).join('\n');
+            const body = `${marker}
+            ## Production monitoring alert
+
+            Site: ${result.siteUrl}
+            Checked: ${result.finishedAt}
+            Simulated test: ${result.simulated ? 'yes' : 'no'}
+
+            | Result | Check | HTTP | Duration (ms) | Detail |
+            |---|---|---:|---:|---|
+            ${rows}
+
+            **Response owner:** @${context.repo.owner} (operations triage); Codex/technical owner handles diagnosis and remediation.
+
+            **P0 response target:** acknowledge within 15 minutes; restore service or publish a workaround within 60 minutes.
+
+            **P1 response target:** acknowledge within 4 business hours; resolve within 1 business day.
+
+            Runbook: `docs/availability-monitoring.md``;
+
+            const existing = await github.paginate(github.rest.issues.listForRepo, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              per_page: 100,
+            });
+            const incident = existing.find((issue) => issue.title === title && issue.body?.includes(marker));
+
+            if (failures.length > 0) {
+              if (incident) {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: incident.number,
+                  body,
+                });
+              } else {
+                await github.rest.issues.create({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  title,
+                  body,
+                  assignees: [context.repo.owner],
+                });
+              }
+            } else if (incident) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: incident.number,
+                body: `${marker}\nRecovered automatically at ${result.finishedAt}. All production checks passed.`,
+              });
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: incident.number,
+                state: 'closed',
+                state_reason: 'completed',
+              });
+            }
+
+      - name: Mark failed checks
+        if: steps.monitor.outcome == 'failure'
+        run: exit 1
