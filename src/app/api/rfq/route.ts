@@ -10,7 +10,14 @@ const MIN_COMPLETION_MS = 3_000;
 const MAX_FORM_AGE_MS = 24 * 60 * 60 * 1_000;
 const RATE_WINDOW_MS = 10 * 60 * 1_000;
 const RATE_LIMIT = 5;
+const FIRST_RESPONSE_TARGET_MINUTES = 30;
 const attempts = new Map<string, number[]>();
+
+type InquiryOperations = {
+  assignedTo: string;
+  receivedAt: string;
+  responseDueAt: string;
+};
 
 function json(message: string, status: number, reference?: string) {
   return NextResponse.json({ status: status < 400 ? "success" : "error", message, reference }, { status });
@@ -49,9 +56,38 @@ function inquiryReference() {
   return `JAM-${date}-${randomUUID().slice(0, 8).toUpperCase()}`;
 }
 
-function textBody(data: RfqSubmission, reference: string) {
+function formatChinaTime(date: Date) {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Shanghai",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+  }).formatToParts(date);
+  const value = (type: Intl.DateTimeFormatPartTypes) => parts.find((part) => part.type === type)?.value || "";
+  return `${value("year")}-${value("month")}-${value("day")} ${value("hour")}:${value("minute")} China time`;
+}
+
+function inquiryOperations(assignedTo: string, received = new Date()): InquiryOperations {
+  const due = new Date(received.getTime() + FIRST_RESPONSE_TARGET_MINUTES * 60 * 1_000);
+  return {
+    assignedTo,
+    receivedAt: formatChinaTime(received),
+    responseDueAt: formatChinaTime(due),
+  };
+}
+
+function textBody(data: RfqSubmission, reference: string, operations: InquiryOperations) {
   return [
     `New JAMOOZ website inquiry — ${reference}`,
+    "",
+    "30-MINUTE FIRST-RESPONSE CHECKLIST",
+    `Assigned to: ${operations.assignedTo}`,
+    `Received: ${operations.receivedAt}`,
+    `First reply due: ${operations.responseDueAt}`,
+    "Action: Reply to this email, then record the reference, owner and first-response time in the inquiry log.",
     "",
     `Name: ${data.name}`,
     `Company: ${data.company}`,
@@ -67,9 +103,9 @@ function textBody(data: RfqSubmission, reference: string) {
   ].join("\n");
 }
 
-function htmlBody(data: RfqSubmission, reference: string) {
+function htmlBody(data: RfqSubmission, reference: string, operations: InquiryOperations) {
   const row = (label: string, value: string) => `<tr><th align="left" style="padding:7px 16px 7px 0">${label}</th><td style="padding:7px 0">${escapeHtml(value || "Not provided")}</td></tr>`;
-  return `<h2>New JAMOOZ website inquiry</h2><p><strong>Reference:</strong> ${escapeHtml(reference)}</p><table>${row("Name", data.name)}${row("Company", data.company)}${row("Business email", data.email)}${row("WhatsApp / Phone", data.phone)}${row("Product", data.product)}${row("Estimated quantity", data.quantity)}${row("OEM / ODM", data.oem)}${row("Source page", data.sourcePage)}</table><h3>Message</h3><p style="white-space:pre-wrap">${escapeHtml(data.message || "Not provided")}</p>`;
+  return `<h2>New JAMOOZ website inquiry</h2><p><strong>Reference:</strong> ${escapeHtml(reference)}</p><div style="margin:20px 0;padding:16px;border:1px solid #d9d6e8;border-radius:12px;background:#f7f5ff"><h3 style="margin-top:0">30-minute first-response checklist</h3><table>${row("Assigned to", operations.assignedTo)}${row("Received", operations.receivedAt)}${row("First reply due", operations.responseDueAt)}</table><p style="margin-bottom:0"><strong>Action:</strong> Reply to this email, then record the reference, owner and first-response time in the inquiry log.</p></div><table>${row("Name", data.name)}${row("Company", data.company)}${row("Business email", data.email)}${row("WhatsApp / Phone", data.phone)}${row("Product", data.product)}${row("Estimated quantity", data.quantity)}${row("OEM / ODM", data.oem)}${row("Source page", data.sourcePage)}</table><h3>Message</h3><p style="white-space:pre-wrap">${escapeHtml(data.message || "Not provided")}</p>`;
 }
 
 async function deliverInquiry(data: RfqSubmission, reference: string) {
@@ -82,6 +118,7 @@ async function deliverInquiry(data: RfqSubmission, reference: string) {
   const from = process.env.RFQ_FROM_EMAIL;
   const to = process.env.RFQ_TO_EMAIL || companyFacts.contact.email;
   if (!apiKey || !from) throw new Error("Inquiry delivery is not configured.");
+  const operations = inquiryOperations(to);
 
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -90,9 +127,9 @@ async function deliverInquiry(data: RfqSubmission, reference: string) {
       from,
       to: [to],
       reply_to: data.email,
-      subject: `JAMOOZ website inquiry — ${data.company} — ${reference}`,
-      text: textBody(data, reference),
-      html: htmlBody(data, reference),
+      subject: `[Reply by ${operations.responseDueAt}] JAMOOZ inquiry — ${data.company} — ${reference}`,
+      text: textBody(data, reference, operations),
+      html: htmlBody(data, reference, operations),
     }),
   });
 
