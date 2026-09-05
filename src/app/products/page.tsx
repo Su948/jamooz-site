@@ -66,7 +66,7 @@ export default function ProductsPage() {
               <p className="mono-label text-xs font-bold text-navy uppercase tracking-widest">Product Catalog</p>
               <h1 className="serif-display mt-6 text-[58px] font-semibold leading-none text-foreground md:text-[78px]">Wellness Tech</h1>
               <p className="mt-8 max-w-md text-lg leading-8 text-muted">A curated range of massage and wellness devices designed for retail, specialty wellness, and corporate gift channels.</p>
-              <Link href="/rfq" className="mt-10 btn-primary">Request Volume Pricing</Link>
+              <Link href={{ pathname: '/rfq', query: { product: 'Product catalog' } }} className="mt-10 btn-primary">Request Volume Pricing</Link>
             </div>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {categories.map(([label, value]) => (
@@ -111,7 +111,7 @@ export default function ProductsPage() {
                   </div>
                 </div>
                 
-                <Link href="/rfq" className="mt-8 w-full btn-secondary text-center">
+                <Link href={{ pathname: '/rfq', query: { product: `${product.name} (${product.id})` } }} className="mt-8 w-full btn-secondary text-center">
                   Inquire Now
                 </Link>
               </div>
@@ -135,7 +135,7 @@ export default function ProductsPage() {
                 </div>
               ))}
             </div>
-            <Link href="/rfq" className="mt-12 btn-primary border-none shadow-none bg-accent hover:bg-accent-hover text-white">Start Custom Project</Link>
+            <Link href={{ pathname: '/rfq', query: { product: 'OEM/ODM custom project' } }} className="mt-12 btn-primary border-none shadow-none bg-accent hover:bg-accent-hover text-white">Start Custom Project</Link>
           </div>
         </div>
       </section>

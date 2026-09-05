@@ -1,11 +1,17 @@
 import InquiryForm from "@/components/InquiryForm";
 import { companyFacts, contactLinks } from "@/lib/company";
 import { operationalClaims } from "@/lib/operational-claims";
+import { buildWhatsAppInquiryMessage } from "@/lib/whatsapp";
 
-const whatsappMessage = "Hello JAMOOZ, I would like to discuss a product inquiry.";
-const whatsappUrl = contactLinks.whatsapp(whatsappMessage);
+type RFQPageProps = {
+  searchParams: Promise<{ product?: string | string[] }>;
+};
 
-export default function RFQPage() {
+export default async function RFQPage({ searchParams }: RFQPageProps) {
+  const productParam = (await searchParams).product;
+  const initialProduct = (Array.isArray(productParam) ? productParam[0] : productParam)?.trim().slice(0, 180) || "";
+  const sourcePage = initialProduct ? `/rfq?product=${encodeURIComponent(initialProduct)}` : "/rfq";
+  const whatsappUrl = contactLinks.whatsapp(buildWhatsAppInquiryMessage({ product: initialProduct, sourcePage }));
   return (
     <div className="min-h-screen bg-background pb-32 pt-40">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-20 px-4 sm:px-6 lg:grid-cols-[1fr_1.5fr] lg:px-8">
@@ -25,7 +31,7 @@ export default function RFQPage() {
           <p className="mono-label text-xs font-bold uppercase tracking-widest text-navy">Secure online inquiry</p>
           <h2 className="serif-display mt-6 text-4xl font-semibold text-foreground">Tell us about your project</h2>
           <p className="mb-10 mt-5 text-muted">Required fields are marked with an asterisk. Your details are sent directly to the JAMOOZ sales team.</p>
-          <InquiryForm id="rfq-page-form" sourcePage="/rfq" />
+          <InquiryForm id="rfq-page-form" sourcePage={sourcePage} initialProduct={initialProduct} />
         </div>
       </div>
     </div>
