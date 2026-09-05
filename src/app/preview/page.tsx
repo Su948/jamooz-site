@@ -123,22 +123,26 @@ export default function HomepagePreview(){
     const form = document.getElementById('preview-inquiry-form') as HTMLFormElement | null;
     const selection = `${group.name} · ${activeColor.name}${selectionServiceNames.length ? ` · ${selectionServiceNames.join(' · ')}` : ''}`;
     if (form) {
+      const optionalDetails = form.querySelector('details');
       const product = form.elements.namedItem('product') as HTMLInputElement | null;
       const oem = form.elements.namedItem('oem') as HTMLSelectElement | null;
       const message = form.elements.namedItem('message') as HTMLTextAreaElement | null;
       if (product) product.value = group.name;
       if (oem) oem.value = 'ODM — Product Customization';
       if (message) message.value = `Custom configuration: ${selection}\nAvailable branding: ${group.fabric ? 'Embroidery · Woven Label · Printed Label · Custom Packaging' : 'Silk-Screen Printing · Laser Engraving · UV Printing'}`;
+      if (optionalDetails) optionalDetails.open = true;
     }
     document.getElementById('inquiry')?.scrollIntoView({behavior:'smooth'});
   };
   const requestCategoryQuote = (category:string) => {
     const form = document.getElementById('preview-inquiry-form') as HTMLFormElement | null;
     if (form) {
+      const optionalDetails = form.querySelector('details');
       const product = form.elements.namedItem('product') as HTMLInputElement | null;
       const message = form.elements.namedItem('message') as HTMLTextAreaElement | null;
       if (product) product.value = category;
       if (message) message.value = `I am interested in the ${category} category. Please share available models, specifications, MOQ and customization options.`;
+      if (optionalDetails) optionalDetails.open = true;
     }
     document.getElementById('inquiry')?.scrollIntoView({behavior:'smooth'});
   };
