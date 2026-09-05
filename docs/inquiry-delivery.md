@@ -27,3 +27,7 @@ Do not expose these values with a `NEXT_PUBLIC_` prefix and do not commit secret
 2. Submit one inquiry from a desktop browser and one from a 375 px mobile viewport.
 3. Confirm both messages arrive at `RFQ_TO_EMAIL`, the Reply-To address matches the submitted business email, and the website displays a unique reference.
 4. Confirm the `form_submit` analytics event fires only after successful delivery.
+
+## Response operations
+
+Every delivered message includes the default assignee, China-time receipt timestamp, and a 30-minute first-response deadline. Follow `docs/inquiry-response-sop.md` and keep completed response logs in a private, access-controlled spreadsheet based on `docs/inquiry-response-log-template.csv`.

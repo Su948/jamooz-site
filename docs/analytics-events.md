@@ -7,7 +7,7 @@ the JAMOOZ GA4 property (`G-DGGY4HJPN3`).
 
 | Event | Trigger | Parameters | Meaning |
 | --- | --- | --- | --- |
-| `form_submit` | Homepage inquiry form is validated and prepares the user's email client | `form_id`, `form_method`, `page_path`, `event_source` | Inquiry intent; this is not proof that the email was sent |
+| `form_submit` | The server confirms successful delivery of the website inquiry | `form_id`, `form_method`, `page_path`, `event_source` | Successfully delivered website inquiry |
 | `whatsapp_click` | A visitor clicks a `wa.me` or WhatsApp link | `link_location`, `page_path`, `event_source` | WhatsApp contact intent |
 | `email_click` | A visitor clicks a `mailto:` link | `link_location`, `page_path`, `event_source` | Email contact intent |
 | `phone_click` | A visitor clicks a future `tel:` link | `link_location`, `page_path`, `event_source` | Phone contact intent; no public phone link exists yet |
@@ -22,8 +22,8 @@ the JAMOOZ GA4 property (`G-DGGY4HJPN3`).
   `data-clarity-mask="true"`; do not remove those attributes when editing the
   form. Clarity must never receive visitor-entered form values.
 - `page_path` contains only the current path, without query parameters.
-- `form_submit` is tracked before opening the visitor's email application. It
-  must not be reported as a successfully delivered inquiry.
+- `form_submit` is tracked only after the inquiry API confirms successful
+  delivery. Failed or rejected submissions must not emit this event.
 
 ## GTM configuration
 

@@ -1,0 +1,2 @@
+reference,received_at_china,source_page,product,company,assignee,status,first_response_at_china,response_minutes,sla_met,next_action,next_action_due_china,notes
+JAM-YYYYMMDD-EXAMPLE1,YYYY-MM-DD HH:MM,/,Example product,QA test company,Duty owner,Replied,YYYY-MM-DD HH:MM,12,Yes,Send model and MOQ summary,YYYY-MM-DD HH:MM,Test row only - replace in private working copy
