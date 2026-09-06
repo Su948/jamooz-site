@@ -5,7 +5,7 @@
 The `D010 Availability Monitor` GitHub Actions workflow runs every five minutes and can also be started manually. It checks:
 
 1. `https://www.jmz.global/` returns HTTP 200 and contains the JAMOOZ page marker.
-2. The homepage still renders the inquiry form and its email action. It never enters or submits customer data.
+2. The homepage still renders the online inquiry form, submit action, and four required-field markers. It never enters or submits customer data.
 3. A known non-existent URL returns HTTP 404 with a `noindex` directive.
 
 GitHub scheduled workflows use a five-minute cron target but may start later during platform congestion.
