@@ -42,12 +42,16 @@ checks.push(await runCheck('homepage', 'Homepage availability', async () => {
 checks.push(await runCheck('inquiry-form', 'Inquiry entry point', async () => {
   const { response, body, durationMs } = await fetchPage('/');
   if (response.status !== 200) throw new Error(`Homepage returned HTTP ${response.status}`);
-  const hasForm = body.includes('preview-inquiry-form');
-  const hasEmailAction = body.includes('SEND INQUIRY BY EMAIL') && body.includes('mailto:');
-  if (!hasForm || !hasEmailAction) {
-    throw new Error(`Inquiry form markers missing (form=${hasForm}, emailAction=${hasEmailAction})`);
+  const hasForm = body.includes('homepage-inquiry-form');
+  const hasSubmitAction = body.includes('SEND INQUIRY');
+  const hasRequiredFields = ['name="name"', 'name="company"', 'name="email"', 'name="product"']
+    .every((field) => body.includes(field));
+  if (!hasForm || !hasSubmitAction || !hasRequiredFields) {
+    throw new Error(
+      `Inquiry form markers missing (form=${hasForm}, submitAction=${hasSubmitAction}, requiredFields=${hasRequiredFields})`,
+    );
   }
-  return { status: response.status, durationMs, formMode: 'mailto' };
+  return { status: response.status, durationMs, formMode: 'online-api' };
 }));
 
 checks.push(await runCheck('404', 'Not-found response', async () => {
