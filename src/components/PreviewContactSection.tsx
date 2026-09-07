@@ -8,6 +8,7 @@ import { buildWhatsAppInquiryMessage } from "@/lib/whatsapp";
 
 export default function PreviewContactSection() {
   const pathname = usePathname();
+  if (pathname.startsWith("/preview/products/")) return null;
   if (pathname !== "/" && !pathname.startsWith("/preview")) return null;
   const whatsappUrl = contactLinks.whatsapp(buildWhatsAppInquiryMessage({ sourcePage: pathname }));
 
