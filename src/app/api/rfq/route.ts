@@ -96,6 +96,7 @@ function textBody(data: RfqSubmission, reference: string, operations: InquiryOpe
     `Product: ${data.product}`,
     `Estimated quantity: ${data.quantity || "Not provided"}`,
     `OEM / ODM: ${data.oem}`,
+    `Target market: ${data.targetMarket || "Not provided"}`,
     `Source page: ${data.sourcePage || "Not provided"}`,
     "",
     "Message:",
@@ -105,7 +106,7 @@ function textBody(data: RfqSubmission, reference: string, operations: InquiryOpe
 
 function htmlBody(data: RfqSubmission, reference: string, operations: InquiryOperations) {
   const row = (label: string, value: string) => `<tr><th align="left" style="padding:7px 16px 7px 0">${label}</th><td style="padding:7px 0">${escapeHtml(value || "Not provided")}</td></tr>`;
-  return `<h2>New JAMOOZ website inquiry</h2><p><strong>Reference:</strong> ${escapeHtml(reference)}</p><div style="margin:20px 0;padding:16px;border:1px solid #d9d6e8;border-radius:12px;background:#f7f5ff"><h3 style="margin-top:0">30-minute first-response checklist</h3><table>${row("Assigned to", operations.assignedTo)}${row("Received", operations.receivedAt)}${row("First reply due", operations.responseDueAt)}</table><p style="margin-bottom:0"><strong>Action:</strong> Reply to this email, then record the reference, owner and first-response time in the inquiry log.</p></div><table>${row("Name", data.name)}${row("Company", data.company)}${row("Business email", data.email)}${row("WhatsApp / Phone", data.phone)}${row("Product", data.product)}${row("Estimated quantity", data.quantity)}${row("OEM / ODM", data.oem)}${row("Source page", data.sourcePage)}</table><h3>Message</h3><p style="white-space:pre-wrap">${escapeHtml(data.message || "Not provided")}</p>`;
+  return `<h2>New JAMOOZ website inquiry</h2><p><strong>Reference:</strong> ${escapeHtml(reference)}</p><div style="margin:20px 0;padding:16px;border:1px solid #d9d6e8;border-radius:12px;background:#f7f5ff"><h3 style="margin-top:0">30-minute first-response checklist</h3><table>${row("Assigned to", operations.assignedTo)}${row("Received", operations.receivedAt)}${row("First reply due", operations.responseDueAt)}</table><p style="margin-bottom:0"><strong>Action:</strong> Reply to this email, then record the reference, owner and first-response time in the inquiry log.</p></div><table>${row("Name", data.name)}${row("Company", data.company)}${row("Business email", data.email)}${row("WhatsApp / Phone", data.phone)}${row("Product", data.product)}${row("Estimated quantity", data.quantity)}${row("OEM / ODM", data.oem)}${row("Target market", data.targetMarket)}${row("Source page", data.sourcePage)}</table><h3>Message</h3><p style="white-space:pre-wrap">${escapeHtml(data.message || "Not provided")}</p>`;
 }
 
 async function deliverInquiry(data: RfqSubmission, reference: string) {

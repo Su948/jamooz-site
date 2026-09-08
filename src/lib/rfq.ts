@@ -13,6 +13,7 @@ export type RfqSubmission = {
   product: string;
   quantity: string;
   oem: (typeof oemOptions)[number];
+  targetMarket: string;
   message: string;
   sourcePage: string;
   startedAt: number;
@@ -45,6 +46,7 @@ export function validateRfqSubmission(value: unknown): ValidationResult {
   const product = cleanText(raw.product, 180);
   const quantity = cleanText(raw.quantity, 80);
   const oem = cleanText(raw.oem, 80);
+  const targetMarket = cleanText(raw.targetMarket, 160);
   const message = cleanText(raw.message, 3000);
   const sourcePage = cleanText(raw.sourcePage, 240);
   const website = cleanText(raw.website, 240);
@@ -68,7 +70,7 @@ export function validateRfqSubmission(value: unknown): ValidationResult {
 
   return {
     ok: true,
-    data: { name, company, email, phone, product, quantity, oem: oem as RfqSubmission["oem"], message, sourcePage, startedAt, website },
+    data: { name, company, email, phone, product, quantity, oem: oem as RfqSubmission["oem"], targetMarket, message, sourcePage, startedAt, website },
   };
 }
 
