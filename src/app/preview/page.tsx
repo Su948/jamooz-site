@@ -1,5 +1,7 @@
 'use client';
 
+import NextImage from 'next/image';
+import Link from 'next/link';
 import { useRef, useState } from 'react';
 
 const ali = (path: string) => `https:${path}`;
@@ -38,6 +40,19 @@ const customGroups = [
 ] as const;
 const customizationCapabilities = ['Custom Logo','Colors & Materials','Functions & Features','Packaging Design','Private Label','New Product Development'] as const;
 const customizationServices = ['Logo Printing','Custom Color','Custom Packaging','Function Customization','Private Label'] as const;
+
+const featuredProducts = [
+  {
+    model: 'JMZ-906',
+    name: 'Cooling Vacuum Gua Sha Massager',
+    description: 'Cooling, vacuum suction, gua sha massage and EMS in one compact body-care device.',
+    image: '/products/jmz-906/front.jpg',
+    href: '/preview/products/jmz-906',
+    price: 'From US$15.90 / pc',
+    moq: 'MOQ 50 pcs',
+    features: ['Cooling Care', 'Vacuum Suction', 'EMS', 'OEM / ODM'],
+  },
+] as const;
 
 const scrollBg = ali('//sc04.alicdn.com/kf/Hd94f7581c62d4edaa1393c4d63bc2c4fK/252717039/Hd94f7581c62d4edaa1393c4d63bc2c4fK.png');
 const scrollImage = ali('//sc04.alicdn.com/kf/Ha436492285ff4327be16f9091707abb00/252717039/Ha436492285ff4327be16f9091707abb00.png');
@@ -213,6 +228,40 @@ export default function HomepagePreview(){
       </div>
     </section>
 
+    <section id="product-range" aria-labelledby="featured-products-title" className="scroll-mt-24 border-b border-violet-100 bg-gradient-to-b from-white to-[#faf8ff] py-14 md:py-20">
+      <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
+        <header className="mx-auto max-w-3xl text-center">
+          <p className="text-xs font-black uppercase tracking-[0.24em] text-violet-700">New Product Release</p>
+          <h2 id="featured-products-title" className="mt-3 text-3xl font-semibold tracking-tight text-[#302050] sm:text-4xl">Explore Our Latest Products</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-zinc-600 sm:text-base sm:leading-7">Open a product page for real sample photography, specifications, volume pricing and OEM/ODM options.</p>
+        </header>
+
+        <div className="mx-auto mt-10 grid max-w-[980px] gap-6">
+          {featuredProducts.map(product => (
+            <article key={product.model} className="group overflow-hidden rounded-3xl border border-violet-100 bg-white shadow-xl shadow-violet-900/5 transition hover:-translate-y-1 hover:shadow-2xl hover:shadow-violet-900/10">
+              <div className="grid md:grid-cols-[1.02fr_.98fr]">
+                <Link href={product.href} aria-label={`View ${product.model} ${product.name}`} className="relative aspect-square overflow-hidden bg-[#eef4f5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-violet-500">
+                  <NextImage src={product.image} alt={`${product.model} ${product.name} actual product sample`} fill sizes="(min-width: 768px) 500px, 100vw" className="object-contain transition duration-500 group-hover:scale-[1.02]" />
+                  <span className="absolute left-4 top-4 rounded-full border border-white/80 bg-white/90 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#6d3850] shadow-sm backdrop-blur">Actual Product Photo</span>
+                </Link>
+
+                <div className="flex min-w-0 flex-col justify-center p-6 sm:p-8 md:p-10">
+                  <p className="text-xs font-black uppercase tracking-[0.2em] text-violet-700">{product.model} · Body Care</p>
+                  <h3 className="mt-3 text-2xl font-semibold leading-tight tracking-tight text-[#302050] sm:text-3xl">{product.name}</h3>
+                  <p className="mt-4 text-sm leading-6 text-zinc-600 sm:text-base sm:leading-7">{product.description}</p>
+                  <div className="mt-5 flex flex-wrap gap-2">{product.features.map(feature => <span key={feature} className="rounded-full border border-violet-100 bg-violet-50 px-3 py-1.5 text-xs font-semibold text-violet-800">{feature}</span>)}</div>
+                  <div className="mt-7 flex flex-wrap items-end justify-between gap-4 border-t border-violet-100 pt-6">
+                    <div><p className="text-lg font-black text-[#302050]">{product.price}</p><p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500">{product.moq}</p></div>
+                    <Link href={product.href} className="inline-flex min-h-11 items-center justify-center rounded-full bg-violet-700 px-6 py-3 text-sm font-bold text-white transition hover:bg-violet-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2">View Product →</Link>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <section id="solutions" className="scroll-mt-24 bg-white py-10 md:py-14"><div className="mx-auto max-w-[1440px] px-3 md:px-6"><div className="relative mx-auto overflow-hidden" style={{aspectRatio:'1920 / 1059'}}><img src={painImage} alt="JAMOOZ body pain solution" className="absolute inset-0 h-full w-full object-contain" /><div className="absolute inset-x-0 top-0 z-[5] flex h-[16%] items-center justify-center bg-[#faf8ff] px-4"><h2 className="text-center text-[clamp(18px,2.2vw,38px)] font-semibold tracking-tight text-[#45245f]">Hover Over the Body to Explore Products</h2></div>{painStates.map(p=><button key={p.id} aria-label={`Show products for body area ${p.id}`} onMouseEnter={()=>setPainImage(p.image)} onFocus={()=>setPainImage(p.image)} onClick={()=>setPainImage(p.image)} className="absolute z-10 bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" style={{left:pct(p.x,1920),top:pct(p.y,1059),width:pct(p.w,1920),height:pct(p.h,1059)}} />)}{bodyProductLinks.map(product=><a key={product.label} href={product.href} target="_blank" rel="noreferrer" aria-label={`View ${product.label}`} title={`View ${product.label}`} className="absolute z-20 rounded-md bg-transparent transition hover:ring-2 hover:ring-violet-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" style={{left:pct(product.x,1920),top:pct(product.y,1059),width:pct(product.w,1920),height:pct(product.h,1059)}} />)}</div></div></section>
 
     <section id="oem-odm" className="scroll-mt-24 bg-[#faf8ff] py-16 md:py-20">
@@ -242,7 +291,7 @@ export default function HomepagePreview(){
       </div>
     </section>
 
-    <section id="product-range" className="scroll-mt-24 relative overflow-hidden" style={{aspectRatio:'1920 / 788'}}><img src={scrollBg} alt="" className="absolute inset-0 h-full w-full object-cover" /><div className="absolute inset-0 overflow-hidden"><div className="jamooz-marquee flex h-full w-[200%]">{[0,1].map(copy=><div key={copy} className="relative h-full w-1/2 shrink-0"><img src={scrollImage} alt="JAMOOZ products" className="absolute inset-0 h-full w-full object-contain" />{scrollLinks.map((l,i)=><a key={i} href={l.href} target="_blank" rel="noreferrer" className="absolute z-10" style={{left:pct(l.x,1920),top:pct(l.y,788),width:pct(l.w,1920),height:pct(l.h,788)}} aria-label={`product-${i+1}`} />)}</div>)}</div></div></section>
+    <section id="catalog-marquee" className="scroll-mt-24 relative overflow-hidden" style={{aspectRatio:'1920 / 788'}}><img src={scrollBg} alt="" className="absolute inset-0 h-full w-full object-cover" /><div className="absolute inset-0 overflow-hidden"><div className="jamooz-marquee flex h-full w-[200%]">{[0,1].map(copy=><div key={copy} className="relative h-full w-1/2 shrink-0"><img src={scrollImage} alt="JAMOOZ products" className="absolute inset-0 h-full w-full object-contain" />{scrollLinks.map((l,i)=><a key={i} href={l.href} target="_blank" rel="noreferrer" className="absolute z-10" style={{left:pct(l.x,1920),top:pct(l.y,788),width:pct(l.w,1920),height:pct(l.h,788)}} aria-label={`product-${i+1}`} />)}</div>)}</div></div></section>
 
     <section className="bg-white py-10 md:py-14"><div className="mx-auto max-w-[1440px] px-3 md:px-6"><div className="relative overflow-hidden" style={{aspectRatio:'1920 / 913'}}><img src={collectionBg} alt="JAMOOZ categories" className="absolute inset-0 h-full w-full object-contain" />{collectionItems.map((it,i)=><a key={i} href={it.href} target="_blank" rel="noreferrer" className="absolute z-10 overflow-hidden" style={{left:pct(it.x,1920),top:pct(it.y,913),width:pct(it.w,1920),height:pct(it.h,913)}}><img src={it.img} alt="category" className="h-full w-full object-contain" /></a>)}</div></div></section>
 
