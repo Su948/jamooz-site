@@ -228,7 +228,9 @@ export default function HomepagePreview(){
       </div>
     </section>
 
-    <section id="product-range" aria-labelledby="featured-products-title" className="scroll-mt-24 border-b border-violet-100 bg-gradient-to-b from-white to-[#faf8ff] py-14 md:py-20">
+    <section id="solutions" className="scroll-mt-24 bg-white py-10 md:py-14"><div className="mx-auto max-w-[1440px] px-3 md:px-6"><div className="relative mx-auto overflow-hidden" style={{aspectRatio:'1920 / 1059'}}><img src={painImage} alt="JAMOOZ body pain solution" className="absolute inset-0 h-full w-full object-contain" /><div className="absolute inset-x-0 top-0 z-[5] flex h-[16%] items-center justify-center bg-[#faf8ff] px-4"><h2 className="text-center text-[clamp(18px,2.2vw,38px)] font-semibold tracking-tight text-[#45245f]">Hover Over the Body to Explore Products</h2></div>{painStates.map(p=><button key={p.id} aria-label={`Show products for body area ${p.id}`} onMouseEnter={()=>setPainImage(p.image)} onFocus={()=>setPainImage(p.image)} onClick={()=>setPainImage(p.image)} className="absolute z-10 bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" style={{left:pct(p.x,1920),top:pct(p.y,1059),width:pct(p.w,1920),height:pct(p.h,1059)}} />)}{bodyProductLinks.map(product=><a key={product.label} href={product.href} target="_blank" rel="noreferrer" aria-label={`View ${product.label}`} title={`View ${product.label}`} className="absolute z-20 rounded-md bg-transparent transition hover:ring-2 hover:ring-violet-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" style={{left:pct(product.x,1920),top:pct(product.y,1059),width:pct(product.w,1920),height:pct(product.h,1059)}} />)}</div></div></section>
+
+    <section id="product-range" aria-labelledby="featured-products-title" className="scroll-mt-24 border-y border-violet-100 bg-gradient-to-b from-white to-[#faf8ff] py-14 md:py-20">
       <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
         <header className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-black uppercase tracking-[0.24em] text-violet-700">New Product Release</p>
@@ -261,8 +263,6 @@ export default function HomepagePreview(){
         </div>
       </div>
     </section>
-
-    <section id="solutions" className="scroll-mt-24 bg-white py-10 md:py-14"><div className="mx-auto max-w-[1440px] px-3 md:px-6"><div className="relative mx-auto overflow-hidden" style={{aspectRatio:'1920 / 1059'}}><img src={painImage} alt="JAMOOZ body pain solution" className="absolute inset-0 h-full w-full object-contain" /><div className="absolute inset-x-0 top-0 z-[5] flex h-[16%] items-center justify-center bg-[#faf8ff] px-4"><h2 className="text-center text-[clamp(18px,2.2vw,38px)] font-semibold tracking-tight text-[#45245f]">Hover Over the Body to Explore Products</h2></div>{painStates.map(p=><button key={p.id} aria-label={`Show products for body area ${p.id}`} onMouseEnter={()=>setPainImage(p.image)} onFocus={()=>setPainImage(p.image)} onClick={()=>setPainImage(p.image)} className="absolute z-10 bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" style={{left:pct(p.x,1920),top:pct(p.y,1059),width:pct(p.w,1920),height:pct(p.h,1059)}} />)}{bodyProductLinks.map(product=><a key={product.label} href={product.href} target="_blank" rel="noreferrer" aria-label={`View ${product.label}`} title={`View ${product.label}`} className="absolute z-20 rounded-md bg-transparent transition hover:ring-2 hover:ring-violet-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" style={{left:pct(product.x,1920),top:pct(product.y,1059),width:pct(product.w,1920),height:pct(product.h,1059)}} />)}</div></div></section>
 
     <section id="oem-odm" className="scroll-mt-24 bg-[#faf8ff] py-16 md:py-20">
       <div className="mx-auto max-w-[1380px] px-4 sm:px-6 lg:px-8">
