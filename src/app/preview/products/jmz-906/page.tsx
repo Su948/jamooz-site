@@ -24,8 +24,8 @@ const statusStyles: Record<SpecStatus, string> = {
 
 const modeCards = [
   { title: "Vacuum suction", eyebrow: "0–12 levels", image: "/products/jmz-906/JMZ-906-14-function-vacuum-suction.webp", copy: "Adjustable suction supports controlled skin contact. The device starts at level 3, while level 0 turns suction off." },
-  { title: "Warming care", eyebrow: "Approx. 38°C", image: "/products/jmz-906/JMZ-906-08-gallery-treatment-head.webp", copy: "The heating mode provides a warm contact experience through the metal working head under the supplied 3.7 V standard test conditions." },
-  { title: "Cooling care", eyebrow: "Approx. 12.8°C", image: "/products/jmz-906/JMZ-906-19-function-cooling-led.webp", copy: "The cooling mode provides a refreshing contact experience under the supplied 3.7 V standard test conditions." },
+  { title: "Warming care", eyebrow: "Approx. 38°C", image: "/products/jmz-906/JMZ-906-03-gallery-front.webp", copy: "The heating mode provides a warm contact experience through the metal working head under the supplied 3.7 V standard test conditions." },
+  { title: "Cooling care", eyebrow: "Approx. 12.8°C", image: "/products/jmz-906/JMZ-906-08-gallery-treatment-head.webp", copy: "The cooling mode provides a refreshing contact experience through the metal working head under the supplied 3.7 V standard test conditions." },
   { title: "EMS mode", eyebrow: "0–12 levels", image: "/products/jmz-906/JMZ-906-15-function-ems.webp", copy: "Press the dedicated EMS key, then use the + and − controls to select the preferred EMS intensity." },
 ] as const;
 
