@@ -9,7 +9,7 @@ export default function Jmz906Gallery() {
   const active = jmz906Gallery[activeIndex];
 
   return (
-    <div className="min-w-0" aria-label="JMZ-906 real product photo gallery">
+    <div className="min-w-0" aria-label="JMZ-906 product image gallery">
       <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-[#eadde2] bg-[#eef4f5]">
         <Image
           key={active.src}
@@ -21,11 +21,11 @@ export default function Jmz906Gallery() {
           className="object-contain"
         />
         <span className="absolute left-4 top-4 rounded-full border border-white/70 bg-white/90 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#6d3850] shadow-sm backdrop-blur">
-          Actual product photo
+          Supplied product image
         </span>
       </div>
 
-      <div className="mt-3 grid grid-cols-6 gap-2">
+      <div className="mt-3 grid grid-cols-5 gap-2">
         {jmz906Gallery.map((image, index) => (
           <button
             key={image.src}

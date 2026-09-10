@@ -7,8 +7,8 @@ import { jmz906Prices, jmz906Specs, type SpecStatus } from "@/lib/preview-produc
 import { buildWhatsAppInquiryMessage } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
-  title: "JMZ-906 Cooling Vacuum Gua Sha Massager | JAMOOZ Preview",
-  description: "Preview the JMZ-906 handheld cooling, vacuum suction and gua sha body care device for OEM and ODM projects.",
+  title: "JMZ-906 Hot & Cold Vacuum Gua Sha Massager | JAMOOZ Preview",
+  description: "Explore the JMZ-906 four-mode body massager with vacuum suction, heating, cooling and EMS for OEM and ODM projects.",
   robots: { index: false, follow: false },
 };
 
@@ -22,21 +22,42 @@ const statusStyles: Record<SpecStatus, string> = {
   TBC: "bg-slate-100 text-slate-700 ring-slate-200",
 };
 
+const modeCards = [
+  { title: "Vacuum suction", eyebrow: "0–12 levels", image: "/products/jmz-906/JMZ-906-14-function-vacuum-suction.webp", copy: "Adjustable suction supports controlled skin contact. The device starts at level 3, while level 0 turns suction off." },
+  { title: "Warming care", eyebrow: "Approx. 38°C", image: "/products/jmz-906/JMZ-906-20-function-heating-led.webp", copy: "The heating mode provides a warm contact experience under the supplied 3.7 V standard test conditions." },
+  { title: "Cooling care", eyebrow: "Approx. 12.8°C", image: "/products/jmz-906/JMZ-906-19-function-cooling-led.webp", copy: "The cooling mode provides a refreshing contact experience under the supplied 3.7 V standard test conditions." },
+  { title: "EMS mode", eyebrow: "0–12 levels", image: "/products/jmz-906/JMZ-906-15-function-ems.webp", copy: "Press the dedicated EMS key, then use the + and − controls to select the preferred EMS intensity." },
+] as const;
+
+const controlHighlights = [
+  { title: "Level & mode display", image: "/products/jmz-906/JMZ-906-12-function-display-level.webp", copy: "The circular screen shows the current level and active operating mode at a glance." },
+  { title: "Hot / cold contact system", image: "/products/jmz-906/JMZ-906-13-function-hot-cold.webp", copy: "Short-press the M key to cycle through cooling, heating and temperature-off states." },
+  { title: "Four-mode body-care platform", image: "/products/jmz-906/JMZ-906-16-function-overview-clinical.webp", copy: "Vacuum suction, warming, cooling and EMS are combined in a single handheld format." },
+] as const;
+
+const indicatorCards = [
+  { title: "Cooling selected", image: "/products/jmz-906/JMZ-906-19-function-cooling-led.webp", copy: "Blue lighting provides a visual cue for cooling mode." },
+  { title: "Heating selected", image: "/products/jmz-906/JMZ-906-20-function-heating-led.webp", copy: "Red lighting provides a visual cue for heating mode." },
+  { title: "EMS selected", image: "/products/jmz-906/JMZ-906-21-function-ems-led.webp", copy: "Cyan pulse styling identifies the EMS operating state." },
+  { title: "Charging", image: "/products/jmz-906/JMZ-906-22-function-charging-red.webp", copy: "The small indicator flashes red while the battery is charging." },
+  { title: "Fully charged", image: "/products/jmz-906/JMZ-906-23-function-charge-full-green.webp", copy: "The small indicator remains green when charging is complete." },
+] as const;
+
 const detailCards = [
-  { title: "Cooling Surface / Area", image: "/products/jmz-906/contact-head.jpg", copy: "The central contact area supports the device's cooling and heating modes for direct body-care use." },
-  { title: "Vacuum Cup", image: "/products/jmz-906/contact-head-with-cover.jpg", copy: "A recessed central suction opening is integrated into the contact head, with a removable cover for storage." },
-  { title: "Control Interface", image: "/products/jmz-906/controls.jpg", copy: "Five physical buttons provide power, intensity adjustment, EMS selection and mode control." },
-  { title: "Handheld Body", image: "/products/jmz-906/front.jpg", copy: "A tapered one-piece profile gives operators a clear grip area and keeps the controls within easy reach." },
-  { title: "Skin-contact Structure", image: "/products/jmz-906/contact-head.jpg", copy: "Four rounded massage rollers, two contact pieces and the central suction area form the working surface." },
-  { title: "Charging / Power Area", image: "/products/jmz-906/usb-c.jpg", copy: "The USB-C charging port is positioned near the top of the rear housing for simple cable access." },
+  { title: "Five-key control panel", image: "/products/jmz-906/JMZ-906-06-gallery-controls.webp", copy: "Separate power, +, −, EMS and M buttons keep the operating sequence clear and direct." },
+  { title: "Type-C charging", image: "/products/jmz-906/JMZ-906-07-gallery-type-c.webp", copy: "The Type-C charging port is positioned at the top of the rear housing for convenient cable access." },
+  { title: "Multi-contact treatment head", image: "/products/jmz-906/JMZ-906-08-gallery-treatment-head.webp", copy: "Four metal massage points, two crescent electrodes and a central six-hole suction inlet form the working head." },
+  { title: "Circular LED display", image: "/products/jmz-906/JMZ-906-11-gallery-display-led.webp", copy: "The display presents intensity and mode information, with a small indicator for charging status." },
+  { title: "Retail set presentation", image: "/products/jmz-906/JMZ-906-09-gallery-set-contents.webp", copy: "The supplied image shows a coordinated retail-set presentation; final set contents are confirmed per order." },
+  { title: "Gift-box packaging", image: "/products/jmz-906/JMZ-906-10-gallery-packaging.webp", copy: "A presentation box is available as a packaging reference, with artwork and configuration customizable for the project." },
 ] as const;
 
 const packagingItems = [
-  { name: "Product", status: "Actual sample photographed" },
-  { name: "Packaging", status: "Final structure TBC" },
-  { name: "Accessories", status: "Gel and USB-C cable listed in manual" },
+  { name: "Product", status: "JMZ-906 device shown in the supplied image pack" },
+  { name: "Packaging", status: "Presentation box photographed; final structure and artwork project-specific" },
+  { name: "Set Contents", status: "Supplied set presentation available; final items confirmed with quotation" },
   { name: "User Manual", status: "Available" },
-  { name: "Color Box", status: "Artwork and size TBC" },
+  { name: "Color Box", status: "Custom artwork and final size TBC" },
   { name: "Master Carton", status: "Quantity, size and G.W. TBC" },
 ] as const;
 
@@ -48,7 +69,7 @@ export default function Jmz906PreviewPage() {
   const sourcePage = "/preview/products/jmz-906";
   const whatsappUrl = contactLinks.whatsapp(buildWhatsAppInquiryMessage({
     sourcePage,
-    product: "JMZ-906 – Cooling Vacuum Gua Sha Massager",
+    product: "JMZ-906 – Hot & Cold Vacuum Gua Sha Massager",
   }));
 
   return (
@@ -60,14 +81,14 @@ export default function Jmz906PreviewPage() {
           <div className="min-w-0">
             <p className={sectionLabel}>JMZ-906 · OEM / ODM BODY CARE DEVICE</p>
             <h1 className="mt-4 text-4xl font-semibold leading-[1.05] tracking-[-0.045em] text-[#261c24] sm:text-5xl lg:text-[58px]">
-              Cooling Vacuum Gua Sha Massager for Body Care
+              Hot &amp; Cold Vacuum Gua Sha Massager
             </h1>
             <p className="mt-6 max-w-xl text-base leading-7 text-[#70636b] sm:text-lg sm:leading-8">
-              A handheld body care device combining cooling, vacuum suction and gua sha functions in a compact design for modern wellness routines.
+              A four-mode handheld body-care device combining adjustable vacuum suction, warming, cooling and EMS with a broad multi-contact working head.
             </p>
 
             <div className="mt-7 flex flex-wrap gap-2">
-              {["Cooling Care", "Vacuum Suction", "Gua Sha Massage", "Portable Design"].map((badge) => (
+              {["0–12 Suction Levels", "Approx. 38°C Heating", "Approx. 12.8°C Cooling", "0–12 EMS Levels"].map((badge) => (
                 <span key={badge} className="rounded-full border border-[#dec6d0] bg-white/80 px-3.5 py-2 text-xs font-bold text-[#6d3850]">{badge}</span>
               ))}
             </div>
@@ -102,21 +123,46 @@ export default function Jmz906PreviewPage() {
 
       <section className="py-20 sm:py-24">
         <div className={shell}>
-          <p className={sectionLabel}>Integrated modes</p>
-          <h2 className={sectionTitle}>Cooling, Suction &amp; Gua Sha in One</h2>
-          <p className="mt-4 max-w-3xl leading-7 text-[#70636b]">A compact working head brings several body-care functions into one handheld format, with separate controls for suction, EMS and operating mode.</p>
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {[
-              ["01", "Cooling contact", "A smooth central surface provides a cooling sensation during skin-contact body-care routines."],
-              ["02", "Vacuum suction", "Adjustable suction supports controlled skin contact, with intensity selected from the handle."],
-              ["03", "Gua sha massage", "Rounded contact elements support gliding massage across suitable body areas."],
-            ].map(([number, title, copy]) => (
-              <article key={title} className="rounded-3xl border border-[#eadde2] bg-white p-7 shadow-[0_16px_45px_rgba(80,45,60,0.05)]">
-                <span className="text-xs font-black tracking-[0.18em] text-[#bd7892]">{number}</span>
-                <h3 className="mt-8 text-xl font-black text-[#30242a]">{title}</h3>
-                <p className="mt-3 leading-7 text-[#74676e]">{copy}</p>
+          <p className={sectionLabel}>Four operating modes</p>
+          <h2 className={sectionTitle}>One Device, Four Body-Care Experiences</h2>
+          <p className="mt-4 max-w-3xl leading-7 text-[#70636b]">Select vacuum suction, warming, cooling or EMS according to the desired routine, then adjust the available intensity from the handle.</p>
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
+            {modeCards.map((mode) => (
+              <article key={mode.title} className="overflow-hidden rounded-3xl border border-[#eadde2] bg-white shadow-[0_16px_45px_rgba(80,45,60,0.05)]">
+                <div className="relative aspect-[4/3] bg-[#f7f2f4]">
+                  <Image src={mode.image} alt={`${mode.title} presentation for JMZ-906`} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
+                </div>
+                <div className="p-6 sm:p-7">
+                  <span className="text-xs font-black uppercase tracking-[0.15em] text-[#bd7892]">{mode.eyebrow}</span>
+                  <h3 className="mt-3 text-xl font-black text-[#30242a]">{mode.title}</h3>
+                  <p className="mt-3 leading-7 text-[#74676e]">{mode.copy}</p>
+                </div>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#f8f2f4] py-20 sm:py-24">
+        <div className={shell}>
+          <p className={sectionLabel}>Controls &amp; feedback</p>
+          <h2 className={sectionTitle}>Clear Settings, Direct Operation</h2>
+          <p className="mt-4 max-w-3xl leading-7 text-[#70636b]">Five physical buttons, a circular display and color-coded indicators help make the active setting easy to identify.</p>
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {controlHighlights.map((item) => (
+              <article key={item.title} className="overflow-hidden rounded-3xl border border-[#eadde2] bg-white">
+                <div className="relative aspect-[4/3] bg-white"><Image src={item.image} alt={`${item.title} on JMZ-906`} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" /></div>
+                <div className="p-6"><h3 className="text-lg font-black text-[#30242a]">{item.title}</h3><p className="mt-3 text-sm leading-6 text-[#74676e]">{item.copy}</p></div>
+              </article>
+            ))}
+          </div>
+          <div className="mt-6 grid gap-3 rounded-3xl border border-[#dfcfd5] bg-white p-5 sm:grid-cols-3 sm:p-6">
+            <div><p className="text-xs font-black uppercase tracking-[0.14em] text-[#a45475]">Power</p><p className="mt-2 text-sm leading-6 text-[#6f6269]">Hold for about 1.5 seconds to turn the device on or off.</p></div>
+            <div><p className="text-xs font-black uppercase tracking-[0.14em] text-[#a45475]">Quick release</p><p className="mt-2 text-sm leading-6 text-[#6f6269]">Short-press power during use for approximately 1 second of pressure release.</p></div>
+            <div><p className="text-xs font-black uppercase tracking-[0.14em] text-[#a45475]">Auto shut-off</p><p className="mt-2 text-sm leading-6 text-[#6f6269]">Each working cycle runs for 10 minutes before automatic shut-off.</p></div>
+          </div>
+          <div className="mt-4 rounded-2xl border border-[#e6cbd5] bg-[#fff8fa] px-5 py-4 text-sm leading-6 text-[#6f6269]">
+            <span className="font-black text-[#8e4664]">Before use:</span> Remove the pink protective/storage cover to expose the working head. Refit it after use for cleaner storage.
           </div>
         </div>
       </section>
@@ -125,10 +171,10 @@ export default function Jmz906PreviewPage() {
         <div className={`${shell} grid items-center gap-12 lg:grid-cols-[1.05fr_.95fr]`}>
           <div>
             <p className="text-[11px] font-black uppercase tracking-[0.22em] text-[#e7a9bf]">Body area guide</p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.035em] sm:text-4xl lg:text-[44px]">Designed for Modern Body Care</h2>
-            <p className="mt-5 max-w-2xl leading-7 text-white/68">Designed for direct skin contact across common body-care areas. Use an appropriate glide medium and follow the supplied operating instructions.</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.035em] sm:text-4xl lg:text-[44px]">Made for Everyday Body-Care Routines</h2>
+            <p className="mt-5 max-w-2xl leading-7 text-white/68">The ergonomic handle and rounded working head support controlled gliding across suitable body areas. Apply an appropriate glide medium and follow the supplied operating instructions.</p>
             <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {["Shoulder", "Back", "Waist", "Abdomen", "Thigh", "Arm"].map((area) => (
+              {["Shoulder", "Back", "Waist", "Abdomen", "Thigh", "Calf"].map((area) => (
                 <div key={area} className="rounded-2xl border border-white/12 bg-white/[0.06] px-4 py-5">
                   <span className="block h-1.5 w-8 rounded-full bg-[#d88eaa]" />
                   <p className="mt-5 font-bold">{area}</p>
@@ -136,26 +182,29 @@ export default function Jmz906PreviewPage() {
               ))}
             </div>
           </div>
-          <div className="flex aspect-[4/3] items-center justify-center rounded-[2rem] border border-dashed border-white/25 bg-[radial-gradient(circle_at_center,rgba(216,142,170,.17),transparent_55%)] p-8 text-center">
-            <div>
-              <svg aria-hidden="true" viewBox="0 0 120 160" className="mx-auto h-40 w-32 fill-none stroke-[#e5b2c5] stroke-[3]"><circle cx="60" cy="20" r="14" /><path d="M42 42c-8 23-9 49-3 76l-12 34M78 42c8 23 9 49 3 76l12 34M40 54l-25 48M80 54l25 48M39 118l-4 36M81 118l4 36M47 44c8 5 18 5 26 0" /></svg>
-              <p className="mt-5 text-sm font-bold text-white/80">Lifestyle image reserved</p>
-              <p className="mt-2 text-xs leading-5 text-white/48">Use a real application photo when available.</p>
-            </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+            <article className="overflow-hidden rounded-[2rem] border border-white/12 bg-white/[0.06]">
+              <div className="relative aspect-[4/3]"><Image src="/products/jmz-906/JMZ-906-17-scene-post-workout-calf-effect.webp" alt="JMZ-906 used for a post-activity calf-care routine" fill sizes="(min-width: 1280px) 24vw, (min-width: 640px) 50vw, 100vw" className="object-cover" /></div>
+              <div className="p-5"><p className="font-black">Post-activity calf care</p><p className="mt-2 text-sm leading-6 text-white/58">A comfortable seated routine for targeted calf massage and cooling or warming contact.</p></div>
+            </article>
+            <article className="overflow-hidden rounded-[2rem] border border-white/12 bg-white/[0.06]">
+              <div className="relative aspect-[4/3]"><Image src="/products/jmz-906/JMZ-906-18-scene-waist-effect.webp" alt="JMZ-906 used for a waist body-care routine" fill sizes="(min-width: 1280px) 24vw, (min-width: 640px) 50vw, 100vw" className="object-cover" /></div>
+              <div className="p-5"><p className="font-black">Waist body care</p><p className="mt-2 text-sm leading-6 text-white/58">The extended handle helps guide the working head across the waist and other suitable body areas.</p></div>
+            </article>
           </div>
         </div>
       </section>
 
       <section className="py-20 sm:py-24">
         <div className={shell}>
-          <p className={sectionLabel}>Real sample close-ups</p>
+          <p className={sectionLabel}>Product close-ups</p>
           <h2 className={sectionTitle}>Designed Around the Details</h2>
-          <p className="mt-4 max-w-3xl leading-7 text-[#70636b]">Every image below comes from the supplied JMZ-906 physical sample photography.</p>
+          <p className="mt-4 max-w-3xl leading-7 text-[#70636b]">The supplied image pack documents the controls, charging port, working head, display and retail presentation.</p>
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {detailCards.map((card) => (
               <article key={card.title} className="overflow-hidden rounded-3xl border border-[#eadde2] bg-white">
                 <div className="relative aspect-[4/3] bg-[#eef4f5]">
-                  <Image src={card.image} alt={`${card.title} on the actual JMZ-906 sample`} fill sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-cover" />
+                  <Image src={card.image} alt={`${card.title} on JMZ-906`} fill sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-cover" />
                 </div>
                 <div className="p-6">
                   <h3 className="text-lg font-black text-[#30242a]">{card.title}</h3>
@@ -164,6 +213,23 @@ export default function Jmz906PreviewPage() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="border-y border-[#eadde2] bg-[#fff8fa] py-20 sm:py-24">
+        <div className={shell}>
+          <p className={sectionLabel}>Mode &amp; charging indicators</p>
+          <h2 className={sectionTitle}>Visual Feedback at a Glance</h2>
+          <p className="mt-4 max-w-3xl leading-7 text-[#70636b]">Color cues help identify cooling, heating and EMS states, while the small display indicator communicates charging progress.</p>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {indicatorCards.map((item) => (
+              <article key={item.title} className="overflow-hidden rounded-3xl border border-[#eadde2] bg-white">
+                <div className="relative aspect-[4/3] bg-[#f6f8f8]"><Image src={item.image} alt={`${item.title} indicator on JMZ-906`} fill sizes="(min-width: 1024px) 20vw, (min-width: 640px) 50vw, 100vw" className="object-cover" /></div>
+                <div className="p-5"><h3 className="font-black text-[#30242a]">{item.title}</h3><p className="mt-2 text-sm leading-6 text-[#74676e]">{item.copy}</p></div>
+              </article>
+            ))}
+          </div>
+          <p className="mt-5 text-xs leading-5 text-[#887980]">When battery power is low, the red indicator flashes before the device shuts down automatically.</p>
         </div>
       </section>
 
@@ -224,13 +290,9 @@ export default function Jmz906PreviewPage() {
           <div>
             <p className={sectionLabel}>Packing status</p>
             <h2 className={sectionTitle}>Packaging &amp; Accessories</h2>
-            <p className="mt-4 max-w-xl leading-7 text-[#70636b]">The sample and product documents confirm the core device and listed items. Final packing configuration remains project-specific.</p>
-            <div className="mt-8 flex aspect-[4/3] items-center justify-center rounded-3xl border border-dashed border-[#d6bcc6] bg-white p-8 text-center">
-              <div>
-                <svg aria-hidden="true" viewBox="0 0 96 96" className="mx-auto h-20 w-20 fill-none stroke-[#b86b87] stroke-2"><path d="M15 29l33-17 33 17-33 17-33-17Z" /><path d="M15 29v38l33 17 33-17V29M48 46v38" /></svg>
-                <p className="mt-4 font-bold text-[#5e4651]">Packaging image reserved</p>
-                <p className="mt-2 text-xs text-[#8a7a82]">Replace after final color box and accessory layout approval.</p>
-              </div>
+            <p className="mt-4 max-w-xl leading-7 text-[#70636b]">The supplied image pack includes a retail-box concept and coordinated set presentation. Final contents, artwork and carton data remain project-specific.</p>
+            <div className="relative mt-8 aspect-[4/3] overflow-hidden rounded-3xl border border-[#d6bcc6] bg-white">
+              <Image src="/products/jmz-906/JMZ-906-10-gallery-packaging.webp" alt="JMZ-906 retail color box presentation" fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover" />
             </div>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:pt-16">
@@ -251,12 +313,12 @@ export default function Jmz906PreviewPage() {
             <h2 className="mt-3 text-3xl font-semibold tracking-[-0.035em] sm:text-4xl lg:text-[44px]">Interested in JMZ-906?</h2>
             <p className="mt-5 max-w-lg leading-7 text-white/68">Tell us your quantity, target market and customization requirements. Our team will prepare the next-step product and quotation details.</p>
             <div className="relative mt-8 aspect-[4/3] overflow-hidden rounded-3xl border border-white/12 bg-[#eef4f5]">
-              <Image src="/products/jmz-906/front.jpg" alt="Actual JMZ-906 pink product sample" fill sizes="(min-width: 1024px) 38vw, 100vw" className="object-contain" />
+              <Image src="/products/jmz-906/JMZ-906-01-home-card.webp" alt="JMZ-906 pink four-mode body massager" fill sizes="(min-width: 1024px) 38vw, 100vw" className="object-contain" />
             </div>
             <div className="mt-5 rounded-2xl border border-white/12 bg-white/[0.06] p-5">
               <p className="text-xs font-black uppercase tracking-[0.14em] text-[#e7a9bf]">Model</p>
               <p className="mt-2 text-lg font-black">JMZ-906</p>
-              <p className="mt-1 text-sm text-white/58">Cooling Vacuum Gua Sha Massager</p>
+              <p className="mt-1 text-sm text-white/58">Hot &amp; Cold Vacuum Gua Sha Massager</p>
             </div>
           </div>
           <div className="min-w-0 rounded-3xl border border-white/12 bg-white/[0.07] p-5 backdrop-blur sm:p-8">
@@ -264,7 +326,7 @@ export default function Jmz906PreviewPage() {
               id="jmz-906-inquiry-form"
               sourcePage={sourcePage}
               theme="dark"
-              initialProduct="JMZ-906 – Cooling Vacuum Gua Sha Massager"
+              initialProduct="JMZ-906 – Hot & Cold Vacuum Gua Sha Massager"
               submitLabel="REQUEST FACTORY QUOTE"
               detailsOpen
               includeTargetMarket

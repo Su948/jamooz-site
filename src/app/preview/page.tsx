@@ -44,13 +44,13 @@ const customizationServices = ['Logo Printing','Custom Color','Custom Packaging'
 const featuredProducts = [
   {
     model: 'JMZ-906',
-    name: 'Cooling Vacuum Gua Sha Massager',
-    description: 'Cooling, vacuum suction, gua sha massage and EMS in one compact body-care device.',
-    image: '/products/jmz-906/front.jpg',
+    name: 'Hot & Cold Vacuum Gua Sha Massager',
+    description: 'Vacuum suction, warming care, cooling care and EMS with 0–12 level control in one handheld body-care device.',
+    image: '/products/jmz-906/JMZ-906-01-home-card.webp',
     href: '/preview/products/jmz-906',
     price: 'From US$15.90 / pc',
     moq: 'MOQ 50 pcs',
-    features: ['Cooling Care', 'Vacuum Suction', 'EMS', 'OEM / ODM'],
+    features: ['Vacuum Suction', 'Heating', 'Cooling', 'EMS'],
   },
 ] as const;
 
@@ -244,7 +244,7 @@ export default function HomepagePreview(){
               <div className="grid md:grid-cols-[1.02fr_.98fr]">
                 <Link href={product.href} aria-label={`View ${product.model} ${product.name}`} className="relative aspect-square overflow-hidden bg-[#eef4f5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-violet-500">
                   <NextImage src={product.image} alt={`${product.model} ${product.name} actual product sample`} fill sizes="(min-width: 768px) 500px, 100vw" className="object-contain transition duration-500 group-hover:scale-[1.02]" />
-                  <span className="absolute left-4 top-4 rounded-full border border-white/80 bg-white/90 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#6d3850] shadow-sm backdrop-blur">Actual Product Photo</span>
+                  <span className="absolute left-4 top-4 rounded-full border border-white/80 bg-white/90 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#6d3850] shadow-sm backdrop-blur">New Product</span>
                 </Link>
 
                 <div className="flex min-w-0 flex-col justify-center p-6 sm:p-8 md:p-10">
