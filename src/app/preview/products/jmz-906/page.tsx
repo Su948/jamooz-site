@@ -31,7 +31,6 @@ const modeCards = [
 
 const controlHighlights = [
   { title: "Level & mode display", image: "/products/jmz-906/JMZ-906-12-function-display-level.webp", copy: "The circular screen shows the current level and active operating mode at a glance." },
-  { title: "Hot / cold contact system", image: "/products/jmz-906/JMZ-906-13-function-hot-cold.webp", copy: "Short-press the M key to cycle through cooling, heating and temperature-off states." },
   { title: "Four-mode body-care platform", image: "/products/jmz-906/JMZ-906-16-function-overview-clinical.webp", copy: "Vacuum suction, warming, cooling and EMS are combined in a single handheld format." },
 ] as const;
 
@@ -148,10 +147,10 @@ export default function Jmz906PreviewPage() {
           <p className={sectionLabel}>Controls &amp; feedback</p>
           <h2 className={sectionTitle}>Clear Settings, Direct Operation</h2>
           <p className="mt-4 max-w-3xl leading-7 text-[#70636b]">Five physical buttons, a circular display and color-coded indicators help make the active setting easy to identify.</p>
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
             {controlHighlights.map((item) => (
               <article key={item.title} className="overflow-hidden rounded-3xl border border-[#eadde2] bg-white">
-                <div className="relative aspect-[4/3] bg-white"><Image src={item.image} alt={`${item.title} on JMZ-906`} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" /></div>
+                <div className="relative aspect-[4/3] bg-white"><Image src={item.image} alt={`${item.title} on JMZ-906`} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" /></div>
                 <div className="p-6"><h3 className="text-lg font-black text-[#30242a]">{item.title}</h3><p className="mt-3 text-sm leading-6 text-[#74676e]">{item.copy}</p></div>
               </article>
             ))}
