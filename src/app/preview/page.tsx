@@ -251,7 +251,7 @@ export default function HomepagePreview(){
         <div className="mx-auto mt-10 grid max-w-[1120px] grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-6">
           {featuredProducts.map(product => (
             <article key={product.model} className="group flex min-w-0 flex-col overflow-hidden rounded-3xl border border-violet-100 bg-white shadow-xl shadow-violet-900/5 transition hover:-translate-y-1 hover:shadow-2xl hover:shadow-violet-900/10">
-              <Link href={product.href} aria-label={`View ${product.model} ${product.name}`} className="relative aspect-[4/3] overflow-hidden bg-[#eef4f5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-violet-500">
+              <Link href={product.href} aria-label={`View ${product.model} ${product.name}`} className="relative aspect-[4/3] overflow-hidden bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-violet-500">
                 <NextImage src={product.image} alt={`${product.model} ${product.name} actual product sample`} fill sizes="(min-width: 768px) 540px, 100vw" className="object-contain transition duration-500 group-hover:scale-[1.025]" />
                 <span className="absolute left-4 top-4 rounded-full border border-white/80 bg-white/90 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#6d3850] shadow-sm backdrop-blur">New Product</span>
               </Link>
