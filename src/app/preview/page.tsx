@@ -248,24 +248,22 @@ export default function HomepagePreview(){
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-zinc-600 sm:text-base sm:leading-7">Open a product page for real sample photography, specifications, volume pricing and OEM/ODM options.</p>
         </header>
 
-        <div className="mx-auto mt-10 grid max-w-[980px] gap-6">
+        <div className="mx-auto mt-10 grid max-w-[1120px] grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-6">
           {featuredProducts.map(product => (
-            <article key={product.model} className="group overflow-hidden rounded-3xl border border-violet-100 bg-white shadow-xl shadow-violet-900/5 transition hover:-translate-y-1 hover:shadow-2xl hover:shadow-violet-900/10">
-              <div className="grid md:grid-cols-[1.02fr_.98fr]">
-                <Link href={product.href} aria-label={`View ${product.model} ${product.name}`} className="relative aspect-square overflow-hidden bg-[#eef4f5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-violet-500">
-                  <NextImage src={product.image} alt={`${product.model} ${product.name} actual product sample`} fill sizes="(min-width: 768px) 500px, 100vw" className="object-contain transition duration-500 group-hover:scale-[1.02]" />
-                  <span className="absolute left-4 top-4 rounded-full border border-white/80 bg-white/90 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#6d3850] shadow-sm backdrop-blur">New Product</span>
-                </Link>
+            <article key={product.model} className="group flex min-w-0 flex-col overflow-hidden rounded-3xl border border-violet-100 bg-white shadow-xl shadow-violet-900/5 transition hover:-translate-y-1 hover:shadow-2xl hover:shadow-violet-900/10">
+              <Link href={product.href} aria-label={`View ${product.model} ${product.name}`} className="relative aspect-[4/3] overflow-hidden bg-[#eef4f5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-violet-500">
+                <NextImage src={product.image} alt={`${product.model} ${product.name} actual product sample`} fill sizes="(min-width: 768px) 540px, 100vw" className="object-contain transition duration-500 group-hover:scale-[1.025]" />
+                <span className="absolute left-4 top-4 rounded-full border border-white/80 bg-white/90 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#6d3850] shadow-sm backdrop-blur">New Product</span>
+              </Link>
 
-                <div className="flex min-w-0 flex-col justify-center p-6 sm:p-8 md:p-10">
-                  <p className="text-xs font-black uppercase tracking-[0.2em] text-violet-700">{product.model} · Body Care</p>
-                  <h3 className="mt-3 text-2xl font-semibold leading-tight tracking-tight text-[#302050] sm:text-3xl">{product.name}</h3>
-                  <p className="mt-4 text-sm leading-6 text-zinc-600 sm:text-base sm:leading-7">{product.description}</p>
-                  <div className="mt-5 flex flex-wrap gap-2">{product.features.map(feature => <span key={feature} className="rounded-full border border-violet-100 bg-violet-50 px-3 py-1.5 text-xs font-semibold text-violet-800">{feature}</span>)}</div>
-                  <div className="mt-7 flex flex-wrap items-end justify-between gap-4 border-t border-violet-100 pt-6">
-                    <div><p className="text-lg font-black text-[#302050]">{product.price}</p><p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500">{product.moq}</p></div>
-                    <Link href={product.href} className="inline-flex min-h-11 items-center justify-center rounded-full bg-violet-700 px-6 py-3 text-sm font-bold text-white transition hover:bg-violet-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2">View Product →</Link>
-                  </div>
+              <div className="flex min-w-0 flex-1 flex-col p-5 sm:p-6">
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-violet-700">{product.model} · Body Care</p>
+                <h3 className="mt-3 text-xl font-semibold leading-tight tracking-tight text-[#302050] sm:text-2xl">{product.name}</h3>
+                <p className="mt-3 text-sm leading-6 text-zinc-600">{product.description}</p>
+                <div className="mt-4 flex flex-wrap gap-2">{product.features.map(feature => <span key={feature} className="rounded-full border border-violet-100 bg-violet-50 px-2.5 py-1 text-xs font-semibold text-violet-800">{feature}</span>)}</div>
+                <div className="mt-auto flex flex-wrap items-end justify-between gap-4 border-t border-violet-100 pt-5">
+                  <div><p className="text-lg font-black text-[#302050]">{product.price}</p><p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500">{product.moq}</p></div>
+                  <Link href={product.href} className="inline-flex min-h-10 items-center justify-center rounded-full bg-violet-700 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-violet-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2">View Product →</Link>
                 </div>
               </div>
             </article>
