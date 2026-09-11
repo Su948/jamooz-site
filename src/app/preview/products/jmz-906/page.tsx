@@ -93,9 +93,9 @@ export default function Jmz906PreviewPage() {
             </div>
 
             <div className="mt-8 rounded-2xl border border-white/80 bg-white/78 p-5 shadow-[0_20px_55px_rgba(94,45,65,0.08)] backdrop-blur sm:p-6">
-              <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#806f77]">Factory pricing</p>
+              <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#806f77]">Volume price range</p>
               <div className="mt-2 flex flex-wrap items-end gap-x-4 gap-y-1">
-                <p className="text-3xl font-black tracking-tight text-[#8f405f]">From US$15.90 / pc</p>
+                <p className="text-3xl font-black tracking-tight text-[#8f405f]">US$15.90–18.50 / pc</p>
                 <p className="pb-1 text-sm font-bold text-[#4c4147]">MOQ 50 pcs</p>
               </div>
               <div className="mt-5 grid grid-cols-2 overflow-hidden rounded-xl border border-[#eadde2] sm:grid-cols-4">
