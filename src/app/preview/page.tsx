@@ -52,6 +52,16 @@ const featuredProducts = [
     moq: 'MOQ 50 pcs',
     features: ['Vacuum Suction', 'Heating', 'Cooling', 'EMS'],
   },
+  {
+    model: 'JMZ-702',
+    name: 'Heated Vibration Egg Massage Chair',
+    description: 'A compact egg-shaped massage seat combining three-level vibration and adjustable warming for home, office and everyday relaxation settings.',
+    image: '/products/jmz-702/JMZ-702-01-home-card.webp',
+    href: '/preview/products/jmz-702',
+    price: 'From US$27.50 / pc',
+    moq: 'MOQ 50 pcs',
+    features: ['Heating', 'Vibration', '3 Heat Levels', '15-Min Auto-Off'],
+  },
 ] as const;
 
 const scrollBg = ali('//sc04.alicdn.com/kf/Hd94f7581c62d4edaa1393c4d63bc2c4fK/252717039/Hd94f7581c62d4edaa1393c4d63bc2c4fK.png');
