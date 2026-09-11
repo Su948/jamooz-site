@@ -17,6 +17,9 @@ type InquiryFormProps = {
   sourcePage: string;
   theme?: "dark" | "light";
   initialProduct?: string;
+  submitLabel?: string;
+  detailsOpen?: boolean;
+  includeTargetMarket?: boolean;
 };
 type SubmissionState =
   | { status: "idle" }
@@ -29,6 +32,9 @@ export default function InquiryForm({
   sourcePage,
   theme = "light",
   initialProduct = "",
+  submitLabel = "SEND INQUIRY →",
+  detailsOpen = false,
+  includeTargetMarket = false,
 }: InquiryFormProps) {
   const [state, setState] = useState<SubmissionState>({ status: "idle" });
   const startedAt = useRef(0);
@@ -79,7 +85,7 @@ export default function InquiryForm({
         </label>
       ))}
 
-      <details className={`group rounded-2xl border p-4 sm:col-span-2 ${isDark ? "border-white/15 bg-white/5" : "border-border-warm bg-cream-soft/40"}`}>
+      <details open={detailsOpen} className={`group rounded-2xl border p-4 sm:col-span-2 ${isDark ? "border-white/15 bg-white/5" : "border-border-warm bg-cream-soft/40"}`}>
         <summary className={`flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 text-sm font-bold ${isDark ? "text-white" : "text-navy"}`}>
           Add order details <span className={`text-xs font-medium ${isDark ? "text-white/55" : "text-muted"}`}>(optional)</span>
           <span aria-hidden className="ml-auto text-lg transition group-open:rotate-45">+</span>
@@ -95,6 +101,12 @@ export default function InquiryForm({
               {oemOptions.map((option) => <option key={option}>{option}</option>)}
             </select>
           </label>
+          {includeTargetMarket && (
+            <label className={`${labelClass} min-w-0 sm:col-span-2`}>
+              Target Market
+              <input name="targetMarket" type="text" autoComplete="country-name" maxLength={160} placeholder="Country / region for this project" data-clarity-mask="true" className={inputClass} />
+            </label>
+          )}
           <label className={`${labelClass} min-w-0 sm:col-span-2`}>
             Message
             <textarea name="message" rows={4} maxLength={3000} data-clarity-mask="true" className={`${inputClass} resize-y`} />
@@ -110,7 +122,7 @@ export default function InquiryForm({
         <button type="submit" disabled={state.status === "submitting"} className={isDark
           ? "min-h-12 w-full rounded-full bg-white px-7 py-3.5 text-sm font-black tracking-[0.08em] text-violet-800 transition hover:-translate-y-0.5 disabled:cursor-wait disabled:opacity-60 sm:w-auto"
           : "btn-primary min-h-12 w-full justify-center py-3.5 text-sm disabled:cursor-wait disabled:opacity-60 sm:w-auto"}>
-          {state.status === "submitting" ? "SENDING…" : "SEND INQUIRY →"}
+          {state.status === "submitting" ? "SENDING…" : submitLabel}
         </button>
         <div aria-live="polite" className={`mt-4 min-h-6 text-sm ${isDark ? "text-violet-100" : "text-muted"}`}>
           {state.status === "success" && <p>Thank you — your inquiry has been delivered. Reference: <strong>{state.reference}</strong></p>}

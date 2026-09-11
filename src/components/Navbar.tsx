@@ -15,7 +15,7 @@ function PreviewNavbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
   const homepage = pathname.startsWith('/preview') ? '/preview' : '/';
-  const previewLink = (hash: string) => `${homepage}${hash}`;
+  const previewLink = (hash: string) => pathname.startsWith('/preview/products/') && hash === '#inquiry' ? hash : `${homepage}${hash}`;
   const navigation = [
     ['HOME', ''],
     ['PRODUCTS', '#product-range'],
