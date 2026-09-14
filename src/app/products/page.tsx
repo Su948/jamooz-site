@@ -1,142 +1,69 @@
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 
-type Product = {
-  id: string;
-  name: string;
-  category: string;
-  moq: string;
-  price: string;
-  image: string;
-  features: string[];
-};
-
-const products: Product[] = [
-  { 
-    id: 'JAMOOZ PRO X7', 
-    name: 'Percussion Massage Gun', 
-    category: 'Recovery & Performance', 
-    moq: '100 pcs', 
-    price: '$24.90 - $32.50', 
-    image: '/images/wellness/pro_x7.png',
-    features: ['High-torque motor', '6 Attachments', 'Ergonomic grip']
+const products = [
+  {
+    model: "JMZ-906",
+    name: "Hot & Cold Vacuum Gua Sha Massager",
+    description: "Vacuum suction, warming care, cooling care and EMS with 0–12 level control in one handheld body-care device.",
+    image: "/products/jmz-906/JMZ-906-01-home-card.webp",
+    href: "/products/jmz-906",
+    price: "US$15.90–18.50 / pc",
+    moq: "MOQ 50 pcs",
+    features: ["Vacuum Suction", "Heating", "Cooling", "EMS"],
   },
-  { 
-    id: 'JAMOOZ DUO V2', 
-    name: 'Dual-head Massager', 
-    category: 'Deep Tissue Therapy', 
-    moq: '200 pcs', 
-    price: '$18.80 - $25.60', 
-    image: '/images/wellness/duo_v2.png',
-    features: ['Dual-pulse tech', 'Variable speed', 'Heat support']
+  {
+    model: "JMZ-702",
+    name: "Heated Vibration Egg Massage Chair",
+    description: "A compact egg-shaped massage seat combining three-level vibration and adjustable warming for home, office and everyday relaxation settings.",
+    image: "/products/jmz-702/JMZ-702-01-home-card.webp",
+    href: "/products/jmz-702",
+    price: "US$27.50–33.00 / pc",
+    moq: "MOQ 50 pcs",
+    features: ["Heating", "Vibration", "3 Heat Levels", "15-Min Auto-Off"],
   },
-  { 
-    id: 'JAMOOZ SCALP S1', 
-    name: 'Scalp Care Massager', 
-    category: 'Sleep & Wellness', 
-    moq: '500 pcs', 
-    price: '$17.90 - $21.90', 
-    image: '/images/wellness/scalp_s1.png',
-    features: ['Red light therapy', 'Waterproof IPX7', '72 Nodes']
+  {
+    model: "JMZ-R006",
+    name: "3D Kneading Neck & Shoulder Massager",
+    description: "A rechargeable U-shaped neck massager with 3D kneading movement, warming care, timing control and adjustable double lanyards.",
+    image: "/products/jmz-r006/JMZ-R006-01-home-card.png",
+    href: "/products/jmz-r006",
+    price: "US$20.90–22.50 / pc",
+    moq: "MOQ 50 pcs",
+    features: ["3D Kneading", "Heating", "Type-C", "Timing Control"],
   },
-  { 
-    id: 'JAMOOZ NECK M5', 
-    name: 'Neck & Shoulder Massager', 
-    category: 'Tension Relief', 
-    moq: '300 pcs', 
-    price: '$20.90 - $24.90', 
-    image: '/images/wellness/neck_m5.png',
-    features: ['4D Kneading', 'Carbon fiber heat', 'Portable design']
-  },
-];
-
-const categories = [
-  ['Global Export Ready', 'Best Sellers'],
-  ['B2B Catalog', '4 Core Series'],
-  ['OEM/ODM Support', 'Custom Branding'],
-];
+] as const;
 
 export default function ProductsPage() {
   return (
-    <div className="min-h-screen bg-background pb-24">
-      {/* HEADER SECTION */}
-      <section className="border-b border-border-warm bg-cream-soft">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.8fr_1.2fr] items-center">
-            <div>
-              <p className="mono-label text-xs font-bold text-navy uppercase tracking-widest">Product Catalog</p>
-              <h1 className="serif-display mt-6 text-[58px] font-semibold leading-none text-foreground md:text-[78px]">Wellness Tech</h1>
-              <p className="mt-8 max-w-md text-lg leading-8 text-muted">A curated range of massage and wellness devices designed for retail, specialty wellness, and corporate gift channels.</p>
-              <Link href={{ pathname: '/rfq', query: { product: 'Product catalog' } }} className="mt-10 btn-primary">Request Volume Pricing</Link>
-            </div>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              {categories.map(([label, value]) => (
-                <div key={value} className="premium-card p-8 border-none bg-white/50 backdrop-blur-sm shadow-sm">
-                  <p className="mono-label text-[10px] text-muted font-bold uppercase tracking-widest">{label}</p>
-                  <p className="serif-display mt-4 text-3xl font-semibold text-navy">{value}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+    <div className="min-h-screen bg-gradient-to-b from-white to-[#faf8ff] pb-24 text-[#302050]">
+      <section className="border-b border-violet-100 bg-[#faf8ff] py-16 sm:py-20">
+        <div className="mx-auto max-w-[1240px] px-5 text-center sm:px-8">
+          <p className="text-xs font-black uppercase tracking-[0.24em] text-violet-700">JAMOOZ Product Collection</p>
+          <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">Products Ready for B2B Projects</h1>
+          <p className="mx-auto mt-5 max-w-2xl leading-7 text-zinc-600">Review confirmed product photography, volume price ranges, specifications and available OEM/ODM options.</p>
         </div>
       </section>
 
-      {/* PRODUCT GRID */}
-      <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
+      <section className="mx-auto max-w-[1240px] px-5 py-14 sm:px-8 sm:py-20">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {products.map((product) => (
-            <article key={product.id} className="premium-card grid grid-cols-1 overflow-hidden transition duration-300 hover:shadow-2xl lg:grid-cols-2">
-              <div className="bg-white p-12 flex items-center justify-center">
-                <img src={product.image} alt={product.name} className="h-full w-full object-contain transition duration-500 hover:scale-110" />
-              </div>
-              <div className="p-10 flex flex-col">
-                <div className="flex-grow">
-                  <p className="mono-label text-[10px] font-bold text-muted uppercase tracking-widest">{product.category}</p>
-                  <h2 className="mt-4 text-2xl font-bold text-navy leading-tight">{product.id}</h2>
-                  <p className="mt-1 text-lg text-muted">{product.name}</p>
-                  
-                  <div className="mt-8 space-y-4">
-                    {product.features.map((feature) => (
-                      <div key={feature} className="flex items-center gap-3 text-sm font-medium text-navy">
-                        <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                        {feature}
-                      </div>
-                    ))}
-                  </div>
-                  
-                  <div className="mt-10 pt-8 border-t border-border-warm">
-                    <div className="flex items-baseline justify-between">
-                      <p className="text-sm text-muted">MOQ: <span className="font-bold text-navy">{product.moq}</span></p>
-                      <p className="text-xl font-bold text-navy">{product.price}</p>
-                    </div>
-                  </div>
+            <article key={product.model} className="group flex min-w-0 flex-col overflow-hidden rounded-3xl border border-violet-100 bg-white shadow-xl shadow-violet-900/5 transition hover:-translate-y-1 hover:shadow-2xl hover:shadow-violet-900/10">
+              <Link href={product.href} aria-label={`View ${product.model} ${product.name}`} className="relative aspect-[4/3] overflow-hidden bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-violet-500">
+                <Image src={product.image} alt={`${product.model} ${product.name} actual product sample`} fill sizes="(min-width: 1280px) 380px, (min-width: 768px) 50vw, 100vw" className="object-contain transition duration-500 group-hover:scale-[1.025]" />
+              </Link>
+              <div className="flex flex-1 flex-col p-6">
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-violet-700">{product.model} · Body Care</p>
+                <h2 className="mt-3 text-2xl font-semibold leading-tight tracking-tight">{product.name}</h2>
+                <p className="mt-3 text-sm leading-6 text-zinc-600">{product.description}</p>
+                <div className="mt-4 flex flex-wrap gap-2">{product.features.map((feature) => <span key={feature} className="rounded-full border border-violet-100 bg-violet-50 px-2.5 py-1 text-xs font-semibold text-violet-800">{feature}</span>)}</div>
+                <div className="mt-auto flex flex-wrap items-end justify-between gap-4 border-t border-violet-100 pt-5">
+                  <div><p className="text-lg font-black">{product.price}</p><p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500">{product.moq}</p></div>
+                  <Link href={product.href} className="inline-flex min-h-10 items-center justify-center rounded-full bg-violet-700 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-violet-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2">View Product →</Link>
                 </div>
-                
-                <Link href={{ pathname: '/rfq', query: { product: `${product.name} (${product.id})` } }} className="mt-8 w-full btn-secondary text-center">
-                  Inquire Now
-                </Link>
               </div>
             </article>
           ))}
-        </div>
-      </section>
-
-      {/* OEM SECTION */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="premium-card bg-surface-dark p-12 md:p-16 lg:p-20 text-white">
-          <div className="max-w-3xl">
-            <p className="mono-label text-xs font-bold text-accent uppercase tracking-widest">Tailored for your brand</p>
-            <h2 className="serif-display mt-6 text-5xl font-semibold leading-tight">Comprehensive OEM/ODM Solutions</h2>
-            <p className="mt-8 text-lg text-white/60 leading-8">Whether you need custom color matching (Pantone), laser-engraved logos, or high-end gift box development, our engineering team is ready to bring your brand vision to life.</p>
-            <div className="mt-12 flex flex-wrap gap-6">
-              {['Logo Embossing', 'Laser Engraving', 'Custom Color Box', 'Sample Timing Confirmation', 'CE / RoHS Reports'].map((item) => (
-                <div key={item} className="flex items-center gap-3 text-sm font-semibold text-white/90">
-                  <span className="h-2 w-2 rounded-full bg-accent" />
-                  {item}
-                </div>
-              ))}
-            </div>
-            <Link href={{ pathname: '/rfq', query: { product: 'OEM/ODM custom project' } }} className="mt-12 btn-primary border-none shadow-none bg-accent hover:bg-accent-hover text-white">Start Custom Project</Link>
-          </div>
         </div>
       </section>
     </div>

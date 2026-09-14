@@ -33,7 +33,7 @@ function ArrowIcon() {
 }
 
 export default function Jmz702PreviewPage() {
-  const sourcePage = "/preview/products/jmz-702";
+  const sourcePage = "/products/jmz-702";
   const productName = "JMZ-702 – Heated Vibration Egg Massage Chair";
   const whatsappUrl = contactLinks.whatsapp(buildWhatsAppInquiryMessage({ sourcePage, product: productName }));
 

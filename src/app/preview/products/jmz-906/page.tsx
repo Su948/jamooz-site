@@ -65,7 +65,7 @@ function ArrowIcon() {
 }
 
 export default function Jmz906PreviewPage() {
-  const sourcePage = "/preview/products/jmz-906";
+  const sourcePage = "/products/jmz-906";
   const whatsappUrl = contactLinks.whatsapp(buildWhatsAppInquiryMessage({
     sourcePage,
     product: "JMZ-906 – Hot & Cold Vacuum Gua Sha Massager",

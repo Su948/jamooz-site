@@ -32,7 +32,7 @@ function ArrowIcon() {
 }
 
 export default function JmzR006PreviewPage() {
-  const sourcePage = "/preview/products/jmz-r006";
+  const sourcePage = "/products/jmz-r006";
   const productName = "JMZ-R006 – 3D Kneading Neck & Shoulder Massager";
   const whatsappUrl = contactLinks.whatsapp(buildWhatsAppInquiryMessage({ sourcePage, product: productName }));
 
@@ -69,4 +69,3 @@ export default function JmzR006PreviewPage() {
     </main>
   );
 }
-

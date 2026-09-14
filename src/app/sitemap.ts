@@ -21,6 +21,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: `${companyFacts.website}/products`,
+      lastModified: "2026-09-14",
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    ...["jmz-906", "jmz-702", "jmz-r006"].map((slug) => ({
+      url: `${companyFacts.website}/products/${slug}`,
+      lastModified: "2026-09-14",
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
   ];
 
   return indexablePages;
