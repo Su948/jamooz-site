@@ -62,6 +62,16 @@ const featuredProducts = [
     moq: 'MOQ 50 pcs',
     features: ['Heating', 'Vibration', '3 Heat Levels', '15-Min Auto-Off'],
   },
+  {
+    model: 'JMZ-R006',
+    name: '3D Kneading Neck & Shoulder Massager',
+    description: 'A rechargeable U-shaped neck massager with 3D kneading movement, warming care, timing control and adjustable double lanyards.',
+    image: '/products/jmz-r006/JMZ-R006-01-home-card.png',
+    href: '/preview/products/jmz-r006',
+    price: 'US$20.90–22.50 / pc',
+    moq: 'MOQ 50 pcs',
+    features: ['3D Kneading', 'Heating', 'Type-C', 'Timing Control'],
+  },
 ] as const;
 
 const scrollBg = ali('//sc04.alicdn.com/kf/Hd94f7581c62d4edaa1393c4d63bc2c4fK/252717039/Hd94f7581c62d4edaa1393c4d63bc2c4fK.png');
