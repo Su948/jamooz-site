@@ -3,16 +3,6 @@ import Link from "next/link";
 
 const products = [
   {
-    model: "JMZ-906",
-    name: "Hot & Cold Vacuum Gua Sha Massager",
-    description: "Vacuum suction, warming care, cooling care and EMS with 0–12 level control in one handheld body-care device.",
-    image: "/products/jmz-906/JMZ-906-01-home-card.webp",
-    href: "/products/jmz-906",
-    price: "US$15.90–18.50 / pc",
-    moq: "MOQ 50 pcs",
-    features: ["Vacuum Suction", "Heating", "Cooling", "EMS"],
-  },
-  {
     model: "JMZ-702",
     name: "Heated Vibration Egg Massage Chair",
     description: "A compact egg-shaped massage seat combining three-level vibration and adjustable warming for home, office and everyday relaxation settings.",
