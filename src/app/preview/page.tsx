@@ -44,6 +44,7 @@ const customizationServices = ['Logo Printing','Custom Color','Custom Packaging'
 const featuredProducts = [
   {
     model: 'JMZ-702',
+    category: 'Body Care',
     name: 'Heated Vibration Egg Massage Chair',
     description: 'A compact egg-shaped massage seat combining three-level vibration and adjustable warming for home, office and everyday relaxation settings.',
     image: '/products/jmz-702/JMZ-702-01-home-card.webp',
@@ -54,6 +55,7 @@ const featuredProducts = [
   },
   {
     model: 'JMZ-R006',
+    category: 'Neck & Shoulder',
     name: '3D Kneading Neck & Shoulder Massager',
     description: 'A rechargeable U-shaped neck massager with 3D kneading movement, warming care, timing control and adjustable double lanyards.',
     image: '/products/jmz-r006/JMZ-R006-01-home-card.png',
@@ -61,6 +63,50 @@ const featuredProducts = [
     price: 'US$20.90–22.50 / pc',
     moq: 'MOQ 50 pcs',
     features: ['3D Kneading', 'Heating', 'Type-C', 'Timing Control'],
+  },
+  {
+    model: 'JMZ-729S',
+    category: 'Neck & Shoulder',
+    name: 'Contoured Electric Neck Massage Pillow',
+    description: 'A full-size contoured neck pillow with three massage programs, two warming levels and a rechargeable integrated control design.',
+    image: '/products/jmz-729s/01-hero.webp',
+    href: '/products/jmz-729s',
+    price: 'US$28.30–32.00 / pc',
+    moq: 'MOQ 50 pcs',
+    features: ['3 Massage Modes', '2 Heat Levels', '2000mAh', 'Removable Cover'],
+  },
+  {
+    model: 'JMZ-908',
+    category: 'Eye Care',
+    name: 'EMS Air Compression Eye Massager with Heat',
+    description: 'A customizable rechargeable eye massager combining air compression, two-level heating, EMS and vibration.',
+    image: '/products/jmz-908/01-hero.webp',
+    href: '/products/jmz-908',
+    price: 'Custom Quote',
+    moq: 'OEM / ODM',
+    features: ['3 Air Modes', '2 Heat Levels', 'EMS', 'Vibration'],
+  },
+  {
+    model: 'JMZ-802',
+    category: 'Hand & Wrist',
+    name: '3-in-1 Air Pressure Hand & Wrist Massager',
+    description: 'A rechargeable hand and wrist massager with five-level air pressure, bidirectional kneading and three-level warming.',
+    image: '/products/jmz-802/01-hero.webp',
+    href: '/products/jmz-802',
+    price: 'US$13.30–15.10 / pc',
+    moq: 'MOQ 50 pcs',
+    features: ['5 Pressure Levels', '3-Speed Kneading', '3 Heat Levels', 'USB-C'],
+  },
+  {
+    model: 'JMZ-903',
+    category: 'Body Care',
+    name: '3-in-1 Suction, Heat & EMS Gua Sha Massager',
+    description: 'A portable body-care device with 12-level suction, adjustable warming, 12-level EMS and a 20-minute cycle.',
+    image: '/products/jmz-903/01-hero.webp',
+    href: '/products/jmz-903',
+    price: 'US$8.40–9.40 / pc',
+    moq: 'MOQ 50 pcs',
+    features: ['12-Level Suction', '41–48°C Heat', '12-Level EMS', '20-Min Auto-Off'],
   },
 ] as const;
 
@@ -257,7 +303,7 @@ export default function HomepagePreview(){
               </Link>
 
               <div className="flex min-w-0 flex-1 flex-col p-5 sm:p-6">
-                <p className="text-xs font-black uppercase tracking-[0.2em] text-violet-700">{product.model} · Body Care</p>
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-violet-700">{product.model} · {product.category}</p>
                 <h3 className="mt-3 text-xl font-semibold leading-tight tracking-tight text-[#302050] sm:text-2xl">{product.name}</h3>
                 <p className="mt-3 text-sm leading-6 text-zinc-600">{product.description}</p>
                 <div className="mt-4 flex flex-wrap gap-2">{product.features.map(feature => <span key={feature} className="rounded-full border border-violet-100 bg-violet-50 px-2.5 py-1 text-xs font-semibold text-violet-800">{feature}</span>)}</div>
