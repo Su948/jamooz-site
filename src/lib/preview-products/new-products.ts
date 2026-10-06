@@ -125,7 +125,6 @@ export const jmz802: ProductDetailConfig = {
     "Close-up of the JMZ-802 three-button control panel",
     "JMZ-802 used for a wrist relaxation session",
     "JMZ-802 fabric, seam and zipper detail",
-    "Top-down view of the JMZ-802 in use",
     "JMZ-802 air pressure, kneading and heating functions",
   ]),
   priceRange: "US$13.30–15.10 / pc",
