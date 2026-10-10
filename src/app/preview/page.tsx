@@ -25,11 +25,23 @@ const painStates = [
   { id:'p8',x:514,y:507,w:50,h:99,image:ali('//sc04.alicdn.com/kf/H221e3a936b6741758d1718b3bbec1a4ai/252717039/H221e3a936b6741758d1718b3bbec1a4ai.png') },
   { id:'p9',x:608,y:263,w:65,h:60,image:ali('//sc04.alicdn.com/kf/Hadfb85f0a827454a8ebf62c26e7dd5db8/252717039/Hadfb85f0a827454a8ebf62c26e7dd5db8.png') },
 ] as const;
-const bodyProductLinks = [
-  { label:'Facial Massager',x:1135,y:485,w:245,h:80,href:'https://www.alibaba.com/product-detail/2026-Most-Selling-Product-Women-s_11000030235200.html' },
-  { label:'Eye Massager',x:1410,y:485,w:245,h:80,href:'https://www.alibaba.com/product-detail/Portable-Rechargeable-Eye-Massager-Airbag-Compression_1601784338402.html' },
-  { label:'Scalp Massage Comb',x:1135,y:865,w:245,h:85,href:'https://www.alibaba.com/product-detail/2026-Upgraded-Electric-Scalp-Massage-Comb_1601809224462.html' },
-  { label:'Cat Scalp Massager',x:1410,y:865,w:245,h:85,href:'https://www.alibaba.com/product-detail/Cat-Smart-Handy-Automatic-Silicone-Rechargeable_1600295060563.html' },
+const headProducts = [
+  {
+    model: 'JMZ-908',
+    category: 'Eye Care',
+    name: 'EMS Air Compression Eye Massager',
+    image: '/products/jmz-908/01-hero.webp',
+    href: '/products/jmz-908',
+    price: 'Custom Quote',
+  },
+  {
+    model: 'JMZ-901',
+    category: 'Head & Scalp',
+    name: 'Rotating EMS Scalp Massager',
+    image: '/products/jmz-901/01-hero.webp',
+    href: '/products/jmz-901',
+    price: 'US$14.80–19.00 / pc',
+  },
 ] as const;
 
 const customGroups = [
@@ -198,6 +210,7 @@ const certificateImage = ali('//sc02.alicdn.com/kf/H99de7b20e65046c896d63f96a166
 
 export default function HomepagePreview(){
   const [painImage,setPainImage] = useState(painStates[0].image);
+  const [activePainId,setActivePainId] = useState<(typeof painStates)[number]['id']>(painStates[0].id);
   const [customGroup,setCustomGroup] = useState(0);
   const [customVariant,setCustomVariant] = useState(0);
   const [selectedServices,setSelectedServices] = useState<string[]>(['Logo Printing','Custom Packaging']);
@@ -306,7 +319,52 @@ export default function HomepagePreview(){
       </div>
     </section>
 
-    <section id="solutions" className="scroll-mt-24 bg-white py-10 md:py-14"><div className="mx-auto max-w-[1440px] px-3 md:px-6"><div className="relative mx-auto overflow-hidden" style={{aspectRatio:'1920 / 1059'}}><img src={painImage} alt="JAMOOZ body pain solution" className="absolute inset-0 h-full w-full object-contain" /><div className="absolute inset-x-0 top-0 z-[5] flex h-[16%] items-center justify-center bg-[#faf8ff] px-4"><h2 className="text-center text-[clamp(18px,2.2vw,38px)] font-semibold tracking-tight text-[#45245f]">Hover Over the Body to Explore Products</h2></div>{painStates.map(p=><button key={p.id} aria-label={`Show products for body area ${p.id}`} onMouseEnter={()=>setPainImage(p.image)} onFocus={()=>setPainImage(p.image)} onClick={()=>setPainImage(p.image)} className="absolute z-10 bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" style={{left:pct(p.x,1920),top:pct(p.y,1059),width:pct(p.w,1920),height:pct(p.h,1059)}} />)}{bodyProductLinks.map(product=><a key={product.label} href={product.href} target="_blank" rel="noreferrer" aria-label={`View ${product.label}`} title={`View ${product.label}`} className="absolute z-20 rounded-md bg-transparent transition hover:ring-2 hover:ring-violet-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" style={{left:pct(product.x,1920),top:pct(product.y,1059),width:pct(product.w,1920),height:pct(product.h,1059)}} />)}</div></div></section>
+    <section id="solutions" className="scroll-mt-24 bg-white py-10 md:py-14">
+      <div className="mx-auto max-w-[1440px] px-3 md:px-6">
+        <div className="relative mx-auto overflow-hidden" style={{aspectRatio:'1920 / 1059'}}>
+          <img src={painImage} alt="JAMOOZ body pain solution" className="absolute inset-0 h-full w-full object-contain" />
+          <div className="absolute inset-x-0 top-0 z-[5] flex h-[16%] items-center justify-center bg-[#faf8ff] px-4">
+            <h2 className="text-center text-[clamp(18px,2.2vw,38px)] font-semibold tracking-tight text-[#45245f]">Hover Over the Body to Explore Products</h2>
+          </div>
+          {painStates.map(p=><button
+            key={p.id}
+            aria-label={`Show products for body area ${p.id}`}
+            aria-pressed={activePainId===p.id}
+            onMouseEnter={()=>{setPainImage(p.image);setActivePainId(p.id)}}
+            onFocus={()=>{setPainImage(p.image);setActivePainId(p.id)}}
+            onClick={()=>{setPainImage(p.image);setActivePainId(p.id)}}
+            className="absolute z-10 bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
+            style={{left:pct(p.x,1920),top:pct(p.y,1059),width:pct(p.w,1920),height:pct(p.h,1059)}}
+          />)}
+          {activePainId==='p1'&&<div
+            aria-label="Head and eye care products"
+            aria-live="polite"
+            className="absolute z-[15] flex flex-col justify-center overflow-hidden bg-[#faf8ff]"
+            style={{left:pct(1030,1920),top:pct(160,1059),width:pct(790,1920),height:pct(875,1059),padding:'clamp(4px,1.2vw,18px)'}}
+          >
+            <p className="mb-[clamp(3px,0.7vw,10px)] text-center text-[clamp(7px,0.8vw,13px)] font-black uppercase tracking-[0.18em] text-violet-700">Head &amp; Eye Care</p>
+            <div className="grid grid-cols-2 gap-[clamp(4px,1vw,16px)]">
+              {headProducts.map(product=><Link
+                key={product.model}
+                href={product.href}
+                aria-label={`View ${product.model} ${product.name}`}
+                className="group flex min-w-0 flex-col overflow-hidden rounded-[clamp(6px,1.2vw,18px)] border border-violet-100 bg-white shadow-[0_8px_30px_rgba(74,47,112,0.08)] transition hover:-translate-y-1 hover:border-violet-300 hover:shadow-[0_12px_34px_rgba(74,47,112,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
+              >
+                <span className="relative block aspect-[4/3] overflow-hidden bg-[#f7f7f9]">
+                  <NextImage src={product.image} alt={`${product.model} ${product.name}`} fill sizes="(min-width: 1200px) 280px, 20vw" className="object-contain transition duration-500 group-hover:scale-[1.035]" />
+                </span>
+                <span className="flex flex-1 flex-col p-[clamp(4px,0.9vw,14px)]">
+                  <span className="text-[clamp(7px,0.72vw,12px)] font-black uppercase tracking-[0.14em] text-violet-700">{product.model} · {product.category}</span>
+                  <span className="mt-[clamp(2px,0.35vw,6px)] text-[clamp(9px,1vw,16px)] font-semibold leading-tight text-[#302050]">{product.name}</span>
+                  <span className="mt-auto pt-[clamp(3px,0.55vw,8px)] text-[clamp(8px,0.85vw,14px)] font-black text-[#302050]">{product.price}</span>
+                  <span className="mt-[clamp(3px,0.55vw,8px)] inline-flex w-full items-center justify-center rounded-full bg-violet-700 px-2 py-[clamp(3px,0.45vw,7px)] text-[clamp(7px,0.75vw,12px)] font-bold text-white transition group-hover:bg-violet-800">View Product →</span>
+                </span>
+              </Link>)}
+            </div>
+          </div>}
+        </div>
+      </div>
+    </section>
 
     <section id="product-range" aria-labelledby="featured-products-title" className="scroll-mt-24 border-y border-violet-100 bg-gradient-to-b from-white to-[#faf8ff] py-14 md:py-20">
       <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
