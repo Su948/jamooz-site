@@ -25,7 +25,15 @@ const painStates = [
   { id:'p8',x:514,y:507,w:50,h:99,image:ali('//sc04.alicdn.com/kf/H221e3a936b6741758d1718b3bbec1a4ai/252717039/H221e3a936b6741758d1718b3bbec1a4ai.png') },
   { id:'p9',x:608,y:263,w:65,h:60,image:ali('//sc04.alicdn.com/kf/Hadfb85f0a827454a8ebf62c26e7dd5db8/252717039/Hadfb85f0a827454a8ebf62c26e7dd5db8.png') },
 ] as const;
-const headProducts = [
+type BodyAreaProduct = Readonly<{
+  model: string;
+  category: string;
+  name: string;
+  image: string;
+  href: string;
+  price: string;
+}>;
+const headProducts: readonly BodyAreaProduct[] = [
   {
     model: 'JMZ-908',
     category: 'Eye Care',
@@ -42,7 +50,37 @@ const headProducts = [
     href: '/products/jmz-901',
     price: 'US$14.80–19.00 / pc',
   },
-] as const;
+];
+const neckProducts: readonly BodyAreaProduct[] = [
+  {
+    model: 'JMZ-R006',
+    category: 'Neck & Shoulder',
+    name: '3D Kneading Neck Massager',
+    image: '/products/jmz-r006/JMZ-R006-01-home-card.png',
+    href: '/products/jmz-r006',
+    price: 'US$20.90–22.50 / pc',
+  },
+  {
+    model: 'JMZ-729S',
+    category: 'Neck & Shoulder',
+    name: 'Contoured Neck Massage Pillow',
+    image: '/products/jmz-729s/01-hero.webp',
+    href: '/products/jmz-729s',
+    price: 'US$28.30–32.00 / pc',
+  },
+  {
+    model: 'JMZ-807P',
+    category: 'Neck & Shoulder',
+    name: 'Cloud Plus Heated Neck Pillow',
+    image: '/products/jmz-807p/01-hero.webp',
+    href: '/products/jmz-807p',
+    price: 'US$19.60–23.90 / pc',
+  },
+];
+const bodyAreaProductGroups = {
+  p1: { title: 'Head & Eye Care', ariaLabel: 'Head and eye care products', products: headProducts },
+  p9: { title: 'Neck & Shoulder Care', ariaLabel: 'Neck and shoulder care products', products: neckProducts },
+} as const;
 
 const customGroups = [
   { id:'c1',name:'Scalp Massager',fabric:false,logo:{x:72,y:75},colors:[{name:'White',hex:'#ffffff',file:'1.1.webp'},{name:'Green',hex:'#315d34',file:'1.2.webp'},{name:'Red',hex:'#d84d4d',file:'1.3.webp'},{name:'Purple',hex:'#8f86b9',file:'1.4.webp'}] },
@@ -222,6 +260,7 @@ export default function HomepagePreview(){
   const previewRef = useRef<HTMLDivElement>(null);
   const group = customGroups[customGroup];
   const activeColor = group.colors[customVariant] || group.colors[0];
+  const activePainGroup = bodyAreaProductGroups[activePainId as keyof typeof bodyAreaProductGroups];
   const chooseGroup = (i:number) => { setCustomGroup(i); setCustomVariant(0); setLogoPosition({x:customGroups[i].logo.x,y:customGroups[i].logo.y}); };
   const toggleService = (service:string) => setSelectedServices(current => current.includes(service) ? current.filter(item => item !== service) : [...current,service]);
   const selectionServiceNames = selectedServices.map(service => service === 'Logo Printing' ? 'Custom Logo' : service);
@@ -336,15 +375,15 @@ export default function HomepagePreview(){
             className="absolute z-10 bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
             style={{left:pct(p.x,1920),top:pct(p.y,1059),width:pct(p.w,1920),height:pct(p.h,1059)}}
           />)}
-          {activePainId==='p1'&&<div
-            aria-label="Head and eye care products"
+          {activePainGroup&&<div
+            aria-label={activePainGroup.ariaLabel}
             aria-live="polite"
             className="absolute z-[15] flex flex-col justify-center overflow-hidden bg-[#faf8ff]"
             style={{left:pct(1030,1920),top:pct(160,1059),width:pct(790,1920),height:pct(875,1059),padding:'clamp(4px,1.2vw,18px)'}}
           >
-            <p className="mb-[clamp(3px,0.7vw,10px)] text-center text-[clamp(7px,0.8vw,13px)] font-black uppercase tracking-[0.18em] text-violet-700">Head &amp; Eye Care</p>
-            <div className="grid grid-cols-2 gap-[clamp(4px,1vw,16px)]">
-              {headProducts.map(product=><Link
+            <p className="mb-[clamp(3px,0.7vw,10px)] text-center text-[clamp(7px,0.8vw,13px)] font-black uppercase tracking-[0.18em] text-violet-700">{activePainGroup.title}</p>
+            <div className={`grid gap-[clamp(4px,1vw,16px)] ${activePainGroup.products.length===3?'grid-cols-3':'grid-cols-2'}`}>
+              {activePainGroup.products.map(product=><Link
                 key={product.model}
                 href={product.href}
                 aria-label={`View ${product.model} ${product.name}`}
