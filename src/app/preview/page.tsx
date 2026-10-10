@@ -108,6 +108,28 @@ const featuredProducts = [
     moq: 'MOQ 50 pcs',
     features: ['12-Level Suction', '41–48°C Heat', '12-Level EMS', '20-Min Auto-Off'],
   },
+  {
+    model: 'JMZ-807P',
+    category: 'Neck & Shoulder',
+    name: 'Cloud Plus Heated Neck Massage Pillow',
+    description: 'A compact rechargeable neck pillow with three massage modes, three warming levels and layered contact panels.',
+    image: '/products/jmz-807p/01-hero.webp',
+    href: '/products/jmz-807p',
+    price: 'US$19.60–23.90 / pc',
+    moq: 'MOQ 50 pcs',
+    features: ['3 Massage Modes', '3 Heat Levels', '2600mAh', '15-Min Auto-Off'],
+  },
+  {
+    model: 'JMZ-901',
+    category: 'Head & Scalp',
+    name: 'Rotating EMS Scalp Massager with LED Light',
+    description: 'A handheld scalp massager with two-speed rotation, two EMS levels, red LED light and a 5 mL tank.',
+    image: '/products/jmz-901/01-hero.webp',
+    href: '/products/jmz-901',
+    price: 'US$14.80–19.00 / pc',
+    moq: 'MOQ 50 pcs',
+    features: ['2-Speed Rotation', '2-Level EMS', 'Red LED', '5 mL Tank'],
+  },
 ] as const;
 
 const scrollBg = ali('//sc04.alicdn.com/kf/Hd94f7581c62d4edaa1393c4d63bc2c4fK/252717039/Hd94f7581c62d4edaa1393c4d63bc2c4fK.png');

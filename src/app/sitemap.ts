@@ -5,7 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const indexablePages: MetadataRoute.Sitemap = [
     {
       url: companyFacts.website,
-      lastModified: "2026-10-04",
+      lastModified: "2026-10-10",
       changeFrequency: "weekly",
       priority: 1,
     },
@@ -23,13 +23,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${companyFacts.website}/products`,
-      lastModified: "2026-10-04",
+      lastModified: "2026-10-10",
       changeFrequency: "weekly",
       priority: 0.9,
     },
-    ...["jmz-702", "jmz-r006", "jmz-729s", "jmz-908", "jmz-802", "jmz-903"].map((slug) => ({
+    ...["jmz-702", "jmz-r006", "jmz-729s", "jmz-908", "jmz-802", "jmz-903", "jmz-807p", "jmz-706w", "jmz-706h", "jmz-901"].map((slug) => ({
       url: `${companyFacts.website}/products/${slug}`,
-      lastModified: "2026-10-04",
+      lastModified: ["jmz-807p", "jmz-706w", "jmz-706h", "jmz-901"].includes(slug) ? "2026-10-10" : "2026-10-04",
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
