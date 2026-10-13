@@ -1,6 +1,7 @@
 import Breadcrumbs from "@/components/Breadcrumbs";
 import InquiryForm from "@/components/InquiryForm";
 import ProductGallery from "@/components/ProductGallery";
+import ProductJsonLd from "@/components/ProductJsonLd";
 import RelatedProducts from "@/components/RelatedProducts";
 import { contactLinks } from "@/lib/company";
 import { liveCategoryFor } from "@/lib/product-categories";
@@ -46,7 +47,16 @@ export default function ProductDetailTemplate({ product }: { product: ProductDet
     <main className="overflow-x-hidden bg-[#fbfcfe] text-[#334055]">
       <section className="border-b border-[#dfe5ee] bg-[linear-gradient(135deg,#fbfdff_0%,#eef3f8_55%,#e6edf5_100%)] py-10 sm:py-14 lg:py-20">
         <div className={`${shell} grid items-center gap-10 lg:grid-cols-[55fr_45fr] lg:gap-14`}>
-          <div className="min-w-0 lg:col-span-2"><Breadcrumbs items={breadcrumbs} /></div>
+          <div className="min-w-0 lg:col-span-2">
+            <ProductJsonLd
+              model={product.model}
+              name={product.name}
+              description={product.description}
+              images={product.gallery.map((image) => image.src)}
+              path={sourcePage}
+            />
+            <Breadcrumbs items={breadcrumbs} />
+          </div>
           <ProductGallery model={product.model} images={product.gallery} />
 
           <div className="min-w-0">

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import InquiryForm from "@/components/InquiryForm";
 import Jmz702Gallery from "@/components/Jmz702Gallery";
+import ProductJsonLd from "@/components/ProductJsonLd";
 import { contactLinks } from "@/lib/company";
 import { jmz702Prices, jmz702Specs, type Jmz702SpecStatus } from "@/lib/preview-products/jmz-702";
 import { buildWhatsAppInquiryMessage } from "@/lib/whatsapp";
@@ -48,7 +49,16 @@ export default function Jmz702PreviewPage() {
     <main className="overflow-x-hidden bg-[#fbfcfe] text-[#334055]">
       <section className="border-b border-[#dfe5ee] bg-[linear-gradient(135deg,#fbfdff_0%,#eef3f8_55%,#e6edf5_100%)] py-10 sm:py-14 lg:py-20">
         <div className={`${shell} grid items-center gap-10 lg:grid-cols-[55fr_45fr] lg:gap-14`}>
-          <div className="min-w-0 lg:col-span-2"><Breadcrumbs items={breadcrumbs} /></div>
+          <div className="min-w-0 lg:col-span-2">
+            <ProductJsonLd
+              model="JMZ-702"
+              name="Heated Vibration Egg Massage Chair"
+              description="A compact, contoured massage seat with adjustable warming and three-level vibration for home, office and everyday relaxation settings."
+              images={jmz702Gallery.map((image) => image.src)}
+              path={sourcePage}
+            />
+            <Breadcrumbs items={breadcrumbs} />
+          </div>
           <Jmz702Gallery />
 
           <div className="min-w-0">
