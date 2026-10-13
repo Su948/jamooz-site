@@ -77,6 +77,22 @@ const neckProducts: readonly BodyAreaProduct[] = [
     href: '/products/jmz-807p',
     price: 'US$19.60–23.90 / pc',
   },
+  {
+    model: 'JMZ-706H',
+    category: 'Neck & Shoulder',
+    name: 'Cordless 4-Point Heated Neck Massage Pillow',
+    image: '/products/jmz-706h/01-hero.webp',
+    href: '/products/jmz-706h',
+    price: 'US$21.50–26.00 / pc',
+  },
+  {
+    model: 'JMZ-706W',
+    category: 'Neck & Shoulder',
+    name: '4-Point Heated Neck & Trapezius Massage Pillow',
+    image: '/products/jmz-706w/01-hero.webp',
+    href: '/products/jmz-706w',
+    price: 'US$17.80–21.00 / pc',
+  },
 ];
 const bodyAreaProductGroups = {
   p1: { title: 'Head & Eye Care', ariaLabel: 'Head and eye care products', products: headProducts },
@@ -411,7 +427,7 @@ export default function HomepagePreview(){
             style={{left:pct(1030,1920),top:pct(160,1059),width:pct(790,1920),height:pct(875,1059),padding:'clamp(4px,1.2vw,18px)'}}
           >
             <p className="mb-[clamp(3px,0.7vw,10px)] text-center text-[clamp(7px,0.8vw,13px)] font-black uppercase tracking-[0.18em] text-violet-700">{activePainGroup.title}</p>
-            <div className={`grid gap-[clamp(4px,1vw,16px)] ${activePainGroup.products.length===3?'grid-cols-3':'grid-cols-2'}`}>
+            <div className={`grid gap-[clamp(4px,1vw,16px)] ${activePainGroup.products.length>=3?'grid-cols-3':'grid-cols-2'}`}>
               {activePainGroup.products.map(product=><Link
                 key={product.model}
                 href={product.href}
