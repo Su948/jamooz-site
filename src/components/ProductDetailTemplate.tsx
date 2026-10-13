@@ -117,9 +117,9 @@ export default function ProductDetailTemplate({ product }: { product: ProductDet
           <p className={sectionLabel}>Data transparency</p>
           <h2 className={sectionTitle}>Product Specifications</h2>
           <p className="mt-4 max-w-3xl leading-7 text-[#607086]">{product.specsIntro}</p>
-          <div className="mt-10 overflow-hidden rounded-3xl border border-[#d4dde8] bg-white">
+          <div className="mt-10 overflow-x-auto rounded-3xl border border-[#d4dde8] bg-white">
             <table className="w-full table-fixed border-collapse text-left text-sm">
-              <thead className="bg-[#172b48] text-white"><tr><th className="w-[32%] px-3 py-4 font-bold sm:px-5">Item</th><th className="w-[46%] px-3 py-4 font-bold sm:px-5">Value</th><th className="w-[22%] px-2 py-4 font-bold sm:px-5">Status</th></tr></thead>
+              <thead className="bg-[#172b48] text-white"><tr><th className="w-[34%] px-3 py-4 font-bold lg:w-[32%] sm:px-5">Item</th><th className="w-[36%] px-3 py-4 font-bold lg:w-[46%] sm:px-5">Value</th><th className="w-[30%] px-2 py-4 font-bold lg:w-[22%] sm:px-5">Status</th></tr></thead>
               <tbody>{product.specs.map((spec, index) => <tr key={spec.item} className={index % 2 === 0 ? "bg-white" : "bg-[#f7faff]"}><th scope="row" className="break-words border-t border-[#e3e9f0] px-3 py-4 font-bold text-[#26364d] sm:px-5">{spec.item}</th><td className="break-words border-t border-[#e3e9f0] px-3 py-4 leading-6 text-[#607086] sm:px-5">{spec.value}</td><td className="border-t border-[#e3e9f0] px-2 py-4 sm:px-5"><span className={`inline-flex max-w-full rounded-full px-2 py-1 text-[9px] font-black uppercase tracking-wide ring-1 ring-inset sm:px-2.5 sm:text-[10px] ${statusStyles[spec.status]}`}>{spec.status}</span></td></tr>)}</tbody>
             </table>
           </div>

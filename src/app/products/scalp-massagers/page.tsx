@@ -193,9 +193,9 @@ export default function ScalpMassagersPage() {
           </article>
 
           <p className="mt-10 text-[11px] font-black uppercase tracking-[0.2em] text-[#315b8d]">Confirmed specification (JMZ-901)</p>
-          <div className="mt-4 overflow-hidden rounded-3xl border border-[#d4dde8] bg-white">
+          <div className="mt-4 overflow-x-auto rounded-3xl border border-[#d4dde8] bg-white">
             <table className="w-full table-fixed border-collapse text-left text-sm">
-              <thead className="bg-[#172b48] text-white"><tr><th className="w-[48%] px-3 py-4 font-bold sm:px-5">Item</th><th className="w-[32%] px-3 py-4 font-bold sm:px-5">Confirmed value</th><th className="w-[20%] px-2 py-4 font-bold sm:px-5">Status</th></tr></thead>
+              <thead className="bg-[#172b48] text-white"><tr><th className="w-[40%] px-3 py-4 font-bold lg:w-[48%] sm:px-5">Item</th><th className="w-[30%] px-3 py-4 font-bold lg:w-[32%] sm:px-5">Confirmed value</th><th className="w-[30%] px-2 py-4 font-bold lg:w-[20%] sm:px-5">Status</th></tr></thead>
               <tbody>
                 {confirmedSpecs.map((spec, index) => (
                   <tr key={spec.item} className={index % 2 === 0 ? "bg-white" : "bg-[#f7faff]"}>
@@ -219,7 +219,7 @@ export default function ScalpMassagersPage() {
         <div className={shell}>
           <p className={sectionLabel}>Customisation</p>
           <h2 className={sectionTitle}>What Can Be Customised on a Scalp Massager?</h2>
-          <div className="mt-10 overflow-hidden rounded-3xl border border-[#d4dde8] bg-white">
+          <div className="mt-10 overflow-x-auto rounded-3xl border border-[#d4dde8] bg-white">
             <table className="w-full border-collapse text-left text-sm">
               <thead className="bg-[#172b48] text-white"><tr><th className="px-3 py-4 font-bold sm:px-5">Customisation</th><th className="px-3 py-4 font-bold sm:px-5">Standard minimum order</th></tr></thead>
               <tbody>

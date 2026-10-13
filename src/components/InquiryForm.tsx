@@ -71,8 +71,8 @@ export default function InquiryForm({
   }
 
   const inputClass = isDark
-    ? "mt-2 min-h-12 w-full rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-base font-normal normal-case tracking-normal text-white outline-none focus:border-violet-300 focus:bg-white/15 sm:text-sm"
-    : "mt-2 min-h-12 w-full rounded-xl border border-border-warm bg-white px-4 py-3 text-base font-normal normal-case tracking-normal text-foreground outline-none focus:border-accent focus:ring-2 focus:ring-accent/15 sm:text-sm";
+    ? "mt-2 min-h-12 w-full rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-base font-normal normal-case tracking-normal text-white outline-none focus:border-violet-300 focus:bg-white/15 focus-visible:ring-2 focus-visible:ring-violet-300/70 sm:text-sm"
+    : "mt-2 min-h-12 w-full rounded-xl border border-border-warm bg-white px-4 py-3 text-base font-normal normal-case tracking-normal text-foreground outline-none focus:border-accent focus:ring-2 focus:ring-accent/15 focus-visible:ring-2 focus-visible:ring-accent/50 sm:text-sm";
   const labelClass = isDark ? "text-xs font-bold uppercase tracking-wider text-white/70" : "text-xs font-bold uppercase tracking-wider text-muted";
 
   return (
@@ -81,7 +81,7 @@ export default function InquiryForm({
       {primaryFields.map((field) => (
         <label key={field.name} className={`${labelClass} min-w-0 ${field.name === "product" ? "sm:col-span-2" : ""}`}>
           {field.label}{field.required && " *"}
-          <input name={field.name} type={field.type} required={field.required} autoComplete={field.autoComplete} defaultValue={field.name === "product" ? initialProduct : undefined} maxLength={field.name === "email" ? 254 : 180} data-clarity-mask="true" className={inputClass} />
+          <input name={field.name} type={field.type} required={field.required} autoComplete={field.autoComplete} defaultValue={field.name === "product" ? initialProduct : undefined} title={field.name === "product" ? initialProduct : undefined} maxLength={field.name === "email" ? 254 : 180} data-clarity-mask="true" className={inputClass} />
         </label>
       ))}
 
