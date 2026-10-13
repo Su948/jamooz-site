@@ -53,7 +53,7 @@ const retailChecks = [
   },
   {
     title: "Contact head and build",
-    copy: "JMZ-901 has a rotating contact head with two rotation speeds, two EMS levels and red LED light, plus a refillable 5 mL ampoule tank. Whether that combination suits your retail positioning is best checked against the model specification.",
+    copy: "JMZ-901 has a rotating contact head with two rotation speeds, two EMS levels and red LED light, plus a refillable 5 mL ampoule tank. Whether that combination suits your retail positioning should be checked against the model specification.",
   },
   {
     title: "Retail packaging",
