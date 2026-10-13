@@ -27,6 +27,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.9,
     },
+    {
+      url: `${companyFacts.website}/products/scalp-massagers`,
+      lastModified: "2026-10-13",
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
     ...["jmz-702", "jmz-r006", "jmz-729s", "jmz-908", "jmz-802", "jmz-903", "jmz-807p", "jmz-706w", "jmz-706h", "jmz-901"].map((slug) => ({
       url: `${companyFacts.website}/products/${slug}`,
       lastModified: ["jmz-807p", "jmz-706w", "jmz-706h", "jmz-901"].includes(slug) ? "2026-10-10" : "2026-10-04",

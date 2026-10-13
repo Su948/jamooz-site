@@ -1,6 +1,9 @@
+import Breadcrumbs from "@/components/Breadcrumbs";
 import InquiryForm from "@/components/InquiryForm";
 import ProductGallery from "@/components/ProductGallery";
+import RelatedProducts from "@/components/RelatedProducts";
 import { contactLinks } from "@/lib/company";
+import { liveCategoryFor } from "@/lib/product-categories";
 import type { ProductDetailConfig, ProductSpecStatus } from "@/lib/product-detail";
 import { buildWhatsAppInquiryMessage } from "@/lib/whatsapp";
 
@@ -22,10 +25,28 @@ export default function ProductDetailTemplate({ product }: { product: ProductDet
   const productName = `${product.model} – ${product.name}`;
   const whatsappUrl = contactLinks.whatsapp(buildWhatsAppInquiryMessage({ sourcePage, product: productName }));
 
+  // D020 rule B-2: the category level only appears once that category page is
+  // live, so products without a published category keep a two-segment trail.
+  const category = liveCategoryFor(product.category);
+  const breadcrumbs = [
+    { name: "Home", href: "/" },
+    { name: "Products", href: "/products" },
+    ...(category ? [{ name: category.label, href: category.href }] : []),
+    { name: product.model, href: sourcePage },
+  ];
+
+  // D020 rule N-7: related links must resolve to real pages. Today the only
+  // reachable relative of a product is its category page; same-cluster product
+  // links are added once those products are published.
+  const relatedProducts = category
+    ? [{ href: category.href, eyebrow: "Category", name: category.label, linkLabel: "View Category" }]
+    : [];
+
   return (
     <main className="overflow-x-hidden bg-[#fbfcfe] text-[#334055]">
       <section className="border-b border-[#dfe5ee] bg-[linear-gradient(135deg,#fbfdff_0%,#eef3f8_55%,#e6edf5_100%)] py-10 sm:py-14 lg:py-20">
         <div className={`${shell} grid items-center gap-10 lg:grid-cols-[55fr_45fr] lg:gap-14`}>
+          <div className="min-w-0 lg:col-span-2"><Breadcrumbs items={breadcrumbs} /></div>
           <ProductGallery model={product.model} images={product.gallery} />
 
           <div className="min-w-0">
@@ -105,6 +126,8 @@ export default function ProductDetailTemplate({ product }: { product: ProductDet
           </div>
         </div>
       </section>
+
+      <RelatedProducts items={relatedProducts} />
 
       <section id="inquiry" className="scroll-mt-24 bg-[#172b48] py-20 text-white sm:py-24">
         <div className={`${shell} grid gap-12 lg:grid-cols-[.82fr_1.18fr]`}>
