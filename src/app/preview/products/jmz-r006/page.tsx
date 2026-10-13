@@ -5,7 +5,7 @@ import InquiryForm from "@/components/InquiryForm";
 import JmzR006Gallery from "@/components/JmzR006Gallery";
 import ProductJsonLd from "@/components/ProductJsonLd";
 import { contactLinks } from "@/lib/company";
-import { jmzR006Prices, jmzR006Specs, type JmzR006SpecStatus } from "@/lib/preview-products/jmz-r006";
+import { jmzR006Gallery, jmzR006Prices, jmzR006Specs, type JmzR006SpecStatus } from "@/lib/preview-products/jmz-r006";
 import { buildWhatsAppInquiryMessage } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
