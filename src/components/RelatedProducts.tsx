@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { CategoryGuide } from "@/lib/product-categories";
 
 export type RelatedProductItem = {
   href: string;
@@ -22,14 +23,17 @@ const sectionTitle = "mt-3 text-3xl font-semibold tracking-[-0.035em] text-[#172
  */
 export default function RelatedProducts({
   items,
+  guides = [],
   label = "Related",
   title = "Related Products",
 }: {
   items: readonly RelatedProductItem[];
+  /** Decision guides for this cluster, anchored by their own published titles. */
+  guides?: readonly CategoryGuide[];
   label?: string;
   title?: string;
 }) {
-  if (items.length === 0) return null;
+  if (items.length === 0 && guides.length === 0) return null;
 
   return (
     <section className="border-t border-[#dfe5ee] bg-white py-16 sm:py-20">
@@ -56,6 +60,24 @@ export default function RelatedProducts({
             </article>
           ))}
         </div>
+
+        {guides.length > 0 && (
+          <div className="mt-10 border-t border-[#e3e9f0] pt-8">
+            <p className={sectionLabel}>Category guides</p>
+            <ul className="mt-4 grid gap-3">
+              {guides.map((guide) => (
+                <li key={guide.href}>
+                  <Link
+                    href={guide.href}
+                    className="text-sm font-bold text-[#244f82] underline decoration-[#244f82]/30 underline-offset-4 transition hover:decoration-[#244f82]"
+                  >
+                    {guide.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </section>
   );

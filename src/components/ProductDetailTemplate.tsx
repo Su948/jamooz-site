@@ -144,7 +144,7 @@ export default function ProductDetailTemplate({ product }: { product: ProductDet
         title={`Frequently Asked Questions About ${product.model}`}
       />
 
-      <RelatedProducts items={relatedProducts} />
+      <RelatedProducts items={relatedProducts} guides={category?.guides ?? []} />
 
       <section id="inquiry" className="scroll-mt-24 bg-[#172b48] py-20 text-white sm:py-24">
         <div className={`${shell} grid gap-12 lg:grid-cols-[.82fr_1.18fr]`}>

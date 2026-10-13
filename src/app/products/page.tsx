@@ -173,6 +173,31 @@ export default function ProductsPage() {
               </div>
             </div>
           ))}
+
+          <div className="rounded-3xl border border-violet-100 bg-violet-50/60 p-6 sm:p-8">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-violet-700">Buyer guides</p>
+            <h2 className="mt-3 text-xl font-semibold tracking-tight sm:text-2xl">
+              Before you specify a scalp massager
+            </h2>
+            <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+              <li>
+                <Link
+                  href="/guides/choose-scalp-massager-supplier"
+                  className="text-sm font-bold text-violet-800 underline decoration-violet-300 underline-offset-4 transition hover:decoration-violet-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
+                >
+                  How to check a scalp massager supplier before ordering
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/guides/ems-vs-vibration-scalp-massager"
+                  className="text-sm font-bold text-violet-800 underline decoration-violet-300 underline-offset-4 transition hover:decoration-violet-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
+                >
+                  What separates an EMS scalp massager from a vibration one
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
     </div>

@@ -7,6 +7,12 @@
  * and the product breadcrumbs.
  */
 
+export type CategoryGuide = {
+  /** Descriptive anchor text — the guide's own published title. */
+  label: string;
+  href: string;
+};
+
 export type LiveProductCategory = {
   /** Category value used by the product configurations in `lib/preview-products`. */
   category: string;
@@ -14,6 +20,11 @@ export type LiveProductCategory = {
   label: string;
   /** Live category page. */
   href: string;
+  /**
+   * Decision guides belonging to this cluster. Cluster content is linked from
+   * the cluster's own pages, so unrelated product pages never repeat it.
+   */
+  guides?: readonly CategoryGuide[];
 };
 
 export const liveProductCategories: readonly LiveProductCategory[] = [
@@ -21,6 +32,16 @@ export const liveProductCategories: readonly LiveProductCategory[] = [
     category: "Head & Scalp",
     label: "Scalp & Hair Care",
     href: "/products/scalp-massagers",
+    guides: [
+      {
+        label: "EMS vs vibration scalp massagers: how the two mechanisms differ",
+        href: "/guides/ems-vs-vibration-scalp-massager",
+      },
+      {
+        label: "How to choose a scalp massager supplier",
+        href: "/guides/choose-scalp-massager-supplier",
+      },
+    ],
   },
 ];
 

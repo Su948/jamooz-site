@@ -26,6 +26,8 @@ const sectionTitle = "mt-3 text-3xl font-semibold tracking-[-0.035em] text-[#172
 const primaryButton = "inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#244f82] px-6 py-3.5 text-sm font-black tracking-[0.08em] text-white shadow-lg shadow-[#244f82]/20 transition hover:-translate-y-0.5 hover:bg-[#193d69]";
 const secondaryButton = "inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[#244f82] bg-white px-6 py-3.5 text-sm font-black tracking-[0.08em] text-[#244f82] transition hover:-translate-y-0.5 hover:bg-[#f4f8fc]";
 const bodyCopy = "leading-7 text-[#607086]";
+const guideLinkCls =
+  "font-bold text-[#244f82] underline decoration-[#244f82]/30 underline-offset-4 transition hover:decoration-[#244f82]";
 
 const statusStyles = {
   Confirmed: "bg-emerald-50 text-emerald-800 ring-emerald-200",
@@ -268,6 +270,17 @@ export default function ScalpMassagersPage() {
               </li>
             ))}
           </ol>
+          <p className={`mt-8 max-w-3xl ${bodyCopy}`}>
+            Two guides go deeper on the decisions behind this framework —{" "}
+            <Link href="/guides/choose-scalp-massager-supplier" className={guideLinkCls}>
+              the scalp massager supplier checklist
+            </Link>{" "}
+            and{" "}
+            <Link href="/guides/ems-vs-vibration-scalp-massager" className={guideLinkCls}>
+              how EMS and vibration structures differ
+            </Link>
+            .
+          </p>
         </div>
       </section>
 
