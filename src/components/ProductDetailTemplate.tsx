@@ -1,9 +1,11 @@
 import Breadcrumbs from "@/components/Breadcrumbs";
+import FaqBlock from "@/components/FaqBlock";
 import InquiryForm from "@/components/InquiryForm";
 import ProductGallery from "@/components/ProductGallery";
 import ProductJsonLd from "@/components/ProductJsonLd";
 import RelatedProducts from "@/components/RelatedProducts";
 import { contactLinks } from "@/lib/company";
+import { productFaqs } from "@/lib/faq";
 import { liveCategoryFor } from "@/lib/product-categories";
 import type { ProductDetailConfig, ProductSpecStatus } from "@/lib/product-detail";
 import { buildWhatsAppInquiryMessage } from "@/lib/whatsapp";
@@ -136,6 +138,11 @@ export default function ProductDetailTemplate({ product }: { product: ProductDet
           </div>
         </div>
       </section>
+
+      <FaqBlock
+        items={productFaqs[product.slug] ?? []}
+        title={`Frequently Asked Questions About ${product.model}`}
+      />
 
       <RelatedProducts items={relatedProducts} />
 

@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
+import FaqBlock from '@/components/FaqBlock';
+import { customFaqs } from '@/lib/faq';
 
 type Choice = {
   label: string;
@@ -110,6 +112,8 @@ export default function CustomPage() {
               </div>
             ))}
           </div>
+
+          <FaqBlock items={customFaqs} variant="warm" title="Customisation FAQ" />
         </div>
 
         {/* Controls Side */}
