@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import InquiryForm from "@/components/InquiryForm";
 import Jmz702Gallery from "@/components/Jmz702Gallery";
 import { contactLinks } from "@/lib/company";
@@ -36,11 +37,18 @@ export default function Jmz702PreviewPage() {
   const sourcePage = "/products/jmz-702";
   const productName = "JMZ-702 – Heated Vibration Egg Massage Chair";
   const whatsappUrl = contactLinks.whatsapp(buildWhatsAppInquiryMessage({ sourcePage, product: productName }));
+  // Two-segment trail until the Body Care category page is published (D020 rule B-2).
+  const breadcrumbs = [
+    { name: "Home", href: "/" },
+    { name: "Products", href: "/products" },
+    { name: "JMZ-702", href: sourcePage },
+  ];
 
   return (
     <main className="overflow-x-hidden bg-[#fbfcfe] text-[#334055]">
       <section className="border-b border-[#dfe5ee] bg-[linear-gradient(135deg,#fbfdff_0%,#eef3f8_55%,#e6edf5_100%)] py-10 sm:py-14 lg:py-20">
         <div className={`${shell} grid items-center gap-10 lg:grid-cols-[55fr_45fr] lg:gap-14`}>
+          <div className="min-w-0 lg:col-span-2"><Breadcrumbs items={breadcrumbs} /></div>
           <Jmz702Gallery />
 
           <div className="min-w-0">

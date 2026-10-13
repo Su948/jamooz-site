@@ -5,7 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const indexablePages: MetadataRoute.Sitemap = [
     {
       url: companyFacts.website,
-      lastModified: "2026-10-10",
+      lastModified: "2026-10-13",
       changeFrequency: "weekly",
       priority: 1,
     },
@@ -23,7 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${companyFacts.website}/products`,
-      lastModified: "2026-10-10",
+      lastModified: "2026-10-13",
       changeFrequency: "weekly",
       priority: 0.9,
     },

@@ -1,8 +1,13 @@
 import Link from 'next/link';
 import { companyFacts, contactLinks } from '@/lib/company';
 import { operationalClaims } from '@/lib/operational-claims';
+import { liveCategoryFor } from '@/lib/product-categories';
 
 export default function Footer() {
+  // A footer category entry points at its category page only when that page is
+  // live (D020 §3.5); entries without one keep leading to the products hub.
+  const scalpCategory = liveCategoryFor('Head & Scalp');
+
   return (
     <footer className="border-t border-border-warm bg-surface-dark text-white">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -21,7 +26,8 @@ export default function Footer() {
           <div>
             <h3 className="mono-label text-xs font-bold text-white/50">Solutions</h3>
             <ul className="mt-5 space-y-3 text-sm text-white/68">
-              <li><Link href="/products" className="hover:text-white">Scalp massagers</Link></li>
+              <li><Link href="/products" className="hover:text-white">All massage products</Link></li>
+              <li><Link href={scalpCategory?.href ?? "/products"} className="hover:text-white">Scalp massagers</Link></li>
               <li><Link href="/products" className="hover:text-white">Recovery devices</Link></li>
               <li><Link href="/products" className="hover:text-white">Red light therapy</Link></li>
               <li><Link href="/custom" className="hover:text-white">Custom product lines</Link></li>

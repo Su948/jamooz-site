@@ -3,6 +3,7 @@
 import NextImage from 'next/image';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
+import { liveCategoryFor } from '@/lib/product-categories';
 
 const ali = (path: string) => `https:${path}`;
 const pct = (n:number,total:number) => `${(n/total)*100}%`;
@@ -353,7 +354,13 @@ export default function HomepagePreview(){
         <h1 id="body-solutions-title" className="text-3xl font-semibold tracking-tight text-[#302050] sm:text-4xl">Massage Solutions for Every Part of the Body</h1>
         <p className="mx-auto mt-4 max-w-[980px] text-sm leading-6 text-zinc-600 sm:text-base sm:leading-7">Discover our range of scalp massagers, neck and shoulder massagers, massage pillows, back massagers, foot massagers and electric cupping devices—designed for different wellness needs and global markets.</p>
         <nav aria-label="Product solution categories" className="mt-6 flex flex-wrap justify-center gap-2.5 md:flex-nowrap">
-          {seoCategories.map(category=><a key={category} href="#product-range" className="inline-flex min-h-9 items-center justify-center whitespace-nowrap rounded-full border border-violet-200 bg-white px-4 py-2 text-xs font-semibold text-violet-800 transition hover:border-violet-400 hover:bg-violet-50">{category}</a>)}
+          {seoCategories.map(category=>{
+            const categoryPage = liveCategoryFor(category);
+            const chipClass = "inline-flex min-h-9 items-center justify-center whitespace-nowrap rounded-full border border-violet-200 bg-white px-4 py-2 text-xs font-semibold text-violet-800 transition hover:border-violet-400 hover:bg-violet-50";
+            return categoryPage
+              ? <Link key={category} href={categoryPage.href} className={chipClass}>{category}</Link>
+              : <a key={category} href="#product-range" className={chipClass}>{category}</a>;
+          })}
         </nav>
       </div>
     </section>

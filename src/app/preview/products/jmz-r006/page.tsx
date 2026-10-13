@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import InquiryForm from "@/components/InquiryForm";
 import JmzR006Gallery from "@/components/JmzR006Gallery";
 import { contactLinks } from "@/lib/company";
@@ -35,11 +36,18 @@ export default function JmzR006PreviewPage() {
   const sourcePage = "/products/jmz-r006";
   const productName = "JMZ-R006 – 3D Kneading Neck & Shoulder Massager";
   const whatsappUrl = contactLinks.whatsapp(buildWhatsAppInquiryMessage({ sourcePage, product: productName }));
+  // Two-segment trail until the Neck & Shoulder category page is published (D020 rule B-2).
+  const breadcrumbs = [
+    { name: "Home", href: "/" },
+    { name: "Products", href: "/products" },
+    { name: "JMZ-R006", href: sourcePage },
+  ];
 
   return (
     <main className="overflow-x-hidden bg-[#fbfcfe] text-[#334055]">
       <section className="border-b border-[#dfe5ee] bg-[linear-gradient(135deg,#fbfdff_0%,#eef3f8_55%,#e6edf5_100%)] py-10 sm:py-14 lg:py-20">
         <div className={`${shell} grid items-center gap-10 lg:grid-cols-[55fr_45fr] lg:gap-14`}>
+          <div className="min-w-0 lg:col-span-2"><Breadcrumbs items={breadcrumbs} /></div>
           <JmzR006Gallery />
           <div className="min-w-0">
             <p className={sectionLabel}>JMZ-R006 · OEM / ODM NECK MASSAGER</p>
