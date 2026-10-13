@@ -50,6 +50,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: `${companyFacts.website}/guides/ems-vs-vibration-scalp-massager`,
+      lastModified: "2026-10-13",
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${companyFacts.website}/guides/choose-scalp-massager-supplier`,
+      lastModified: "2026-10-13",
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     ...["jmz-702", "jmz-r006", "jmz-729s", "jmz-908", "jmz-802", "jmz-903", "jmz-807p", "jmz-706w", "jmz-706h", "jmz-901"].map((slug) => ({
       url: `${companyFacts.website}/products/${slug}`,
       lastModified: productLastModified[slug] ?? defaultProductLastModified,

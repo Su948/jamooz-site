@@ -99,6 +99,78 @@ export const productFaqs: Record<string, readonly FaqEntry[]> = {
   ],
 };
 
+/**
+ * FAQ content for the decision guides, keyed by guide slug.
+ *
+ * One question that the source brief marked as awaiting business confirmation
+ * ("Do you also make vibration scalp massagers?") is deliberately absent, as
+ * instructed: the capability is not confirmed, so the question is not published.
+ */
+export const guideFaqs: Record<string, readonly FaqEntry[]> = {
+  "ems-vs-vibration-scalp-massager": [
+    {
+      question: "Which one does JAMOOZ currently manufacture?",
+      answer:
+        "JMZ-901 — a rotating scalp massager with a 2-level EMS function, red LED light and a refillable 5 mL ampoule tank.",
+    },
+    {
+      question: "Does an EMS scalp massager pass current through the skin?",
+      answer:
+        "Yes — the EMS function works through electrodes in contact with the skin, and intensity is selected by level (2 levels on JMZ-901). Vibration devices do not pass current to the skin.",
+    },
+    {
+      question: "What is the MOQ and price for the EMS model?",
+      answer: "50 pcs; US$14.80–19.00 per piece, with volume tiers from 50 to 5,000+ pcs.",
+    },
+    {
+      question: "Can the structure be customised for our brand?",
+      answer:
+        "Logo, colour and retail packaging are standard customisations (from 500 pcs; corrugated box from 300 pcs). Structural changes are evaluated per project as ODM.",
+    },
+    {
+      question: "How should the device be cleaned?",
+      answer:
+        "Follow the supplied instructions. The electrode area should be kept clean and dry; the ampoule tank and channels (when present) need cleaning according to the manual. Water resistance is TBC and is not claimed on this page.",
+    },
+  ],
+  "choose-scalp-massager-supplier": [
+    {
+      question: "What is the MOQ for a scalp massager?",
+      answer: "50 pcs for JMZ-901.",
+    },
+    {
+      question: "What is the minimum order for each customisation?",
+      answer:
+        "Logo 500 pcs, colour 500 pcs per colour, colour box 500 pcs, corrugated box 300 pcs. Smaller customised runs can be discussed with an additional charge.",
+    },
+    {
+      question: "How much does a sample cost?",
+      answer:
+        "The JMZ-901 sample price is US$30.00; shipping is quoted separately and all figures are confirmed in the quotation.",
+    },
+    {
+      question: "What is your lead time and payment term?",
+      answer:
+        "These are confirmed with the quotation and order terms — we do not publish a fixed figure.",
+    },
+    {
+      question: "What documents can you provide?",
+      answer:
+        "Product specification sheets and manuals, plus documentation according to the model and destination market. Please contact us to confirm the applicable files before ordering.",
+    },
+    {
+      question: "Do you accept ODM (product-level) customisation?",
+      answer:
+        "Structural and functional customisation is evaluated per project — please send your requirement and we will confirm feasibility, tooling and minimum quantity.",
+    },
+    {
+      question: "Can I get the packaging specification before ordering?",
+      answer:
+        "Outer-carton volume and weight are measured per order (Carton Spec) and used for sea/air freight quotations, so the exact box specification is confirmed with the order.",
+    },
+  ],
+};
+
 export const customFaqs: readonly FaqEntry[] = [
   {
     question: "What can be customised without new tooling?",
