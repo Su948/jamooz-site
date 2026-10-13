@@ -126,13 +126,13 @@ export default function Jmz702PreviewPage() {
           <p className={sectionLabel}>Data transparency</p>
           <h2 className={sectionTitle}>Product Specifications</h2>
           <p className="mt-4 max-w-3xl leading-7 text-[#607086]">Confirmed operating details are separated from packing data that still needs final project confirmation.</p>
-          <div className="mt-10 overflow-hidden rounded-3xl border border-[#d4dde8] bg-white">
+          <div className="mt-10 overflow-x-auto rounded-3xl border border-[#d4dde8] bg-white">
             <table className="w-full table-fixed border-collapse text-left text-sm">
               <thead className="bg-[#172b48] text-white">
                 <tr>
-                  <th className="w-[32%] px-3 py-4 font-bold sm:px-5">Item</th>
-                  <th className="w-[46%] px-3 py-4 font-bold sm:px-5">Value</th>
-                  <th className="w-[22%] px-2 py-4 font-bold sm:px-5">Status</th>
+                  <th className="w-[34%] px-3 py-4 font-bold lg:w-[32%] sm:px-5">Item</th>
+                  <th className="w-[36%] px-3 py-4 font-bold lg:w-[46%] sm:px-5">Value</th>
+                  <th className="w-[30%] px-2 py-4 font-bold lg:w-[22%] sm:px-5">Status</th>
                 </tr>
               </thead>
               <tbody>

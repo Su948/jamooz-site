@@ -81,7 +81,11 @@ export default function InquiryForm({
       {primaryFields.map((field) => (
         <label key={field.name} className={`${labelClass} min-w-0 ${field.name === "product" ? "sm:col-span-2" : ""}`}>
           {field.label}{field.required && " *"}
-          <input name={field.name} type={field.type} required={field.required} autoComplete={field.autoComplete} defaultValue={field.name === "product" ? initialProduct : undefined} title={field.name === "product" ? initialProduct : undefined} maxLength={field.name === "email" ? 254 : 180} data-clarity-mask="true" className={inputClass} />
+          {field.name === "product" ? (
+            <textarea name={field.name} rows={2} required={field.required} autoComplete={field.autoComplete} defaultValue={initialProduct} title={initialProduct} maxLength={180} data-clarity-mask="true" className={`${inputClass} resize-none`} />
+          ) : (
+            <input name={field.name} type={field.type} required={field.required} autoComplete={field.autoComplete} maxLength={field.name === "email" ? 254 : 180} data-clarity-mask="true" className={inputClass} />
+          )}
         </label>
       ))}
 
