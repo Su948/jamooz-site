@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import InquiryForm from "@/components/InquiryForm";
 import Jmz906Gallery from "@/components/Jmz906Gallery";
 import { contactLinks } from "@/lib/company";
@@ -65,6 +66,10 @@ function ArrowIcon() {
 }
 
 export default function Jmz906PreviewPage() {
+  // Keep the complete preview implementation below for a future relaunch,
+  // but do not expose this unpublished product through a public preview URL.
+  notFound();
+
   const sourcePage = "/products/jmz-906";
   const whatsappUrl = contactLinks.whatsapp(buildWhatsAppInquiryMessage({
     sourcePage,
