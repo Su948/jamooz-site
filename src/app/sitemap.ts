@@ -39,6 +39,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${companyFacts.website}/oem-odm`,
+      lastModified: "2026-10-14",
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${companyFacts.website}/products`,
       lastModified: "2026-10-13",
       changeFrequency: "weekly",

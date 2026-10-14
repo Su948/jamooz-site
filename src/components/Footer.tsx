@@ -37,9 +37,9 @@ export default function Footer() {
           <div>
             <h3 className="mono-label text-xs font-bold text-white/50">Partner services</h3>
             <ul className="mt-5 space-y-3 text-sm text-white/68">
-              <li>OEM/ODM engineering</li>
-              <li>Private label branding</li>
-              <li>Gift box packaging</li>
+              <li><Link href="/oem-odm" className="hover:text-white">OEM/ODM development process</Link></li>
+              <li><Link href="/custom" className="hover:text-white">Private label branding</Link></li>
+              <li><Link href="/custom" className="hover:text-white">Gift box packaging</Link></li>
               <li>Global delivery support</li>
             </ul>
           </div>

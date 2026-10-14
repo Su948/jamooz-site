@@ -7,13 +7,13 @@ import { liveCategoryFor } from '@/lib/product-categories';
 
 // A Shop entry points at its category page once that page is live; entries
 // without a published category page still lead to the products hub.
-type ShopMenuItem = { label: string; category?: string };
+type ShopMenuItem = { label: string; category?: string; href?: string };
 
 const standardMenuColumns: ReadonlyArray<{ title: string; items: readonly ShopMenuItem[] }> = [
   { title: 'Enhance fitness & recovery', items: [{ label: 'Massage Guns' }, { label: 'Compression Therapy' }, { label: 'Red Light Therapy' }, { label: 'Recovery Tools' }] },
   { title: 'Reduce aches & pains', items: [{ label: 'Neck & Shoulder Relief' }, { label: 'Back & Spine Care' }, { label: 'Foot & Leg Massagers' }, { label: 'Heat Therapy' }] },
   { title: 'Improve sleep & stress', items: [{ label: 'Head & Scalp Massagers', category: 'Head & Scalp' }, { label: 'Eye Care Devices' }, { label: 'Sleep Aids' }, { label: 'Stress Relief Devices' }] },
-  { title: 'Custom OEM/ODM', items: [{ label: 'Product Customization' }, { label: 'Hardware Development' }, { label: 'Packaging Solutions' }, { label: 'Private Label Services' }] },
+  { title: 'Custom OEM/ODM', items: [{ label: 'Development Process', href: '/oem-odm' }, { label: 'Product Customization', href: '/custom' }, { label: 'Packaging Solutions', href: '/custom' }, { label: 'Private Label Services', href: '/custom' }] },
 ];
 
 function PreviewNavbar() {
@@ -22,10 +22,11 @@ function PreviewNavbar() {
   const homepage = pathname.startsWith('/preview') ? '/preview' : '/';
   const hasLocalInquiry = pathname.startsWith('/preview/products/') || pathname.startsWith('/products');
   const previewLink = (hash: string) => hasLocalInquiry && hash === '#inquiry' ? hash : `${homepage}${hash}`;
+  const oemOdmLink = pathname.startsWith('/preview') ? `${homepage}#oem-odm` : '/oem-odm';
   const navigation = [
     ['HOME', homepage],
     ['PRODUCTS', '/products'],
-    ['OEM / ODM', previewLink('#oem-odm')],
+    ['OEM / ODM', oemOdmLink],
     ['ABOUT US', previewLink('#about-us')],
     ['QUALITY', previewLink('#quality')],
     ['CONTACT', previewLink('#inquiry')],
@@ -49,8 +50,8 @@ function StandardNavbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-border-warm bg-cream-soft/95 backdrop-blur-xl">
       <div className="hidden bg-surface-dark text-white md:block"><div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-[12px]"><p>✧ Advanced wellness technology solutions for global brands</p><div className="flex gap-5 text-white/78"><span>OEM/ODM expertise</span><span>Scalable manufacturing</span><span>Partner with Jamooz →</span></div></div></div>
-      <nav className="group/nav mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"><div className="flex h-20 items-center justify-between gap-6"><Link href="/" className="flex flex-col leading-none text-navy" aria-label="Jamooz home"><span className="serif-display text-[36px] font-semibold tracking-[-0.08em]">Jamooz</span><span className="mono-label mt-1 text-[9px] text-muted">Wellness technology</span></Link><div className="hidden items-center gap-9 text-sm font-medium text-foreground lg:flex"><Link href="/#solutions">Solutions⌄</Link><Link href="/products">Shop⌄</Link><Link href="/custom">Custom Solutions</Link><Link href="/#science">R&amp;D Innovation</Link><Link href="/about">About Jamooz</Link><Link href="/rfq">Resources⌄</Link></div><Link href="/rfq" className="hidden rounded-md border border-border-warm px-5 py-3 text-sm font-bold text-navy md:inline-flex">Contact R&amp;D Team</Link><Link href="/rfq" className="btn-primary px-4 py-3 text-xs lg:hidden">Quote</Link></div>
-        <div className="pointer-events-none absolute left-1/2 top-[104px] hidden w-[min(1180px,calc(100vw-48px))] -translate-x-1/2 translate-y-2 opacity-0 transition group-hover/nav:pointer-events-auto group-hover/nav:translate-y-0 group-hover/nav:opacity-100 lg:block"><div className="grid grid-cols-4 gap-10 rounded-xl border border-border-warm bg-surface p-8 shadow-2xl">{standardMenuColumns.map((column) => <div key={column.title}><h3 className="serif-display mb-5 border-b border-navy/30 pb-4 text-lg font-semibold text-navy">{column.title}</h3><ul className="space-y-3 text-sm text-muted">{column.items.map((item) => <li key={item.label}><Link href={(item.category && liveCategoryFor(item.category)?.href) || "/products"}>{item.label}</Link></li>)}</ul></div>)}</div></div>
+      <nav className="group/nav mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"><div className="flex h-20 items-center justify-between gap-6"><Link href="/" className="flex flex-col leading-none text-navy" aria-label="Jamooz home"><span className="serif-display text-[36px] font-semibold tracking-[-0.08em]">Jamooz</span><span className="mono-label mt-1 text-[9px] text-muted">Wellness technology</span></Link><div className="hidden items-center gap-9 text-sm font-medium text-foreground lg:flex"><Link href="/#solutions">Solutions⌄</Link><Link href="/products">Shop⌄</Link><Link href="/custom">Custom Solutions</Link><Link href="/oem-odm">OEM / ODM Process</Link><Link href="/about">About Jamooz</Link><Link href="/rfq">Resources⌄</Link></div><Link href="/rfq" className="hidden rounded-md border border-border-warm px-5 py-3 text-sm font-bold text-navy md:inline-flex">Contact R&amp;D Team</Link><Link href="/rfq" className="btn-primary px-4 py-3 text-xs lg:hidden">Quote</Link></div>
+        <div className="pointer-events-none absolute left-1/2 top-[104px] hidden w-[min(1180px,calc(100vw-48px))] -translate-x-1/2 translate-y-2 opacity-0 transition group-hover/nav:pointer-events-auto group-hover/nav:translate-y-0 group-hover/nav:opacity-100 lg:block"><div className="grid grid-cols-4 gap-10 rounded-xl border border-border-warm bg-surface p-8 shadow-2xl">{standardMenuColumns.map((column) => <div key={column.title}><h3 className="serif-display mb-5 border-b border-navy/30 pb-4 text-lg font-semibold text-navy">{column.title}</h3><ul className="space-y-3 text-sm text-muted">{column.items.map((item) => <li key={item.label}><Link href={item.href || (item.category && liveCategoryFor(item.category)?.href) || "/products"}>{item.label}</Link></li>)}</ul></div>)}</div></div>
       </nav>
     </header>
   );
