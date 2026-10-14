@@ -116,8 +116,8 @@ const products = [
   {
     model: "JMZ-722",
     category: "Body Care",
-    name: "3-in-1 Elbow Care Massager",
-    description: "A wearable elbow wrap combining EMS stimulation, warming and air compression, with a detachable control module and wireless remote.",
+    name: "3-in-1 Elbow Massager",
+    description: "A wearable elbow wrap combining EMS stimulation, warming and air compression, controlled from the display panel on the main unit.",
     image: "/products/jmz-722/01-hero.webp",
     href: "/products/jmz-722",
     price: "US$18.00–21.00 / pc",
@@ -127,7 +127,7 @@ const products = [
   {
     model: "JMZ-801",
     category: "Neck & Shoulder",
-    name: "Electric Neck Support Pillow",
+    name: "Cloud Neck Support Pillow",
     description: "A foldable electric neck support pillow with three selectable modes, one-button control and a 15-minute auto-off.",
     image: "/products/jmz-801/01-hero.webp",
     href: "/products/jmz-801",
