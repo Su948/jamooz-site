@@ -1,7 +1,8 @@
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 
-// Keep the preview implementation and product assets for a future relaunch,
-// while the former public product URL returns a non-indexable 404.
+// JMZ-906 is temporarily unavailable. Keep the archived implementation and
+// assets for a future relaunch, while directing old public links to the live
+// product catalog instead of leaving visitors on a 404 page.
 export default function UnpublishedJmz906Page() {
-  notFound();
+  redirect("/products");
 }
