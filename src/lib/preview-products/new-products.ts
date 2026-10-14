@@ -262,7 +262,7 @@ export const jmz722: ProductDetailConfig = {
     { item: "Model", value: "JMZ-722", status: "Confirmed" },
     { item: "Product Type", value: "Wearable 3-in-1 elbow care massager", status: "Confirmed" },
     { item: "Functions", value: "Air wave massage / Electrical Impulse (EMS) / Heating", status: "Confirmed" },
-    { item: "Battery", value: "3.7 V / 1500 mAh rechargeable battery", status: "Confirmed" },
+    { item: "Battery", value: "3.7 V / 2000 mAh rechargeable battery", status: "Confirmed" },
     { item: "Working Voltage", value: "3.7 V", status: "Confirmed" },
     { item: "Rated Input / Power", value: "DC 5 V / 2 A; 10 W", status: "Confirmed" },
     { item: "Control Method", value: "Detachable control module with separate wireless remote", status: "Confirmed" },
