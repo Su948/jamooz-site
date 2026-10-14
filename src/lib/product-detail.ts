@@ -21,6 +21,19 @@ export type ProductFeature = {
   copy: string;
 };
 
+/**
+ * Related link rendered before the inquiry block. Only reachable pages may be
+ * passed: a product whose cluster has no published category page links to the
+ * customisation page instead of a category URL that does not exist yet.
+ */
+export type ProductRelatedLink = {
+  href: string;
+  eyebrow: string;
+  name: string;
+  detail?: string;
+  linkLabel: string;
+};
+
 export type ProductDetailConfig = {
   slug: string;
   model: string;
@@ -42,5 +55,6 @@ export type ProductDetailConfig = {
   features: readonly ProductFeature[];
   specsIntro: string;
   specs: readonly ProductSpec[];
+  relatedLinks?: readonly ProductRelatedLink[];
   inquiryCopy: string;
 };

@@ -38,12 +38,14 @@ export default function ProductDetailTemplate({ product }: { product: ProductDet
     { name: product.model, href: sourcePage },
   ];
 
-  // D020 rule N-7: related links must resolve to real pages. Today the only
-  // reachable relative of a product is its category page; same-cluster product
-  // links are added once those products are published.
-  const relatedProducts = category
-    ? [{ href: category.href, eyebrow: "Category", name: category.label, linkLabel: "View Category" }]
-    : [];
+  // D020 rule N-7: related links must resolve to real pages. A product whose
+  // cluster has no published category page contributes only the links declared
+  // on the product itself; same-cluster product links are added once those
+  // products are published.
+  const relatedProducts = [
+    ...(category ? [{ href: category.href, eyebrow: "Category", name: category.label, linkLabel: "View Category" }] : []),
+    ...(product.relatedLinks ?? []),
+  ];
 
   return (
     <main className="overflow-x-hidden bg-[#fbfcfe] text-[#334055]">

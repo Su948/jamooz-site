@@ -14,6 +14,9 @@ const productLastModified: Record<string, string> = {
   "jmz-706w": "2026-10-13",
   "jmz-901": "2026-10-13",
   "jmz-706h": "2026-10-10",
+  "jmz-722": "2026-10-14",
+  "jmz-801": "2026-10-14",
+  "jmz-cspl002": "2026-10-14",
 };
 
 const defaultProductLastModified = "2026-10-04";
@@ -68,7 +71,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
-    ...["jmz-702", "jmz-r006", "jmz-729s", "jmz-908", "jmz-802", "jmz-903", "jmz-807p", "jmz-706w", "jmz-706h", "jmz-901"].map((slug) => ({
+    ...["jmz-702", "jmz-r006", "jmz-729s", "jmz-908", "jmz-802", "jmz-903", "jmz-807p", "jmz-706w", "jmz-706h", "jmz-901", "jmz-722", "jmz-801", "jmz-cspl002"].map((slug) => ({
       url: `${companyFacts.website}/products/${slug}`,
       lastModified: productLastModified[slug] ?? defaultProductLastModified,
       changeFrequency: "monthly" as const,
