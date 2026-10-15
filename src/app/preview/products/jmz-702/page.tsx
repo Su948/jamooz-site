@@ -56,6 +56,7 @@ export default function Jmz702PreviewPage() {
               description="A compact, contoured massage seat with adjustable warming and three-level vibration for home, office and everyday relaxation settings."
               images={jmz702Gallery.map((image) => image.src)}
               path={sourcePage}
+              prices={jmz702Prices.map((tier) => tier.price)}
             />
             <Breadcrumbs items={breadcrumbs} />
           </div>

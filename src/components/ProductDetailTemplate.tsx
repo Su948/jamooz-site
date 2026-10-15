@@ -58,6 +58,7 @@ export default function ProductDetailTemplate({ product }: { product: ProductDet
               description={product.description}
               images={product.gallery.map((image) => image.src)}
               path={sourcePage}
+              prices={product.customPricing ? undefined : product.priceTiers?.map((tier) => tier.price)}
             />
             <Breadcrumbs items={breadcrumbs} />
           </div>

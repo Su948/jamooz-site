@@ -122,7 +122,7 @@ const products = [
     href: "/products/jmz-722",
     price: "US$18.00–21.00 / pc",
     moq: "MOQ 50 pcs",
-    features: ["EMS", "Air Compression", "Warming", "Wireless Remote"],
+    features: ["EMS", "Air Compression", "Warming", "Integrated Display"],
   },
   {
     model: "JMZ-801",
