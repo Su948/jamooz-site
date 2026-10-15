@@ -55,6 +55,7 @@ export default function JmzR006PreviewPage() {
               description="A rechargeable U-shaped massage device combining 3D kneading movement, warming care and adjustable lanyards for everyday neck and shoulder relaxation."
               images={jmzR006Gallery.map((image) => image.src)}
               path={sourcePage}
+              prices={jmzR006Prices.map((tier) => tier.price)}
             />
             <Breadcrumbs items={breadcrumbs} />
           </div>
