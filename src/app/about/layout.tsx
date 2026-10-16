@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "About JAMOOZ | Massage Device Manufacturer in Xiamen",
+  title: "About JAMOOZ | OEM/ODM Massage Device Partner in Xiamen",
   description:
-    "Learn about JAMOOZ, a Xiamen-based massage device manufacturer supporting global B2B brands with OEM/ODM development and manufacturing.",
+    "Learn how JAMOOZ supports international B2B product teams with massage-device development, customisation and manufacturing coordination from Xiamen, China.",
   alternates: {
     canonical: "/about",
   },
