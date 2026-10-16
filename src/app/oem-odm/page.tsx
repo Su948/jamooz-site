@@ -134,7 +134,7 @@ export default function OemOdmPage() {
         <figure className="relative border-b border-violet-100 bg-white">
           <div className="mx-auto max-w-[1600px] sm:px-6 sm:py-6">
             <Image
-              src="/images/oem-odm/oem-odm-concept-to-market-v1.png"
+              src="/images/oem-odm/oem-odm-concept-to-market-v1.jpg"
               alt="JAMOOZ OEM and ODM massage device development from market requirements and industrial design through engineering, prototype validation, pilot production, quality control, packaging and global delivery"
               width={2172}
               height={724}
