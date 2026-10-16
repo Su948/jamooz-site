@@ -130,7 +130,23 @@ export default function OemOdmPage() {
     <div className="min-h-screen bg-white text-[#3d2758]">
       <section className="relative overflow-hidden border-b border-violet-100 bg-[#faf9ff]">
         <div className="absolute inset-y-0 right-0 hidden w-[42%] bg-[radial-gradient(circle_at_center,rgba(109,40,217,0.12),transparent_66%)] lg:block" />
-        <div className="relative mx-auto max-w-[1320px] px-5 pb-20 pt-10 sm:px-8 lg:pb-28 lg:pt-14">
+
+        <figure className="relative border-b border-violet-100 bg-white">
+          <div className="mx-auto max-w-[1600px] sm:px-6 sm:py-6">
+            <Image
+              src="/images/oem-odm/oem-odm-concept-to-market-v1.png"
+              alt="JAMOOZ OEM and ODM massage device development from market requirements and industrial design through engineering, prototype validation, pilot production, quality control, packaging and global delivery"
+              width={2172}
+              height={724}
+              priority
+              unoptimized
+              className="h-auto w-full sm:rounded-[28px]"
+              sizes="(min-width: 1600px) 1552px, 100vw"
+            />
+          </div>
+        </figure>
+
+        <div className="relative mx-auto max-w-[1320px] px-5 pb-20 pt-8 sm:px-8 lg:pb-28 lg:pt-10">
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
@@ -138,14 +154,14 @@ export default function OemOdmPage() {
             ]}
           />
 
-          <div className="mt-14 grid items-end gap-12 lg:grid-cols-[1.1fr_.9fr]">
+          <div className="mt-8 grid items-end gap-12 lg:grid-cols-[1.1fr_.9fr]">
             <div>
               <p className="text-xs font-black uppercase tracking-[0.24em] text-violet-700">OEM/ODM massage device development</p>
-              <h1 className="mt-5 max-w-4xl text-5xl font-semibold leading-[1.02] tracking-[-0.045em] text-[#3d2758] sm:text-6xl lg:text-7xl">
-                From product brief to production-ready device
+              <h1 className="mt-5 max-w-4xl text-5xl font-semibold leading-[1.02] tracking-[-0.045em] text-[#3d2758] sm:text-6xl">
+                Build your massage product with JAMOOZ
               </h1>
               <p className="mt-7 max-w-3xl text-lg leading-8 text-zinc-600">
-                JAMOOZ structures custom massage-device projects around clear review points: feasibility, product definition, engineering, functional prototypes, validation, production readiness, controlled production, final inspection and delivery. Scope, timing and cost are confirmed for each model and target market.
+                From brief and engineering to validation, controlled production and delivery, JAMOOZ helps turn your concept into a production-ready device. Scope, timing and cost are confirmed for each project.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link href="#project-brief" className="inline-flex min-h-12 items-center justify-center rounded-full bg-violet-700 px-7 py-3.5 text-sm font-black tracking-[0.06em] text-white transition hover:-translate-y-0.5 hover:bg-violet-800">
@@ -173,29 +189,13 @@ export default function OemOdmPage() {
         </div>
       </section>
 
-      <section className="bg-white py-16 sm:py-20">
+      <section id="workflow" className="scroll-mt-24 bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
           <header className="mx-auto max-w-3xl text-center">
             <p className="text-xs font-black uppercase tracking-[0.24em] text-violet-700">End-to-end workflow</p>
             <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] text-[#3d2758] sm:text-5xl">Ten stages, five buyer review gates</h2>
-            <p className="mt-5 text-base leading-7 text-zinc-600">The diagram below is the revised JAMOOZ process overview. The exact sequence and records are adjusted to the product, customisation depth and destination-market requirements.</p>
+            <p className="mt-5 text-base leading-7 text-zinc-600">The project moves from definition and engineering through controlled production, final inspection and delivery. The exact sequence and records are adjusted to the product, customisation depth and destination-market requirements.</p>
           </header>
-
-          <figure className="mt-12 overflow-hidden rounded-[28px] border border-violet-100 bg-white p-3 shadow-2xl shadow-violet-900/10 sm:p-6">
-            <Image
-              src="/images/oem-odm/manufacturing-process-v2.png"
-              alt="JAMOOZ ten-stage OEM and ODM massage device process from project feasibility through pilot production, process quality control, final inspection and delivery support"
-              width={1254}
-              height={1254}
-              priority
-              unoptimized
-              className="h-auto w-full rounded-2xl"
-              sizes="(min-width: 1320px) 1260px, 96vw"
-            />
-            <figcaption className="px-3 pb-2 pt-5 text-center text-xs leading-5 text-zinc-500">
-              Illustrated process overview. Project scope, timing, tests and commercial terms are confirmed in the quotation and order documents.
-            </figcaption>
-          </figure>
         </div>
       </section>
 
