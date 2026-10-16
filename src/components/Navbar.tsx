@@ -27,7 +27,7 @@ function PreviewNavbar() {
     ['HOME', homepage],
     ['PRODUCTS', '/products'],
     ['OEM / ODM', oemOdmLink],
-    ['ABOUT US', previewLink('#about-us')],
+    ['ABOUT US', '/about'],
     ['QUALITY', previewLink('#quality')],
     ['CONTACT', previewLink('#inquiry')],
   ] as const;
@@ -57,4 +57,4 @@ function StandardNavbar() {
   );
 }
 
-export default function Navbar() { const pathname = usePathname(); return pathname === '/' || pathname.startsWith('/preview') || pathname.startsWith('/products') || pathname === '/oem-odm' ? <PreviewNavbar /> : <StandardNavbar />; }
+export default function Navbar() { const pathname = usePathname(); return pathname === '/' || pathname.startsWith('/preview') || pathname.startsWith('/products') || pathname === '/oem-odm' || pathname === '/about' ? <PreviewNavbar /> : <StandardNavbar />; }
