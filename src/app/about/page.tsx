@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import AboutProofSections from "@/components/AboutProofSections";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { companyFacts } from "@/lib/company";
 
@@ -178,6 +179,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <AboutProofSections />
 
       <section className="bg-[#3d2758] py-20 text-white sm:py-24">
         <div className="mx-auto grid max-w-[1320px] gap-12 px-5 sm:px-8 lg:grid-cols-[.9fr_1.1fr] lg:items-start">
