@@ -28,7 +28,7 @@ function PreviewNavbar() {
     ['PRODUCTS', '/products'],
     ['OEM / ODM', oemOdmLink],
     ['ABOUT US', '/about'],
-    ['QUALITY', previewLink('#quality')],
+    ['QUALITY', '/about#quality-evidence'],
     ['CONTACT', previewLink('#inquiry')],
   ] as const;
   return (
