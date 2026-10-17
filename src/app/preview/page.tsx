@@ -219,39 +219,6 @@ const featuredProducts = [
     moq: 'MOQ 50 pcs',
     features: ['2-Speed Rotation', '2-Level EMS', 'Red LED', '5 mL Tank'],
   },
-  {
-    model: 'JMZ-722',
-    category: 'Body Care',
-    name: '3-in-1 Elbow Massager',
-    description: 'A wearable elbow wrap combining EMS stimulation, warming and air compression, controlled from the display panel on the main unit.',
-    image: '/products/jmz-722/01-hero.webp',
-    href: '/products/jmz-722',
-    price: 'US$18.00–21.00 / pc',
-    moq: 'MOQ 50 pcs',
-    features: ['EMS', 'Air Compression', 'Warming', 'Integrated Display'],
-  },
-  {
-    model: 'JMZ-801',
-    category: 'Neck & Shoulder',
-    name: 'Cloud Neck Support Pillow',
-    description: 'A foldable electric neck support pillow with three selectable modes, one-button control and a 15-minute auto-off.',
-    image: '/products/jmz-801/01-hero.webp',
-    href: '/products/jmz-801',
-    price: 'US$13.80–16.80 / pc',
-    moq: 'MOQ 50 pcs',
-    features: ['3 Modes', 'Cordless', '15-Min Auto-Off', 'Foldable'],
-  },
-  {
-    model: 'JMZ-CSPL002',
-    category: 'Neck & Shoulder',
-    name: 'Neck Pinch Massage Pillow',
-    description: 'A neck pillow with pinch-style kneading, two speeds, forward and reverse rotation and a removable cover.',
-    image: '/products/jmz-cspl002/01-hero.webp',
-    href: '/products/jmz-cspl002',
-    price: 'US$19.80–23.50 / pc',
-    moq: 'MOQ 50 pcs',
-    features: ['Pinch Kneading', '2 Speeds', 'Forward & Reverse', 'Removable Cover'],
-  },
 ] as const;
 
 const scrollBg = ali('//sc04.alicdn.com/kf/Hd94f7581c62d4edaa1393c4d63bc2c4fK/252717039/Hd94f7581c62d4edaa1393c4d63bc2c4fK.png');
@@ -300,23 +267,6 @@ const categoryModules = [
     {price:'$20.9–22.99',href:'https://www.alibaba.com/product-detail/Best-selling-Products-2025-Estate-Car_1601377613813.html'},
   ]},
 ] as const;
-
-const reviewBg = ali('//sc04.alicdn.com/kf/H9d354770c4b14f6ea84599d5cb42df7cw/252717039/H9d354770c4b14f6ea84599d5cb42df7cw.png');
-const reviews = [
-  {x:360,y:286,w:362,h:517,img:ali('//sc04.alicdn.com/kf/H8a20f2689d164b6184b3b9a7541d1075D/252717039/H8a20f2689d164b6184b3b9a7541d1075D.png'),speed:'25s'},
-  {x:780,y:286,w:362,h:707,img:ali('//sc04.alicdn.com/kf/H9f69f1787ffe4ce093b5364efaaaed9dW/252717039/H9f69f1787ffe4ce093b5364efaaaed9dW.png'),speed:'31s'},
-  {x:1198,y:286,w:362,h:517,img:ali('//sc04.alicdn.com/kf/H0afcafb90e0740d6842ae09a714d44dfm/252717039/H0afcafb90e0740d6842ae09a714d44dfm.png'),speed:'27s'},
-];
-
-const companyImage = ali('//sc04.alicdn.com/kf/H074a318c1d1a4f568d94181d93a09474F/252717039/H074a318c1d1a4f568d94181d93a09474F.png');
-const companyVideo = 'https://play.video.alibaba.com/global/play/6000299682943.mp4?dft=hd';
-const companyLinks = [
-  {x:1187,y:294,w:174,h:159,href:'https://www.alibaba.com/product-detail/JAMOOZ-Portable-Healthy-Technology-Electric-Scalp_1601708387462.html'},
-  {x:1369,y:284,w:171,h:173,href:'https://www.alibaba.com/product-detail/2026-Portable-Best-Selling-Intelligent-3D_1601594698148.html'},
-  {x:1549,y:290,w:169,h:167,href:'https://www.alibaba.com/product-detail/Premium-Ergonomic-Memory-Foam-Bread-Pillow_1601803716499.html'},
-  {x:1729,y:288,w:172,h:168,href:'https://www.alibaba.com/product-detail/JAMOOZ-2024-Luxury-Zero-Gravity-Full_1601084511260.html'},
-] as const;
-const certificateImage = ali('//sc02.alicdn.com/kf/H99de7b20e65046c896d63f96a166fde27.png');
 
 export default function HomepagePreview(){
   const [painImage,setPainImage] = useState(painStates[0].image);
@@ -552,35 +502,25 @@ export default function HomepagePreview(){
       <div className="bg-[#faf9ff] px-4 pb-10 md:overflow-x-auto md:pb-12"><div className="mx-auto max-w-[1200px]"><div className="hidden md:block"><div className="relative"><img src={`/preview-assets/categories-html/${category.slug}-products.webp`} alt={`${category.title} product range`} className="block h-auto w-full object-contain" /><div className="absolute inset-0 grid grid-cols-4">{category.products.map((product,index)=><a key={`desktop-image-${product.href}-${index}`} href={product.href} target="_blank" rel="noreferrer" title={`View ${category.title} product ${index+1}`} aria-label={`View ${category.title} product ${index+1}, ${product.price}`} className="transition hover:bg-violet-500/5 hover:ring-2 hover:ring-inset hover:ring-violet-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-violet-500" />)}</div></div></div><div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-0 md:border-x md:border-b md:border-violet-100 md:bg-white">{category.products.map((product,index)=><a key={`product-${product.href}-${index}`} href={product.href} target="_blank" rel="noreferrer" aria-label={`View ${category.title} product ${index+1}, ${product.price}`} className="overflow-hidden rounded-2xl border border-violet-100 bg-white text-center shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 md:rounded-none md:border-y-0 md:border-l-0 md:shadow-none"><span aria-hidden className="block aspect-square w-full bg-white bg-[length:400%_100%] bg-no-repeat md:hidden" style={{backgroundImage:`url(/preview-assets/categories-html/${category.slug}-products.webp)`,backgroundPosition:`${index*(100/3)}% center`}} /><span className="flex min-h-20 flex-col items-center justify-center px-2 py-3"><span className="text-sm font-black text-[#3d2758] sm:text-base">{product.price}</span><span className="mt-1 text-[11px] font-semibold text-violet-700 sm:text-xs">View Product →</span></span></a>)}</div></div></div>
     </section>)}
 
-    <section id="about-us" className="scroll-mt-24 relative overflow-hidden bg-white" style={{aspectRatio:'1920 / 2020'}}>
-      <img src={companyImage} alt="JAMOOZ company introduction" className="absolute inset-0 h-full w-full object-contain" />
-      <video
-        src={companyVideo}
-        aria-label="JAMOOZ company introduction video"
-        className="absolute z-10 h-full w-full bg-black object-cover"
-        style={{left:pct(360,1920),top:pct(30,2020),width:pct(800,1920),height:pct(450,2020)}}
-        autoPlay
-        muted
-        loop
-        playsInline
-        controls
-        preload="metadata"
-      />
-      {companyLinks.map((link,i)=><a key={link.href} href={link.href} target="_blank" rel="noreferrer" aria-label={`JAMOOZ featured company product ${i+1}`} className="absolute z-10" style={{left:pct(link.x,1920),top:pct(link.y,2020),width:pct(link.w,1920),height:pct(link.h,2020)}} />)}
+    <section id="about-us" className="scroll-mt-24 border-t border-violet-100 bg-[#faf9ff] py-16 md:py-20">
+      <div className="mx-auto grid max-w-[1240px] gap-8 px-5 sm:px-8 lg:grid-cols-[1fr_.9fr] lg:items-center">
+        <div>
+          <p className="text-xs font-black uppercase tracking-[0.24em] text-violet-700">About JAMOOZ</p>
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-[#302050] sm:text-4xl">See the people, process and proof behind the products</h2>
+          <p className="mt-5 max-w-2xl text-base leading-8 text-zinc-600">Our company page brings together development and production scenes, selected buyer feedback, and document examples in one place—so the homepage can stay focused on products and solutions.</p>
+          <Link href="/about" className="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-violet-700 px-7 py-3.5 text-sm font-black tracking-[0.05em] text-white transition hover:-translate-y-0.5 hover:bg-violet-800">VIEW COMPANY CAPABILITIES</Link>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+          {['R&D and production scenes', 'Buyer feedback snapshots', 'Model-specific document review'].map((item, index) => <div key={item} className="flex items-center gap-4 rounded-2xl border border-violet-100 bg-white p-5 shadow-sm"><span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-100 text-xs font-black text-violet-800">{String(index + 1).padStart(2, '0')}</span><span className="text-sm font-bold leading-6 text-[#3d2758]">{item}</span></div>)}
+        </div>
+      </div>
     </section>
-
-    <section id="products" className="scroll-mt-24 relative overflow-hidden bg-white" style={{aspectRatio:'1920 / 1110'}}><img src={reviewBg} alt="Customer reviews" className="absolute inset-0 h-full w-full object-contain" />{reviews.map((r,i)=><div key={i} className="absolute overflow-hidden" style={{left:pct(r.x,1920),top:pct(r.y,1110),width:pct(r.w,1920),height:pct(r.h,1110)}}><div className="review-roll" style={{animationDuration:r.speed}}><img src={r.img} alt="buyer reviews" className="block h-auto w-full" /><img src={r.img} alt="" aria-hidden className="block h-auto w-full" /></div></div>)}</section>
-
-    <section id="quality" className="scroll-mt-24 bg-white"><img src={certificateImage} alt="JAMOOZ certificates" className="block h-auto w-full" /></section>
 
     <style jsx global>{`
       @keyframes jamoozScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
       .jamooz-marquee { animation: jamoozScroll 26s linear infinite; }
       .jamooz-marquee:hover { animation-play-state: paused; }
-      @keyframes reviewScroll { from { transform: translateY(0); } to { transform: translateY(-50%); } }
-      .review-roll { animation: reviewScroll 26s linear infinite; }
-      .review-roll:hover { animation-play-state: paused; }
-      @media (prefers-reduced-motion: reduce){ .jamooz-marquee,.review-roll{animation:none;} }
+      @media (prefers-reduced-motion: reduce){ .jamooz-marquee{animation:none;} }
     `}</style>
   </div>;
 }
