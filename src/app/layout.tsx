@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import PreviewContactSection from "@/components/PreviewContactSection";
 import GoogleTagManager from "@/components/GoogleTagManager";
 import MicrosoftClarity from "@/components/MicrosoftClarity";
+import FloatingContactActions from "@/components/FloatingContactActions";
 import { companyFacts } from "@/lib/company";
 
 export const metadata: Metadata = {
@@ -26,6 +27,7 @@ export default function RootLayout({
         <MicrosoftClarity />
         <Navbar />
         <main className="flex-grow">{children}</main>
+        <FloatingContactActions />
         <PreviewContactSection />
         <Footer />
       </body>

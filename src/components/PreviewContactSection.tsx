@@ -37,10 +37,6 @@ export default function PreviewContactSection() {
         </aside>
       </div>
 
-      <a href={whatsappUrl} data-analytics-location="floating_button" target="_blank" rel="noreferrer" aria-label="Chat with JAMOOZ on WhatsApp" title="Chat with JAMOOZ on WhatsApp" className="fixed bottom-[calc(1.25rem+env(safe-area-inset-bottom))] right-5 z-40 hidden h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl ring-4 ring-white/70 transition hover:scale-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-violet-300 sm:flex">
-        <svg aria-hidden="true" viewBox="0 0 32 32" className="h-7 w-7 fill-current"><path d="M16 3a12.5 12.5 0 0 0-10.7 19L3.7 28l6.2-1.6A12.5 12.5 0 1 0 16 3Zm0 22.7a10.2 10.2 0 0 1-5.2-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A10.2 10.2 0 1 1 16 25.7Zm5.6-7.6c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2-.8 1-.9 1.2-.3.2-.6.1a8.3 8.3 0 0 1-2.5-1.5 9.2 9.2 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.5c.2.2 2.4 3.7 5.9 5.2.8.3 1.5.5 2 .7.8.3 1.6.2 2.2.1.7-.1 1.8-.8 2.1-1.5.3-.7.3-1.3.2-1.5-.2-.2-.5-.3-.8-.5Z" /></svg>
-        <span className="sr-only">WhatsApp</span>
-      </a>
     </section>
   );
 }
