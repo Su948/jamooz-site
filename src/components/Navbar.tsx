@@ -57,4 +57,4 @@ function StandardNavbar() {
   );
 }
 
-export default function Navbar() { const pathname = usePathname(); return pathname === '/' || pathname.startsWith('/preview') || pathname.startsWith('/products') ? <PreviewNavbar /> : <StandardNavbar />; }
+export default function Navbar() { const pathname = usePathname(); return pathname === '/' || pathname.startsWith('/preview') || pathname.startsWith('/products') || pathname === '/oem-odm' ? <PreviewNavbar /> : <StandardNavbar />; }
