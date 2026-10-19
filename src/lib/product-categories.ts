@@ -49,6 +49,22 @@ export function liveCategoryFor(category: string): LiveProductCategory | undefin
   return liveProductCategories.find((entry) => entry.category === category);
 }
 
+const hubCategoryAnchors: Readonly<Record<string, string>> = {
+  "Neck & Shoulder": "neck-shoulder",
+  "Head & Scalp": "head-scalp",
+  "Body Care": "body-care",
+  "Eye Care": "eye-care",
+  "Hand & Wrist": "hand-wrist",
+};
+
+export function productCategoryAnchor(category: string): string {
+  return hubCategoryAnchors[category] ?? category.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+export function productCategoryHref(category: string): string {
+  return `/products#${productCategoryAnchor(category)}`;
+}
+
 /** Display order of the groups on the /products hub. */
 export const hubCategoryOrder: readonly string[] = [
   "Neck & Shoulder",
