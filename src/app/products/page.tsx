@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { hubCategoryOrder, liveCategoryFor } from "@/lib/product-categories";
+import { hubCategoryOrder, liveCategoryFor, productCategoryAnchor } from "@/lib/product-categories";
 
 const products = [
   {
@@ -122,7 +122,7 @@ const products = [
     href: "/products/jmz-722",
     price: "US$18.00–21.00 / pc",
     moq: "MOQ 50 pcs",
-    features: ["EMS", "Air Compression", "Warming", "Integrated Display"],
+    features: ["EMS", "Air Compression", "Warming", "Wireless Remote"],
   },
   {
     model: "JMZ-801",
@@ -179,7 +179,7 @@ export default function ProductsPage() {
       <section className="mx-auto max-w-[1240px] px-5 py-14 sm:px-8 sm:py-20">
         <div className="space-y-16">
           {categoryGroups.map((group) => (
-            <div key={group.category}>
+            <div id={productCategoryAnchor(group.category)} key={group.category} className="scroll-mt-28">
               <div className="border-b border-violet-100 pb-5">
                 <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
                   {group.page ? <Link href={group.page.href} className="transition hover:text-violet-700">{group.label}</Link> : group.label}
