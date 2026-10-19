@@ -62,7 +62,7 @@ export function productCategoryAnchor(category: string): string {
 }
 
 export function productCategoryHref(category: string): string {
-  return liveCategoryFor(category)?.href ?? `/products#${productCategoryAnchor(category)}`;
+  return `/products#${productCategoryAnchor(category)}`;
 }
 
 /** Display order of the groups on the /products hub. */
