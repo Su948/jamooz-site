@@ -17,78 +17,168 @@ const reviews = [
 const workScenes = [
   {
     label: 'Electronics production',
-    className: 'lg:row-span-2',
-    x: 287,
-    y: 865,
-    width: 632,
-    height: 430,
+    x: 360,
+    y: 818,
+    width: 788,
+    height: 531,
+  },
+  {
+    label: 'Functional testing',
+    x: 1181,
+    y: 818,
+    width: 378,
+    height: 247,
+  },
+  {
+    label: 'Automated production equipment',
+    x: 1181,
+    y: 1100,
+    width: 378,
+    height: 249,
   },
   {
     label: 'R&D review',
-    className: '',
-    x: 287,
-    y: 1370,
-    width: 303,
-    height: 280,
+    x: 360,
+    y: 1385,
+    width: 375,
+    height: 323,
   },
   {
     label: 'Product design coordination',
-    className: '',
-    x: 618,
-    y: 1370,
-    width: 300,
-    height: 280,
+    x: 773,
+    y: 1385,
+    width: 375,
+    height: 323,
+  },
+  {
+    label: 'Electronics assembly',
+    x: 1184,
+    y: 1385,
+    width: 375,
+    height: 323,
+  },
+  {
+    label: 'Assembly activity',
+    x: 360,
+    y: 1798,
+    width: 583,
+    height: 129,
+  },
+  {
+    label: 'Packing and dispatch',
+    x: 977,
+    y: 1798,
+    width: 583,
+    height: 129,
   },
 ] as const;
+
+const companyFacts = [
+  { value: '20+', label: 'Years experience' },
+  { value: 'Xiamen', label: 'Project coordination' },
+  { value: 'OEM / ODM', label: 'Development support' },
+  { value: 'Model-specific', label: 'Document review' },
+] as const;
+
+const productThumbs = [
+  ['/products/jmz-901/01-hero.webp', 'Scalp massage device'],
+  ['/products/jmz-r006/JMZ-R006-01-home-card.png', 'Neck and shoulder massager'],
+  ['/products/jmz-cspl002/01-hero.webp', 'Massage pillow'],
+  ['/products/jmz-702/JMZ-702-01-home-card.webp', 'Massage device'],
+] as const;
+
+function SceneCrop({ scene }: { scene: (typeof workScenes)[number] }) {
+  return (
+    <figure
+      className="relative overflow-hidden rounded-2xl bg-[#ece8f3]"
+      style={{ aspectRatio: `${scene.width} / ${scene.height}` }}
+    >
+      <img
+        src={companyProfile}
+        alt={scene.label}
+        className="absolute h-auto max-w-none"
+        style={{
+          width: `${(1920 / scene.width) * 100}%`,
+          left: `${-(scene.x / scene.width) * 100}%`,
+          top: `${-(scene.y / scene.height) * 100}%`,
+        }}
+      />
+    </figure>
+  );
+}
 
 export default function AboutProofSections() {
   return (
     <>
-      <section id="facility" className="scroll-mt-24 border-y border-violet-100 bg-[#faf9ff] py-20 sm:py-24">
+      <section id="facility" className="scroll-mt-24 border-y border-violet-100 bg-[#f9f6ff] py-20 sm:py-24">
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
-          <header className="max-w-3xl">
-            <p className="text-xs font-black uppercase tracking-[0.24em] text-violet-700">Inside the work</p>
-            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] text-[#3d2758] sm:text-5xl">From engineering detail to production follow-through</h2>
-            <p className="mt-5 text-base leading-8 text-zinc-600">
-              A closer look at product design, electronics work, assembly and dispatch activity. Project scope and the responsible production entity are confirmed with the buyer before an order is placed.
-            </p>
-          </header>
+          <div className="relative overflow-hidden rounded-[32px] bg-[#4a2865] text-white shadow-2xl shadow-violet-950/15">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_22%,rgba(196,142,255,.34),transparent_32%),linear-gradient(135deg,#3f2058_0%,#6f4388_52%,#4b2868_100%)]" />
 
-          <div className="mt-12 grid gap-5 lg:grid-cols-[1.05fr_.95fr]">
-            <div className="overflow-hidden rounded-3xl border border-violet-100 bg-[#3d2758] shadow-xl shadow-violet-900/10">
-              <video
-                src={companyVideo}
-                aria-label="JAMOOZ company and production introduction"
-                className="aspect-video h-auto w-full bg-[#3d2758] object-cover"
-                controls
-                muted
-                playsInline
-                preload="metadata"
-              />
+            <div className="relative grid gap-0 lg:grid-cols-[1.55fr_1fr]">
+              <div className="p-4 sm:p-6 lg:p-8 lg:pr-4">
+                <div className="overflow-hidden rounded-2xl bg-[#291538] shadow-2xl shadow-black/20">
+                  <video
+                    src={companyVideo}
+                    aria-label="JAMOOZ company and production introduction"
+                    className="aspect-video h-auto w-full bg-[#291538] object-cover"
+                    controls
+                    muted
+                    playsInline
+                    preload="metadata"
+                  />
+                </div>
+              </div>
+
+              <div className="flex flex-col justify-center bg-[#6f4388]/78 px-7 py-10 backdrop-blur-[2px] sm:px-10 lg:my-8 lg:mr-8 lg:rounded-2xl">
+                <p className="text-xs font-black uppercase tracking-[0.22em] text-violet-200">About JAMOOZ</p>
+                <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-[-0.035em] sm:text-4xl">Your wellness-device development partner</h2>
+                <p className="mt-5 text-sm leading-7 text-white/78">
+                  Based in Xiamen, JAMOOZ supports product definition, design coordination, sampling, manufacturing follow-through and delivery preparation for massage-device projects.
+                </p>
+                <div className="mt-7 grid grid-cols-4 gap-2">
+                  {productThumbs.map(([src, alt]) => (
+                    <div key={src} className="relative aspect-square overflow-hidden rounded-xl bg-white">
+                      <img src={src} alt={alt} className="h-full w-full object-contain p-1.5" />
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-rows-2">
-              {workScenes.map((scene, index) => (
-                <div
-                  key={scene.label}
-                  className={`relative overflow-hidden rounded-3xl border border-violet-100 bg-[#ece8f3] shadow-xl shadow-violet-900/10 ${scene.className} ${index === 0 ? 'sm:col-span-2 lg:col-span-1' : ''}`}
-                  style={{ aspectRatio: `${scene.width} / ${scene.height}` }}
-                >
-                  <img
-                    src={companyProfile}
-                    alt={scene.label}
-                    className="absolute h-auto max-w-none"
-                    style={{
-                      width: `${(1920 / scene.width) * 100}%`,
-                      left: `${-(scene.x / scene.width) * 100}%`,
-                      top: `${-(scene.y / scene.height) * 100}%`,
-                    }}
-                  />
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#27153d]/90 via-[#27153d]/45 to-transparent px-5 pb-5 pt-16 text-white">
-                    <p className="text-xs font-black uppercase tracking-[0.14em]">{scene.label}</p>
-                  </div>
+            <div className="relative mx-4 mb-4 grid overflow-hidden rounded-2xl bg-white text-[#4a2865] shadow-xl sm:mx-6 sm:mb-6 sm:grid-cols-2 lg:mx-auto lg:-mb-0 lg:w-[82%] lg:translate-y-0 lg:grid-cols-4">
+              {companyFacts.map((fact, index) => (
+                <div key={fact.label} className={`px-5 py-5 text-center sm:text-left ${index ? 'border-t border-violet-100 sm:border-t-0 sm:border-l' : ''}`}>
+                  <p className="text-xl font-black tracking-[-0.025em]">{fact.value}</p>
+                  <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.09em] text-[#6e5d7f]">{fact.label}</p>
                 </div>
               ))}
+            </div>
+          </div>
+
+          <div className="mx-auto mt-16 max-w-[1000px]">
+            <header className="max-w-3xl">
+              <p className="text-xs font-black uppercase tracking-[0.24em] text-violet-700">Inside the work</p>
+              <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] text-[#3d2758] sm:text-5xl">Engineering, production and delivery in view</h2>
+              <p className="mt-5 text-base leading-8 text-zinc-600">
+                A closer look at product design, electronics work, testing, assembly and dispatch activity. Project scope and the responsible production entity are confirmed with the buyer before an order is placed.
+              </p>
+            </header>
+
+            <div className="mt-10 space-y-4">
+              <div className="grid gap-4 lg:grid-cols-[2fr_1fr]">
+                <SceneCrop scene={workScenes[0]} />
+                <div className="grid grid-cols-2 gap-4 lg:grid-cols-1">
+                  <SceneCrop scene={workScenes[1]} />
+                  <SceneCrop scene={workScenes[2]} />
+                </div>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-3">
+                {workScenes.slice(3, 6).map((scene) => <SceneCrop key={scene.label} scene={scene} />)}
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {workScenes.slice(6).map((scene) => <SceneCrop key={scene.label} scene={scene} />)}
+              </div>
             </div>
           </div>
         </div>
