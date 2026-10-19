@@ -21,6 +21,7 @@ export default function HomeVideoHero() {
       <video ref={video} src="/videos/jamooz-home-banner.mp4" autoPlay muted loop playsInline preload="metadata" aria-hidden="true" className="absolute inset-0 -z-30 h-full w-full object-cover object-center" onLoadedMetadata={(event) => { event.currentTarget.playbackRate = 2; }} onPause={() => setPaused(true)} onPlay={() => setPaused(false)} />
       <div className="absolute inset-0 -z-20 bg-[#21152f]/45" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#1d122c]/95 via-[#251335]/65 to-[#251335]/15" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-32 bg-[linear-gradient(180deg,#21152f_0%,#21152f_55%,rgba(33,21,47,0)_100%)]" />
       <div className="mx-auto w-full max-w-[1320px] px-6 py-20 sm:px-10 lg:py-24">
         <div className="max-w-[710px]">
           <p className="inline-flex rounded-full border border-violet-200/30 bg-violet-200/10 px-4 py-2 text-[10px] font-bold uppercase tracking-[.18em] text-violet-100 backdrop-blur-sm sm:text-xs">20+ years experience · OEM / ODM manufacturing</p>
