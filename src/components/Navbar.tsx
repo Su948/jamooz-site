@@ -3,58 +3,91 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { liveCategoryFor } from '@/lib/product-categories';
-
-// A Shop entry points at its category page once that page is live; entries
-// without a published category page still lead to the products hub.
-type ShopMenuItem = { label: string; category?: string; href?: string };
-
-const standardMenuColumns: ReadonlyArray<{ title: string; items: readonly ShopMenuItem[] }> = [
-  { title: 'Enhance fitness & recovery', items: [{ label: 'Massage Guns' }, { label: 'Compression Therapy' }, { label: 'Red Light Therapy' }, { label: 'Recovery Tools' }] },
-  { title: 'Reduce aches & pains', items: [{ label: 'Neck & Shoulder Relief' }, { label: 'Back & Spine Care' }, { label: 'Foot & Leg Massagers' }, { label: 'Heat Therapy' }] },
-  { title: 'Improve sleep & stress', items: [{ label: 'Head & Scalp Massagers', category: 'Head & Scalp' }, { label: 'Eye Care Devices' }, { label: 'Sleep Aids' }, { label: 'Stress Relief Devices' }] },
-  { title: 'Custom OEM/ODM', items: [{ label: 'Development Process', href: '/oem-odm' }, { label: 'Product Customization', href: '/custom' }, { label: 'Packaging Solutions', href: '/custom' }, { label: 'Private Label Services', href: '/custom' }] },
-];
+import { productCategoryHref } from '@/lib/product-categories';
 
 function PreviewNavbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
   const pathname = usePathname();
   const homepage = pathname.startsWith('/preview') ? '/preview' : '/';
   const hasLocalInquiry = pathname.startsWith('/preview/products/') || pathname.startsWith('/products');
   const previewLink = (hash: string) => hasLocalInquiry && hash === '#inquiry' ? hash : `${homepage}${hash}`;
-  const oemOdmLink = pathname.startsWith('/preview') ? `${homepage}#oem-odm` : '/oem-odm';
-  const navigation = [
-    ['HOME', homepage],
-    ['PRODUCTS', '/products'],
-    ['OEM / ODM', oemOdmLink],
-    ['ABOUT US', previewLink('#about-us')],
-    ['QUALITY', previewLink('#quality')],
-    ['CONTACT', previewLink('#inquiry')],
+  const productCategories = [
+    ['Neck & Shoulder Massagers', productCategoryHref('Neck & Shoulder')],
+    ['Scalp & Hair Care', productCategoryHref('Head & Scalp')],
+    ['Body Care Massagers', productCategoryHref('Body Care')],
+    ['Eye Care Devices', productCategoryHref('Eye Care')],
+    ['Hand & Wrist Massagers', productCategoryHref('Hand & Wrist')],
   ] as const;
+  const resources = [
+    ['Buyer Guide', '/guides/choose-scalp-massager-supplier'],
+    ['Product Comparison', '/guides/ems-vs-vibration-scalp-massager'],
+    ['Quality & Company Evidence', '/about'],
+  ] as const;
+
+  const closeMobileMenu = () => {
+    setMobileOpen(false);
+    setMobileProductsOpen(false);
+    setMobileResourcesOpen(false);
+  };
+
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white/95 text-zinc-900 shadow-sm backdrop-blur-xl">
       <div className="mx-auto flex h-[76px] max-w-[1500px] items-center gap-6 px-4 sm:px-6 lg:px-8">
         <Link href={homepage} className="mr-auto flex shrink-0 flex-col leading-none" aria-label="JAMOOZ home"><span className="text-[30px] font-black tracking-[-0.06em] text-violet-800">JAMOOZ</span><span className="mt-1 text-[8px] font-bold uppercase tracking-[0.22em] text-zinc-500">Wellness Technology</span></Link>
-        <nav className="hidden h-full items-center gap-7 text-[12px] font-bold tracking-[0.045em] xl:flex" aria-label="Preview navigation">
-          {navigation.map(([label, href]) => <Link key={label} href={href} className="flex h-full items-center whitespace-nowrap transition hover:text-violet-700">{label}</Link>)}
+        <nav className="hidden h-full items-center gap-8 text-[12px] font-bold tracking-[0.045em] xl:flex" aria-label="Primary navigation">
+          <div className="group/products relative flex h-full items-center">
+            <Link href="/products" className="flex h-full items-center gap-1 whitespace-nowrap transition hover:text-violet-700" aria-haspopup="true">PRODUCTS <span aria-hidden className="text-[10px]">⌄</span></Link>
+            <div className="pointer-events-none invisible absolute right-[-180px] top-full w-[720px] translate-y-2 pt-3 opacity-0 transition duration-200 group-hover/products:pointer-events-auto group-hover/products:visible group-hover/products:translate-y-0 group-hover/products:opacity-100 group-focus-within/products:pointer-events-auto group-focus-within/products:visible group-focus-within/products:translate-y-0 group-focus-within/products:opacity-100">
+              <div className="grid grid-cols-[0.9fr_1.4fr] gap-7 rounded-2xl border border-violet-100 bg-white p-6 text-left shadow-2xl shadow-violet-950/15">
+                <div className="space-y-3">
+                  <Link href="/oem-odm" className="block rounded-2xl bg-gradient-to-br from-violet-700 to-purple-900 p-5 text-white transition hover:-translate-y-0.5 hover:shadow-lg">
+                    <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-violet-200">Start here</span>
+                    <span className="mt-2 block text-lg font-black tracking-tight">OEM/ODM Custom Development</span>
+                    <span className="mt-2 block text-xs font-medium leading-5 text-white/75">From product direction and prototyping to production readiness.</span>
+                    <span className="mt-4 block text-xs font-black">Review the process →</span>
+                  </Link>
+                  <Link href="/products" className="flex items-center justify-between rounded-xl border border-violet-100 px-4 py-3 text-sm font-black text-violet-800 transition hover:border-violet-300 hover:bg-violet-50">View All Products <span aria-hidden>→</span></Link>
+                </div>
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400">Shop by product category</p>
+                  <div className="mt-4 grid grid-cols-2 gap-2">
+                    {productCategories.map(([label, href]) => <Link key={label} href={href} className="rounded-xl border border-transparent px-3 py-3 text-sm font-bold leading-5 text-zinc-700 transition hover:border-violet-100 hover:bg-violet-50 hover:text-violet-800">{label}</Link>)}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <Link href="/about" className="flex h-full items-center whitespace-nowrap transition hover:text-violet-700">ABOUT US</Link>
+          <div className="group/resources relative flex h-full items-center">
+            <button type="button" className="flex h-full items-center gap-1 whitespace-nowrap transition hover:text-violet-700" aria-haspopup="true">RESOURCES <span aria-hidden className="text-[10px]">⌄</span></button>
+            <div className="pointer-events-none invisible absolute right-0 top-full w-[310px] translate-y-2 pt-3 opacity-0 transition duration-200 group-hover/resources:pointer-events-auto group-hover/resources:visible group-hover/resources:translate-y-0 group-hover/resources:opacity-100 group-focus-within/resources:pointer-events-auto group-focus-within/resources:visible group-focus-within/resources:translate-y-0 group-focus-within/resources:opacity-100">
+              <div className="rounded-2xl border border-violet-100 bg-white p-3 text-left shadow-2xl shadow-violet-950/15">
+                {resources.map(([label, href]) => <Link key={label} href={href} className="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-bold text-zinc-700 transition hover:bg-violet-50 hover:text-violet-800">{label}<span aria-hidden className="text-violet-400">→</span></Link>)}
+              </div>
+            </div>
+          </div>
+          <Link href={previewLink('#inquiry')} className="flex h-full items-center whitespace-nowrap transition hover:text-violet-700">CONTACT</Link>
         </nav>
         <Link href={previewLink('#inquiry')} className="hidden shrink-0 rounded-full bg-violet-700 px-5 py-3 text-[11px] font-black tracking-[0.08em] text-white hover:bg-violet-800 sm:inline-flex">REQUEST A QUOTE</Link>
-        <button type="button" onClick={() => setMobileOpen((open) => !open)} className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 text-xl xl:hidden" aria-expanded={mobileOpen} aria-label="Toggle preview menu">{mobileOpen ? '×' : '☰'}</button>
+        <button type="button" onClick={() => setMobileOpen((open) => !open)} className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 text-xl xl:hidden" aria-expanded={mobileOpen} aria-label="Toggle navigation menu">{mobileOpen ? '×' : '☰'}</button>
       </div>
-      {mobileOpen && <nav className="border-t border-zinc-100 bg-white px-5 py-5 shadow-lg xl:hidden" aria-label="Mobile navigation"><div className="mx-auto flex max-w-2xl flex-col text-sm font-bold">{navigation.map(([label, href]) => <Link key={label} href={href} onClick={() => setMobileOpen(false)} className="border-b border-zinc-100 py-3">{label}</Link>)}<Link href={previewLink('#inquiry')} onClick={() => setMobileOpen(false)} className="mt-4 rounded-full bg-violet-700 px-5 py-3 text-center text-xs text-white">REQUEST A QUOTE</Link></div></nav>}
+      {mobileOpen && <nav className="max-h-[calc(100vh-76px)] overflow-y-auto border-t border-zinc-100 bg-white px-5 py-4 shadow-lg xl:hidden" aria-label="Mobile navigation"><div className="mx-auto flex max-w-2xl flex-col text-sm font-bold">
+        <button type="button" onClick={() => setMobileProductsOpen((open) => !open)} className="flex items-center justify-between border-b border-zinc-100 py-3 text-left" aria-expanded={mobileProductsOpen}>PRODUCTS <span aria-hidden>{mobileProductsOpen ? '−' : '+'}</span></button>
+        {mobileProductsOpen && <div className="border-b border-zinc-100 py-3">
+          <Link href="/oem-odm" onClick={closeMobileMenu} className="block rounded-xl bg-violet-700 px-4 py-4 text-white"><span className="block text-[9px] uppercase tracking-[0.16em] text-violet-200">Start here</span><span className="mt-1 block">OEM/ODM Custom Development</span></Link>
+          <Link href="/products" onClick={closeMobileMenu} className="mt-2 block rounded-lg px-3 py-2.5 text-violet-800">View All Products</Link>
+          {productCategories.map(([label, href]) => <Link key={label} href={href} onClick={closeMobileMenu} className="block rounded-lg px-3 py-2.5 text-zinc-600">{label}</Link>)}
+        </div>}
+        <Link href="/about" onClick={closeMobileMenu} className="border-b border-zinc-100 py-3">ABOUT US</Link>
+        <button type="button" onClick={() => setMobileResourcesOpen((open) => !open)} className="flex items-center justify-between border-b border-zinc-100 py-3 text-left" aria-expanded={mobileResourcesOpen}>RESOURCES <span aria-hidden>{mobileResourcesOpen ? '−' : '+'}</span></button>
+        {mobileResourcesOpen && <div className="border-b border-zinc-100 py-2">{resources.map(([label, href]) => <Link key={label} href={href} onClick={closeMobileMenu} className="block rounded-lg px-3 py-2.5 text-zinc-600">{label}</Link>)}</div>}
+        <Link href={previewLink('#inquiry')} onClick={closeMobileMenu} className="border-b border-zinc-100 py-3">CONTACT</Link>
+        <Link href={previewLink('#inquiry')} onClick={closeMobileMenu} className="mt-4 rounded-full bg-violet-700 px-5 py-3 text-center text-xs text-white">REQUEST A QUOTE</Link>
+      </div></nav>}
     </header>
   );
 }
 
-function StandardNavbar() {
-  return (
-    <header className="sticky top-0 z-50 border-b border-border-warm bg-cream-soft/95 backdrop-blur-xl">
-      <div className="hidden bg-surface-dark text-white md:block"><div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-[12px]"><p>✧ Advanced wellness technology solutions for global brands</p><div className="flex gap-5 text-white/78"><span>OEM/ODM expertise</span><span>Scalable manufacturing</span><span>Partner with Jamooz →</span></div></div></div>
-      <nav className="group/nav mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"><div className="flex h-20 items-center justify-between gap-6"><Link href="/" className="flex flex-col leading-none text-navy" aria-label="Jamooz home"><span className="serif-display text-[36px] font-semibold tracking-[-0.08em]">Jamooz</span><span className="mono-label mt-1 text-[9px] text-muted">Wellness technology</span></Link><div className="hidden items-center gap-9 text-sm font-medium text-foreground lg:flex"><Link href="/#solutions">Solutions⌄</Link><Link href="/products">Shop⌄</Link><Link href="/custom">Custom Solutions</Link><Link href="/oem-odm">OEM / ODM Process</Link><Link href="/about">About Jamooz</Link><Link href="/rfq">Resources⌄</Link></div><Link href="/rfq" className="hidden rounded-md border border-border-warm px-5 py-3 text-sm font-bold text-navy md:inline-flex">Contact R&amp;D Team</Link><Link href="/rfq" className="btn-primary px-4 py-3 text-xs lg:hidden">Quote</Link></div>
-        <div className="pointer-events-none absolute left-1/2 top-[104px] hidden w-[min(1180px,calc(100vw-48px))] -translate-x-1/2 translate-y-2 opacity-0 transition group-hover/nav:pointer-events-auto group-hover/nav:translate-y-0 group-hover/nav:opacity-100 lg:block"><div className="grid grid-cols-4 gap-10 rounded-xl border border-border-warm bg-surface p-8 shadow-2xl">{standardMenuColumns.map((column) => <div key={column.title}><h3 className="serif-display mb-5 border-b border-navy/30 pb-4 text-lg font-semibold text-navy">{column.title}</h3><ul className="space-y-3 text-sm text-muted">{column.items.map((item) => <li key={item.label}><Link href={item.href || (item.category && liveCategoryFor(item.category)?.href) || "/products"}>{item.label}</Link></li>)}</ul></div>)}</div></div>
-      </nav>
-    </header>
-  );
-}
-
-export default function Navbar() { const pathname = usePathname(); return pathname === '/' || pathname.startsWith('/preview') || pathname.startsWith('/products') || pathname === '/oem-odm' ? <PreviewNavbar /> : <StandardNavbar />; }
+export default function Navbar() { return <PreviewNavbar />; }
