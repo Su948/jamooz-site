@@ -421,6 +421,7 @@ export default function HomepagePreview(){
           <div aria-hidden="true" className="absolute inset-y-0 left-0 overflow-hidden bg-[#faf8ff]" style={{width:pct(1000,1920)}}>
             <img src={painImage} alt="" className="absolute top-0 h-full max-w-none" style={{left:'-8%',width:'192%'}} />
           </div>
+          {activePainGroup&&<div aria-hidden="true" className="absolute inset-y-0 bg-[#faf8ff]" style={{left:pct(920,1920),right:0}} />}
           <div className="absolute inset-x-0 top-0 z-[5] flex h-[16%] items-center justify-center bg-[#faf8ff] px-4">
             <h2 className="text-center text-[clamp(18px,2.2vw,38px)] font-semibold tracking-tight text-[#45245f]">Hover Over the Body to Explore Products</h2>
           </div>
@@ -449,6 +450,7 @@ export default function HomepagePreview(){
                 className="group flex min-w-0 flex-col overflow-hidden rounded-[clamp(6px,1.2vw,18px)] border border-violet-100 bg-white shadow-[0_8px_30px_rgba(74,47,112,0.08)] transition hover:-translate-y-1 hover:border-violet-300 hover:shadow-[0_12px_34px_rgba(74,47,112,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
               >
                 <span className={`relative block ${activePainId==='p9'?'aspect-[3/1] bg-white':'aspect-[4/3] bg-[#f7f7f9]'} overflow-hidden`}>
+                  {activePainId==='p9'&&(['left','right'] as const).map(side=><span key={side} aria-hidden="true" className="absolute inset-y-0 w-1/2 overflow-hidden" style={{[side]:0}}><img src={product.model==='JMZ-R006'?'/products/jmz-r006/JMZ-R006-01-home-card-wide.png?v=2':`/products/${product.model.toLowerCase()}/01-home-card-wide.png?v=2`} alt="" className="absolute top-0 h-full max-w-none" style={{width:'2000%',[side]:0}} /></span>)}
                   <NextImage src={activePainId==='p9'&&!['JMZ-CSPL003','JMZ-CSPL002','JMZ-801'].includes(product.model)?(product.model==='JMZ-R006'?'/products/jmz-r006/JMZ-R006-01-home-card-wide.png?v=2':`/products/${product.model.toLowerCase()}/01-home-card-wide.png?v=2`):product.image} alt={`${product.model} ${product.name}`} fill unoptimized={activePainId==='p9'||activePainId==='p2'} loading={activePainId==='p9'||activePainId==='p2'?'eager':'lazy'} onError={event=>{const image=event.currentTarget;if(!image.dataset.originalFallback){image.dataset.originalFallback='true';image.removeAttribute('srcset');image.src=product.image;}}} sizes="(min-width: 1200px) 280px, 20vw" className="object-contain transition duration-500 group-hover:scale-[1.035]" />
                 </span>
                 <span className="flex flex-1 flex-col p-[clamp(4px,0.9vw,14px)]">
