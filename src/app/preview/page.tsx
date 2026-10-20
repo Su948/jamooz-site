@@ -95,9 +95,12 @@ const neckProducts: readonly BodyAreaProduct[] = [
     href: '/products/jmz-706w',
     price: 'US$17.80–21.00 / pc',
   },
+  ...octoberProductCards.filter(product=>product.model==='JMZ-CSPL003'),
 ];
+const waistProducts: readonly BodyAreaProduct[] = octoberProductCards.filter(product=>product.model==='JMZ-723'||product.model==='JMZ-727');
 const bodyAreaProductGroups = {
   p1: { title: 'Head & Eye Care', ariaLabel: 'Head and eye care products', products: headProducts },
+  p2: { title: 'Back & Waist Care', ariaLabel: 'Back and waist care products', products: waistProducts },
   p9: { title: 'Neck & Shoulder Care', ariaLabel: 'Neck and shoulder care products', products: neckProducts },
 } as const;
 
@@ -455,7 +458,7 @@ export default function HomepagePreview(){
                 className="group flex min-w-0 flex-col overflow-hidden rounded-[clamp(6px,1.2vw,18px)] border border-violet-100 bg-white shadow-[0_8px_30px_rgba(74,47,112,0.08)] transition hover:-translate-y-1 hover:border-violet-300 hover:shadow-[0_12px_34px_rgba(74,47,112,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
               >
                 <span className={`relative block ${activePainId==='p9'?'aspect-[19/10] bg-white':'aspect-[4/3] bg-[#f7f7f9]'} overflow-hidden`}>
-                  <NextImage src={activePainId==='p9'?(product.model==='JMZ-R006'?'/products/jmz-r006/JMZ-R006-01-home-card-wide.png?v=2':`/products/${product.model.toLowerCase()}/01-home-card-wide.png?v=2`):product.image} alt={`${product.model} ${product.name}`} fill unoptimized={activePainId==='p9'} loading={activePainId==='p9'?'eager':'lazy'} onError={event=>{const image=event.currentTarget;if(!image.dataset.originalFallback){image.dataset.originalFallback='true';image.removeAttribute('srcset');image.src=product.image;}}} sizes="(min-width: 1200px) 280px, 20vw" className="object-contain transition duration-500 group-hover:scale-[1.035]" />
+                  <NextImage src={activePainId==='p9'&&product.model!=='JMZ-CSPL003'?(product.model==='JMZ-R006'?'/products/jmz-r006/JMZ-R006-01-home-card-wide.png?v=2':`/products/${product.model.toLowerCase()}/01-home-card-wide.png?v=2`):product.image} alt={`${product.model} ${product.name}`} fill unoptimized={activePainId==='p9'||activePainId==='p2'} loading={activePainId==='p9'||activePainId==='p2'?'eager':'lazy'} onError={event=>{const image=event.currentTarget;if(!image.dataset.originalFallback){image.dataset.originalFallback='true';image.removeAttribute('srcset');image.src=product.image;}}} sizes="(min-width: 1200px) 280px, 20vw" className="object-contain transition duration-500 group-hover:scale-[1.035]" />
                 </span>
                 <span className="flex flex-1 flex-col p-[clamp(4px,0.9vw,14px)]">
                   <span className="text-[clamp(7px,0.72vw,12px)] font-black uppercase tracking-[0.14em] text-violet-700">{product.model} · {product.category}</span>
