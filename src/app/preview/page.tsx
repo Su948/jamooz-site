@@ -422,6 +422,9 @@ export default function HomepagePreview(){
       <div className="mx-auto max-w-[1440px] px-3 md:px-6">
         <div className="relative mx-auto overflow-hidden" style={{aspectRatio:'1920 / 1059'}}>
           <img src={painImage} alt="JAMOOZ body pain solution" className="absolute inset-0 h-full w-full object-contain" />
+          <div aria-hidden="true" className="absolute inset-y-0 left-0 overflow-hidden bg-[#faf8ff]" style={{width:pct(1000,1920)}}>
+            <img src={painImage} alt="" className="absolute top-0 h-full max-w-none" style={{left:'-8%',width:'192%'}} />
+          </div>
           <div className="absolute inset-x-0 top-0 z-[5] flex h-[16%] items-center justify-center bg-[#faf8ff] px-4">
             <h2 className="text-center text-[clamp(18px,2.2vw,38px)] font-semibold tracking-tight text-[#45245f]">Hover Over the Body to Explore Products</h2>
           </div>
@@ -433,13 +436,13 @@ export default function HomepagePreview(){
             onFocus={()=>{setPainImage(p.image);setActivePainId(p.id)}}
             onClick={()=>{setPainImage(p.image);setActivePainId(p.id)}}
             className="absolute z-10 bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
-            style={{left:pct(p.x,1920),top:pct(p.y,1059),width:pct(p.w,1920),height:pct(p.h,1059)}}
+            style={{left:pct(p.x-80,1920),top:pct(p.y,1059),width:pct(p.w,1920),height:pct(p.h,1059)}}
           />)}
           {activePainGroup&&<div
             aria-label={activePainGroup.ariaLabel}
             aria-live="polite"
             className="absolute z-[15] flex flex-col justify-center overflow-hidden bg-[#faf8ff]"
-            style={{left:pct(1030,1920),top:pct(160,1059),width:pct(790,1920),height:pct(875,1059),padding:'clamp(4px,1.2vw,18px)'}}
+            style={{left:pct(activePainId==='p9'?920:1030,1920),top:pct(160,1059),width:pct(activePainId==='p9'?990:790,1920),height:pct(875,1059),padding:'clamp(4px,1.2vw,18px)'}}
           >
             <p className="mb-[clamp(3px,0.7vw,10px)] text-center text-[clamp(7px,0.8vw,13px)] font-black uppercase tracking-[0.18em] text-violet-700">{activePainGroup.title}</p>
             <div className={`grid gap-[clamp(4px,1vw,16px)] ${activePainGroup.products.length>=3?'grid-cols-3':'grid-cols-2'}`}>
@@ -449,8 +452,8 @@ export default function HomepagePreview(){
                 aria-label={`View ${product.model} ${product.name}`}
                 className="group flex min-w-0 flex-col overflow-hidden rounded-[clamp(6px,1.2vw,18px)] border border-violet-100 bg-white shadow-[0_8px_30px_rgba(74,47,112,0.08)] transition hover:-translate-y-1 hover:border-violet-300 hover:shadow-[0_12px_34px_rgba(74,47,112,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
               >
-                <span className="relative block aspect-[4/3] overflow-hidden bg-[#f7f7f9]">
-                  <NextImage src={product.image} alt={`${product.model} ${product.name}`} fill sizes="(min-width: 1200px) 280px, 20vw" className="object-contain transition duration-500 group-hover:scale-[1.035]" />
+                <span className={`relative block ${activePainId==='p9'?'aspect-[19/10] bg-white':'aspect-[4/3] bg-[#f7f7f9]'} overflow-hidden`}>
+                  <NextImage src={activePainId==='p9'?(product.model==='JMZ-R006'?'/products/jmz-r006/JMZ-R006-01-home-card-wide.png?v=2':`/products/${product.model.toLowerCase()}/01-home-card-wide.png?v=2`):product.image} alt={`${product.model} ${product.name}`} fill unoptimized={activePainId==='p9'} loading={activePainId==='p9'?'eager':'lazy'} onError={event=>{const image=event.currentTarget;if(!image.dataset.originalFallback){image.dataset.originalFallback='true';image.removeAttribute('srcset');image.src=product.image;}}} sizes="(min-width: 1200px) 280px, 20vw" className="object-contain transition duration-500 group-hover:scale-[1.035]" />
                 </span>
                 <span className="flex flex-1 flex-col p-[clamp(4px,0.9vw,14px)]">
                   <span className="text-[clamp(7px,0.72vw,12px)] font-black uppercase tracking-[0.14em] text-violet-700">{product.model} · {product.category}</span>
