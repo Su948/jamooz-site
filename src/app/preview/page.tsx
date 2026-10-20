@@ -6,6 +6,7 @@ import { useRef, useState } from 'react';
 import { liveCategoryFor } from '@/lib/product-categories';
 import HomeVideoHero from '@/components/HomeVideoHero';
 import { octoberProductCards } from '@/lib/october-products';
+import { jmz801, jmzCspl002 } from '@/lib/preview-products/new-products';
 
 const ali = (path: string) => `https:${path}`;
 const pct = (n:number,total:number) => `${(n/total)*100}%`;
@@ -96,6 +97,7 @@ const neckProducts: readonly BodyAreaProduct[] = [
     price: 'US$17.80–21.00 / pc',
   },
   ...octoberProductCards.filter(product=>product.model==='JMZ-CSPL003'),
+  ...[jmzCspl002, jmz801].map(product=>({model:product.model,category:product.category,name:product.name,image:product.gallery[0].src,href:`/products/${product.slug}`,price:product.priceRange??'Custom Quote'})),
 ];
 const waistProducts: readonly BodyAreaProduct[] = octoberProductCards.filter(product=>product.model==='JMZ-723'||product.model==='JMZ-727');
 const bodyAreaProductGroups = {
@@ -450,7 +452,8 @@ export default function HomepagePreview(){
             style={{left:pct(activePainId==='p9'?920:1030,1920),top:pct(160,1059),width:pct(activePainId==='p9'?990:790,1920),height:pct(875,1059),padding:'clamp(4px,1.2vw,18px)'}}
           >
             <p className="mb-[clamp(3px,0.7vw,10px)] text-center text-[clamp(7px,0.8vw,13px)] font-black uppercase tracking-[0.18em] text-violet-700">{activePainGroup.title}</p>
-            <div className={`grid gap-[clamp(4px,1vw,16px)] ${activePainGroup.products.length>=3?'grid-cols-3':'grid-cols-2'}`}>
+            {activePainGroup.products.length>6&&<p className="mb-2 text-center text-[clamp(8px,0.8vw,12px)] text-violet-700">8 products · Scroll to explore all ↓</p>}
+            <div tabIndex={activePainGroup.products.length>6?0:undefined} aria-label={activePainGroup.products.length>6?'Scroll through all neck and shoulder products':undefined} className={`grid min-h-0 gap-[clamp(4px,1vw,16px)] ${activePainGroup.products.length>6?'overflow-y-auto overscroll-contain pr-1':''} ${activePainGroup.products.length>=3?'grid-cols-3':'grid-cols-2'}`}>
               {activePainGroup.products.map(product=><Link
                 key={product.model}
                 href={product.href}
@@ -458,7 +461,7 @@ export default function HomepagePreview(){
                 className="group flex min-w-0 flex-col overflow-hidden rounded-[clamp(6px,1.2vw,18px)] border border-violet-100 bg-white shadow-[0_8px_30px_rgba(74,47,112,0.08)] transition hover:-translate-y-1 hover:border-violet-300 hover:shadow-[0_12px_34px_rgba(74,47,112,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
               >
                 <span className={`relative block ${activePainId==='p9'?'aspect-[19/10] bg-white':'aspect-[4/3] bg-[#f7f7f9]'} overflow-hidden`}>
-                  <NextImage src={activePainId==='p9'&&product.model!=='JMZ-CSPL003'?(product.model==='JMZ-R006'?'/products/jmz-r006/JMZ-R006-01-home-card-wide.png?v=2':`/products/${product.model.toLowerCase()}/01-home-card-wide.png?v=2`):product.image} alt={`${product.model} ${product.name}`} fill unoptimized={activePainId==='p9'||activePainId==='p2'} loading={activePainId==='p9'||activePainId==='p2'?'eager':'lazy'} onError={event=>{const image=event.currentTarget;if(!image.dataset.originalFallback){image.dataset.originalFallback='true';image.removeAttribute('srcset');image.src=product.image;}}} sizes="(min-width: 1200px) 280px, 20vw" className="object-contain transition duration-500 group-hover:scale-[1.035]" />
+                  <NextImage src={activePainId==='p9'&&!['JMZ-CSPL003','JMZ-CSPL002','JMZ-801'].includes(product.model)?(product.model==='JMZ-R006'?'/products/jmz-r006/JMZ-R006-01-home-card-wide.png?v=2':`/products/${product.model.toLowerCase()}/01-home-card-wide.png?v=2`):product.image} alt={`${product.model} ${product.name}`} fill unoptimized={activePainId==='p9'||activePainId==='p2'} loading={activePainId==='p9'||activePainId==='p2'?'eager':'lazy'} onError={event=>{const image=event.currentTarget;if(!image.dataset.originalFallback){image.dataset.originalFallback='true';image.removeAttribute('srcset');image.src=product.image;}}} sizes="(min-width: 1200px) 280px, 20vw" className="object-contain transition duration-500 group-hover:scale-[1.035]" />
                 </span>
                 <span className="flex flex-1 flex-col p-[clamp(4px,0.9vw,14px)]">
                   <span className="text-[clamp(7px,0.72vw,12px)] font-black uppercase tracking-[0.14em] text-violet-700">{product.model} · {product.category}</span>
