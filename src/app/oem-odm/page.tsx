@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import InquiryForm from "@/components/InquiryForm";
+import ManufacturingEvidence from "@/components/ManufacturingEvidence";
 
 export const metadata: Metadata = {
   title: "OEM/ODM Massage Device Development Process | JAMOOZ",
@@ -270,6 +271,7 @@ export default function OemOdmPage() {
         </div>
       </section>
 
+      <ManufacturingEvidence />
       <section className="bg-[#3d2758] py-20 text-white sm:py-24">
         <div className="mx-auto grid max-w-[1320px] gap-12 px-5 sm:px-8 lg:grid-cols-[.9fr_1.1fr] lg:items-start">
           <div>
