@@ -49,6 +49,7 @@ export type ProductDetailConfig = {
   samplePrice?: string;
   priceTiers?: readonly ProductPriceTier[];
   customPricing?: boolean;
+  customizationOptions?: readonly { title: string; copy: string }[];
   featuresLabel: string;
   featuresTitle: string;
   featuresIntro: string;

@@ -135,9 +135,9 @@ export default function ProductDetailTemplate({ product }: { product: ProductDet
         <div className={shell}>
           <p className={sectionLabel}>OEM / ODM options</p>
           <h2 className={sectionTitle}>Prepare {product.model} for Your Market</h2>
-          <p className="mt-4 max-w-3xl leading-7 text-[#607086]">Logo, color and retail packaging can be customized for qualified orders. Smaller customized runs may be discussed with an additional charge.</p>
+          <p className="mt-4 max-w-3xl leading-7 text-[#607086]">{product.customizationOptions ? 'Discuss your logo, color and packaging requirements. Customization scope, minimum quantities and lead time are confirmed with the quotation.' : 'Logo, color and retail packaging can be customized for qualified orders. Smaller customized runs may be discussed with an additional charge.'}</p>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {[["Custom Logo", "Standard MOQ 500 pcs"], ["Custom Color", "Standard MOQ 500 pcs per color"], ["Color Box", "Standard MOQ 500 pcs"], ["Corrugated Box", "Standard MOQ 300 pcs"]].map(([title, copy], index) => <article key={title} className="rounded-3xl border border-[#dfe5ee] bg-white p-6"><span className="text-xs font-black text-[#4f79a8]">0{index + 1}</span><h3 className="mt-8 text-lg font-black text-[#1f3048]">{title}</h3><p className="mt-3 text-sm leading-6 text-[#66758a]">{copy}</p></article>)}
+            {(product.customizationOptions ?? [{title:"Custom Logo",copy:"Standard MOQ 500 pcs"},{title:"Custom Color",copy:"Standard MOQ 500 pcs per color"},{title:"Color Box",copy:"Standard MOQ 500 pcs"},{title:"Corrugated Box",copy:"Standard MOQ 300 pcs"}]).map(({title, copy}, index) => <article key={title} className="rounded-3xl border border-[#dfe5ee] bg-white p-6"><span className="text-xs font-black text-[#4f79a8]">0{index + 1}</span><h3 className="mt-8 text-lg font-black text-[#1f3048]">{title}</h3><p className="mt-3 text-sm leading-6 text-[#66758a]">{copy}</p></article>)}
           </div>
         </div>
       </section>

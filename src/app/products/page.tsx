@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import { octoberProductCards } from "@/lib/october-products";
 import { hubCategoryOrder, liveCategoryFor, productCategoryAnchor } from "@/lib/product-categories";
 
 const products = [
+  ...octoberProductCards,
   {
     model: "JMZ-702",
     category: "Body Care",

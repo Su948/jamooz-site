@@ -6,6 +6,10 @@ import { companyFacts } from "@/lib/company";
  * or layout-only edits leave it as it was.
  */
 const productLastModified: Record<string, string> = {
+  "jmz-723": "2026-10-20",
+  "jmz-cspl003": "2026-10-20",
+  "jmz-727": "2026-10-20",
+  "jmz-818": "2026-10-20",
   "jmz-729s": "2026-10-13",
   "jmz-908": "2026-10-13",
   "jmz-802": "2026-10-13",
@@ -71,7 +75,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
-    ...["jmz-702", "jmz-r006", "jmz-729s", "jmz-908", "jmz-802", "jmz-903", "jmz-807p", "jmz-706w", "jmz-706h", "jmz-901", "jmz-722", "jmz-801", "jmz-cspl002"].map((slug) => ({
+    ...["jmz-702", "jmz-r006", "jmz-729s", "jmz-908", "jmz-802", "jmz-903", "jmz-807p", "jmz-706w", "jmz-706h", "jmz-901", "jmz-722", "jmz-801", "jmz-cspl002", "jmz-723", "jmz-cspl003", "jmz-727", "jmz-818"].map((slug) => ({
       url: `${companyFacts.website}/products/${slug}`,
       lastModified: productLastModified[slug] ?? defaultProductLastModified,
       changeFrequency: "monthly" as const,

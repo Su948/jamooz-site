@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { liveCategoryFor } from '@/lib/product-categories';
 import HomeVideoHero from '@/components/HomeVideoHero';
+import { octoberProductCards } from '@/lib/october-products';
 
 const ali = (path: string) => `https:${path}`;
 const pct = (n:number,total:number) => `${(n/total)*100}%`;
@@ -110,6 +111,7 @@ const customizationCapabilities = ['Custom Logo','Colors & Materials','Functions
 const customizationServices = ['Logo Printing','Custom Color','Custom Packaging','Function Customization','Private Label'] as const;
 
 const featuredProducts = [
+  ...octoberProductCards,
   {
     model: 'JMZ-702',
     category: 'Body Care',
