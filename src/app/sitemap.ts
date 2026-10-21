@@ -53,9 +53,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${companyFacts.website}/products`,
-      lastModified: "2026-10-13",
+      lastModified: "2026-10-21",
       changeFrequency: "weekly",
       priority: 0.9,
+    },
+    {
+      url: `${companyFacts.website}/products/neck-shoulder-massagers`,
+      lastModified: "2026-10-21",
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
     {
       url: `${companyFacts.website}/products/scalp-massagers`,

@@ -29,6 +29,11 @@ export type LiveProductCategory = {
 
 export const liveProductCategories: readonly LiveProductCategory[] = [
   {
+    category: "Neck & Shoulder",
+    label: "Neck & Shoulder Massagers",
+    href: "/products/neck-shoulder-massagers",
+  },
+  {
     category: "Head & Scalp",
     label: "Scalp & Hair Care",
     href: "/products/scalp-massagers",
@@ -62,7 +67,7 @@ export function productCategoryAnchor(category: string): string {
 }
 
 export function productCategoryHref(category: string): string {
-  return `/products#${productCategoryAnchor(category)}`;
+  return liveCategoryFor(category)?.href ?? `/products#${productCategoryAnchor(category)}`;
 }
 
 /** Display order of the groups on the /products hub. */

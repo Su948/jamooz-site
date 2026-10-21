@@ -6,6 +6,7 @@ import { liveCategoryFor } from '@/lib/product-categories';
 export default function Footer() {
   // A footer category entry points at its category page only when that page is
   // live (D020 §3.5); entries without one keep leading to the products hub.
+  const neckCategory = liveCategoryFor('Neck & Shoulder');
   const scalpCategory = liveCategoryFor('Head & Scalp');
 
   return (
@@ -27,6 +28,7 @@ export default function Footer() {
             <h3 className="mono-label text-xs font-bold text-white/50">Solutions</h3>
             <ul className="mt-5 space-y-3 text-sm text-white/68">
               <li><Link href="/products" className="hover:text-white">All massage products</Link></li>
+              <li><Link href={neckCategory?.href ?? "/products"} className="hover:text-white">Neck & shoulder massagers</Link></li>
               <li><Link href={scalpCategory?.href ?? "/products"} className="hover:text-white">Scalp massagers</Link></li>
               <li><Link href="/products" className="hover:text-white">Recovery devices</Link></li>
               <li><Link href="/products" className="hover:text-white">Red light therapy</Link></li>
