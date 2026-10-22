@@ -5,6 +5,7 @@ import { jmz729s, jmz801, jmzCspl002 } from '@/lib/preview-products/new-products
 import { jmz807p, jmz706w, jmz706h } from '@/lib/preview-products/planned-products';
 import { jmzCspl003 } from '@/lib/october-products';
 import { jmzR006Gallery, jmzR006Specs } from '@/lib/preview-products/jmz-r006';
+import Breadcrumbs from '@/components/Breadcrumbs';
 
 export const metadata: Metadata = {
   title: 'Neck & Shoulder Massagers — Category Preview | JAMOOZ',
@@ -24,6 +25,11 @@ const products = [
 ];
 const spec = (p: typeof products[number], names: string[]) => p.specs.find(s => names.includes(s.item) && s.status === 'Confirmed')?.value ?? 'Confirm with sample';
 const price = (p: typeof products[number]) => p.customPricing ? 'Custom Quote' : p.priceRange;
+const breadcrumbItems = [
+  { name: 'Home', href: '/' },
+  { name: 'Products', href: '/products' },
+  { name: 'Neck & Shoulder Massagers', href: '/products/neck-shoulder-massagers' },
+];
 const faqs = [
   ['Which model should I start with?', 'Start with the wearing position and contact structure. R006 offers a U-shaped wearable format; the pillow models provide different contact layouts, sizes and controls. Compare a physical sample before final selection.'],
   ['What is the minimum order quantity?', 'Orders start from 50 pieces. Logo, color, packaging and functional customization are reviewed separately; the applicable minimum and final price are confirmed in your quotation.'],
@@ -39,7 +45,9 @@ export default function NeckCategoryPreview({ showPreviewNotice = true }: { show
     <section className="border-b border-violet-100 bg-white">
       <div className="mx-auto grid max-w-[1280px] gap-8 px-5 py-10 sm:px-8 sm:py-14 lg:grid-cols-[1.15fr_.85fr] lg:items-center">
         <div>
-          <nav aria-label="Breadcrumb" className="mb-7 text-xs text-zinc-500"><Link href="/">Home</Link> / <Link href="/products">Products</Link> / Neck &amp; Shoulder</nav>
+          <div className="mb-7">
+            <Breadcrumbs items={breadcrumbItems} />
+          </div>
           <p className="text-xs font-bold uppercase tracking-[.18em] text-violet-600">Wholesale · Private label · OEM / ODM</p>
           <h1 className="mt-4 max-w-2xl text-[32px] font-semibold leading-[1.12] tracking-tight sm:text-[42px] lg:text-[48px]">Neck &amp; Shoulder<br/><span className="text-violet-600">Massager Manufacturer</span></h1>
           <p className="mt-5 max-w-xl text-sm leading-7 text-zinc-600 sm:text-base">Compare eight JAMOOZ models for your next product range. Explore wearable kneading and massage pillow designs, then confirm the right sample for your brand.</p>
