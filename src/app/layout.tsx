@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import PreviewContactSection from "@/components/PreviewContactSection";
 import GoogleTagManager from "@/components/GoogleTagManager";
 import MicrosoftClarity from "@/components/MicrosoftClarity";
+import CookieConsent from "@/components/CookieConsent";
 import FloatingContactActions from "@/components/FloatingContactActions";
 import { companyFacts } from "@/lib/company";
 
@@ -30,6 +31,7 @@ export default function RootLayout({
         <FloatingContactActions />
         <PreviewContactSection />
         <Footer />
+        <CookieConsent />
       </body>
     </html>
   );
