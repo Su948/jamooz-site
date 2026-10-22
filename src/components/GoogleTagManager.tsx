@@ -6,6 +6,7 @@ import {
   trackConversionEvent,
   type ConversionEventName,
 } from "@/lib/analytics";
+import { useAnalyticsConsent } from "@/lib/analytics-consent";
 
 const gtmId =
   process.env.NEXT_PUBLIC_GTM_ID?.trim() || "GTM-MXCQZ9VF";
@@ -41,8 +42,10 @@ function inferConversionEvent(anchor: HTMLAnchorElement): ConversionEventName | 
 }
 
 export default function GoogleTagManager() {
+  const consent = useAnalyticsConsent();
+
   useEffect(() => {
-    if (!validGtmId) return;
+    if (!validGtmId || consent !== "granted") return;
 
     const handleClick = (event: MouseEvent) => {
       const target = event.target;
@@ -61,9 +64,9 @@ export default function GoogleTagManager() {
 
     document.addEventListener("click", handleClick);
     return () => document.removeEventListener("click", handleClick);
-  }, []);
+  }, [consent]);
 
-  if (!validGtmId) return null;
+  if (!validGtmId || consent !== "granted") return null;
 
   return (
     <>
