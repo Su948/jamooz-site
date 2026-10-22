@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ProductCatalogDirectory from "@/components/ProductCatalogDirectory";
 import { octoberProductCards } from "@/lib/october-products";
 import { hubCategoryOrder, liveCategoryFor, productCategoryAnchor } from "@/lib/product-categories";
 
@@ -7,7 +8,7 @@ const products = [
   ...octoberProductCards,
   {
     model: "JMZ-702",
-    category: "Body Care",
+    category: "Massage Chairs",
     name: "Heated Vibration Egg Massage Chair",
     description: "A compact egg-shaped massage seat combining three-level vibration and adjustable warming for home, office and everyday relaxation settings.",
     image: "/products/jmz-702/JMZ-702-01-home-card.webp",
@@ -51,7 +52,7 @@ const products = [
   },
   {
     model: "JMZ-802",
-    category: "Hand & Wrist",
+    category: "Hand, Wrist & Elbow",
     name: "3-in-1 Air Pressure Hand & Wrist Massager",
     description: "A rechargeable hand and wrist massager with five-level air pressure, bidirectional kneading and three-level warming.",
     image: "/products/jmz-802/01-hero.webp",
@@ -117,7 +118,7 @@ const products = [
   },
   {
     model: "JMZ-722",
-    category: "Body Care",
+    category: "Hand, Wrist & Elbow",
     name: "3-in-1 Elbow Massager",
     description: "A wearable elbow wrap combining EMS stimulation, warming and air compression, controlled from the display panel on the main unit.",
     image: "/products/jmz-722/01-hero.webp",
@@ -167,7 +168,35 @@ const categoryGroups = orderedCategories
   })
   .filter((group) => group.items.length > 0);
 
-export default function ProductsPage() {
+const catalogLabels: Readonly<Record<string, string>> = {
+  "Neck & Shoulder": "Neck & Shoulder Massagers",
+  "Head & Scalp": "Scalp & Hair Care",
+};
+
+export default function ProductsPage({ showCatalogDirectory = true }: { showCatalogDirectory?: boolean } = {}) {
+  if (showCatalogDirectory) {
+    return (
+      <ProductCatalogDirectory
+        groups={categoryGroups.map((group) => ({
+          category: group.category,
+          label: catalogLabels[group.category] ?? group.label,
+          items: group.items.map((product) => ({
+            model: product.model,
+            category: group.category,
+            categoryLabel: catalogLabels[group.category] ?? group.label,
+            name: product.name,
+            description: product.description,
+            image: product.image,
+            href: product.href,
+            price: product.price,
+            moq: product.moq,
+            features: product.features,
+          })),
+        }))}
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-[#faf8ff] pb-24 text-[#302050]">
       <section className="border-b border-violet-100 bg-[#faf8ff] py-16 sm:py-20">

@@ -7,7 +7,7 @@ const customizationOptions = ['Logo & Branding','Colors & Materials','Retail Pac
 const relatedLinks = [{href:'/custom',eyebrow:'OEM / ODM',name:'Product customization',detail:'Discuss branding, packaging and order requirements.',linkLabel:'Explore Customization'}];
 
 export const jmz723: ProductDetailConfig = {
-  slug:'jmz-723',model:'JMZ-723',category:'Body Care',
+  slug:'jmz-723',model:'JMZ-723',category:'Waist Massagers',
   name:'Rechargeable EMS & Heated Waist Belt',eyebrow:'EMS BELT FOR OEM / ODM PROJECTS',
   description:'An adjustable EMS waist belt with seven pulse modes, 15 intensity levels, two warming settings and a handheld remote. A detachable main unit and supplied arm and extension straps support flexible daily use.',
   seoDescription:'Explore the JMZ-723 rechargeable EMS waist belt with seven modes, 15 intensity levels, adjustable heat, remote control and OEM branding options.',
@@ -62,7 +62,7 @@ export const jmzCspl003: ProductDetailConfig = {
 };
 
 export const jmz727: ProductDetailConfig = {
-  slug:'jmz-727',model:'JMZ-727',category:'Body Care',
+  slug:'jmz-727',model:'JMZ-727',category:'Waist Massagers',
   name:'EMS, Heat & Near-Infrared Waist Belt',eyebrow:'RECHARGEABLE WAIST BELT FOR OEM / ODM',
   description:'A flexible waist belt combining EMS stimulation, near-infrared and heating functions. Eight EMS modes, a rechargeable main unit and a handheld remote offer convenient control for a personalized daily comfort routine.',
   seoDescription:'Explore the JMZ-727 EMS waist belt with eight pulse modes, near-infrared, heat, a 2500mAh main unit and rechargeable remote. Request a custom quote.',

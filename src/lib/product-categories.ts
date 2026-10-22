@@ -57,9 +57,11 @@ export function liveCategoryFor(category: string): LiveProductCategory | undefin
 const hubCategoryAnchors: Readonly<Record<string, string>> = {
   "Neck & Shoulder": "neck-shoulder",
   "Head & Scalp": "head-scalp",
+  "Waist Massagers": "waist-massagers",
   "Body Care": "body-care",
   "Eye Care": "eye-care",
-  "Hand & Wrist": "hand-wrist",
+  "Hand, Wrist & Elbow": "hand-wrist-elbow",
+  "Massage Chairs": "massage-chairs",
 };
 
 export function productCategoryAnchor(category: string): string {
@@ -74,7 +76,9 @@ export function productCategoryHref(category: string): string {
 export const hubCategoryOrder: readonly string[] = [
   "Neck & Shoulder",
   "Head & Scalp",
+  "Waist Massagers",
   "Body Care",
   "Eye Care",
-  "Hand & Wrist",
+  "Hand, Wrist & Elbow",
+  "Massage Chairs",
 ];
