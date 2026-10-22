@@ -8,7 +8,7 @@ export default function HomeVideoHero({ credentials = true }: { credentials?: bo
   useEffect(() => {
     if (video.current) video.current.playbackRate = 2;
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (preference.matches) { video.current?.pause(); setPaused(true); }
+    if (preference.matches) video.current?.pause();
   }, []);
   const toggle = async () => {
     if (!video.current) return;
@@ -21,7 +21,7 @@ export default function HomeVideoHero({ credentials = true }: { credentials?: bo
       <video ref={video} src="/videos/jamooz-home-banner.mp4" autoPlay muted loop playsInline preload="metadata" aria-hidden="true" className="absolute inset-0 -z-30 h-full w-full translate-y-[3%] scale-[1.8] object-cover object-center" onLoadedMetadata={(event) => { event.currentTarget.playbackRate = 2; }} onPause={() => setPaused(true)} onPlay={() => setPaused(false)} />
       <div className="absolute inset-0 -z-20 bg-[#21152f]/45" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#1d122c]/95 via-[#251335]/65 to-[#251335]/15" />
-      <div className="mx-auto w-full max-w-[1320px] px-5 py-6 sm:px-10 sm:py-7">
+      <div className="mx-auto w-full max-w-[1320px] px-5 pb-20 pt-6 sm:px-10 sm:pb-16 sm:pt-7">
         <div className="max-w-[760px]">
           <p className="inline-flex rounded-full border border-violet-200/30 bg-violet-200/10 px-4 py-2 text-[10px] font-bold uppercase tracking-[.12em] text-violet-100 backdrop-blur-sm sm:text-xs">20+ years experience · OEM / ODM manufacturing</p>
 {credentials&&<div className="mt-3"><div aria-label="Supplier credentials and product documents" className="grid max-w-[620px] grid-cols-2 gap-2 sm:flex sm:flex-wrap">{['SGS Assessed','ISO 13485','CE Documents','FCC Reports'].map(label=><span key={label} className="inline-flex items-center gap-2 rounded-lg border border-violet-100/35 bg-white/10 px-3 py-2 text-[11px] font-semibold text-white backdrop-blur-sm sm:text-xs"><svg aria-hidden="true" viewBox="0 0 20 20" className="size-4 text-violet-200" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M10 2 17 5v5c0 4-7 8-7 8s-7-4-7-8V5z"/><path d="m6.5 9.5 2.5 2.5 4.5-5"/></svg>{label}</span>)}</div></div>}
@@ -36,7 +36,13 @@ export default function HomeVideoHero({ credentials = true }: { credentials?: bo
           {credentials&&<a href="/oem-odm#manufacturing-evidence" className="mt-3 inline-flex min-h-8 items-center text-xs font-semibold text-violet-100 underline underline-offset-4">View Credentials →</a>}
         </div>
       </div>
-      <button type="button" onClick={toggle} aria-label={paused ? 'Play background video' : 'Pause background video'} className="absolute bottom-3 right-24 flex min-h-11 items-center gap-2 rounded-full border border-white/35 bg-black/35 px-4 text-xs font-semibold text-white backdrop-blur-sm hover:bg-black/60"><span aria-hidden="true">{paused ? '▶' : 'Ⅱ'}</span>{paused ? 'Play video' : 'Pause video'}</button>
+      <a href="#body-solutions-title" aria-label="Scroll to explore body-area massage solutions" className="group absolute bottom-3 left-1/2 z-10 inline-flex min-h-12 -translate-x-1/2 items-center gap-3 whitespace-nowrap rounded-full border-2 border-white bg-white px-3 py-2 text-[10px] font-black uppercase tracking-[.14em] text-violet-950 shadow-[0_0_0_4px_rgba(139,92,246,.22),0_14px_36px_rgba(0,0,0,.4)] transition hover:-translate-y-0.5 hover:bg-violet-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#21152f] sm:px-4 sm:text-xs">
+        <span>Explore Below</span>
+        <span aria-hidden="true" className="inline-flex size-8 items-center justify-center rounded-full bg-violet-600 text-white shadow-md transition group-hover:bg-violet-700">
+          <svg viewBox="0 0 20 20" className="size-4 motion-safe:animate-bounce" fill="none" stroke="currentColor" strokeWidth="1.9"><path d="m5 6 5 5 5-5M5 10l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+        </span>
+      </a>
+      <button type="button" onClick={toggle} aria-label={paused ? 'Play background video' : 'Pause background video'} className="absolute bottom-3 right-4 flex min-h-11 items-center gap-2 rounded-full border border-white/35 bg-black/35 px-3 text-xs font-semibold text-white backdrop-blur-sm hover:bg-black/60 sm:right-6 sm:px-4"><span aria-hidden="true">{paused ? '▶' : 'Ⅱ'}</span><span className="hidden sm:inline">{paused ? 'Play video' : 'Pause video'}</span></button>
     </section>
   );
 }
