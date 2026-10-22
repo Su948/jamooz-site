@@ -53,7 +53,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${companyFacts.website}/products`,
-      lastModified: "2026-10-21",
+      lastModified: "2026-10-22",
       changeFrequency: "weekly",
       priority: 0.9,
     },
