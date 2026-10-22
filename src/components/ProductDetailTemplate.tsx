@@ -96,6 +96,7 @@ export default function ProductDetailTemplate({ product }: { product: ProductDet
                   <div className="mt-3 flex flex-wrap justify-between gap-2 text-xs text-[#708095]"><span>Sample: <strong className="text-[#334055]">{product.samplePrice}</strong></span><span>Volume prices are confirmed with the final quotation.</span></div>
                 </>
               )}
+              {product.leadTime ? <p className="mt-4 border-t border-[#dfe5ee] pt-3 text-sm leading-6 text-[#607086]"><span className="font-bold text-[#334055]">Lead time: </span>{product.leadTime}</p> : null}
             </div>
 
             <div className="mt-7 grid gap-3 sm:grid-cols-2">

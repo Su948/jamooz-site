@@ -46,6 +46,7 @@ export type ProductDetailConfig = {
   gallery: readonly ProductImage[];
   priceRange?: string;
   moq?: string;
+  leadTime?: string;
   samplePrice?: string;
   priceTiers?: readonly ProductPriceTier[];
   customPricing?: boolean;
