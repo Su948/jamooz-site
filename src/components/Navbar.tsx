@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useState, type MouseEvent } from 'react';
 import { productCategoryHref } from '@/lib/product-categories';
 
 function PreviewNavbar() {
@@ -13,12 +13,18 @@ function PreviewNavbar() {
   const homepage = pathname.startsWith('/preview') ? '/preview' : '/';
   const hasLocalInquiry = pathname.startsWith('/preview/products/') || pathname.startsWith('/products');
   const previewLink = (hash: string) => hasLocalInquiry && hash === '#inquiry' ? hash : `${homepage}${hash}`;
+  const navigateCategory = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (pathname === '/products' && href.startsWith('/products#')) {
+      event.preventDefault();
+      window.location.assign(`#${href.split('#')[1]}`);
+    }
+  };
   const productCategories = [
     ['Neck & Shoulder Massagers', productCategoryHref('Neck & Shoulder')],
     ['Scalp & Hair Care', productCategoryHref('Head & Scalp')],
     ['Body Care Massagers', productCategoryHref('Body Care')],
     ['Eye Care Devices', productCategoryHref('Eye Care')],
-    ['Hand & Wrist Massagers', productCategoryHref('Hand & Wrist')],
+    ['Hand & Wrist Massagers', productCategoryHref('Hand, Wrist & Elbow')],
   ] as const;
   const resources = [
     ['Buyer Guide', '/guides/choose-scalp-massager-supplier'],
@@ -53,7 +59,7 @@ function PreviewNavbar() {
                 <div>
                   <p className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400">Shop by product category</p>
                   <div className="mt-4 grid grid-cols-2 gap-2">
-                    {productCategories.map(([label, href]) => <Link key={label} href={href} className="rounded-xl border border-transparent px-3 py-3 text-sm font-bold leading-5 text-zinc-700 transition hover:border-violet-100 hover:bg-violet-50 hover:text-violet-800">{label}</Link>)}
+                    {productCategories.map(([label, href]) => <Link key={label} href={href} onClick={(event) => navigateCategory(event, href)} className="rounded-xl border border-transparent px-3 py-3 text-sm font-bold leading-5 text-zinc-700 transition hover:border-violet-100 hover:bg-violet-50 hover:text-violet-800">{label}</Link>)}
                   </div>
                 </div>
               </div>
@@ -78,7 +84,7 @@ function PreviewNavbar() {
         {mobileProductsOpen && <div className="border-b border-zinc-100 py-3">
           <Link href="/oem-odm" onClick={closeMobileMenu} className="block rounded-xl bg-violet-700 px-4 py-4 text-white"><span className="block text-[9px] uppercase tracking-[0.16em] text-violet-200">Start here</span><span className="mt-1 block">OEM/ODM Custom Development</span></Link>
           <Link href="/products" onClick={closeMobileMenu} className="mt-2 block rounded-lg px-3 py-2.5 text-violet-800">View All Products</Link>
-          {productCategories.map(([label, href]) => <Link key={label} href={href} onClick={closeMobileMenu} className="block rounded-lg px-3 py-2.5 text-zinc-600">{label}</Link>)}
+          {productCategories.map(([label, href]) => <Link key={label} href={href} onClick={(event) => { navigateCategory(event, href); closeMobileMenu(); }} className="block rounded-lg px-3 py-2.5 text-zinc-600">{label}</Link>)}
         </div>}
         <Link href="/about" onClick={closeMobileMenu} className="border-b border-zinc-100 py-3">ABOUT US</Link>
         <button type="button" onClick={() => setMobileResourcesOpen((open) => !open)} className="flex items-center justify-between border-b border-zinc-100 py-3 text-left" aria-expanded={mobileResourcesOpen}>RESOURCES <span aria-hidden>{mobileResourcesOpen ? '−' : '+'}</span></button>

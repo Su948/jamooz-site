@@ -1,5 +1,5 @@
 import Link from 'next/link';
-const scene='https://sc04.alicdn.com/kf/H074a318c1d1a4f568d94181d93a09474F/252717039/H074a318c1d1a4f568d94181d93a09474F.png';
+const scene='/site-assets/H074a318c1d1a4f568d94181d93a09474F.webp';
 const cards=[
  {tag:'01 / SUPPLIER ASSESSMENT',title:'SGS',subtitle:'Supplier Assessments',copy:'Company information and production capabilities documented within the scope of the supplier assessments.',detail:'Assessment date: 24 July 2026',note:'Assessment scope and named entity remain specific to each report.'},
  {tag:'02 / QUALITY MANAGEMENT',title:'ISO 13485',subtitle:'Quality Management System',copy:'Review the ISO 13485 certificate scope against the relevant entity, activities and project requirements.',detail:'Scope-led review',note:'Management-system certification is separate from certification of a particular product.'},

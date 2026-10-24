@@ -3,10 +3,10 @@
 const ali = (path: string) => `https:${path}`;
 const pct = (value: number, total: number) => `${(value / total) * 100}%`;
 
-const companyProfile = ali('//sc04.alicdn.com/kf/H074a318c1d1a4f568d94181d93a09474F/252717039/H074a318c1d1a4f568d94181d93a09474F.png');
+const companyProfile = '/site-assets/H074a318c1d1a4f568d94181d93a09474F.webp';
 const companyVideo = 'https://play.video.alibaba.com/global/play/6000299682943.mp4?dft=hd';
-const reviewBackground = ali('//sc04.alicdn.com/kf/H9d354770c4b14f6ea84599d5cb42df7cw/252717039/H9d354770c4b14f6ea84599d5cb42df7cw.png');
-const certificateImage = ali('//sc02.alicdn.com/kf/H99de7b20e65046c896d63f96a166fde27.png');
+const reviewBackground = '/site-assets/H9d354770c4b14f6ea84599d5cb42df7cw.webp';
+const certificateImage = '/site-assets/H99de7b20e65046c896d63f96a166fde27.webp';
 
 const reviews = [
   { x: 360, y: 286, w: 362, h: 517, image: ali('//sc04.alicdn.com/kf/H8a20f2689d164b6184b3b9a7541d1075D/252717039/H8a20f2689d164b6184b3b9a7541d1075D.png'), speed: '25s' },
@@ -82,7 +82,7 @@ const companyFacts = [
 
 const productThumbs = [
   ['/products/jmz-901/01-hero.webp', 'Scalp massage device'],
-  ['/products/jmz-r006/JMZ-R006-01-home-card.png', 'Neck and shoulder massager'],
+  ['/products/jmz-r006/JMZ-R006-01-home-card.webp', 'Neck and shoulder massager'],
   ['/products/jmz-cspl002/01-hero.webp', 'Massage pillow'],
   ['/products/jmz-702/JMZ-702-01-home-card.webp', 'Massage device'],
 ] as const;

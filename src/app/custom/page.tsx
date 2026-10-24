@@ -105,7 +105,7 @@ export default function CustomPage() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 pt-12 border-t border-border-warm">
-            {['Ergonomic Form', 'Precision Nodes', 'IPX7 Waterproof', '360° Inspection'].map((feature) => (
+            {['Ergonomic Form', 'Precision Nodes', 'Custom Branding', '360° Inspection'].map((feature) => (
               <div key={feature} className="text-center">
                 <span className="text-2xl mb-2 block">✧</span>
                 <p className="text-[11px] font-bold uppercase tracking-widest text-navy">{feature}</p>

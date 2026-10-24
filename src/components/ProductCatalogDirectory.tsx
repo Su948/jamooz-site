@@ -2,7 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+
+import { productCategoryAnchor } from "@/lib/product-categories";
 
 export type CatalogProduct = {
   model: string;
@@ -52,13 +54,25 @@ const faqs = [
 
 export default function ProductCatalogDirectory({ groups }: { groups: readonly CatalogDirectoryGroup[] }) {
   const [activeCategory, setActiveCategory] = useState("all");
+  useEffect(() => {
+    const syncCategory = () => {
+      const hash = window.location.hash.slice(1);
+      const normalized = hash === "hand-wrist" ? "hand-wrist-elbow" : hash;
+      const selected = groups.find((group) => productCategoryAnchor(group.category) === normalized);
+      setActiveCategory(selected?.category ?? "all");
+      if (selected) document.getElementById("product-catalog")?.scrollIntoView({ block: "start" });
+    };
+    syncCategory();
+    window.addEventListener("hashchange", syncCategory);
+    return () => window.removeEventListener("hashchange", syncCategory);
+  }, [groups]);
   const products = useMemo(
     () => activeCategory === "all" ? groups.flatMap((group) => group.items) : groups.find((group) => group.category === activeCategory)?.items ?? [],
     [activeCategory, groups],
   );
 
   return (
-    <main className="min-h-screen bg-[#faf9fd] text-[#302050]">
+    <div className="min-h-screen bg-[#faf9fd] text-[#302050]">
       <section className="border-b border-violet-100 bg-[#f3effa]">
         <div className="mx-auto max-w-[1240px] px-4 py-9 sm:px-8 md:py-20">
           <p className="text-xs font-black uppercase tracking-[0.24em] text-violet-700">Full product catalog</p>
@@ -74,22 +88,22 @@ export default function ProductCatalogDirectory({ groups }: { groups: readonly C
 
       <section className="border-b border-violet-100 bg-white">
         <div className="mx-auto max-w-[1240px] px-4 py-3 sm:px-8 md:py-5">
-          <div className="-mx-4 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0" role="tablist" aria-label="Filter products by category">
+          <div className="-mx-4 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0" role="group" aria-label="Filter products by category">
             <div className="flex w-max min-w-full gap-2 sm:w-full sm:flex-wrap sm:justify-center">
-              <button type="button" role="tab" aria-controls="product-catalog" aria-selected={activeCategory === "all"} onClick={() => setActiveCategory("all")} className={`min-h-10 rounded-full border px-4 text-xs font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 md:min-h-11 ${activeCategory === "all" ? "border-violet-700 bg-violet-700 text-white" : "border-violet-200 bg-white hover:border-violet-400 hover:bg-violet-50"}`}>
+              <button type="button" aria-controls="product-catalog" aria-pressed={activeCategory === "all"} onClick={() => { setActiveCategory("all"); window.location.assign("#product-catalog"); }} className={`min-h-10 rounded-full border px-4 text-xs font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 md:min-h-11 ${activeCategory === "all" ? "border-violet-700 bg-violet-700 text-white" : "border-violet-200 bg-white hover:border-violet-400 hover:bg-violet-50"}`}>
                 All Products
               </button>
               {groups.map((group) => (
-                <button key={group.category} type="button" role="tab" aria-controls="product-catalog" aria-selected={activeCategory === group.category} onClick={() => setActiveCategory(group.category)} className={`min-h-10 whitespace-nowrap rounded-full border px-4 text-xs font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 md:min-h-11 ${activeCategory === group.category ? "border-violet-700 bg-violet-700 text-white" : "border-violet-200 bg-white hover:border-violet-400 hover:bg-violet-50"}`}>
+                <a key={group.category} id={productCategoryAnchor(group.category)} href={`#${productCategoryAnchor(group.category)}`} aria-controls="product-catalog" aria-current={activeCategory === group.category ? "true" : undefined} onClick={() => setActiveCategory(group.category)} className={`inline-flex items-center min-h-10 whitespace-nowrap rounded-full border px-4 text-xs font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 md:min-h-11 ${activeCategory === group.category ? "border-violet-700 bg-violet-700 text-white" : "border-violet-200 bg-white hover:border-violet-400 hover:bg-violet-50"}`}>
                   {group.label}
-                </button>
+                </a>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section id="product-catalog" className="mx-auto max-w-[1240px] scroll-mt-[145px] px-3 py-6 sm:px-6 md:scroll-mt-[165px] md:px-8 md:py-14" role="tabpanel">
+      <section id="product-catalog" className="mx-auto max-w-[1240px] scroll-mt-[145px] px-3 py-6 sm:px-6 md:scroll-mt-[165px] md:px-8 md:py-14" aria-label="Products">
         <div className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
           {products.map((product) => (
             <article key={product.model} className="group flex min-w-0 flex-col overflow-hidden rounded-2xl border border-violet-100 bg-white shadow-lg shadow-violet-900/5 transition hover:-translate-y-1 hover:shadow-2xl hover:shadow-violet-900/10 md:rounded-3xl md:shadow-xl">
@@ -131,6 +145,6 @@ export default function ProductCatalogDirectory({ groups }: { groups: readonly C
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

@@ -66,7 +66,7 @@ const productImages = [
     alt: "JMZ-901 scalp massager developed for brand and distribution projects",
   },
   {
-    src: "/products/jmz-r006/JMZ-R006-01-home-card.png",
+    src: "/products/jmz-r006/JMZ-R006-01-home-card.webp",
     alt: "JMZ-R006 neck and shoulder massager from the JAMOOZ product range",
   },
   {

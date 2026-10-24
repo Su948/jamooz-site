@@ -123,6 +123,7 @@ export default function InquiryForm({
       </div>
 
       <div className="sm:col-span-2">
+        <p className="mb-3 text-xs leading-5">We use your details to respond to this inquiry. <a href="/privacy" className="underline underline-offset-4">Privacy information</a></p>
         <button type="submit" disabled={state.status === "submitting"} className={isDark
           ? "min-h-12 w-full rounded-full bg-white px-7 py-3.5 text-sm font-black tracking-[0.08em] text-violet-800 transition hover:-translate-y-0.5 disabled:cursor-wait disabled:opacity-60 sm:w-auto"
           : "btn-primary min-h-12 w-full justify-center py-3.5 text-sm disabled:cursor-wait disabled:opacity-60 sm:w-auto"}>

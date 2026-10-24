@@ -40,7 +40,7 @@ export default function ProductGallery({ model, images }: ProductGalleryProps) {
             onClick={() => setActiveIndex(index)}
             className={`relative aspect-square min-w-0 overflow-hidden rounded-xl border-2 bg-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#315b8d] focus-visible:ring-offset-2 ${index === activeIndex ? "border-[#315b8d]" : "border-transparent opacity-72 hover:opacity-100"}`}
           >
-            <Image src={image.src} alt="" fill sizes="100px" className="object-cover" />
+            <Image src={image.src} alt={image.alt} fill sizes="100px" className="object-cover" />
           </button>
         ))}
       </div>

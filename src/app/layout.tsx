@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import JsonLd from "@/components/JsonLd";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PreviewContactSection from "@/components/PreviewContactSection";
@@ -26,6 +27,13 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <GoogleTagManager />
         <MicrosoftClarity />
+        <JsonLd data={{
+          "@context": "https://schema.org", "@type": "Organization",
+          "@id": `${companyFacts.website}/#organization`, name: companyFacts.brandName,
+          url: companyFacts.website, email: companyFacts.contact.email,
+          telephone: companyFacts.contact.whatsappDisplay,
+          address: { "@type": "PostalAddress", addressLocality: companyFacts.location.city, addressCountry: "CN" },
+        }} />
         <Navbar />
         <main className="flex-grow">{children}</main>
         <FloatingContactActions />

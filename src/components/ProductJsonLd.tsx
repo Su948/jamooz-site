@@ -23,14 +23,8 @@ const parseUsdPrice = (price: string) => {
   return match ? Number(match[1]) : null;
 };
 
-/**
- * Product structured data for pages with published commercial terms.
- *
- * Google requires a Product entity to include offers, review or aggregateRating
- * for product rich results. We do not manufacture reviews or ratings. Instead,
- * pages with confirmed price tiers emit an AggregateOffer based only on the
- * prices already visible on the page. Custom-quote pages emit no Product entity
- * until a publishable price is available.
+/** Product identity is useful even when a custom quote has no public Offer.
+ * Rich-result eligibility is separate; never invent prices, ratings or stock.
  */
 export default function ProductJsonLd({
   model,
@@ -44,7 +38,6 @@ export default function ProductJsonLd({
     .map(parseUsdPrice)
     .filter((price): price is number => price !== null && Number.isFinite(price));
 
-  if (priceValues.length === 0) return null;
 
   const product = {
     "@context": "https://schema.org",
@@ -56,15 +49,14 @@ export default function ProductJsonLd({
     description,
     image: images.map((image) => absolute(image)),
     url: absolute(path),
-    offers: {
+    ...(priceValues.length ? { offers: {
       "@type": "AggregateOffer",
       priceCurrency: "USD",
       lowPrice: Math.min(...priceValues).toFixed(2),
       highPrice: Math.max(...priceValues).toFixed(2),
       offerCount: priceValues.length,
-      availability: "https://schema.org/InStock",
       url: absolute(path),
-    },
+    } } : {}),
   };
 
   return (

@@ -15,7 +15,7 @@ export default function CookieConsent() {
       <div className="min-w-0 flex-1">
         <p className="text-sm font-black text-[#3d2758]">Your privacy choice</p>
         <p className="mt-1 text-xs leading-5 text-zinc-600 sm:text-sm">
-          We use optional analytics to understand site usage and improve our product information. Essential site functions work without them.
+          We use optional analytics to understand site usage and improve our product information. Essential site functions work without them. <a href="/privacy" className="underline underline-offset-4">Privacy information</a>
         </p>
       </div>
       <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-0 sm:flex sm:shrink-0">

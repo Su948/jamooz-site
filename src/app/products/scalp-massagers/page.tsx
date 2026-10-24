@@ -1,3 +1,4 @@
+import JsonLd from "@/components/JsonLd";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -138,6 +139,7 @@ const specificationFigures = [
 export default function ScalpMassagersPage() {
   return (
     <main className="overflow-x-hidden bg-[#fbfcfe] text-[#334055]">
+      <JsonLd data={{ "@context": "https://schema.org", "@type": "ItemList", itemListElement: [{ "@type": "ListItem", position: 1, name: "JMZ-901 Rotating EMS Scalp Massager with LED Light", url: "https://www.jmz.global/products/jmz-901" }] }} />
       <section className="border-b border-[#dfe5ee] bg-[linear-gradient(135deg,#fbfdff_0%,#eef3f8_55%,#e6edf5_100%)] py-10 sm:py-14 lg:py-20">
         <div className={shell}>
           <Breadcrumbs items={breadcrumbItems} />

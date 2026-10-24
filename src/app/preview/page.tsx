@@ -18,7 +18,7 @@ const seoCategories = [
   'Cupping & Guasha',
 ] as const;
 const painStates = [
-  { id:'p1',x:609,y:185,w:68,h:93,image:ali('//sc04.alicdn.com/kf/Hd2b7d5ddb4a34689872369aa618d57ffz/252717039/Hd2b7d5ddb4a34689872369aa618d57ffz.png') },
+  { id:'p1',x:609,y:185,w:68,h:93,image:'/site-assets/Hd2b7d5ddb4a34689872369aa618d57ffz.webp' },
   { id:'p2',x:579,y:393,w:115,h:105,image:ali('//sc04.alicdn.com/kf/Ha7597fb64c9949ef9ed169d4b659806bE/252717039/Ha7597fb64c9949ef9ed169d4b659806bE.png') },
   { id:'p3',x:645,y:775,w:78,h:159,image:ali('//sc04.alicdn.com/kf/H07535359442b4b909ab787fc36acba76K/252717039/H07535359442b4b909ab787fc36acba76K.png') },
   { id:'p4',x:546,y:769,w:71,h:163,image:ali('//sc04.alicdn.com/kf/H07535359442b4b909ab787fc36acba76K/252717039/H07535359442b4b909ab787fc36acba76K.png') },
@@ -59,7 +59,7 @@ const neckProducts: readonly BodyAreaProduct[] = [
     model: 'JMZ-R006',
     category: 'Neck & Shoulder',
     name: '3D Kneading Neck Massager',
-    image: '/products/jmz-r006/JMZ-R006-01-home-card.png',
+    image: '/products/jmz-r006/JMZ-R006-01-home-card.webp',
     href: '/products/jmz-r006',
     price: 'US$20.90–22.50 / pc',
   },
@@ -122,7 +122,7 @@ const featuredProducts = [
     category: 'Neck & Shoulder',
     name: '3D Kneading Neck & Shoulder Massager',
     description: 'A rechargeable U-shaped neck massager with 3D kneading movement, warming care, timing control and adjustable double lanyards.',
-    image: '/products/jmz-r006/JMZ-R006-01-home-card.png',
+    image: '/products/jmz-r006/JMZ-R006-01-home-card.webp',
     href: '/products/jmz-r006',
     price: 'US$20.90–22.50 / pc',
     moq: 'MOQ 50 pcs',
@@ -251,7 +251,7 @@ const featuredProducts = [
   },
 ] as const;
 
-const scrollBg = ali('//sc04.alicdn.com/kf/Hd94f7581c62d4edaa1393c4d63bc2c4fK/252717039/Hd94f7581c62d4edaa1393c4d63bc2c4fK.png');
+const scrollBg = '/site-assets/Hd94f7581c62d4edaa1393c4d63bc2c4fK.webp';
 const scrollImage = ali('//sc04.alicdn.com/kf/Ha436492285ff4327be16f9091707abb00/252717039/Ha436492285ff4327be16f9091707abb00.png');
 const scrollLinks = [
   {x:289,y:421,w:164,h:244,href:'https://www.alibaba.com/product-detail/Electric-Hand-Vibration-Massager-Product-with_1601807652970.html'},
@@ -263,7 +263,7 @@ const scrollLinks = [
   {x:1650,y:435,w:251,h:226,href:'https://www.alibaba.com/product-detail/Custom-Designed-Luxury-Modern-Multi-Functional_1601400310978.html'},
 ];
 
-const collectionBg = ali('//sc04.alicdn.com/kf/H469e2db625db44f6bc64935cc98366b0r/252717039/H469e2db625db44f6bc64935cc98366b0r.png');
+const collectionBg = '/site-assets/H469e2db625db44f6bc64935cc98366b0r.webp';
 const collectionItems = [
   {x:1040,y:86,w:527,h:352,img:ali('//sc04.alicdn.com/kf/H8e3115ca790f499e953f19c01998e217y/252717039/H8e3115ca790f499e953f19c01998e217y.png'),href:'https://jamooz.m.en.alibaba.com/productgrouplist-927686627/U_shaped_massage_pillow.html'},
   {x:358,y:467,w:392,h:352,img:ali('//sc04.alicdn.com/kf/H4dbedbb220ff45a7a4f89627a1efc017a/252717039/H4dbedbb220ff45a7a4f89627a1efc017a.png'),href:'https://jamooz.m.en.alibaba.com/productgrouplist-829339617/Massage_chair.html'},
@@ -284,13 +284,13 @@ const categoryModules = [
     {price:'$12.65–16',href:'https://www.alibaba.com/product-detail/Portable-Rechargeable-Eye-Massager-Airbag-Compression_1601784338402.html'},
     {price:'$34.4–37.6',href:'https://www.alibaba.com/product-detail/Eye-Massager-With-Heat-Cold-Vibration_1601675044291.html'},
   ]},
-  {slug:'scalp-hair',title:'Scalp & Hair Care Massagers',sellingPoint:'Electric scalp care devices featuring multi-point massage, flexible massage heads and optional red light functions.',features:['Multi-Point Massage','Red Light Options','Custom Colors','OEM/ODM'],viewLabel:'View Scalp Massagers',href:'https://jamooz.m.en.alibaba.com/productgrouplist-964339889/',featuredPrice:'$14.8–30',featuredHref:'https://www.alibaba.com/product-detail/JAMOOZ-Portable-Healthy-Technology-Electric-Scalp_1601708387462.html',products:[
+  {slug:'scalp-hair',title:'Scalp & Hair Care Massagers',sellingPoint:'Electric scalp care devices featuring multi-point massage, flexible massage heads and optional red light functions.',features:['Multi-Point Massage','Red Light Options','Custom Colors','OEM/ODM'],viewLabel:'View Scalp Massagers',href:'/products/scalp-massagers',featuredPrice:'$14.8–30',featuredHref:'https://www.alibaba.com/product-detail/JAMOOZ-Portable-Healthy-Technology-Electric-Scalp_1601708387462.html',products:[
     {price:'$12–15',href:'https://www.alibaba.com/product-detail/2026-Upgraded-Electric-Scalp-Massage-Comb_1601809224462.html'},
     {price:'$15.9–21',href:'https://www.alibaba.com/product-detail/Best-Selling-Products-2025-Hair-Growth_11000031623897.html'},
     {price:'$26.5–33.5',href:'https://www.alibaba.com/product-detail/Electric-Head-Massager-Sleep-Monitor-Migraine_1600878255438.html'},
     {price:'$26.39–32.48',href:'https://www.alibaba.com/product-detail/Cat-Smart-Handy-Automatic-Silicone-Rechargeable_1600295060563.html'},
   ]},
-  {slug:'neck-shoulder',title:'Neck & Shoulder Massagers',sellingPoint:'Ergonomic massage solutions designed for neck and shoulder relaxation at home, in the office or while traveling.',features:['Heating Options','Multiple Massage Modes','Portable Design','Custom Branding'],viewLabel:'View Neck Massagers',href:'https://jamooz.m.en.alibaba.com/productgrouplist-927686627/',featuredPrice:'$20.9–25',featuredHref:'https://www.alibaba.com/product-detail/2026-Portable-Best-Selling-Intelligent-3D_1601594698148.html',products:[
+  {slug:'neck-shoulder',title:'Neck & Shoulder Massagers',sellingPoint:'Ergonomic massage solutions designed for neck and shoulder relaxation at home, in the office or while traveling.',features:['Heating Options','Multiple Massage Modes','Portable Design','Custom Branding'],viewLabel:'View Neck Massagers',href:'/products/neck-shoulder-massagers',featuredPrice:'$20.9–25',featuredHref:'https://www.alibaba.com/product-detail/2026-Portable-Best-Selling-Intelligent-3D_1601594698148.html',products:[
     {price:'$20.9–25',href:'https://www.alibaba.com/product-detail/Portable-Massagers-Products-Travel-Hot-Sale_1601233871632.html'},
     {price:'$19.8–24.03',href:'https://www.alibaba.com/product-detail/Portable-Massagers-Products-Travel-Hot-Sale_1601233871632.html'},
     {price:'$12.01–16.19',href:'https://www.alibaba.com/product-detail/Infrared_Light_Hot_Compress_USB_Charge_Neck_Pillow_Massage_Travel_Neck_Pillow_Massage_Cordless_Travel_Massage_Pillow_1600307030163.html'},
@@ -298,14 +298,14 @@ const categoryModules = [
   ]},
 ] as const;
 
-const reviewBg = ali('//sc04.alicdn.com/kf/H9d354770c4b14f6ea84599d5cb42df7cw/252717039/H9d354770c4b14f6ea84599d5cb42df7cw.png');
+const reviewBg = '/site-assets/H9d354770c4b14f6ea84599d5cb42df7cw.webp';
 const reviews = [
   {x:360,y:286,w:362,h:517,img:ali('//sc04.alicdn.com/kf/H8a20f2689d164b6184b3b9a7541d1075D/252717039/H8a20f2689d164b6184b3b9a7541d1075D.png'),speed:'25s'},
   {x:780,y:286,w:362,h:707,img:ali('//sc04.alicdn.com/kf/H9f69f1787ffe4ce093b5364efaaaed9dW/252717039/H9f69f1787ffe4ce093b5364efaaaed9dW.png'),speed:'31s'},
   {x:1198,y:286,w:362,h:517,img:ali('//sc04.alicdn.com/kf/H0afcafb90e0740d6842ae09a714d44dfm/252717039/H0afcafb90e0740d6842ae09a714d44dfm.png'),speed:'27s'},
 ];
 
-const companyImage = ali('//sc04.alicdn.com/kf/H074a318c1d1a4f568d94181d93a09474F/252717039/H074a318c1d1a4f568d94181d93a09474F.png');
+const companyImage = '/site-assets/H074a318c1d1a4f568d94181d93a09474F.webp';
 const companyVideo = 'https://play.video.alibaba.com/global/play/6000299682943.mp4?dft=hd';
 const companyLinks = [
   {x:1187,y:294,w:174,h:159,href:'https://www.alibaba.com/product-detail/JAMOOZ-Portable-Healthy-Technology-Electric-Scalp_1601708387462.html'},
@@ -313,10 +313,9 @@ const companyLinks = [
   {x:1549,y:290,w:169,h:167,href:'https://www.alibaba.com/product-detail/Premium-Ergonomic-Memory-Foam-Bread-Pillow_1601803716499.html'},
   {x:1729,y:288,w:172,h:168,href:'https://www.alibaba.com/product-detail/JAMOOZ-2024-Luxury-Zero-Gravity-Full_1601084511260.html'},
 ] as const;
-const certificateImage = ali('//sc02.alicdn.com/kf/H99de7b20e65046c896d63f96a166fde27.png');
 
 export default function HomepagePreview(){
-  const [painImage,setPainImage] = useState(painStates[0].image);
+  const [painImage,setPainImage] = useState<string>(painStates[0].image);
   const [activePainId,setActivePainId] = useState<(typeof painStates)[number]['id']>(painStates[0].id);
   const [customGroup,setCustomGroup] = useState(0);
   const [customVariant,setCustomVariant] = useState(0);
@@ -400,7 +399,7 @@ export default function HomepagePreview(){
 
     <section aria-labelledby="body-solutions-title" className="flex min-h-[220px] items-center border-b border-violet-100/70 bg-[#fcfbff] py-9 md:h-[260px] md:py-10">
       <div className="mx-auto w-full max-w-[1240px] px-5 text-center sm:px-8">
-        <h1 id="body-solutions-title" className="text-3xl font-semibold tracking-tight text-[#302050] sm:text-4xl">Massage Solutions for Every Part of the Body</h1>
+        <h2 id="body-solutions-title" className="text-3xl font-semibold tracking-tight text-[#302050] sm:text-4xl">Massage Solutions for Every Part of the Body</h2>
         <p className="mx-auto mt-4 max-w-[980px] text-sm leading-6 text-zinc-600 sm:text-base sm:leading-7">Discover our range of scalp massagers, neck and shoulder massagers, massage pillows, back massagers, foot massagers and electric cupping devices—designed for different wellness needs and global markets.</p>
         <nav aria-label="Product solution categories" className="mt-6 flex flex-wrap justify-center gap-2.5 md:flex-nowrap">
           {seoCategories.map(category=>{
@@ -526,14 +525,14 @@ export default function HomepagePreview(){
       </div>
     </section>
 
-    <section id="catalog-marquee" className="scroll-mt-24 relative overflow-hidden" style={{aspectRatio:'1920 / 788'}}><img src={scrollBg} alt="" className="absolute inset-0 h-full w-full object-cover" /><div className="absolute inset-0 overflow-hidden"><div className="jamooz-marquee flex h-full w-[200%]">{[0,1].map(copy=><div key={copy} className="relative h-full w-1/2 shrink-0"><img src={scrollImage} alt="JAMOOZ products" className="absolute inset-0 h-full w-full object-contain" />{scrollLinks.map((l,i)=><a key={i} href={l.href} target="_blank" rel="noreferrer" className="absolute z-10" style={{left:pct(l.x,1920),top:pct(l.y,788),width:pct(l.w,1920),height:pct(l.h,788)}} aria-label={`product-${i+1}`} />)}</div>)}</div></div></section>
+    <section id="catalog-marquee" className="scroll-mt-24 relative overflow-hidden" style={{aspectRatio:'1920 / 788'}}><img src={scrollBg} alt="" className="absolute inset-0 h-full w-full object-cover" /><div className="absolute inset-0 overflow-hidden"><div className="jamooz-marquee flex h-full w-[200%]">{[0,1].map(copy=><div key={copy} className="relative h-full w-1/2 shrink-0"><img src={scrollImage} alt="JAMOOZ products" className="absolute inset-0 h-full w-full object-contain" />{scrollLinks.map((l,i)=><a key={i} href={l.href} target="_blank" rel="noreferrer" className="absolute z-10" style={{left:pct(l.x,1920),top:pct(l.y,788),width:pct(l.w,1920),height:pct(l.h,788)}} aria-label={`View product ${i+1} on Alibaba`} />)}</div>)}</div></div></section>
 
     <section className="bg-white py-10 md:py-14"><div className="mx-auto max-w-[1440px] px-3 md:px-6"><div className="relative overflow-hidden" style={{aspectRatio:'1920 / 913'}}><img src={collectionBg} alt="JAMOOZ categories" className="absolute inset-0 h-full w-full object-contain" />{collectionItems.map((it,i)=><a key={i} href={it.href} target="_blank" rel="noreferrer" className="absolute z-10 overflow-hidden" style={{left:pct(it.x,1920),top:pct(it.y,913),width:pct(it.w,1920),height:pct(it.h,913)}}><img src={it.img} alt="category" className="h-full w-full object-contain" /></a>)}</div></div></section>
 
     {categoryModules.map(category=><section id={category.slug} key={category.slug} className="scroll-mt-24 border-t border-violet-100 bg-white">
       <header className="relative overflow-hidden bg-[#333132] md:aspect-[1920/330] md:text-white"><div className="relative aspect-[1920/330] w-full overflow-hidden bg-[#333132] md:absolute md:inset-0 md:aspect-auto md:h-full"><img src={`/preview-assets/categories-html/${category.slug}-header.webp`} alt="" className="absolute inset-0 h-full w-full object-contain object-center md:object-cover" /><div className="absolute inset-0 bg-black/5" /></div><div className="relative mx-auto hidden max-w-[1500px] items-center px-5 py-7 sm:px-8 md:flex md:h-full md:min-h-0 md:py-5"><div className="w-full text-center md:ml-[24%] md:w-[58%] md:text-left"><h2 className="text-2xl font-semibold leading-tight tracking-tight text-[#3d2758] md:text-4xl md:text-white md:[text-shadow:0_2px_12px_rgba(0,0,0,.45)] lg:text-5xl">{category.title}</h2><p className="mx-auto mt-3 max-w-3xl text-sm leading-6 text-zinc-600 md:mx-0 md:mt-4 md:text-base md:leading-7 md:text-white/80 md:[text-shadow:0_1px_8px_rgba(0,0,0,.55)]">{category.sellingPoint}</p><div className="mt-4 flex flex-wrap justify-center gap-2 md:mt-5 md:justify-start">{category.features.map(feature=><span key={feature} className="rounded-full border border-violet-200 bg-white px-3 py-1.5 text-xs font-semibold text-violet-800 md:border-violet-200/30 md:bg-[#3a294a]/45 md:text-violet-50 md:backdrop-blur-sm">{feature}</span>)}</div></div></div></header>
-      <div className="relative overflow-hidden bg-[#faf9ff]"><a href={category.featuredHref} target="_blank" rel="noreferrer" aria-label={`View featured ${category.title}`} className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-violet-500"><img src={`/preview-assets/categories-html/${category.slug}-featured.webp`} alt={`${category.title} featured product and usage scene`} className="block h-auto w-full object-contain" /></a><div className="px-5 pb-7 pt-8 text-center sm:px-8 md:hidden"><h2 className="text-2xl font-semibold leading-tight tracking-tight text-[#3d2758]">{category.title}</h2><p className="mx-auto mt-3 max-w-3xl text-sm leading-6 text-zinc-600">{category.sellingPoint}</p><div className="mt-4 flex flex-wrap justify-center gap-2">{category.features.map(feature=><span key={feature} className="rounded-full border border-violet-200 bg-white px-3 py-1.5 text-xs font-semibold text-violet-800">{feature}</span>)}</div></div><div className="mx-4 mb-3 flex items-center justify-between gap-3 md:absolute md:left-[7%] md:top-[12%] md:m-0 md:block"><div className="rounded-full border border-violet-200 bg-white/90 px-3 py-2 text-[10px] font-black uppercase tracking-[0.14em] text-violet-800 shadow-sm backdrop-blur-sm md:px-4 md:text-xs">Featured Product</div><a href={category.featuredHref} target="_blank" rel="noreferrer" className="rounded-full bg-white/95 px-4 py-2 text-sm font-black text-violet-900 shadow-md transition hover:bg-violet-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 md:mt-3 md:inline-block md:px-5 md:py-2.5 md:text-base">{category.featuredPrice}</a></div><div className="relative grid grid-cols-1 gap-3 px-4 pb-7 pt-4 sm:grid-cols-2 md:absolute md:bottom-[14%] md:right-[7%] md:flex md:p-0"><a href={category.href} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center justify-center rounded-full bg-violet-700 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-violet-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2">{category.viewLabel}</a><button type="button" onClick={()=>requestCategoryQuote(category.title)} className="inline-flex min-h-11 items-center justify-center rounded-full border-2 border-violet-700 bg-white/90 px-6 py-3 text-sm font-bold text-violet-800 transition hover:-translate-y-0.5 hover:bg-violet-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2">Request a Quote</button></div></div>
-      <div className="bg-[#faf9ff] px-4 pb-10 md:overflow-x-auto md:pb-12"><div className="mx-auto max-w-[1200px]"><div className="hidden md:block"><div className="relative"><img src={`/preview-assets/categories-html/${category.slug}-products.webp`} alt={`${category.title} product range`} className="block h-auto w-full object-contain" /><div className="absolute inset-0 grid grid-cols-4">{category.products.map((product,index)=><a key={`desktop-image-${product.href}-${index}`} href={product.href} target="_blank" rel="noreferrer" title={`View ${category.title} product ${index+1}`} aria-label={`View ${category.title} product ${index+1}, ${product.price}`} className="transition hover:bg-violet-500/5 hover:ring-2 hover:ring-inset hover:ring-violet-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-violet-500" />)}</div></div></div><div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-0 md:border-x md:border-b md:border-violet-100 md:bg-white">{category.products.map((product,index)=><a key={`product-${product.href}-${index}`} href={product.href} target="_blank" rel="noreferrer" aria-label={`View ${category.title} product ${index+1}, ${product.price}`} className="overflow-hidden rounded-2xl border border-violet-100 bg-white text-center shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 md:rounded-none md:border-y-0 md:border-l-0 md:shadow-none"><span aria-hidden className="block aspect-square w-full bg-white bg-[length:400%_100%] bg-no-repeat md:hidden" style={{backgroundImage:`url(/preview-assets/categories-html/${category.slug}-products.webp)`,backgroundPosition:`${index*(100/3)}% center`}} /><span className="flex min-h-20 flex-col items-center justify-center px-2 py-3"><span className="text-sm font-black text-[#3d2758] sm:text-base">{product.price}</span><span className="mt-1 text-[11px] font-semibold text-violet-700 sm:text-xs">View Product →</span></span></a>)}</div></div></div>
+      <div className="relative overflow-hidden bg-[#faf9ff]"><a href={category.featuredHref} target="_blank" rel="noreferrer" aria-label={`View featured ${category.title} on Alibaba`} className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-violet-500"><img src={`/preview-assets/categories-html/${category.slug}-featured.webp`} alt={`${category.title} featured product and usage scene`} className="block h-auto w-full object-contain" /></a><div className="px-5 pb-7 pt-8 text-center sm:px-8 md:hidden"><h2 className="text-2xl font-semibold leading-tight tracking-tight text-[#3d2758]">{category.title}</h2><p className="mx-auto mt-3 max-w-3xl text-sm leading-6 text-zinc-600">{category.sellingPoint}</p><div className="mt-4 flex flex-wrap justify-center gap-2">{category.features.map(feature=><span key={feature} className="rounded-full border border-violet-200 bg-white px-3 py-1.5 text-xs font-semibold text-violet-800">{feature}</span>)}</div></div><div className="mx-4 mb-3 flex items-center justify-between gap-3 md:absolute md:left-[7%] md:top-[12%] md:m-0 md:block"><div className="rounded-full border border-violet-200 bg-white/90 px-3 py-2 text-[10px] font-black uppercase tracking-[0.14em] text-violet-800 shadow-sm backdrop-blur-sm md:px-4 md:text-xs">Featured on Alibaba</div><a href={category.featuredHref} target="_blank" rel="noreferrer" className="rounded-full bg-white/95 px-4 py-2 text-sm font-black text-violet-900 shadow-md transition hover:bg-violet-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 md:mt-3 md:inline-block md:px-5 md:py-2.5 md:text-base">{category.featuredPrice}</a></div><div className="relative grid grid-cols-1 gap-3 px-4 pb-7 pt-4 sm:grid-cols-2 md:absolute md:bottom-[14%] md:right-[7%] md:flex md:p-0"><a href={category.href} target={category.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="inline-flex min-h-11 items-center justify-center rounded-full bg-violet-700 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-violet-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2">{category.viewLabel}{category.href.startsWith("http") ? " on Alibaba" : ""}</a><button type="button" onClick={()=>requestCategoryQuote(category.title)} className="inline-flex min-h-11 items-center justify-center rounded-full border-2 border-violet-700 bg-white/90 px-6 py-3 text-sm font-bold text-violet-800 transition hover:-translate-y-0.5 hover:bg-violet-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2">Request a Quote</button></div></div>
+      <div className="bg-[#faf9ff] px-4 pb-10 md:overflow-x-auto md:pb-12"><div className="mx-auto max-w-[1200px]"><div className="hidden md:block"><div className="relative"><img src={`/preview-assets/categories-html/${category.slug}-products.webp`} alt={`${category.title} product range`} className="block h-auto w-full object-contain" /><div className="absolute inset-0 grid grid-cols-4">{category.products.map((product,index)=><a key={`desktop-image-${product.href}-${index}`} href={product.href} target="_blank" rel="noreferrer" title={`View ${category.title} product ${index+1} on Alibaba`} aria-label={`View ${category.title} product ${index+1} on Alibaba, ${product.price}`} className="transition hover:bg-violet-500/5 hover:ring-2 hover:ring-inset hover:ring-violet-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-violet-500" />)}</div></div></div><div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-0 md:border-x md:border-b md:border-violet-100 md:bg-white">{category.products.map((product,index)=><a key={`product-${product.href}-${index}`} href={product.href} target="_blank" rel="noreferrer" aria-label={`View ${category.title} product ${index+1} on Alibaba, ${product.price}`} className="overflow-hidden rounded-2xl border border-violet-100 bg-white text-center shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 md:rounded-none md:border-y-0 md:border-l-0 md:shadow-none"><span aria-hidden className="block aspect-square w-full bg-white bg-[length:400%_100%] bg-no-repeat md:hidden" style={{backgroundImage:`url(/preview-assets/categories-html/${category.slug}-products.webp)`,backgroundPosition:`${index*(100/3)}% center`}} /><span className="flex min-h-20 flex-col items-center justify-center px-2 py-3"><span className="text-sm font-black text-[#3d2758] sm:text-base">{product.price}</span><span className="mt-1 text-[11px] font-semibold text-violet-700 sm:text-xs">View on Alibaba ↗</span></span></a>)}</div></div></div>
     </section>)}
 
     <section id="about-us" className="scroll-mt-24 relative overflow-hidden bg-white" style={{aspectRatio:'1920 / 2020'}}>
@@ -555,7 +554,14 @@ export default function HomepagePreview(){
 
     <section id="products" className="scroll-mt-24 relative overflow-hidden bg-white" style={{aspectRatio:'1920 / 1110'}}><img src={reviewBg} alt="Customer reviews" className="absolute inset-0 h-full w-full object-contain" />{reviews.map((r,i)=><div key={i} className="absolute overflow-hidden" style={{left:pct(r.x,1920),top:pct(r.y,1110),width:pct(r.w,1920),height:pct(r.h,1110)}}><div className="review-roll" style={{animationDuration:r.speed}}><img src={r.img} alt="buyer reviews" className="block h-auto w-full" /><img src={r.img} alt="" aria-hidden className="block h-auto w-full" /></div></div>)}</section>
 
-    <section id="quality" className="scroll-mt-24 bg-white"><img src={certificateImage} alt="JAMOOZ certificates" className="block h-auto w-full" /></section>
+    <section id="quality" className="scroll-mt-24 border-t border-violet-100 bg-white px-5 py-16 sm:px-8">
+      <div className="mx-auto max-w-[1200px]">
+        <p className="text-xs font-black uppercase tracking-[0.2em] text-violet-700">Product documentation</p>
+        <h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-tight text-[#3d2758] sm:text-4xl">Review certificates for your model and market</h2>
+        <p className="mt-5 max-w-3xl leading-7 text-zinc-600">Ask us to confirm the report holder, product configuration, applicable standards and destination-market requirements before ordering. A supplier assessment or management-system certificate does not certify every product.</p>
+        <Link href="/about#quality-evidence" className="mt-6 inline-flex min-h-11 items-center rounded-full bg-violet-700 px-6 py-3 text-sm font-bold text-white hover:bg-violet-800">Review documentation scope →</Link>
+      </div>
+    </section>
 
     <style jsx global>{`
       @keyframes jamoozScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }

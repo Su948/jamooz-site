@@ -1,3 +1,4 @@
+import JsonLd from "@/components/JsonLd";
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -46,7 +47,8 @@ export default function NeckCategoryPreview({ showPreviewNotice = true }: { show
       <div className="mx-auto grid max-w-[1280px] gap-8 px-5 py-10 sm:px-8 sm:py-14 lg:grid-cols-[1.15fr_.85fr] lg:items-center">
         <div>
           <div className="mb-7">
-            <Breadcrumbs items={breadcrumbItems} />
+            <JsonLd data={{ "@context": "https://schema.org", "@type": "ItemList", itemListElement: products.map((p, i) => ({ "@type": "ListItem", position: i + 1, name: `${p.model} ${p.name}`, url: `https://www.jmz.global/products/${p.slug}` })) }} />
+          <Breadcrumbs items={breadcrumbItems} />
           </div>
           <p className="text-xs font-bold uppercase tracking-[.18em] text-violet-600">Wholesale · Private label · OEM / ODM</p>
           <h1 className="mt-4 max-w-2xl text-[32px] font-semibold leading-[1.12] tracking-tight sm:text-[42px] lg:text-[48px]">Neck &amp; Shoulder<br/><span className="text-violet-600">Massager Manufacturer</span></h1>

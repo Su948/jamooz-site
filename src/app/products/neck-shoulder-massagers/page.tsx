@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     description: 'Compare wearable kneading and massage pillow designs for wholesale, private label and OEM/ODM projects.',
     url: '/products/neck-shoulder-massagers',
     type: 'website',
+    images: [{ url: '/opengraph-image.png', width: 1200, height: 630, alt: 'JAMOOZ massage devices — OEM/ODM and private label' }],
   },
 };
 
