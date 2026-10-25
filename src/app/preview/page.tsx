@@ -27,8 +27,8 @@ const painStates = [
   { id:'p4',x:546,y:769,w:71,h:163,image:ali('//sc04.alicdn.com/kf/H07535359442b4b909ab787fc36acba76K/252717039/H07535359442b4b909ab787fc36acba76K.png') },
   { id:'p5',x:639,y:553,w:66,h:128,image:ali('//sc04.alicdn.com/kf/H5b413e14344a456bbe57c4b1a6eb95a6T/252717039/H5b413e14344a456bbe57c4b1a6eb95a6T.png') },
   { id:'p6',x:566,y:551,w:66,h:129,image:ali('//sc04.alicdn.com/kf/H5b413e14344a456bbe57c4b1a6eb95a6T/252717039/H5b413e14344a456bbe57c4b1a6eb95a6T.png') },
-  { id:'p7',x:710,y:507,w:49,h:98,image:ali('//sc04.alicdn.com/kf/H221e3a936b6741758d1718b3bbec1a4ai/252717039/H221e3a936b6741758d1718b3bbec1a4ai.png') },
-  { id:'p8',x:514,y:507,w:50,h:99,image:ali('//sc04.alicdn.com/kf/H221e3a936b6741758d1718b3bbec1a4ai/252717039/H221e3a936b6741758d1718b3bbec1a4ai.png') },
+  { id:'p7',x:698,y:409,w:64,h:196,image:ali('//sc04.alicdn.com/kf/H221e3a936b6741758d1718b3bbec1a4ai/252717039/H221e3a936b6741758d1718b3bbec1a4ai.png') },
+  { id:'p8',x:510,y:409,w:64,h:197,image:ali('//sc04.alicdn.com/kf/H221e3a936b6741758d1718b3bbec1a4ai/252717039/H221e3a936b6741758d1718b3bbec1a4ai.png') },
   { id:'p9',x:608,y:263,w:65,h:60,image:ali('//sc04.alicdn.com/kf/Hadfb85f0a827454a8ebf62c26e7dd5db8/252717039/Hadfb85f0a827454a8ebf62c26e7dd5db8.png') },
 ] as const;
 type BodyAreaProduct = Readonly<{
@@ -92,7 +92,13 @@ const neckProducts: readonly BodyAreaProduct[] = [
   },
 ];
 const waistProducts: readonly BodyAreaProduct[] = octoberProductCards.filter(product=>product.model==='JMZ-723'||product.model==='JMZ-727');
+const handProducts: readonly BodyAreaProduct[] = [
+  { model:'JMZ-802', category:'Hand & Wrist', name:'3-in-1 Air Pressure Hand & Wrist Massager', image:'/products/jmz-802/01-hero.webp', href:'/products/jmz-802', price:'US$13.30–15.10 / pc' },
+  { model:'JMZ-722', category:'Elbow Care', name:'3-in-1 Elbow Massager', image:'/products/jmz-722/01-hero.webp', href:'/products/jmz-722', price:'US$18.00–21.00 / pc' },
+];
 const bodyAreaProductGroups = {
+  p7: { title:'Hand, Wrist & Elbow Care', ariaLabel:'Hand, wrist and elbow care products', products:handProducts },
+  p8: { title:'Hand, Wrist & Elbow Care', ariaLabel:'Hand, wrist and elbow care products', products:handProducts },
   p1: { title: 'Head & Eye Care', ariaLabel: 'Head and eye care products', products: headProducts },
   p2: { title: 'Back & Waist Care', ariaLabel: 'Back and waist care products', products: waistProducts },
   p9: { title: 'Neck & Shoulder Care', ariaLabel: 'Neck and shoulder care products', products: neckProducts },
@@ -425,12 +431,27 @@ export default function HomepagePreview(){
             <img src={painImage} alt="" className="absolute top-0 h-full max-w-none" style={{left:'-8%',width:'192%'}} />
           </div>
           {activePainGroup&&<div aria-hidden="true" className="absolute inset-y-0 bg-[#faf8ff]" style={{left:pct(920,1920),right:0}} />}
+          {(activePainId==='p7'||activePainId==='p8')&&<svg aria-hidden="true" viewBox="0 0 1920 1059" className="pointer-events-none absolute inset-0 h-full w-full">
+            <defs>
+              <radialGradient id="hand-elbow-glow">
+                <stop offset="0" stopColor="#ffe340" stopOpacity="0.85" />
+                <stop offset="0.22" stopColor="#ffb521" stopOpacity="0.72" />
+                <stop offset="0.48" stopColor="#ff593e" stopOpacity="0.45" />
+                <stop offset="0.72" stopColor="#ff354d" stopOpacity="0.18" />
+                <stop offset="1" stopColor="#ff354d" stopOpacity="0" />
+              </radialGradient>
+            </defs>
+            <g fill="url(#hand-elbow-glow)">
+              <ellipse cx="462" cy="494" rx="29" ry="98" transform="rotate(5 462 494)" />
+              <ellipse cx="653" cy="494" rx="29" ry="98" transform="rotate(-5 653 494)" />
+            </g>
+          </svg>}
           <div className="absolute inset-x-0 top-0 z-[5] flex h-[16%] items-center justify-center bg-[#faf8ff] px-4">
             <h2 className="text-center text-[clamp(18px,2.2vw,38px)] font-semibold tracking-tight text-[#45245f]">Hover Over the Body to Explore Products</h2>
           </div>
           {painStates.map(p=><button
             key={p.id}
-            aria-label={`Show products for body area ${p.id}`}
+            aria-label={p.id==='p7'||p.id==='p8'?`Show hand, wrist and elbow massagers (${p.id==='p7'?'right':'left'})`:`Show products for body area ${p.id}`}
             aria-pressed={activePainId===p.id}
             onMouseEnter={()=>{setPainImage(p.image);setActivePainId(p.id)}}
             onFocus={()=>{setPainImage(p.image);setActivePainId(p.id)}}
