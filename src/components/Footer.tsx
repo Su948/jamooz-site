@@ -15,7 +15,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             <Link href="/" className="serif-display text-5xl font-semibold tracking-[-0.08em] text-white">Jamooz</Link>
-            <p className="mt-5 max-w-sm leading-7 text-white/62">Massage and scalp care technology for global wellness brands, OEM/ODM partners, and specialty retail channels.</p>
+            <p className="mt-5 max-w-sm leading-7 text-white/62">Wellness and massage device manufacturing for global brands, OEM/ODM partners, and specialty retail channels.</p>
             <div className="mt-7 max-w-sm">
               <h3 className="mono-label text-xs font-bold text-white/50">Compliance Support</h3>
               <p className="mt-3 text-sm leading-6 text-white/68">
@@ -29,7 +29,7 @@ export default function Footer() {
             <ul className="mt-5 space-y-3 text-sm text-white/68">
               <li><Link href="/products" className="hover:text-white">All massage products</Link></li>
               <li><Link href={neckCategory?.href ?? "/products"} className="hover:text-white">Neck & shoulder massagers</Link></li>
-              <li><Link href={scalpCategory?.href ?? "/products"} className="hover:text-white">Scalp massagers</Link></li>
+              <li><Link href={scalpCategory?.href ?? "/products"} className="hover:text-white">Scalp &amp; hair care</Link></li>
               <li><Link href="/products" className="hover:text-white">Recovery devices</Link></li>
               <li><Link href="/products" className="hover:text-white">Red light therapy</Link></li>
               <li><Link href="/custom" className="hover:text-white">Custom product lines</Link></li>

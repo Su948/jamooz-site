@@ -37,10 +37,11 @@ export default function JmzR006PreviewPage() {
   const sourcePage = "/products/jmz-r006";
   const productName = "JMZ-R006 – 3D Kneading Neck & Shoulder Massager";
   const whatsappUrl = contactLinks.whatsapp(buildWhatsAppInquiryMessage({ sourcePage, product: productName }));
-  // Two-segment trail until the Neck & Shoulder category page is published (D020 rule B-2).
+  // Include the published category hub in the product trail.
   const breadcrumbs = [
     { name: "Home", href: "/" },
     { name: "Products", href: "/products" },
+    { name: "Neck & Shoulder Massagers", href: "/products/neck-shoulder-massagers" },
     { name: "JMZ-R006", href: sourcePage },
   ];
 

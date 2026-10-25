@@ -4,6 +4,9 @@ import NextImage from 'next/image';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { liveCategoryFor, productCategoryHref } from '@/lib/product-categories';
+import FactoryOverview from "@/components/FactoryOverview";
+import { contactLinks } from "@/lib/company";
+import { buildWhatsAppInquiryMessage } from "@/lib/whatsapp";
 import HomeVideoHero from '@/components/HomeVideoHero';
 import { octoberProductCards } from '@/lib/october-products';
 
@@ -396,6 +399,7 @@ export default function HomepagePreview(){
   };
   return <div className="overflow-x-hidden bg-white text-zinc-900">
     <HomeVideoHero />
+    <FactoryOverview />
 
     <section aria-labelledby="body-solutions-title" className="flex min-h-[220px] items-center border-b border-violet-100/70 bg-[#fcfbff] py-9 md:h-[260px] md:py-10">
       <div className="mx-auto w-full max-w-[1240px] px-5 text-center sm:px-8">
@@ -517,39 +521,13 @@ export default function HomepagePreview(){
                 <div className="mt-auto flex flex-wrap items-end justify-between gap-4 border-t border-violet-100 pt-5">
                   <div><p className="text-lg font-black text-[#302050]">{product.price}</p><p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500">{product.moq}</p></div>
                   <Link href={product.href} className="inline-flex min-h-10 items-center justify-center rounded-full bg-violet-700 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-violet-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2">View Product →</Link>
+                  <a href={contactLinks.whatsapp(buildWhatsAppInquiryMessage({sourcePage: "/", product: product.model + " – " + product.name}))} target="_blank" rel="noreferrer" className="flex min-h-11 w-full items-center justify-center rounded-full border border-emerald-700 px-4 py-2 text-sm font-bold text-emerald-800 hover:bg-emerald-50">WhatsApp · Quote This Product →</a>
                 </div>
               </div>
             </article>
           ))}
         </div>
       </div>
-    </section>
-
-    <section id="catalog-marquee" className="scroll-mt-24 relative overflow-hidden" style={{aspectRatio:'1920 / 788'}}><img src={scrollBg} alt="" className="absolute inset-0 h-full w-full object-cover" /><div className="absolute inset-0 overflow-hidden"><div className="jamooz-marquee flex h-full w-[200%]">{[0,1].map(copy=><div key={copy} className="relative h-full w-1/2 shrink-0"><img src={scrollImage} alt="JAMOOZ products" className="absolute inset-0 h-full w-full object-contain" />{scrollLinks.map((l,i)=><a key={i} href={l.href} target="_blank" rel="noreferrer" className="absolute z-10" style={{left:pct(l.x,1920),top:pct(l.y,788),width:pct(l.w,1920),height:pct(l.h,788)}} aria-label={`View product ${i+1} on Alibaba`} />)}</div>)}</div></div></section>
-
-    <section className="bg-white py-10 md:py-14"><div className="mx-auto max-w-[1440px] px-3 md:px-6"><div className="relative overflow-hidden" style={{aspectRatio:'1920 / 913'}}><img src={collectionBg} alt="JAMOOZ categories" className="absolute inset-0 h-full w-full object-contain" />{collectionItems.map((it,i)=><a key={i} href={it.href} target="_blank" rel="noreferrer" className="absolute z-10 overflow-hidden" style={{left:pct(it.x,1920),top:pct(it.y,913),width:pct(it.w,1920),height:pct(it.h,913)}}><img src={it.img} alt="category" className="h-full w-full object-contain" /></a>)}</div></div></section>
-
-    {categoryModules.map(category=><section id={category.slug} key={category.slug} className="scroll-mt-24 border-t border-violet-100 bg-white">
-      <header className="relative overflow-hidden bg-[#333132] md:aspect-[1920/330] md:text-white"><div className="relative aspect-[1920/330] w-full overflow-hidden bg-[#333132] md:absolute md:inset-0 md:aspect-auto md:h-full"><img src={`/preview-assets/categories-html/${category.slug}-header.webp`} alt="" className="absolute inset-0 h-full w-full object-contain object-center md:object-cover" /><div className="absolute inset-0 bg-black/5" /></div><div className="relative mx-auto hidden max-w-[1500px] items-center px-5 py-7 sm:px-8 md:flex md:h-full md:min-h-0 md:py-5"><div className="w-full text-center md:ml-[24%] md:w-[58%] md:text-left"><h2 className="text-2xl font-semibold leading-tight tracking-tight text-[#3d2758] md:text-4xl md:text-white md:[text-shadow:0_2px_12px_rgba(0,0,0,.45)] lg:text-5xl">{category.title}</h2><p className="mx-auto mt-3 max-w-3xl text-sm leading-6 text-zinc-600 md:mx-0 md:mt-4 md:text-base md:leading-7 md:text-white/80 md:[text-shadow:0_1px_8px_rgba(0,0,0,.55)]">{category.sellingPoint}</p><div className="mt-4 flex flex-wrap justify-center gap-2 md:mt-5 md:justify-start">{category.features.map(feature=><span key={feature} className="rounded-full border border-violet-200 bg-white px-3 py-1.5 text-xs font-semibold text-violet-800 md:border-violet-200/30 md:bg-[#3a294a]/45 md:text-violet-50 md:backdrop-blur-sm">{feature}</span>)}</div></div></div></header>
-      <div className="relative overflow-hidden bg-[#faf9ff]"><a href={category.featuredHref} target="_blank" rel="noreferrer" aria-label={`View featured ${category.title} on Alibaba`} className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-violet-500"><img src={`/preview-assets/categories-html/${category.slug}-featured.webp`} alt={`${category.title} featured product and usage scene`} className="block h-auto w-full object-contain" /></a><div className="px-5 pb-7 pt-8 text-center sm:px-8 md:hidden"><h2 className="text-2xl font-semibold leading-tight tracking-tight text-[#3d2758]">{category.title}</h2><p className="mx-auto mt-3 max-w-3xl text-sm leading-6 text-zinc-600">{category.sellingPoint}</p><div className="mt-4 flex flex-wrap justify-center gap-2">{category.features.map(feature=><span key={feature} className="rounded-full border border-violet-200 bg-white px-3 py-1.5 text-xs font-semibold text-violet-800">{feature}</span>)}</div></div><div className="mx-4 mb-3 flex items-center justify-between gap-3 md:absolute md:left-[7%] md:top-[12%] md:m-0 md:block"><div className="rounded-full border border-violet-200 bg-white/90 px-3 py-2 text-[10px] font-black uppercase tracking-[0.14em] text-violet-800 shadow-sm backdrop-blur-sm md:px-4 md:text-xs">Featured on Alibaba</div><a href={category.featuredHref} target="_blank" rel="noreferrer" className="rounded-full bg-white/95 px-4 py-2 text-sm font-black text-violet-900 shadow-md transition hover:bg-violet-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 md:mt-3 md:inline-block md:px-5 md:py-2.5 md:text-base">{category.featuredPrice}</a></div><div className="relative grid grid-cols-1 gap-3 px-4 pb-7 pt-4 sm:grid-cols-2 md:absolute md:bottom-[14%] md:right-[7%] md:flex md:p-0"><a href={category.href} target={category.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="inline-flex min-h-11 items-center justify-center rounded-full bg-violet-700 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-violet-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2">{category.viewLabel}{category.href.startsWith("http") ? " on Alibaba" : ""}</a><button type="button" onClick={()=>requestCategoryQuote(category.title)} className="inline-flex min-h-11 items-center justify-center rounded-full border-2 border-violet-700 bg-white/90 px-6 py-3 text-sm font-bold text-violet-800 transition hover:-translate-y-0.5 hover:bg-violet-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2">Request a Quote</button></div></div>
-      <div className="bg-[#faf9ff] px-4 pb-10 md:overflow-x-auto md:pb-12"><div className="mx-auto max-w-[1200px]"><div className="hidden md:block"><div className="relative"><img src={`/preview-assets/categories-html/${category.slug}-products.webp`} alt={`${category.title} product range`} className="block h-auto w-full object-contain" /><div className="absolute inset-0 grid grid-cols-4">{category.products.map((product,index)=><a key={`desktop-image-${product.href}-${index}`} href={product.href} target="_blank" rel="noreferrer" title={`View ${category.title} product ${index+1} on Alibaba`} aria-label={`View ${category.title} product ${index+1} on Alibaba, ${product.price}`} className="transition hover:bg-violet-500/5 hover:ring-2 hover:ring-inset hover:ring-violet-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-violet-500" />)}</div></div></div><div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-0 md:border-x md:border-b md:border-violet-100 md:bg-white">{category.products.map((product,index)=><a key={`product-${product.href}-${index}`} href={product.href} target="_blank" rel="noreferrer" aria-label={`View ${category.title} product ${index+1} on Alibaba, ${product.price}`} className="overflow-hidden rounded-2xl border border-violet-100 bg-white text-center shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 md:rounded-none md:border-y-0 md:border-l-0 md:shadow-none"><span aria-hidden className="block aspect-square w-full bg-white bg-[length:400%_100%] bg-no-repeat md:hidden" style={{backgroundImage:`url(/preview-assets/categories-html/${category.slug}-products.webp)`,backgroundPosition:`${index*(100/3)}% center`}} /><span className="flex min-h-20 flex-col items-center justify-center px-2 py-3"><span className="text-sm font-black text-[#3d2758] sm:text-base">{product.price}</span><span className="mt-1 text-[11px] font-semibold text-violet-700 sm:text-xs">View on Alibaba ↗</span></span></a>)}</div></div></div>
-    </section>)}
-
-    <section id="about-us" className="scroll-mt-24 relative overflow-hidden bg-white" style={{aspectRatio:'1920 / 2020'}}>
-      <img src={companyImage} alt="JAMOOZ company introduction" className="absolute inset-0 h-full w-full object-contain" />
-      <video
-        src={companyVideo}
-        aria-label="JAMOOZ company introduction video"
-        className="absolute z-10 h-full w-full bg-black object-cover"
-        style={{left:pct(360,1920),top:pct(30,2020),width:pct(800,1920),height:pct(450,2020)}}
-        autoPlay
-        muted
-        loop
-        playsInline
-        controls
-        preload="metadata"
-      />
-      {companyLinks.map((link,i)=><a key={link.href} href={link.href} target="_blank" rel="noreferrer" aria-label={`JAMOOZ featured company product ${i+1}`} className="absolute z-10" style={{left:pct(link.x,1920),top:pct(link.y,2020),width:pct(link.w,1920),height:pct(link.h,2020)}} />)}
     </section>
 
     <section id="products" className="scroll-mt-24 relative overflow-hidden bg-white" style={{aspectRatio:'1920 / 1110'}}><img src={reviewBg} alt="Customer reviews" className="absolute inset-0 h-full w-full object-contain" />{reviews.map((r,i)=><div key={i} className="absolute overflow-hidden" style={{left:pct(r.x,1920),top:pct(r.y,1110),width:pct(r.w,1920),height:pct(r.h,1110)}}><div className="review-roll" style={{animationDuration:r.speed}}><img src={r.img} alt="buyer reviews" className="block h-auto w-full" /><img src={r.img} alt="" aria-hidden className="block h-auto w-full" /></div></div>)}</section>
