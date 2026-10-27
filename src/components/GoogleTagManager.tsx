@@ -4,6 +4,7 @@ import Script from "next/script";
 import { useEffect } from "react";
 import {
   trackConversionEvent,
+  isProductionAnalyticsPage,
   type ConversionEventName,
 } from "@/lib/analytics";
 import { useAnalyticsConsent } from "@/lib/analytics-consent";
@@ -15,7 +16,6 @@ const validGtmId = Boolean(gtmId && /^GTM-[A-Z0-9]+$/.test(gtmId));
 function inferConversionEvent(anchor: HTMLAnchorElement): ConversionEventName | null {
   const explicitEvent = anchor.dataset.analyticsEvent;
   if (
-    explicitEvent === "form_submit" ||
     explicitEvent === "whatsapp_click" ||
     explicitEvent === "email_click" ||
     explicitEvent === "phone_click" ||
@@ -45,7 +45,7 @@ export default function GoogleTagManager() {
   const consent = useAnalyticsConsent();
 
   useEffect(() => {
-    if (!validGtmId || consent !== "granted") return;
+    if (!validGtmId || consent !== "granted" || !isProductionAnalyticsPage()) return;
 
     const handleClick = (event: MouseEvent) => {
       const target = event.target;
@@ -66,7 +66,7 @@ export default function GoogleTagManager() {
     return () => document.removeEventListener("click", handleClick);
   }, [consent]);
 
-  if (!validGtmId || consent !== "granted") return null;
+  if (!validGtmId || consent !== "granted" || !isProductionAnalyticsPage()) return null;
 
   return (
     <>

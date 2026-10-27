@@ -2,6 +2,7 @@
 
 import Script from "next/script";
 import { useAnalyticsConsent } from "@/lib/analytics-consent";
+import { isProductionAnalyticsPage } from "@/lib/analytics";
 
 const clarityProjectId =
   process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID?.trim() || "ycuqa9xing";
@@ -10,7 +11,7 @@ const validClarityProjectId = /^[a-z0-9]+$/i.test(clarityProjectId);
 export default function MicrosoftClarity() {
   const consent = useAnalyticsConsent();
 
-  if (!validClarityProjectId || consent !== "granted") return null;
+  if (!validClarityProjectId || consent !== "granted" || !isProductionAnalyticsPage()) return null;
 
   return (
     <Script id="microsoft-clarity" strategy="afterInteractive">

@@ -19,8 +19,8 @@ type InquiryOperations = {
   responseDueAt: string;
 };
 
-function json(message: string, status: number, reference?: string) {
-  return NextResponse.json({ status: status < 400 ? "success" : "error", message, reference }, { status });
+function json(message: string, status: number, reference?: string, delivered = false) {
+  return NextResponse.json({ status: status < 400 ? "success" : "error", message, reference, delivered }, { status });
 }
 
 function requestKey(request: Request) {
@@ -166,7 +166,7 @@ export async function POST(request: Request) {
 
     await deliverInquiry(data, reference);
     console.info("RFQ delivery succeeded", { reference });
-    return json("Thank you — your inquiry has been delivered.", 200, reference);
+    return json("Thank you — your inquiry has been delivered.", 200, reference, true);
   } catch (error) {
     console.error("RFQ submission failed", { error: error instanceof Error ? error.message : "Unknown error" });
     return json(`We could not deliver your inquiry. Please email ${companyFacts.contact.email} or contact us on WhatsApp.`, 503);

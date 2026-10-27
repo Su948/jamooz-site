@@ -38,6 +38,7 @@ export default function InquiryForm({
 }: InquiryFormProps) {
   const [state, setState] = useState<SubmissionState>({ status: "idle" });
   const startedAt = useRef(0);
+  const submitting = useRef(false);
   const isDark = theme === "dark";
 
   useEffect(() => {
@@ -46,6 +47,8 @@ export default function InquiryForm({
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitting.current) return;
+    submitting.current = true;
     const form = event.currentTarget;
     const formData = new FormData(form);
     setState({ status: "submitting" });
@@ -56,17 +59,21 @@ export default function InquiryForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...Object.fromEntries(formData.entries()), sourcePage, startedAt: startedAt.current }),
       });
-      const result = (await response.json()) as { message?: string; reference?: string };
+      const result = (await response.json()) as { message?: string; reference?: string; delivered?: boolean };
       if (!response.ok || !result.reference) {
         throw new Error(result.message || "We could not send your inquiry. Please try again.");
       }
 
-      trackConversionEvent("form_submit", { form_id: id, form_method: "online" });
+      if (result.delivered === true) {
+        trackConversionEvent("generate_lead", { form_id: id, form_method: "online", lead_id: result.reference });
+      }
       setState({ status: "success", reference: result.reference });
       form.reset();
       startedAt.current = Date.now();
     } catch (error) {
       setState({ status: "error", message: error instanceof Error ? error.message : "We could not send your inquiry. Please try again." });
+    } finally {
+      submitting.current = false;
     }
   }
 

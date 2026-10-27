@@ -10,9 +10,10 @@ const eventParameters: Record<
   ConversionEventName,
   NonNullable<Parameters<typeof trackConversionEvent>[1]>
 > = {
-  form_submit: {
+  generate_lead: {
     form_id: "analytics-preview-test",
     form_method: "online",
+    lead_id: "JAM-PREVIEW-TEST",
   },
   whatsapp_click: { link_location: "analytics-preview-test" },
   email_click: { link_location: "analytics-preview-test" },
@@ -29,6 +30,7 @@ export default function AnalyticsTestPanel() {
       <p className="mt-4 text-slate-600">
         Preview-only controls for validating JAMOOZ conversion events. These
         buttons do not contact anyone, submit a form, or download a file.
+        Production analytics is disabled on this test route and local hosts.
       </p>
       <div className="mt-10 grid gap-4 sm:grid-cols-2">
         {conversionEventNames.map((eventName) => (
