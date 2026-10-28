@@ -74,6 +74,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${companyFacts.website}/products/cupping-gua-sha`,
+      lastModified: "2026-10-28",
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${companyFacts.website}/guides/ems-vs-vibration-scalp-massager`,
       lastModified: "2026-10-13",
       changeFrequency: "monthly",

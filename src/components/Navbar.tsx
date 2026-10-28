@@ -22,6 +22,7 @@ function PreviewNavbar() {
   const productCategories = [
     ['Neck & Shoulder Massagers', productCategoryHref('Neck & Shoulder')],
     ['Scalp & Hair Care', productCategoryHref('Head & Scalp')],
+    ['Cupping & Body Care', '/products/cupping-gua-sha'],
     ['Body Care Massagers', productCategoryHref('Body Care')],
     ['Eye Care Devices', productCategoryHref('Eye Care')],
     ['Hand & Wrist Massagers', productCategoryHref('Hand, Wrist & Elbow')],
