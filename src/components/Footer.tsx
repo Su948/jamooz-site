@@ -42,6 +42,8 @@ export default function Footer() {
               <li><Link href="/oem-odm" className="hover:text-white">OEM/ODM development process</Link></li>
               <li><Link href="/custom" className="hover:text-white">Private label branding</Link></li>
               <li><Link href="/custom" className="hover:text-white">Gift box packaging</Link></li>
+              <li><Link href="/guides/factory-audit-checklist" className="hover:text-white">Factory audit &amp; evidence</Link></li>
+              <li><Link href="/guides/neck-shoulder-massager-selection" className="hover:text-white">Neck massager selection</Link></li>
               <li>Global delivery support</li>
             </ul>
           </div>
