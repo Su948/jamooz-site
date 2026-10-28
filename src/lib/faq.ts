@@ -63,6 +63,29 @@ export const productFaqs: Record<string, readonly FaqEntry[]> = {
       link: { label: "See the JMZ-706H four-point model", href: "/products/jmz-706h" },
     },
   ],
+  "jmz-706h": [
+    {
+      question: "How does JMZ-706H differ from JMZ-706W?",
+      answer:
+        "JMZ-706H combines four massage heads, four modes, three intensity levels, two warming levels and an adjustable chair strap. JMZ-706W also uses four massage points, but its controls are specified as four modes and three speed levels. Compare the physical format and control method before selecting a model.",
+      link: { label: "Compare the neck and shoulder range", href: "/guides/neck-shoulder-massager-selection" },
+    },
+    {
+      question: "Is JMZ-706H cordless, and how is it charged?",
+      answer:
+        "Yes. The current product information specifies a rechargeable 3500mAh battery and USB-C / Type-C charging. Rated input, charging time and operating time should be confirmed for the ordered configuration before packaging is approved.",
+    },
+    {
+      question: "Can we request a sample before a bulk order?",
+      answer:
+        "Yes. Samples are available. Sample price, preparation time, courier cost and the exact sample configuration are confirmed in the quotation; a fixed refund policy is not assumed.",
+    },
+    {
+      question: "What branding and packaging options are available?",
+      answer:
+        "Logo, colour and retail-packaging options can be discussed for private-label orders. Minimum quantities, artwork method, packaging dimensions and lead time are confirmed against the selected option and final quotation.",
+    },
+  ],
   "jmz-908": [
     {
       question: "How long is one eye massager session?",
@@ -84,6 +107,26 @@ export const productFaqs: Record<string, readonly FaqEntry[]> = {
       question: "How do the pressure levels differ?",
       answer:
         "It has 5 air pressure levels, from gentler to firmer. It also provides two-way kneading with 3 speed levels, reversing direction approximately every 5 seconds.",
+    },
+    {
+      question: "What product and carton data are currently confirmed?",
+      answer:
+        "The current specification records a product size of 170 × 110 × 140 mm and a net weight of 660 g. The colour box is 212 × 176 × 116 mm. The master carton is 370 × 450 × 520 mm, packed 16 units per carton with a stated gross weight of 17.04 kg.",
+    },
+    {
+      question: "How is JMZ-802 powered and charged?",
+      answer:
+        "The current specification lists a 2000mAh rechargeable battery, DC 5V / 1A input, 5W rated power and USB-C charging. The specified charging time is under 3.5 hours under the documented charging conditions.",
+    },
+    {
+      question: "Which compliance documents can buyers review?",
+      answer:
+        "Archived records include CE EMC and FCC Part 15B reports for the tested model and configuration. Before ordering, send the target market and required configuration so the team can confirm which report applies; a report for one configuration does not automatically cover every customised version.",
+    },
+    {
+      question: "Can JMZ-802 be supplied as a private-label product?",
+      answer:
+        "Yes. Logo, colour, manual and retail-packaging requirements can be reviewed for OEM/ODM projects. The applicable minimum quantity, artwork method, sample timing and production schedule are confirmed with the final quotation.",
     },
   ],
   "jmz-903": [
