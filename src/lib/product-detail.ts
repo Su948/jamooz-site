@@ -21,6 +21,16 @@ export type ProductFeature = {
   copy: string;
 };
 
+export type RegionalPricingConfig = {
+  /** ISO 3166-1 alpha-2 markets that share the protected regional price. */
+  specialMarkets: readonly string[];
+  specialMarketLabel: string;
+  defaultMarketLabel: string;
+  currency: string;
+  specialPriceTiers?: readonly ProductPriceTier[];
+  defaultPriceTiers?: readonly ProductPriceTier[];
+};
+
 /**
  * Related link rendered before the inquiry block. Only reachable pages may be
  * passed: a product whose cluster has no published category page links to the
@@ -50,6 +60,7 @@ export type ProductDetailConfig = {
   samplePrice?: string;
   priceTiers?: readonly ProductPriceTier[];
   customPricing?: boolean;
+  regionalPricing?: RegionalPricingConfig;
   customizationOptions?: readonly { title: string; copy: string }[];
   featuresLabel: string;
   featuresTitle: string;

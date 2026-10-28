@@ -1,9 +1,11 @@
 import JsonLd from "@/components/JsonLd";
 import ProductCatalogDirectory from "@/components/ProductCatalogDirectory";
 import { octoberProductCards } from "@/lib/october-products";
+import { novemberProductCards } from "@/lib/preview-products/november-products";
 import { hubCategoryOrder, liveCategoryFor } from "@/lib/product-categories";
 
 const products = [
+  ...novemberProductCards,
   ...octoberProductCards,
   {
     model: "JMZ-702",

@@ -3,6 +3,7 @@ import FaqBlock from "@/components/FaqBlock";
 import InquiryForm from "@/components/InquiryForm";
 import ProductGallery from "@/components/ProductGallery";
 import ProductJsonLd from "@/components/ProductJsonLd";
+import RegionalPricingCard from "@/components/RegionalPricingCard";
 import RelatedProducts from "@/components/RelatedProducts";
 import { contactLinks } from "@/lib/company";
 import { productFaqs } from "@/lib/faq";
@@ -58,7 +59,7 @@ export default function ProductDetailTemplate({ product }: { product: ProductDet
               description={product.description}
               images={product.gallery.map((image) => image.src)}
               path={sourcePage}
-              prices={product.customPricing ? undefined : product.priceTiers?.map((tier) => tier.price)}
+              prices={product.customPricing || product.regionalPricing ? undefined : product.priceTiers?.map((tier) => tier.price)}
             />
             <Breadcrumbs items={breadcrumbs} />
           </div>
@@ -73,7 +74,7 @@ export default function ProductDetailTemplate({ product }: { product: ProductDet
               {product.badges.map((badge) => <span key={badge} className="rounded-full border border-[#ccd8e6] bg-white/85 px-3.5 py-2 text-xs font-bold text-[#24456f]">{badge}</span>)}
             </div>
 
-            <div className="mt-8 rounded-2xl border border-white/85 bg-white/82 p-5 shadow-[0_20px_55px_rgba(38,67,105,0.09)] backdrop-blur sm:p-6">
+            {product.regionalPricing ? <RegionalPricingCard config={product.regionalPricing} /> : <div className="mt-8 rounded-2xl border border-white/85 bg-white/82 p-5 shadow-[0_20px_55px_rgba(38,67,105,0.09)] backdrop-blur sm:p-6">
               {product.customPricing ? (
                 <>
                   <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#718097]">Custom pricing</p>
@@ -97,7 +98,7 @@ export default function ProductDetailTemplate({ product }: { product: ProductDet
                 </>
               )}
               {product.leadTime ? <p className="mt-4 border-t border-[#dfe5ee] pt-3 text-sm leading-6 text-[#607086]"><span className="font-bold text-[#334055]">Lead time: </span>{product.leadTime}</p> : null}
-            </div>
+            </div>}
 
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               <a href="#inquiry" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#244f82] px-6 py-3.5 text-sm font-black tracking-[0.08em] text-white shadow-lg shadow-[#244f82]/20 transition hover:-translate-y-0.5 hover:bg-[#193d69]">REQUEST A QUOTE <ArrowIcon /></a>
