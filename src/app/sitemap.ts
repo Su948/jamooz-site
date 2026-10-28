@@ -82,6 +82,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: `${companyFacts.website}/guides/factory-audit-checklist`,
+      lastModified: "2026-10-28",
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${companyFacts.website}/guides/neck-shoulder-massager-selection`,
+      lastModified: "2026-10-28",
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     ...["jmz-702", "jmz-r006", "jmz-729s", "jmz-908", "jmz-802", "jmz-903", "jmz-807p", "jmz-706w", "jmz-706h", "jmz-901", "jmz-722", "jmz-801", "jmz-cspl002", "jmz-723", "jmz-cspl003", "jmz-727", "jmz-818"].map((slug) => ({
       url: `${companyFacts.website}/products/${slug}`,
       lastModified: productLastModified[slug] ?? defaultProductLastModified,

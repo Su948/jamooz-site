@@ -29,7 +29,8 @@ function PreviewNavbar() {
   const resources = [
     ['Buyer Guide', '/guides/choose-scalp-massager-supplier'],
     ['Product Comparison', '/guides/ems-vs-vibration-scalp-massager'],
-    ['Quality & Company Evidence', '/about'],
+    ['Neck & Shoulder Selection', '/guides/neck-shoulder-massager-selection'],
+    ['Factory Audit & Evidence', '/guides/factory-audit-checklist'],
   ] as const;
 
   const closeMobileMenu = () => {
