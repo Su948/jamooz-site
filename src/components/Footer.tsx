@@ -30,6 +30,7 @@ export default function Footer() {
               <li><Link href="/products" className="hover:text-white">All massage products</Link></li>
               <li><Link href={neckCategory?.href ?? "/products"} className="hover:text-white">Neck & shoulder massagers</Link></li>
               <li><Link href={scalpCategory?.href ?? "/products"} className="hover:text-white">Scalp &amp; hair care</Link></li>
+              <li><Link href="/products/cupping-gua-sha" className="hover:text-white">Cupping &amp; body care</Link></li>
               <li><Link href="/products" className="hover:text-white">Recovery devices</Link></li>
               <li><Link href="/products" className="hover:text-white">Red light therapy</Link></li>
               <li><Link href="/custom" className="hover:text-white">Custom product lines</Link></li>
