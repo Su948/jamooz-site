@@ -3,7 +3,7 @@ import type { ProductDetailConfig, ProductSpec } from '@/lib/product-detail';
 const specs = (rows: readonly (readonly [string,string])[]): ProductSpec[] => rows.map(([item,value])=>({item,value,status:'Confirmed'}));
 const gallery = (slug:string, alts:readonly string[]) => alts.map((alt,i)=>({src:`/products/${slug}/${String(i+1).padStart(2,'0')}-${i===0?'hero':'detail'}.webp`,alt}));
 const inquiryCopy = 'Share your quantity, destination market and branding or packaging requirements. We will confirm the final specification, MOQ, lead time and quotation before ordering.';
-const customizationOptions = ['Logo & Branding','Colors & Materials','Retail Packaging','Order Quantity'].map(title=>({title,copy:'Requirements and minimum quantity confirmed with your quotation.'}));
+const customizationOptions = [{title:'Custom Logo',copy:'MOQ 500 pcs'},{title:'Custom Color',copy:'MOQ 500 pcs per color'},{title:'Color Box',copy:'MOQ 500 pcs'},{title:'Corrugated Box',copy:'MOQ 300 pcs'}];
 const relatedLinks = [{href:'/custom',eyebrow:'OEM / ODM',name:'Product customization',detail:'Discuss branding, packaging and order requirements.',linkLabel:'Explore Customization'}];
 
 export const jmz723: ProductDetailConfig = {
@@ -24,9 +24,9 @@ export const jmz723: ProductDetailConfig = {
     'JMZ-723 25-minute automatic session illustration',
     'JMZ-723 six-zone inner contact layout illustration',
   ]),
-  priceRange:'$19.80–23.00 / pc',samplePrice:'$28.00',moq:'Order quantity confirmed with quotation',
-  priceTiers:[{quantity:'50–500 pcs',price:'$23.00 / pc'},{quantity:'500–3,000 pcs',price:'$21.50 / pc'},{quantity:'3,000–5,000 pcs',price:'$20.50 / pc'},{quantity:'Over 5,000 pcs',price:'$19.80 / pc'}],
-  customizationOptions:[{title:'Custom Logo',copy:'MOQ 500 pcs'},{title:'Custom Color',copy:'MOQ 500 pcs per color'},{title:'Color Box',copy:'MOQ 500 pcs'},{title:'Corrugated Box',copy:'MOQ 300 pcs'}],
+  priceRange:'$19.80–23.00 / pc',samplePrice:'$28.00',moq:'MOQ 50 pcs',
+  priceTiers:[{quantity:'50–499 pcs',price:'$23.00 / pc'},{quantity:'500–2,999 pcs',price:'$21.50 / pc'},{quantity:'3,000–4,999 pcs',price:'$20.50 / pc'},{quantity:'5,000+ pcs',price:'$19.80 / pc'}],
+  customizationOptions,
   featuresLabel:'EMS & warmth',featuresTitle:'Adjustable Waist Comfort with Remote Control',
   featuresIntro:'Choose a pulse pattern, adjust the intensity gradually and add warmth to suit your daily routine.',
   features:[{title:'Seven pulse modes',copy:'Seven EMS patterns and 15 intensity levels provide adjustable stimulation.'},{title:'Two warming settings',copy:'Select warmth from the remote. The supplied specification lists a maximum temperature of 50°C.'},{title:'Rechargeable system',copy:'A 2000mAh main unit and 300mAh remote provide rechargeable operation.'},{title:'Flexible straps',copy:'The set includes a waist belt, extension strap and smaller arm strap.'}],
@@ -117,5 +117,5 @@ export const octoberProductCards = octoberProducts.map(product=>({
   model:product.model,category:product.category,name:product.name,description:product.description,
   image:product.gallery[0].src,href:`/products/${product.slug}`,
   price:product.priceRange??(product.slug==='jmz-818'?'Contact for Pricing':'Custom Quote'),
-  moq:product.moq??'Quantity confirmed with quotation',features:product.badges,
+  moq:product.moq??'MOQ 50 pcs',features:product.badges,
 }));

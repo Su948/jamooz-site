@@ -33,14 +33,14 @@ const confirmedSpecs = [
 const buyerChecks = [
   ["Confirm the product format", "JMZ-903 is an electric suction, warming and EMS body massager. It is not a manual gua sha stone or scraping board."],
   ["Match the control functions", "Verify the suction, heat and EMS ranges required for your market and ask for a sample before placing a production order."],
-  ["Define the customisation scope", "Send the logo, colour and packaging requirements with the quantity so the applicable minimums can be confirmed in the quotation."],
+  ["Define the customisation scope", "Standard minimums are 500 pcs for a logo, 500 pcs per colour, 500 pcs for a colour box and 300 pcs for a corrugated box. Send the artwork and packaging requirements with the inquiry."],
   ["Check market documents by model", "Certificates and reports must be matched to the exact model, configuration and destination market before ordering."],
 ] as const;
 
 const faqs = [
   ["Is JMZ-903 a traditional manual gua sha tool?", "No. It is a rechargeable body-care device that uses controlled suction, warming and EMS. A manual gua sha tool relies on hand pressure and has no electronic controls."],
   ["How many adjustment levels does it have?", "Suction, warming and EMS each use a 0–12 control range. The specified warming range is approximately 41–48°C."],
-  ["What is the standard product MOQ?", "The current standard product MOQ is 50 pcs. Branding, colour and packaging requirements are confirmed separately with the quotation."],
+  ["What is the standard product MOQ?", "All standard product orders start from 50 pcs. Custom logo, colour and colour-box orders start from 500 pcs; corrugated-box customisation starts from 300 pcs."],
   ["Which compliance documents are available?", "Availability depends on the exact model, configuration and destination market. Send the target market with the enquiry and the team will confirm the applicable documents."],
 ] as const;
 

@@ -33,11 +33,11 @@ const breadcrumbItems = [
 ];
 const faqs = [
   ['Which model should I start with?', 'Start with the wearing position and contact structure. R006 offers a U-shaped wearable format; the pillow models provide different contact layouts, sizes and controls. Compare a physical sample before final selection.'],
-  ['What is the minimum order quantity?', 'Orders start from 50 pieces. Logo, color, packaging and functional customization are reviewed separately; the applicable minimum and final price are confirmed in your quotation.'],
+  ['What is the minimum order quantity?', 'All standard product orders start from 50 pieces. Custom logo, color and color-box orders start from 500 pcs; corrugated-box customization starts from 300 pcs.'],
   ['Can I order samples?', 'Samples are available. Tell us the model and delivery destination so we can confirm sample cost, shipping and availability.'],
   ['Can I add my brand and packaging?', 'Custom branding and packaging are available. Share your artwork and requirements; see our OEM/ODM page for the development process rather than assuming every option has the same minimum quantity.'],
   ['Which certificates and reports can you provide?', 'Available documentation depends on the model, configuration and destination market. Tell us where you plan to sell so we can confirm the relevant certificate scope and test reports.'],
-  ['What is the delivery time?', 'Delivery follows the selected product and order requirements. Sample timing and bulk lead time are confirmed with the quotation; custom packaging or development may require a separate schedule.'],
+  ['What is the delivery time?', 'The standard schedule is 7 days for samples after design approval, 15 days for 50 pcs, 20 days for 500 pcs and 35 days for 3,000 pcs. Special configurations, tooling, peak periods and other exceptions are discussed separately.'],
 ];
 
 export default function NeckCategoryPreview({ showPreviewNotice = true }: { showPreviewNotice?: boolean } = {}) {

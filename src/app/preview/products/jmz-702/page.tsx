@@ -95,6 +95,7 @@ export default function Jmz702PreviewPage() {
                 <span>Sample: <strong className="text-[#334055]">US$40</strong></span>
                 <span>Volume prices are confirmed with the final quotation.</span>
               </div>
+              <p className="mt-4 border-t border-[#dfe5ee] pt-3 text-sm leading-6 text-[#607086]"><span className="font-bold text-[#334055]">Lead time: </span>Samples in 7 days after design approval; 50 pcs in 15 days, 500 pcs in 20 days and 3,000 pcs in 35 days. Special configurations, tooling, peak periods and other exceptions are discussed separately.</p>
             </div>
 
             <div className="mt-7 grid gap-3 sm:grid-cols-2">

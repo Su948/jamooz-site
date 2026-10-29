@@ -28,7 +28,7 @@ export type CatalogDirectoryGroup = {
 const faqs = [
   {
     question: "What is the minimum order quantity for JAMOOZ products?",
-    answer: "Orders start from 50 pieces. The applicable minimum for custom colors, packaging, branding or functional changes is confirmed with the selected model and quotation.",
+    answer: "All standard product orders start from 50 pieces. Standard customisation minimums are 500 pcs for a logo, 500 pcs per colour, 500 pcs for a colour box and 300 pcs for a corrugated box; product-level functional changes are reviewed separately.",
   },
   {
     question: "Can I order samples before a bulk order?",
@@ -44,7 +44,7 @@ const faqs = [
   },
   {
     question: "How long does production and delivery take?",
-    answer: "Sample timing and bulk lead time follow the selected product, order quantity and customization requirements. The applicable schedule is confirmed with your quotation.",
+    answer: "The standard schedule is 7 days for samples after design approval, 15 days for 50 pcs, 20 days for 500 pcs and 35 days for 3,000 pcs. Special configurations, tooling, peak periods and other exceptions are discussed separately.",
   },
   {
     question: "How do I choose the right massage device for my range?",

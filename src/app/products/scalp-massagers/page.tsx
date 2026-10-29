@@ -60,7 +60,7 @@ const retailChecks = [
   },
   {
     title: "Retail packaging",
-    copy: "Colour boxes can be customised from 500 pcs and corrugated boxes from 300 pcs; brand logo and colour customisation both start at 500 pcs.",
+    copy: "Standard private-label minimums are 500 pcs for colour boxes, brand logos and each product colour, and 300 pcs for corrugated cartons.",
   },
   {
     title: "Repeat supply",
@@ -85,7 +85,6 @@ const customisationOptions = [
   { option: "Custom colour", minimum: "500 pcs per colour" },
   { option: "Colour box", minimum: "500 pcs" },
   { option: "Corrugated box", minimum: "300 pcs" },
-  { option: "Smaller customised runs", minimum: "Can be discussed, with an additional charge" },
 ];
 
 const supplierChecks = [
@@ -107,7 +106,7 @@ const faqs = [
   },
   {
     question: "What is the minimum order for a custom logo or colour?",
-    answer: "500 pcs as standard (colour is counted per colour); smaller customised runs can be discussed with an additional charge.",
+    answer: "The standard minimum is 500 pcs for a custom logo and 500 pcs per custom colour.",
   },
   {
     question: "Is the ampoule tank refillable?",
@@ -169,7 +168,7 @@ export default function ScalpMassagersPage() {
               </article>
             ))}
           </div>
-          <p className="mt-6 max-w-3xl text-sm leading-6 text-[#66758a]">The points above describe JMZ-901 and the customisation thresholds already published on this site. Specifications and thresholds for other models are stated on their own specification sheets.</p>
+          <p className="mt-6 max-w-3xl text-sm leading-6 text-[#66758a]">The points above describe JMZ-901. Product specifications for other models are stated on their own specification sheets.</p>
         </div>
       </section>
 
@@ -236,7 +235,7 @@ export default function ScalpMassagersPage() {
               </tbody>
             </table>
           </div>
-          <p className="mt-6 max-w-3xl text-sm leading-6 text-[#66758a]">These are the standard thresholds published for JMZ-901. Whether the same thresholds apply to another model has to be confirmed model by model, so this page does not state one minimum for the whole category.</p>
+          <p className="mt-6 max-w-3xl text-sm leading-6 text-[#66758a]">These standard customisation minimums apply across the current product range. Product-level structural changes remain subject to project review and quotation.</p>
           <p className={`mt-4 max-w-3xl ${bodyCopy}`}>OEM projects normally cover logo and packaging customisation; ODM projects cover product-level changes such as structure, colour and function combinations. The process and feasibility are described on the <Link href="/custom" className="font-bold text-[#244f82] underline decoration-[#244f82]/30 underline-offset-4 transition hover:decoration-[#244f82]">OEM &amp; ODM services page</Link>.</p>
         </div>
       </section>
