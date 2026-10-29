@@ -1,4 +1,5 @@
 export const conversionEventNames = [
+  "form_start",
   "generate_lead",
   "whatsapp_click",
   "email_click",
@@ -17,7 +18,7 @@ type ConversionEventParameters = {
 
 type DataLayerEvent = ConversionEventParameters & {
   event: ConversionEventName;
-  event_category: "conversion";
+  event_category: "engagement" | "conversion";
   event_source: "website";
   page_path: string;
 };
@@ -69,7 +70,7 @@ export function trackConversionEvent(
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
     event,
-    event_category: "conversion",
+    event_category: event === "form_start" ? "engagement" : "conversion",
     event_source: "website",
     page_path: window.location.pathname,
     ...parameters,
