@@ -27,13 +27,67 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <GoogleTagManager />
         <MicrosoftClarity />
-        <JsonLd data={{
-          "@context": "https://schema.org", "@type": "Organization",
-          "@id": `${companyFacts.website}/#organization`, name: companyFacts.brandName,
-          url: companyFacts.website, email: companyFacts.contact.email,
-          telephone: companyFacts.contact.whatsappDisplay,
-          address: { "@type": "PostalAddress", addressLocality: companyFacts.location.city, addressCountry: "CN" },
-        }} />
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Organization",
+                "@id": `${companyFacts.website}/#organization`,
+                name: companyFacts.brandName,
+                alternateName: [companyFacts.displayName, "佳木子"],
+                legalName: companyFacts.legalName,
+                url: companyFacts.website,
+                logo: {
+                  "@type": "ImageObject",
+                  url: `${companyFacts.website}/favicon.ico`,
+                  width: 256,
+                  height: 256,
+                },
+                image: `${companyFacts.website}/opengraph-image.png`,
+                description:
+                  "JAMOOZ develops and supplies massage and personal wellness devices for international B2B brands, including OEM, ODM, private-label and packaging support.",
+                foundingDate: companyFacts.foundingDate,
+                foundingLocation: {
+                  "@type": "Place",
+                  name: companyFacts.location.label,
+                },
+                email: companyFacts.contact.email,
+                telephone: companyFacts.contact.whatsappDisplay,
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: companyFacts.location.streetAddress,
+                  addressLocality: companyFacts.location.city,
+                  addressRegion: companyFacts.location.region,
+                  addressCountry: companyFacts.location.countryCode,
+                },
+                contactPoint: {
+                  "@type": "ContactPoint",
+                  contactType: "sales",
+                  email: companyFacts.contact.email,
+                  telephone: companyFacts.contact.whatsappDisplay,
+                  availableLanguage: ["English", "Chinese"],
+                  areaServed: "Worldwide",
+                },
+                sameAs: [companyFacts.marketplaceProfile],
+                knowsAbout: [
+                  "Massage devices",
+                  "Personal wellness electronics",
+                  "OEM and ODM product development",
+                  "Private-label manufacturing",
+                ],
+              },
+              {
+                "@type": "WebSite",
+                "@id": `${companyFacts.website}/#website`,
+                url: companyFacts.website,
+                name: companyFacts.brandName,
+                publisher: { "@id": `${companyFacts.website}/#organization` },
+                inLanguage: "en",
+              },
+            ],
+          }}
+        />
         <Navbar />
         <main className="flex-grow">{children}</main>
         <FloatingContactActions />
