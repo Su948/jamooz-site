@@ -338,8 +338,8 @@ export default function EmsVsVibrationGuidePage() {
                   <td className={tdCls}>No</td>
                 </tr>
                 <tr>
-                  <td className={tdKey}>Smaller customised runs</td>
-                  <td className={tdCls}>Discussable, with an additional charge</td>
+                  <td className={tdKey}>Customised first orders</td>
+                  <td className={tdCls}>Feasibility and cost confirmed with quotation</td>
                   <td className={tdCls}>—</td>
                 </tr>
                 <tr>

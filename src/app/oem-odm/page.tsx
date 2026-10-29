@@ -225,7 +225,7 @@ export default function OemOdmPage() {
           <header className="max-w-3xl">
             <p className="text-xs font-black uppercase tracking-[0.24em] text-violet-700">Stage-by-stage review</p>
             <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] text-[#3d2758] sm:text-5xl">What happens, and what can be checked</h2>
-            <p className="mt-5 text-base leading-7 text-zinc-600">Each stage is tied to a practical project record or buyer approval point. This keeps the process specific without publishing unconfirmed lead times, capacity or certification claims.</p>
+            <p className="mt-5 text-base leading-7 text-zinc-600">Each stage is tied to a practical project record or buyer approval point. The standard production schedule is published separately, while project-specific exceptions, capacity and certification scope remain subject to verification.</p>
           </header>
 
           <div className="mt-12 grid gap-5 md:grid-cols-2">
@@ -277,7 +277,7 @@ export default function OemOdmPage() {
           <div>
             <p className="text-xs font-black uppercase tracking-[0.24em] text-violet-200">Confirmed standard options</p>
             <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">Customisation without invented promises</h2>
-            <p className="mt-6 max-w-xl text-base leading-8 text-white/70">Standard branding and packaging minimums are published below. Product structure, functions, tooling, sampling, lead time and payment terms are reviewed project by project.</p>
+            <p className="mt-6 max-w-xl text-base leading-8 text-white/70">Standard branding and packaging minimums are listed below. The standard schedule is 7 days for samples after design approval, 15 days for 50 pcs, 20 days for 500 pcs and 35 days for 3,000 pcs; special project conditions are reviewed separately.</p>
             <Link href="/custom" className="mt-8 inline-flex min-h-12 items-center justify-center rounded-full border border-white/35 px-7 py-3.5 text-sm font-bold text-white transition hover:bg-white hover:text-[#3d2758]">
               Open the customisation configurator
             </Link>
@@ -291,7 +291,7 @@ export default function OemOdmPage() {
               </div>
             ))}
             <div className="border-t border-white/[0.12] px-6 py-5 text-sm leading-6 text-white/62 sm:px-8">
-              Smaller customised runs may be discussed with an additional charge. MOQ and volume pricing for standard products remain model-specific.
+              Feasibility and cost for customised first orders are confirmed with the quotation. MOQ and volume pricing for standard products remain model-specific.
             </div>
           </div>
         </div>
@@ -305,7 +305,7 @@ export default function OemOdmPage() {
             <p className="mt-6 text-base leading-8 text-zinc-600">The form is already labelled as an OEM/ODM development project. Add your target market, estimated quantity, key functions and packaging needs so the first reply can address the right scope.</p>
             <div className="mt-8 rounded-2xl border border-violet-100 bg-white p-6 text-sm leading-7 text-zinc-600">
               <strong className="block text-[#3d2758]">Commercial details are confirmed per project.</strong>
-              Sample availability, cost, development timing, production lead time, testing scope and payment terms are not presented as fixed until the selected product and requirements have been reviewed.
+              Standard products follow the published 7/15/20/35-day schedule. Sample cost, development work, special configurations, tooling, peak-period adjustments, testing scope and payment terms are confirmed after the selected product and requirements have been reviewed.
             </div>
           </div>
 

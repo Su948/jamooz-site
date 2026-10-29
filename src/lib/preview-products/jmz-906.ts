@@ -12,10 +12,10 @@ export const jmz906Gallery = [
 ] as const;
 
 export const jmz906Prices = [
-  { quantity: "50–500 pcs", price: "US$18.50 / pc" },
-  { quantity: "500–3000 pcs", price: "US$17.35 / pc" },
-  { quantity: "3000–5000 pcs", price: "US$16.50 / pc" },
-  { quantity: "5000+ pcs", price: "US$15.90 / pc" },
+  { quantity: "50–499 pcs", price: "US$18.50 / pc" },
+  { quantity: "500–2,999 pcs", price: "US$17.35 / pc" },
+  { quantity: "3,000–4,999 pcs", price: "US$16.50 / pc" },
+  { quantity: "5,000+ pcs", price: "US$15.90 / pc" },
 ] as const;
 
 export type SpecStatus = "Confirmed" | "Reference" | "TBC";

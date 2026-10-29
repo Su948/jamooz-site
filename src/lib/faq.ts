@@ -33,7 +33,7 @@ export const productFaqs: Record<string, readonly FaqEntry[]> = {
     {
       question: "What is the MOQ and what can be customised?",
       answer:
-        "MOQ is 50 pcs. Logo, colour and retail packaging can be customised: logo 500 pcs, colour 500 pcs per colour, colour box 500 pcs, corrugated box 300 pcs. Smaller customised runs can be discussed with an additional charge. Changes to the product structure are confirmed project by project.",
+        "MOQ starts at 50 pcs. Standard customisation minimums are 500 pcs for a logo, 500 pcs per colour, 500 pcs for a colour box and 300 pcs for a corrugated box. Changes to the product structure are confirmed project by project.",
     },
   ],
   "jmz-729s": [
@@ -45,7 +45,7 @@ export const productFaqs: Record<string, readonly FaqEntry[]> = {
     {
       question: "What is the MOQ for a heated neck massage pillow?",
       answer:
-        "MOQ is 50 pcs, with volume prices from US$28.30–32.00 per piece. Lead time and payment terms are confirmed with the quotation.",
+        "MOQ is 50 pcs, with volume prices from US$28.30–32.00 per piece. The standard production schedule is 15 days for 50 pcs, 20 days for 500 pcs and 35 days for 3,000 pcs; special cases and payment terms are confirmed with the quotation.",
     },
   ],
   "jmz-807p": [
@@ -126,7 +126,7 @@ export const productFaqs: Record<string, readonly FaqEntry[]> = {
     {
       question: "Can JMZ-802 be supplied as a private-label product?",
       answer:
-        "Yes. Logo, colour, manual and retail-packaging requirements can be reviewed for OEM/ODM projects. The applicable minimum quantity, artwork method, sample timing and production schedule are confirmed with the final quotation.",
+        "Yes. Standard customisation minimums are 500 pcs for a logo, 500 pcs per colour, 500 pcs for a colour box and 300 pcs for a corrugated box. Artwork method, sample timing and production schedule are confirmed with the final quotation.",
     },
   ],
   "jmz-903": [
@@ -168,7 +168,7 @@ export const guideFaqs: Record<string, readonly FaqEntry[]> = {
     {
       question: "Can the structure be customised for our brand?",
       answer:
-        "Logo, colour and retail packaging are standard customisations (from 500 pcs; corrugated box from 300 pcs). Structural changes are evaluated per project as ODM.",
+        "Logo, colour and retail packaging are available customisation options. Standard minimums are 500 pcs for a logo, 500 pcs per colour, 500 pcs for a colour box and 300 pcs for a corrugated box. Structural changes are evaluated per project as ODM.",
     },
     {
       question: "How should the device be cleaned?",
@@ -184,7 +184,7 @@ export const guideFaqs: Record<string, readonly FaqEntry[]> = {
     {
       question: "What is the minimum order for each customisation?",
       answer:
-        "Logo 500 pcs, colour 500 pcs per colour, colour box 500 pcs, corrugated box 300 pcs. Smaller customised runs can be discussed with an additional charge.",
+        "Standard minimums are 500 pcs for a logo, 500 pcs per colour, 500 pcs for a colour box and 300 pcs for a corrugated box.",
     },
     {
       question: "How much does a sample cost?",
@@ -194,7 +194,7 @@ export const guideFaqs: Record<string, readonly FaqEntry[]> = {
     {
       question: "What is your lead time and payment term?",
       answer:
-        "These are confirmed with the quotation and order terms — we do not publish a fixed figure.",
+        "The standard schedule is 7 days for samples after design approval, 15 days for 50 pcs, 20 days for 500 pcs and 35 days for 3,000 pcs. Special configurations, tooling, peak periods and other exceptions are discussed separately. Payment terms are confirmed with the order terms.",
     },
     {
       question: "What documents can you provide?",
@@ -218,11 +218,11 @@ export const customFaqs: readonly FaqEntry[] = [
   {
     question: "What can be customised without new tooling?",
     answer:
-      "Logo, colour and packaging: the standard minimums are 500 pcs for a custom logo, 500 pcs per colour, 500 pcs for a colour box and 300 pcs for a corrugated box. Changes to the product structure are assessed project by project.",
+      "Logo, colour and packaging can be customised without changing the product structure. Standard minimums are 500 pcs for a logo, 500 pcs per colour, 500 pcs for a colour box and 300 pcs for a corrugated box. Changes to the product structure are assessed project by project.",
   },
   {
     question: "Is a smaller first order possible?",
     answer:
-      "Smaller customised runs can be discussed and carry an additional charge. Mixed batches and the minimum carton quantity are still to be confirmed.",
+      "MOQ starts at 50 pcs for standard orders. Whether a smaller customised run or mixed batch is feasible, and any related cost, is confirmed for the selected configuration with the quotation.",
   },
 ];

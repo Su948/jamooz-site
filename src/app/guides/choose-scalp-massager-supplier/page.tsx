@@ -140,7 +140,7 @@ export default function ChooseSupplierGuidePage() {
                   <td className={tdKey}>4</td>
                   <td className={tdKey}>Customisation scope and the minimum for each item</td>
                   <td className={tdCls}>Sets the packaging and branding budget</td>
-                  <td className={tdCls}>Logo 500, colour 500 per colour, colour box 500, corrugated box 300 pcs; smaller runs discussable with an extra charge</td>
+                  <td className={tdCls}>Logo 500 pcs, colour 500 pcs per colour, colour box 500 pcs and corrugated box 300 pcs</td>
                 </tr>
                 <tr>
                   <td className={tdKey}>5</td>
@@ -158,7 +158,7 @@ export default function ChooseSupplierGuidePage() {
                   <td className={tdKey}>7</td>
                   <td className={tdKey}>Lead time and payment terms</td>
                   <td className={tdCls}>Sets cash flow and your listing schedule</td>
-                  <td className={tdCls}><strong>To be confirmed</strong> — agreed with the quotation and the order terms</td>
+                  <td className={tdCls}>Standard schedule: sample 7 days after design approval; 50 pcs 15 days; 500 pcs 20 days; 3,000 pcs 35 days. Special cases and payment terms are confirmed separately.</td>
                 </tr>
                 <tr>
                   <td className={tdKey}>8</td>
@@ -348,8 +348,8 @@ export default function ChooseSupplierGuidePage() {
                 </tr>
                 <tr>
                   <td className={tdKey}>Lead time</td>
-                  <td className={tdCls}>To be confirmed with the quotation</td>
-                  <td className={tdCls}>When the clock starts (deposit or artwork approval) and whether peak season extends it</td>
+                  <td className={tdCls}>Sample 7 days; 50 pcs 15 days; 500 pcs 20 days; 3,000 pcs 35 days</td>
+                  <td className={tdCls}>Design approval as the sample starting point; special configurations, tooling, peak periods and other exceptions are agreed separately</td>
                 </tr>
                 <tr>
                   <td className={tdKey}>Payment terms</td>

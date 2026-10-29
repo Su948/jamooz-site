@@ -79,7 +79,8 @@ export default function ProductDetailTemplate({ product }: { product: ProductDet
                 <>
                   <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#718097]">Custom pricing</p>
                   <p className="mt-2 text-3xl font-black tracking-tight text-[#244f82]">Custom Quote</p>
-                  <p className="mt-3 text-sm leading-6 text-[#607086]">Pricing and MOQ are confirmed according to the selected functions, branding, packaging and order quantity.</p>
+                  <p className="mt-2 text-lg font-black text-[#334055]">MOQ 50 pcs</p>
+                  <p className="mt-2 text-sm leading-6 text-[#607086]">Unit pricing follows the standard quantity tiers and is confirmed according to the selected functions, branding and packaging.</p>
                   <div className="mt-5 grid gap-3 sm:grid-cols-3">
                     {["Function Configuration", "Branding & Color", "Packaging & Quantity"].map((item) => <div key={item} className="rounded-xl border border-[#dfe5ee] bg-[#f7faff] px-3 py-3 text-center text-xs font-bold text-[#334055]">{item}</div>)}
                   </div>
@@ -97,7 +98,7 @@ export default function ProductDetailTemplate({ product }: { product: ProductDet
                   <div className="mt-3 flex flex-wrap justify-between gap-2 text-xs text-[#708095]"><span>Sample: <strong className="text-[#334055]">{product.samplePrice}</strong></span><span>Volume prices are confirmed with the final quotation.</span></div>
                 </>
               )}
-              {product.leadTime ? <p className="mt-4 border-t border-[#dfe5ee] pt-3 text-sm leading-6 text-[#607086]"><span className="font-bold text-[#334055]">Lead time: </span>{product.leadTime}</p> : null}
+              <p className="mt-4 border-t border-[#dfe5ee] pt-3 text-sm leading-6 text-[#607086]"><span className="font-bold text-[#334055]">Lead time: </span>{product.leadTime ?? "Samples in 7 days after design approval; 50 pcs in 15 days, 500 pcs in 20 days and 3,000 pcs in 35 days. Special configurations, tooling, peak periods and other exceptions are discussed separately."}</p>
             </div>}
 
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
@@ -133,13 +134,13 @@ export default function ProductDetailTemplate({ product }: { product: ProductDet
         </div>
       </section>
 
-      <section className="py-20 sm:py-24">
+      <section id="customization" className="scroll-mt-24 py-20 sm:py-24">
         <div className={shell}>
           <p className={sectionLabel}>OEM / ODM options</p>
           <h2 className={sectionTitle}>Prepare {product.model} for Your Market</h2>
-          <p className="mt-4 max-w-3xl leading-7 text-[#607086]">{product.customizationOptions ? 'Discuss your logo, color and packaging requirements. Customization scope, minimum quantities and lead time are confirmed with the quotation.' : 'Logo, color and retail packaging can be customized for qualified orders. Smaller customized runs may be discussed with an additional charge.'}</p>
+          <p className="mt-4 max-w-3xl leading-7 text-[#607086]">Logo, color and retail packaging can be customized for qualified orders. Standard customization minimums are shown below; product structure, tooling, lead time and commercial terms are confirmed with the quotation.</p>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {(product.customizationOptions ?? [{title:"Custom Logo",copy:"Minimum quantity confirmed with quotation"},{title:"Custom Color",copy:"Minimum quantity confirmed for the selected color and process"},{title:"Color Box",copy:"Packaging scope and minimum quantity confirmed with quotation"},{title:"Corrugated Box",copy:"Carton specification and minimum quantity confirmed with quotation"}]).map(({title, copy}, index) => <article key={title} className="rounded-3xl border border-[#dfe5ee] bg-white p-6"><span className="text-xs font-black text-[#4f79a8]">0{index + 1}</span><h3 className="mt-8 text-lg font-black text-[#1f3048]">{title}</h3><p className="mt-3 text-sm leading-6 text-[#66758a]">{copy}</p></article>)}
+            {(product.customizationOptions ?? [{title:"Custom Logo",copy:"MOQ 500 pcs"},{title:"Custom Color",copy:"MOQ 500 pcs per color"},{title:"Color Box",copy:"MOQ 500 pcs"},{title:"Corrugated Box",copy:"MOQ 300 pcs"}]).map(({title, copy}, index) => <article key={title} className="rounded-3xl border border-[#dfe5ee] bg-white p-6"><span className="text-xs font-black text-[#4f79a8]">0{index + 1}</span><h3 className="mt-8 text-lg font-black text-[#1f3048]">{title}</h3><p className="mt-3 text-sm leading-6 text-[#66758a]">{copy}</p></article>)}
           </div>
         </div>
       </section>

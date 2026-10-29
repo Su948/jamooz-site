@@ -215,6 +215,6 @@ export const novemberProductCards = novemberProductDetails.map((product) => ({
   price: product.regionalPricing
     ? "Regional Pricing"
     : product.priceRange ?? "Custom Quote",
-  moq: product.moq ?? "Quantity confirmed with quotation",
+  moq: product.moq ?? "MOQ 50 pcs",
   features: product.badges,
 }));
