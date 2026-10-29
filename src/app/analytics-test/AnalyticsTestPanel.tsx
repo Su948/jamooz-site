@@ -10,6 +10,10 @@ const eventParameters: Record<
   ConversionEventName,
   NonNullable<Parameters<typeof trackConversionEvent>[1]>
 > = {
+  form_start: {
+    form_id: "analytics-preview-test",
+    form_method: "online",
+  },
   generate_lead: {
     form_id: "analytics-preview-test",
     form_method: "online",

@@ -38,12 +38,19 @@ export default function InquiryForm({
 }: InquiryFormProps) {
   const [state, setState] = useState<SubmissionState>({ status: "idle" });
   const startedAt = useRef(0);
+  const startTracked = useRef(false);
   const submitting = useRef(false);
   const isDark = theme === "dark";
 
   useEffect(() => {
     startedAt.current = Date.now();
   }, []);
+
+  function handleFormStart() {
+    if (startTracked.current) return;
+    startTracked.current = true;
+    trackConversionEvent("form_start", { form_id: id, form_method: "online" });
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -70,6 +77,7 @@ export default function InquiryForm({
       setState({ status: "success", reference: result.reference });
       form.reset();
       startedAt.current = Date.now();
+      startTracked.current = false;
     } catch (error) {
       setState({ status: "error", message: error instanceof Error ? error.message : "We could not send your inquiry. Please try again." });
     } finally {
@@ -83,7 +91,7 @@ export default function InquiryForm({
   const labelClass = isDark ? "text-xs font-bold uppercase tracking-wider text-white/70" : "text-xs font-bold uppercase tracking-wider text-muted";
 
   return (
-    <form id={id} onSubmit={handleSubmit} className="relative grid min-w-0 gap-4 sm:grid-cols-2 sm:gap-5">
+    <form id={id} onFocusCapture={handleFormStart} onSubmit={handleSubmit} className="relative grid min-w-0 gap-4 sm:grid-cols-2 sm:gap-5">
       <p className={`sm:col-span-2 text-sm ${isDark ? "text-white/60" : "text-muted"}`}>Only 4 required fields. Add order details now or discuss them with our sales team later.</p>
       {primaryFields.map((field) => (
         <label key={field.name} className={`${labelClass} min-w-0 ${field.name === "product" ? "sm:col-span-2" : ""}`}>

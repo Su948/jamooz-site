@@ -7,7 +7,8 @@ the JAMOOZ GA4 property (`G-DGGY4HJPN3`).
 
 | Event | Trigger | Parameters | Meaning |
 | --- | --- | --- | --- |
-| `form_submit` | The server confirms successful delivery of the website inquiry | `form_id`, `form_method`, `page_path`, `event_source` | Successfully delivered website inquiry |
+| `form_start` | A visitor focuses a field in an inquiry form for the first time in that form attempt | `form_id`, `form_method`, `page_path`, `event_source` | Inquiry-form engagement; not an inquiry |
+| `generate_lead` | The server confirms successful delivery of the website inquiry | `form_id`, `form_method`, `lead_id`, `page_path`, `event_source` | Successfully delivered website inquiry |
 | `whatsapp_click` | A visitor clicks a `wa.me` or WhatsApp link | `link_location`, `page_path`, `event_source` | WhatsApp contact intent |
 | `email_click` | A visitor clicks a `mailto:` link | `link_location`, `page_path`, `event_source` | Email contact intent |
 | `phone_click` | A visitor clicks a future `tel:` link | `link_location`, `page_path`, `event_source` | Phone contact intent; no public phone link exists yet |
@@ -22,7 +23,8 @@ the JAMOOZ GA4 property (`G-DGGY4HJPN3`).
   `data-clarity-mask="true"`; do not remove those attributes when editing the
   form. Clarity must never receive visitor-entered form values.
 - `page_path` contains only the current path, without query parameters.
-- `form_submit` is tracked only after the inquiry API confirms successful
+- `form_start` contains no form values and fires once per form attempt.
+- `generate_lead` is tracked only after the inquiry API confirms successful
   delivery. Failed or rejected submissions must not emit this event.
 
 ## GTM configuration
@@ -30,12 +32,12 @@ the JAMOOZ GA4 property (`G-DGGY4HJPN3`).
 1. Add a Google tag using the JAMOOZ GA4 measurement ID and fire it on all pages.
 2. Add one GA4 Event tag whose event name is the built-in `{{Event}}` variable.
 3. Fire the event tag on this custom-event regular expression:
-   `^(form_submit|whatsapp_click|email_click|phone_click|catalog_download)$`
+   `^(form_start|generate_lead|whatsapp_click|email_click|phone_click|catalog_download)$`
 4. The website also puts `event_category`, `event_source`, `page_path`,
    `form_id`, `form_method`, and `link_location` into the data layer without
    personal data. They can be registered as custom dimensions later if needed.
-5. In GA4, mark all five event names as key events only after DebugView confirms
-   one event per action.
+5. In GA4, keep `form_start` as an engagement event. Mark the five conversion
+   events as key events only after DebugView confirms one event per action.
 
 ## DebugView acceptance test
 

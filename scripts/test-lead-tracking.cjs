@@ -48,16 +48,19 @@ async function formCase(response) {
     Date,FormData:class{entries(){return [['name','Test']];}},
     fetch:()=>{requests++;return new Promise(r=>{resolve=r;});},
   },{'react':react,'react/jsx-runtime':{jsx,jsxs:jsx},'@/lib/analytics':{trackConversionEvent:(...args)=>tracked.push(args)},'@/lib/rfq':{oemOptions:['None']}}).default({id:'test',sourcePage:'/products/jmz-901'});
+  form.props.onFocusCapture();form.props.onFocusCapture();
+  assert.equal(tracked.filter(([name])=>name==='form_start').length,1,'form start must fire once per form attempt');
   const event={preventDefault(){},currentTarget:{reset(){}}};
   const first=form.props.onSubmit(event);await form.props.onSubmit(event);assert.equal(requests,1,'double clicks must not send two requests');
   resolve({ok:response.ok,json:async()=>response});await first;
-  assert.equal(tracked.length,response.ok&&response.delivered?1:0);
-  if(tracked.length){assert.equal(tracked[0][0],'generate_lead');assert.equal(tracked[0][1].lead_id,params.lead_id);}
+  const leads=tracked.filter(([name])=>name==='generate_lead');
+  assert.equal(leads.length,response.ok&&response.delivered?1:0);
+  if(leads.length){assert.equal(leads[0][1].lead_id,params.lead_id);}
   if(!response.ok){const retry=form.props.onSubmit(event);assert.equal(requests,2,'failed requests must unlock retry');resolve({ok:false,json:async()=>response});await retry;}
 }
 (async()=>{
   await formCase({ok:true,reference:params.lead_id,delivered:true});
   await formCase({ok:true,reference:params.lead_id,delivered:false});
   await formCase({ok:false,message:'delivery failed'});
-  console.log('PASS: production isolation, consent, reference dedupe, storage fallback, contact clicks, double-submit lock, success/failure/honeypot and retry. No network or email sent.');
+  console.log('PASS: production isolation, consent, form-start dedupe, reference dedupe, storage fallback, contact clicks, double-submit lock, success/failure/honeypot and retry. No network or email sent.');
 })().catch(e=>{console.error(e);process.exitCode=1;});
