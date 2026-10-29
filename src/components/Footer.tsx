@@ -52,8 +52,10 @@ export default function Footer() {
           <div>
             <h3 className="mono-label text-xs font-bold text-white/50">Contact</h3>
             <ul className="mt-5 space-y-3 text-sm text-white/68">
+              <li>{companyFacts.legalName}</li>
               <li><a href={contactLinks.email} data-analytics-location="footer" className="hover:text-white">{companyFacts.contact.email}</a></li>
-              <li>{companyFacts.location.label}</li>
+              <li><a href={contactLinks.whatsapp("Hello JAMOOZ, I would like to discuss a product project.")} data-analytics-location="footer" className="hover:text-white">WhatsApp: {companyFacts.contact.whatsappDisplay}</a></li>
+              <li className="leading-6">{companyFacts.location.fullAddress}</li>
               <li>{operationalClaims.responseShort}</li>
             </ul>
             <Link href="/#inquiry" className="btn-primary mt-7">Request Quote</Link>
@@ -61,7 +63,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col justify-between gap-4 border-t border-white/10 pt-7 text-xs text-white/45 md:flex-row">
-          <p>© {new Date().getFullYear()} Jamooz Wellness Technology. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {companyFacts.legalName}. All rights reserved.</p>
           <Link href="/privacy" className="underline underline-offset-4 hover:text-white">Privacy &amp; cookie preferences</Link>
         </div>
       </div>
