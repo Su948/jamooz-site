@@ -59,7 +59,11 @@ export default function ProductDetailTemplate({ product }: { product: ProductDet
               description={product.description}
               images={product.gallery.map((image) => image.src)}
               path={sourcePage}
-              prices={product.customPricing || product.regionalPricing ? undefined : product.priceTiers?.map((tier) => tier.price)}
+              prices={product.customPricing
+                ? undefined
+                : product.regionalPricing?.currency === "USD"
+                  ? product.regionalPricing.defaultPriceTiers?.map((tier) => `US$${tier.price}`)
+                  : product.priceTiers?.map((tier) => tier.price)}
             />
             <Breadcrumbs items={breadcrumbs} />
           </div>
