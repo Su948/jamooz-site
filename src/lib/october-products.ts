@@ -32,7 +32,11 @@ export const jmz723: ProductDetailConfig = {
   features:[{title:'Seven pulse modes',copy:'Seven EMS patterns and 15 intensity levels provide adjustable stimulation.'},{title:'Two warming settings',copy:'Select warmth from the remote. The supplied specification lists a maximum temperature of 50°C.'},{title:'Rechargeable system',copy:'A 2000mAh main unit and 300mAh remote provide rechargeable operation.'},{title:'Flexible straps',copy:'The set includes a waist belt, extension strap and smaller arm strap.'}],
   specsIntro:'Dimensions and operating details follow the supplied specification sheet. Model JMZ-723 is retained as confirmed by the manufacturer. Exact quantity breakpoints and final commercial terms are confirmed in the quotation.',
   specs:specs([['Model','JMZ-723'],['Functions','EMS / heating'],['Input','DC 5 V / 2 A'],['Battery','Main unit 2000mAh / remote 300mAh'],['Material','Lycra'],['EMS Modes / Intensity','7 modes / 15 levels'],['Heating','2 warming settings; maximum 50°C'],['Control','Handheld remote control'],['Session','25 minutes with automatic end'],['EMS Output','Maximum 4.1mA'],['Waist Belt','930 × 135 mm'],['Arm Strap','445 × 120 mm'],['Extension Strap','350 × 75 mm'],['Product Weight','Approx. 290 g; weighing scope not specified'],['Charging Time','Main unit approx. 120 min / remote approx. 60 min'],['Supplied Set','Main controller, waist belt, extension strap, arm strap, remote, charging cable and user manual']]),
-  relatedLinks,inquiryCopy,
+  relatedLinks: [
+    { href: "/products/jmz-727", eyebrow: "Compare waist belts", name: "EMS, Heat & Near-Infrared Waist Belt", linkLabel: "View JMZ-727" },
+    ...relatedLinks,
+  ],
+  inquiryCopy,
 };
 
 export const jmzCspl003: ProductDetailConfig = {
@@ -84,7 +88,12 @@ export const jmz727: ProductDetailConfig = {
   featuresIntro:'A flexible wrap and removable controller keep the system straightforward to wear, adjust and store.',
   features:[{title:'Eight EMS modes',copy:'Select one of eight EMS pulse patterns for a different stimulation rhythm.'},{title:'Warmth and near-infrared',copy:'Heating and near-infrared functions complement the EMS system.'},{title:'Convenient controls',copy:'Adjust operation with the main-unit buttons or supplied handheld remote.'},{title:'Rechargeable design',copy:'The main unit contains a 2500mAh battery; the remote contains a 400mAh battery.'}],
   specsIntro:'Review the JMZ-727 electrical and dimensional specifications below. Please contact us for rated power, product weight and packing weight before ordering.',
-  specs:specs([['Model','JMZ-727'],['Functions','EMS / near-infrared / heating'],['Input','5 V / 2 A'],['EMS Modes','8 modes'],['Battery','Main unit 2500mAh / remote 400mAh'],['Control','Buttons with handheld remote'],['Belt Size','930 × 135 mm'],['Color Box Size','512 × 137 × 49 mm']]),relatedLinks,inquiryCopy,
+  specs:specs([['Model','JMZ-727'],['Functions','EMS / near-infrared / heating'],['Input','5 V / 2 A'],['EMS Modes','8 modes'],['Battery','Main unit 2500mAh / remote 400mAh'],['Control','Buttons with handheld remote'],['Belt Size','930 × 135 mm'],['Color Box Size','512 × 137 × 49 mm']]),
+  relatedLinks: [
+    { href: "/products/jmz-723", eyebrow: "Compare waist belts", name: "Rechargeable EMS & Heated Waist Belt", linkLabel: "View JMZ-723" },
+    ...relatedLinks,
+  ],
+  inquiryCopy,
 };
 
 export const jmz818: ProductDetailConfig = {
