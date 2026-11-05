@@ -125,7 +125,10 @@ export const jmzF002: ProductDetailConfig = {
     { item: "Color Box Size", value: "368 × 207 × 53mm", status: "Confirmed" },
     { item: "Color Box Gross Weight", value: "To be confirmed", status: "TBC" },
   ],
-  relatedLinks,
+  relatedLinks: [
+    { href: "/products/jmz-v002", eyebrow: "Compare models", name: "4-Mode EMS Hip & Body Pad", linkLabel: "View JMZ-V002" },
+    ...relatedLinks,
+  ],
   inquiryCopy: "Share the target market, order quantity and branding requirements so our team can prepare the correct configuration and quotation.",
 };
 
@@ -199,7 +202,10 @@ export const jmzV002: ProductDetailConfig = {
     { item: "Color Box Gross Weight", value: "To be confirmed", status: "TBC" },
     { item: "Session", value: "15 minutes with automatic stop", status: "Confirmed" },
   ],
-  relatedLinks,
+  relatedLinks: [
+    { href: "/products/jmz-f002", eyebrow: "Compare models", name: "4-in-1 Pulse Stretch Waist Belt", linkLabel: "View JMZ-F002" },
+    ...relatedLinks,
+  ],
   inquiryCopy: "Tell us the destination market and order quantity. The displayed market group and final regional price will be included in the quotation context.",
 };
 

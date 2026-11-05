@@ -114,6 +114,9 @@ export const jmz706w: ProductDetailConfig = {
 };
 
 export const jmz706h: ProductDetailConfig = {
+  relatedLinks: [
+    { href: "/products/jmz-cspl005", eyebrow: "Compare models", name: "Cordless Heated Kneading Massage Pillow", linkLabel: "View JMZ-CSPL005" },
+  ],
   slug: "jmz-706h",
   model: "JMZ-706H",
   category: "Neck & Shoulder",

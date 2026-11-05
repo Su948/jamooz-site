@@ -160,6 +160,10 @@ export const jmz802: ProductDetailConfig = {
 };
 
 export const jmz903: ProductDetailConfig = {
+  relatedLinks: [
+    { href: "/products/jmz-f002", eyebrow: "Compare models", name: "4-in-1 Pulse Stretch Waist Belt", linkLabel: "View JMZ-F002" },
+    { href: "/products/jmz-v002", eyebrow: "Compare models", name: "4-Mode EMS Hip & Body Pad", linkLabel: "View JMZ-V002" },
+  ],
   slug: "jmz-903",
   model: "JMZ-903",
   category: "Body Care",
@@ -355,7 +359,10 @@ export const jmzCspl002: ProductDetailConfig = {
   leadTime: "Samples in 7 days after design approval; 50 pcs in 15 days, 500 pcs in 20 days and 3,000 pcs in 35 days. Special configurations, tooling, peak periods and other exceptions are discussed separately.",
   samplePrice: "US$26.80",
   priceTiers: volumeQuantities.map((quantity, index) => ({ quantity, price: ["US$23.50 / pc", "US$21.80 / pc", "US$20.50 / pc", "US$19.80 / pc"][index] })),
-  relatedLinks: [customProjectLink],
+  relatedLinks: [
+    { href: "/products/jmz-cspl005", eyebrow: "Compare models", name: "Cordless Heated Kneading Massage Pillow", linkLabel: "View JMZ-CSPL005" },
+    customProjectLink,
+  ],
   featuresLabel: "Core functions",
   featuresTitle: "Pinch-Style Kneading with Adjustable Direction",
   featuresIntro: "The JMZ-CSPL002 uses rotating nodes in a pinch motion, with two kneading speeds, two warming levels and a direction that can be reversed during a session.",
