@@ -107,6 +107,9 @@ export const jmz908: ProductDetailConfig = {
 };
 
 export const jmz802: ProductDetailConfig = {
+  relatedLinks: [
+    { href: "/products/jmz-722", eyebrow: "Upper limb care", name: "3-in-1 Elbow Massager", detail: "For elbow wraps with air compression, warmth and EMS.", linkLabel: "View JMZ-722" },
+  ],
   slug: "jmz-802",
   model: "JMZ-802",
   category: "Hand & Wrist",
@@ -252,7 +255,10 @@ export const jmz722: ProductDetailConfig = {
   leadTime: "Samples in 7 days after design approval; 50 pcs in 15 days, 500 pcs in 20 days and 3,000 pcs in 35 days. Special configurations, tooling, peak periods and other exceptions are discussed separately.",
   samplePrice: "US$25.00",
   priceTiers: volumeQuantities.map((quantity, index) => ({ quantity, price: ["US$21.00 / pc", "US$20.00 / pc", "US$19.00 / pc", "US$18.00 / pc"][index] })),
-  relatedLinks: [customProjectLink],
+  relatedLinks: [
+    { href: "/products/jmz-802", eyebrow: "Upper limb care", name: "3-in-1 Air Pressure Hand & Wrist Massager", detail: "For hand and wrist care with air pressure, warmth and kneading.", linkLabel: "View JMZ-802" },
+    customProjectLink,
+  ],
   featuresLabel: "Core functions",
   featuresTitle: "Three Technologies in One Elbow Wrap",
   featuresIntro: "The JMZ-722 combines EMS stimulation, warming and air compression in a wearable wrap controlled from the display panel on the main unit.",
