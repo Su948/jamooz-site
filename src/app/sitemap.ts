@@ -51,7 +51,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${companyFacts.website}/oem-odm`,
-      lastModified: "2026-10-14",
+      lastModified: "2026-11-07",
       changeFrequency: "monthly",
       priority: 0.8,
     },
@@ -63,7 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${companyFacts.website}/products/neck-shoulder-massagers`,
-      lastModified: "2026-10-24",
+      lastModified: "2026-11-07",
       changeFrequency: "monthly",
       priority: 0.8,
     },

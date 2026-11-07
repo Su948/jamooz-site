@@ -3,7 +3,7 @@ import NeckCategoryPreview from '@/app/preview/products/neck-shoulder-massagers/
 
 export const metadata: Metadata = {
   title: 'Neck & Shoulder Massager Manufacturer | JAMOOZ',
-  description: 'Compare eight JAMOOZ neck and shoulder massagers for wholesale, private label and OEM/ODM projects. MOQ from 50 pieces and samples available.',
+  description: 'Compare JAMOOZ neck and shoulder massagers for wholesale, private label and OEM/ODM projects. MOQ from 50 pieces and samples available.',
   alternates: {
     canonical: '/products/neck-shoulder-massagers',
   },

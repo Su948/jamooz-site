@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { jmz729s, jmz801, jmzCspl002 } from '@/lib/preview-products/new-products';
 import { jmz807p, jmz706w, jmz706h } from '@/lib/preview-products/planned-products';
 import { jmzCspl003 } from '@/lib/october-products';
+import { jmzCspl005 } from '@/lib/preview-products/november-products';
 import { jmzR006Gallery, jmzR006Specs } from '@/lib/preview-products/jmz-r006';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
@@ -22,7 +23,7 @@ const previewImages: Record<string, string> = {
 };
 const products = [
   { slug:'jmz-r006', model:'JMZ-R006', name:'3D Kneading Neck & Shoulder Massager', gallery:jmzR006Gallery, badges:['3D Kneading','Heating','Type-C'], priceRange:'US$20.90–22.50 / pc', specs:jmzR006Specs, customPricing:false },
-  jmz729s, jmz807p, jmz706h, jmz706w, jmz801, jmzCspl002, jmzCspl003,
+  jmz729s, jmz807p, jmz706h, jmz706w, jmz801, jmzCspl002, jmzCspl003, jmzCspl005,
 ];
 const spec = (p: typeof products[number], names: string[]) => p.specs.find(s => names.includes(s.item) && s.status === 'Confirmed')?.value ?? 'Confirm with sample';
 const price = (p: typeof products[number]) => p.customPricing ? 'Custom Quote' : p.priceRange;
@@ -52,23 +53,23 @@ export default function NeckCategoryPreview({ showPreviewNotice = true }: { show
           </div>
           <p className="text-xs font-bold uppercase tracking-[.18em] text-violet-600">Wholesale · Private label · OEM / ODM</p>
           <h1 className="mt-4 max-w-2xl text-[32px] font-semibold leading-[1.12] tracking-tight sm:text-[42px] lg:text-[48px]">Neck &amp; Shoulder<br/><span className="text-violet-600">Massager Manufacturer</span></h1>
-          <p className="mt-5 max-w-xl text-sm leading-7 text-zinc-600 sm:text-base">Compare eight JAMOOZ models for your next product range. Explore wearable kneading and massage pillow designs, then confirm the right sample for your brand.</p>
+          <p className="mt-5 max-w-xl text-sm leading-7 text-zinc-600 sm:text-base">Compare JAMOOZ neck and shoulder massagers for your next product range. Explore wearable kneading and massage pillow designs, then confirm the right sample for your brand.</p>
           <div className="mt-6 flex flex-wrap gap-2 text-xs">{['MOQ from 50 pcs','Samples available','Custom branding & packaging'].map(t=><span key={t} className="rounded-full border border-violet-200 bg-violet-50 px-3 py-2">{t}</span>)}</div>
-          <div className="mt-7 flex flex-wrap gap-3"><a href="#range" className="rounded-full bg-violet-600 px-5 py-3 text-sm font-semibold text-white">Explore 8 Models ↓</a><a href="#compare" className="rounded-full border border-violet-200 px-5 py-3 text-sm font-semibold">Compare Models</a></div>
+          <div className="mt-7 flex flex-wrap gap-3"><a href="#range" className="rounded-full bg-violet-600 px-5 py-3 text-sm font-semibold text-white">Explore Models ↓</a><a href="#compare" className="rounded-full border border-violet-200 px-5 py-3 text-sm font-semibold">Compare Models</a></div>
         </div>
         <div className="relative overflow-hidden rounded-[28px] bg-[#f1eff7] p-6"><Image src={previewImages['jmz-807p']} alt={jmz807p.gallery[0].alt} width={700} height={500} priority className="aspect-[7/5] w-full object-contain mix-blend-multiply"/><div className="mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-violet-200 pt-4 text-xs"><span>JMZ-807P · Rechargeable heated pillow</span><Link href="/products/jmz-807p" className="font-bold text-violet-700">View model →</Link></div></div>
       </div>
     </section>
 
     <section id="range" className="mx-auto max-w-[1280px] scroll-mt-24 px-5 py-12 sm:px-8 sm:py-16">
-      <div className="mb-7 flex flex-wrap items-end justify-between gap-4"><div><p className="text-xs font-bold uppercase tracking-widest text-violet-600">The collection</p><h2 className="mt-2 text-3xl font-semibold tracking-tight">Find your next neck-care product.</h2></div><span className="text-sm text-zinc-500">8 models · Confirmed product information</span></div>
+      <div className="mb-7 flex flex-wrap items-end justify-between gap-4"><div><p className="text-xs font-bold uppercase tracking-widest text-violet-600">The collection</p><h2 className="mt-2 text-3xl font-semibold tracking-tight">Find your next neck-care product.</h2></div><span className="text-sm text-zinc-500">Compare product specifications</span></div>
       <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">{products.map(p=><article key={p.slug} className="flex overflow-hidden rounded-2xl border border-violet-100 bg-white flex-col"><Link href={`/products/${p.slug}`} className="block bg-[#f3f2f6] p-4"><Image src={previewImages[p.slug] ?? p.gallery[0].src} alt={p.gallery[0].alt} width={520} height={390} className="aspect-[4/3] w-full object-contain mix-blend-multiply"/></Link><div className="flex flex-1 flex-col p-5"><p className="text-[11px] font-bold tracking-wider text-violet-600">{p.model}</p><h3 className="mt-2 text-lg font-semibold leading-6">{p.name}</h3><p className="mt-3 text-xs leading-6 text-zinc-500">{p.badges.slice(0,3).join(' · ')}</p><div className="mt-auto pt-5"><p className="text-sm font-semibold">{price(p)}</p><Link href={`/products/${p.slug}`} className="mt-4 flex min-h-11 items-center justify-between border-t border-violet-100 pt-3 text-sm font-semibold text-violet-700">View Product <span aria-hidden="true">→</span></Link></div></div></article>)}</div>
     </section>
 
     <section className="border-y border-violet-100 bg-[#f0ebfa]"><div className="mx-auto max-w-[1280px] px-5 py-12 sm:px-8"><p className="text-xs font-bold uppercase tracking-widest text-violet-600">Start with the structure</p><h2 className="mt-2 text-3xl font-semibold tracking-tight">Choose the fit. Then compare the functions.</h2><div className="mt-7 grid gap-6 md:grid-cols-3">{[
       ['01','Wearable kneading','JMZ-R006','A U-shaped format with double lanyards. Evaluate contact position, fit and access to the controls.'],
       ['02','Contact & control','JMZ-706W / JMZ-706H','Both use four-point kneading. Compare speed control on 706W with intensity control and the chair strap on 706H.'],
-      ['03','Pillow formats','729S / 807P / 801 / CSPL002 / CSPL003','Compare pillow dimensions, contact layout and support. A smaller format or larger battery alone does not establish a better experience.'],
+      ['03','Pillow formats','729S / 807P / 801 / CSPL002 / CSPL003 / CSPL005','Compare pillow dimensions, contact layout and support. A smaller format or larger battery alone does not establish a better experience.'],
     ].map(([n,title,models,copy])=><div key={n} className="border-t border-violet-300 pt-5"><span className="text-xs text-violet-600">{n}</span><h3 className="mt-3 text-xl font-semibold">{title}</h3><p className="mt-2 text-xs font-semibold text-violet-600">{models}</p><p className="mt-3 text-sm leading-7 text-zinc-600">{copy}</p></div>)}</div></div></section>
 
     <section id="compare" className="mx-auto max-w-[1280px] scroll-mt-24 px-5 py-12 sm:px-8 sm:py-16"><p className="text-xs font-bold uppercase tracking-widest text-violet-600">Side by side</p><h2 className="mt-2 text-3xl font-semibold tracking-tight">A clearer shortlist.</h2><p className="mt-3 max-w-2xl text-sm leading-7 text-zinc-600">Use the confirmed specifications below to shortlist samples. Unlisted details require confirmation and do not mean that a function is absent.</p>

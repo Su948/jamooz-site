@@ -291,7 +291,7 @@ export default function OemOdmPage() {
               </div>
             ))}
             <div className="border-t border-white/[0.12] px-6 py-5 text-sm leading-6 text-white/62 sm:px-8">
-              Feasibility and cost for customised first orders are confirmed with the quotation. MOQ and volume pricing for standard products remain model-specific.
+              Feasibility and cost for customised first orders are confirmed with the quotation. Standard product orders start from 50 pieces; unit prices vary by model and order quantity.
             </div>
           </div>
         </div>
