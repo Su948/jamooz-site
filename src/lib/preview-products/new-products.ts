@@ -98,7 +98,7 @@ export const jmz908: ProductDetailConfig = {
     { item: "EMS", value: "Dedicated microcurrent function", status: "Confirmed" },
     { item: "Vibration", value: "Independent vibration control", status: "Confirmed" },
     { item: "Operating Cycle", value: "15 minutes", status: "Confirmed" },
-    { item: "Battery", value: "Rechargeable lithium battery; capacity to be confirmed", status: "TBC" },
+    { item: "Battery", value: "1200mAh rechargeable lithium battery", status: "Confirmed" },
     { item: "Unfolded Size", value: "800 × 115 × 65 mm", status: "Confirmed" },
     { item: "Net Weight", value: "291 g", status: "Confirmed" },
     { item: "Colour Box", value: "267 × 160 × 144 mm", status: "Confirmed" },
