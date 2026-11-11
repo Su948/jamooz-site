@@ -113,6 +113,18 @@ export default function ProductDetailTemplate({ product }: { product: ProductDet
         </div>
       </section>
 
+      {product.procurementSpecItems && <section id="procurement" className="scroll-mt-24 border-b border-[#dfe5ee] bg-white py-8">
+        <div className={shell}>
+          <h2 className="text-xl font-semibold text-[#17243a]">{product.model} — Procurement Summary</h2>
+          <dl className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div><dt className="text-sm text-slate-500">Standard order</dt><dd className="mt-1 font-semibold">MOQ 50 pcs · Samples available</dd></div>
+            {product.specs.filter(spec => product.procurementSpecItems?.includes(spec.item) && spec.status === "Confirmed").map(spec => <div key={spec.item}><dt className="text-sm text-slate-500">{spec.item}</dt><dd className="mt-1 font-semibold">{spec.value}</dd></div>)}
+          </dl>
+          <p className="mt-5 text-sm leading-6 text-slate-600">Custom logo and color box: 500 pcs. Corrugated box: 300 pcs. Send your target market and configuration to confirm available documentation.</p>
+          <div className="mt-3 flex flex-wrap gap-5 text-sm font-semibold text-[#244f82]"><a href="#specifications">Full specifications →</a><a href="#customization">Customization options →</a><a href="#inquiry">Request samples &amp; documents →</a></div>
+        </div>
+      </section>}
+
       <section className="py-20 sm:py-24">
         <div className={shell}>
           <p className={sectionLabel}>{product.featuresLabel}</p>
@@ -124,7 +136,7 @@ export default function ProductDetailTemplate({ product }: { product: ProductDet
         </div>
       </section>
 
-      <section className="border-y border-[#dfe5ee] bg-[#f1f5f9] py-20 sm:py-24">
+      <section id="specifications" className="scroll-mt-24 border-y border-[#dfe5ee] bg-[#f1f5f9] py-20 sm:py-24">
         <div className={shell}>
           <p className={sectionLabel}>Data transparency</p>
           <h2 className={sectionTitle}>Product Specifications</h2>

@@ -61,6 +61,7 @@ export const jmz729s: ProductDetailConfig = {
 };
 
 export const jmz908: ProductDetailConfig = {
+  procurementSpecItems: ["Air Compression", "Heating", "Net Weight"],
   slug: "jmz-908",
   model: "JMZ-908",
   category: "Eye Care",
@@ -104,7 +105,7 @@ export const jmz908: ProductDetailConfig = {
     { item: "Colour Box", value: "267 × 160 × 144 mm", status: "Confirmed" },
     { item: "Controls", value: "Three-button side control panel", status: "Confirmed" },
     { item: "Fit", value: "Padded wraparound design with rear fastening band", status: "Confirmed" },
-    { item: "Price / MOQ", value: "Customized quotation based on project requirements", status: "TBC" },
+    { item: "Standard Order MOQ", value: "50 pcs", status: "Confirmed" },
   ],
   inquiryCopy: "Tell us the functions, quantity, target market, logo and packaging you need. Our team will prepare a project-based custom quotation.",
 };
@@ -113,6 +114,7 @@ export const jmz802: ProductDetailConfig = {
   relatedLinks: [
     { href: "/products/jmz-722", eyebrow: "Upper limb care", name: "3-in-1 Elbow Massager", detail: "For elbow wraps with air compression, warmth and EMS.", linkLabel: "View JMZ-722" },
   ],
+  procurementSpecItems: ["Functions", "Battery", "Product Size / N.W."],
   slug: "jmz-802",
   model: "JMZ-802",
   category: "Hand & Wrist",

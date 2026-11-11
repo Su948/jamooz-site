@@ -169,6 +169,7 @@ export const jmz706h: ProductDetailConfig = {
 };
 
 export const jmz901: ProductDetailConfig = {
+  procurementSpecItems: ["Battery"],
   slug: "jmz-901",
   model: "JMZ-901",
   category: "Head & Scalp",

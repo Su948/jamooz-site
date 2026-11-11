@@ -66,6 +66,7 @@ export type ProductDetailConfig = {
   featuresTitle: string;
   featuresIntro: string;
   features: readonly ProductFeature[];
+  procurementSpecItems?: readonly string[];
   specsIntro: string;
   specs: readonly ProductSpec[];
   relatedLinks?: readonly ProductRelatedLink[];
