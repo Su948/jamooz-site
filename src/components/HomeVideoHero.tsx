@@ -5,12 +5,35 @@ import { useEffect, useRef, useState } from 'react';
 export default function HomeVideoHero({ credentials = true }: { credentials?: boolean }) {
   const video = useRef<HTMLVideoElement>(null);
   const [paused, setPaused] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
+
   useEffect(() => {
-    if (video.current) video.current.playbackRate = 2;
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (preference.matches) video.current?.pause();
+    if (preference.matches) {
+      setPaused(true);
+      return;
+    }
+
+    let delay: ReturnType<typeof setTimeout> | undefined;
+    const enableVideo = () => {
+      delay = setTimeout(() => setVideoReady(true), 1200);
+    };
+
+    if (document.readyState === 'complete') enableVideo();
+    else window.addEventListener('load', enableVideo, { once: true });
+
+    return () => {
+      window.removeEventListener('load', enableVideo);
+      if (delay) clearTimeout(delay);
+    };
   }, []);
+
   const toggle = async () => {
+    if (!videoReady) {
+      setVideoReady(true);
+      setPaused(false);
+      return;
+    }
     if (!video.current) return;
     if (video.current.paused) {
       try { await video.current.play(); setPaused(false); } catch { setPaused(true); }
@@ -18,7 +41,7 @@ export default function HomeVideoHero({ credentials = true }: { credentials?: bo
   };
   return (
     <section aria-label="JAMOOZ massage device manufacturing" className={`relative isolate flex items-center overflow-hidden bg-[#21152f] text-white ${credentials?'min-h-[calc(100svh-77px)]':'h-[calc(100svh-77px)] min-h-[480px]'}`}>
-      <video ref={video} src="/videos/jamooz-home-banner.mp4" autoPlay muted loop playsInline preload="metadata" aria-hidden="true" className="absolute inset-0 -z-30 h-full w-full translate-y-[3%] scale-[1.8] object-cover object-center" onLoadedMetadata={(event) => { event.currentTarget.playbackRate = 2; }} onPause={() => setPaused(true)} onPlay={() => setPaused(false)} />
+      <video ref={video} src={videoReady ? '/videos/jamooz-home-banner.mp4' : undefined} poster="/preview-assets/hero/factory.webp" autoPlay={videoReady} muted loop playsInline preload="none" aria-hidden="true" className="absolute inset-0 -z-30 h-full w-full translate-y-[3%] scale-[1.8] object-cover object-center" onLoadedMetadata={(event) => { event.currentTarget.playbackRate = 2; }} onPause={() => setPaused(true)} onPlay={() => setPaused(false)} />
       <div className="absolute inset-0 -z-20 bg-[#21152f]/45" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#1d122c]/95 via-[#251335]/65 to-[#251335]/15" />
       <div className="mx-auto w-full max-w-[1320px] px-5 pb-20 pt-6 sm:px-10 sm:pb-16 sm:pt-7">
