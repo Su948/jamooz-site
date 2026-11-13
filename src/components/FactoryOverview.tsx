@@ -26,7 +26,7 @@ export default function FactoryOverview() {
         <p className="mt-3 text-xs leading-5 text-[#71657d]">Certificates and reports apply to the relevant entities, products and destination markets.</p>
         <div className="mt-6 flex flex-wrap gap-3"><a href="/oem-odm#manufacturing-evidence" className="rounded-full bg-violet-700 px-5 py-3 text-sm font-bold text-white hover:bg-violet-800">View Factory &amp; Credentials →</a><a href="#inquiry" className="rounded-full border border-violet-300 bg-white/70 px-5 py-3 text-sm font-bold text-violet-900">Request OEM/ODM Quote</a></div>
       </div>
-      <video ref={video} aria-label="JAMOOZ customer consultation, design, sampling and production process" poster="/preview-assets/hero/factory-selective.webp" className="aspect-video w-full rounded-3xl bg-[#d9cce9] object-cover shadow-xl shadow-violet-900/10" autoPlay muted loop playsInline controls preload="none" />
+      <video ref={video} aria-label="JAMOOZ customer consultation, design, sampling and production process" poster="/videos/jamooz-process-first-frame.jpg" className="aspect-video w-full rounded-3xl bg-[#d9cce9] shadow-xl shadow-violet-900/10" autoPlay muted loop playsInline controls preload="none" />
     </div>
   </section>;
 }

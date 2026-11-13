@@ -1,20 +1,40 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { preload } from 'react-dom';
 
 export default function HomeVideoHero({ credentials = true }: { credentials?: boolean }) {
   const video = useRef<HTMLVideoElement>(null);
   const [paused, setPaused] = useState(true);
+  const userPaused = useRef(false);
+  preload('/videos/jamooz-home-hero-first-frame.jpg', { as: 'image', fetchPriority: 'high' });
+  useEffect(() => {
+    const element = video.current;
+    if (!element) return;
+    let visible = true;
+    const syncPlayback = () => {
+      if (visible && !document.hidden && !userPaused.current) void element.play().catch(() => {});
+      else element.pause();
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      syncPlayback();
+    });
+    observer.observe(element);
+    document.addEventListener('visibilitychange', syncPlayback);
+    return () => { observer.disconnect(); document.removeEventListener('visibilitychange', syncPlayback); };
+  }, []);
 
   const toggle = async () => {
     if (!video.current) return;
     if (video.current.paused) {
+      userPaused.current = false;
       try { await video.current.play(); setPaused(false); } catch { setPaused(true); }
-    } else { video.current.pause(); setPaused(true); }
+    } else { userPaused.current = true; video.current.pause(); setPaused(true); }
   };
   return (
     <section aria-label="JAMOOZ massage device manufacturing" className={`relative isolate flex items-center overflow-hidden bg-[#21152f] text-white ${credentials?'min-h-[calc(100svh-77px)]':'h-[calc(100svh-77px)] min-h-[480px]'}`}>
-      <video ref={video} src="/videos/jamooz-home-hero-7s.m4v" poster="/preview-assets/hero/factory.webp" autoPlay muted loop playsInline preload="metadata" aria-hidden="true" className="absolute inset-0 -z-30 h-full w-full translate-y-[3%] scale-[1.8] object-cover object-center" onPause={() => setPaused(true)} onPlay={() => setPaused(false)} />
+      <video ref={video} src="/videos/jamooz-home-hero-7s.m4v" poster="/videos/jamooz-home-hero-first-frame.jpg" autoPlay muted loop playsInline preload="metadata" aria-hidden="true" className="absolute inset-0 -z-30 h-full w-full translate-y-[3%] scale-[1.8] object-cover object-center" onPause={() => setPaused(true)} onPlay={() => setPaused(false)} />
       <div className="absolute inset-0 -z-20 bg-[#21152f]/45" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#1d122c]/95 via-[#251335]/65 to-[#251335]/15" />
       <div className="mx-auto w-full max-w-[1320px] px-5 pb-20 pt-6 sm:px-10 sm:pb-16 sm:pt-7 min-[1536px]:max-w-[1600px]">
