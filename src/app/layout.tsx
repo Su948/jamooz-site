@@ -70,6 +70,10 @@ export default function RootLayout({
                   areaServed: "Worldwide",
                 },
                 sameAs: [companyFacts.marketplaceProfile],
+                hasCertification: {
+                  "@type": "Certification",
+                  name: "SGS Supplier Assessment Report (Trade Assessment)",
+                },
                 knowsAbout: [
                   "Massage devices",
                   "Personal wellness electronics",
