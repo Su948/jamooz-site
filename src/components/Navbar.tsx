@@ -12,7 +12,10 @@ function PreviewNavbar() {
   const pathname = usePathname();
   const homepage = pathname.startsWith('/preview') ? '/preview' : '/';
   const hasLocalInquiry = pathname.startsWith('/preview/products/') || pathname.startsWith('/products');
-  const previewLink = (hash: string) => hasLocalInquiry && hash === '#inquiry' ? hash : `${homepage}${hash}`;
+  const previewLink = (hash: string) => {
+    if (hash === '#inquiry' && pathname === '/products/cupping-gua-sha') return '/rfq';
+    return hasLocalInquiry && hash === '#inquiry' ? hash : `${homepage}${hash}`;
+  };
   const navigateCategory = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
     if (pathname === '/products' && href.startsWith('/products#')) {
       event.preventDefault();
