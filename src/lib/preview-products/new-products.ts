@@ -168,6 +168,7 @@ export const jmz802: ProductDetailConfig = {
 };
 
 export const jmz903: ProductDetailConfig = {
+  procurementSpecItems: ["Functions", "Battery", "Product Size / N.W."],
   relatedLinks: [
     { href: "/products/jmz-f002", eyebrow: "Compare models", name: "4-in-1 Pulse Stretch Waist Belt", linkLabel: "View JMZ-F002" },
     { href: "/products/jmz-v002", eyebrow: "Compare models", name: "4-Mode EMS Hip & Body Pad", linkLabel: "View JMZ-V002" },
@@ -177,8 +178,8 @@ export const jmz903: ProductDetailConfig = {
   category: "Body Care",
   name: "3-in-1 Suction, Heat & EMS Gua Sha Massager",
   eyebrow: "OEM / ODM BODY MASSAGER",
-  description: "A portable body-care device combining 12-level suction, adjustable warming and 12-level EMS with a wide eight-point contact head and clear digital display.",
-  seoDescription: "Explore the JMZ-903 suction, heat and EMS gua sha massager with 12-level controls, a 20-minute cycle and OEM/ODM options.",
+  description: "A rechargeable electric cupping and gua sha massager combining 12-level suction, adjustable warming and 12-level EMS with a wide eight-point contact head and clear digital display.",
+  seoDescription: "JMZ-903 electric cupping massager with suction, heat and EMS. Compare specifications, sample pricing and wholesale tiers. MOQ 50 pcs; OEM/ODM enquiries welcome.",
   badges: ["12-Level Suction", "41–48°C Heat", "12-Level EMS", "20-Min Auto-Off"],
   gallery: gallery("jmz-903", [
     "White JMZ-903 suction heat and EMS gua sha massager",

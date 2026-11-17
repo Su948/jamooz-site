@@ -1,5 +1,6 @@
 "use client";
 
+import ProductLeadTime from "@/components/ProductLeadTime";
 import { useEffect, useMemo, useState } from "react";
 import type { RegionalPricingConfig } from "@/lib/product-detail";
 
@@ -18,7 +19,7 @@ const marketNames: Record<string, string> = {
   OTHER: "All other markets",
 };
 
-export default function RegionalPricingCard({ config }: { config: RegionalPricingConfig }) {
+export default function RegionalPricingCard({ config, moq, samplePrice, leadTime }: { config: RegionalPricingConfig; moq?: string; samplePrice?: string; leadTime?: string }) {
   const [detectedCountry, setDetectedCountry] = useState<string | null>(null);
   const [selectedMarket, setSelectedMarket] = useState<string>("AUTO");
   const [loading, setLoading] = useState(true);
@@ -56,16 +57,16 @@ export default function RegionalPricingCard({ config }: { config: RegionalPricin
   };
 
   return (
-    <div className="mt-8 rounded-2xl border border-white/85 bg-white/82 p-5 shadow-[0_20px_55px_rgba(38,67,105,0.09)] backdrop-blur sm:p-6">
+    <div className="product-overview-price regional-price-card mt-8 rounded-2xl border border-white/85 bg-white/82 p-5 shadow-[0_20px_55px_rgba(38,67,105,0.09)] backdrop-blur sm:p-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#718097]">Regional price</p>
           <p className="mt-2 text-3xl font-black tracking-tight text-[#244f82]">
             {priceRange}
           </p>
-          <p className="mt-2 text-xs font-bold text-[#52637a]">{detectionCopy}</p>
+
         </div>
-        <label className="min-w-[220px] text-xs font-bold uppercase tracking-[0.1em] text-[#718097]">
+        <label className="market-selector min-w-[220px] text-xs font-bold uppercase tracking-[0.1em] text-[#718097]">
           Market / region
           <select
             value={selectedMarket}
@@ -79,16 +80,7 @@ export default function RegionalPricingCard({ config }: { config: RegionalPricin
         </label>
       </div>
 
-      <div className="mt-5 grid gap-3 sm:grid-cols-2">
-        <div className={`rounded-xl border p-4 ${special ? "border-[#315b8d] bg-[#eef5fc]" : "border-[#dfe5ee] bg-[#f7faff]"}`}>
-          <p className="text-xs font-black uppercase tracking-[0.1em] text-[#315b8d]">Regional group</p>
-          <p className="mt-2 text-sm leading-6 text-[#52637a]">{config.specialMarketLabel}</p>
-        </div>
-        <div className={`rounded-xl border p-4 ${!special ? "border-[#315b8d] bg-[#eef5fc]" : "border-[#dfe5ee] bg-[#f7faff]"}`}>
-          <p className="text-xs font-black uppercase tracking-[0.1em] text-[#315b8d]">Default group</p>
-          <p className="mt-2 text-sm leading-6 text-[#52637a]">{config.defaultMarketLabel}</p>
-        </div>
-      </div>
+
 
       {priceTiers?.length ? (
         <div className="mt-5 grid grid-cols-2 overflow-hidden rounded-xl border border-[#dfe5ee] sm:grid-cols-4">
@@ -101,9 +93,24 @@ export default function RegionalPricingCard({ config }: { config: RegionalPricin
         </div>
       ) : null}
 
-      <p className="mt-4 text-xs leading-5 text-[#718097]">
+      <p className="sample-price-row mt-3 text-sm font-semibold text-[#334055]">{moq ?? "MOQ 50 pcs"}{samplePrice ? ` · Sample price: ${samplePrice}` : " · Sample quote on request"}</p>
+      <ProductLeadTime leadTime={leadTime} />
+      <details className="mt-2 text-xs text-[#607086]"><summary className="cursor-pointer font-semibold">Regional pricing &amp; detection details</summary>
+          <p className="mt-2 text-xs font-bold text-[#52637a]">{detectionCopy}</p>
+      <div className="regional-groups mt-5 grid gap-3 sm:grid-cols-2">
+        <div className={`rounded-xl border p-4 ${special ? "border-[#315b8d] bg-[#eef5fc]" : "border-[#dfe5ee] bg-[#f7faff]"}`}>
+          <p className="text-xs font-black uppercase tracking-[0.1em] text-[#315b8d]">Regional group</p>
+          <p className="mt-2 text-sm leading-6 text-[#52637a]">{config.specialMarketLabel}</p>
+        </div>
+        <div className={`rounded-xl border p-4 ${!special ? "border-[#315b8d] bg-[#eef5fc]" : "border-[#dfe5ee] bg-[#f7faff]"}`}>
+          <p className="text-xs font-black uppercase tracking-[0.1em] text-[#315b8d]">Default group</p>
+          <p className="mt-2 text-sm leading-6 text-[#52637a]">{config.defaultMarketLabel}</p>
+        </div>
+      </div>
+      <p className="market-explanation mt-4 text-xs leading-5 text-[#718097]">
         IP detection sets the initial market only. Buyers can correct the market when a VPN, corporate network or mobile carrier produces the wrong location. Final pricing is confirmed in the quotation.
       </p>
+      </details>
     </div>
   );
 }

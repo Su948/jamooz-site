@@ -1,4 +1,6 @@
 import Breadcrumbs from "@/components/Breadcrumbs";
+import "./product-overview.css";
+import ProductLeadTime from "@/components/ProductLeadTime";
 import FaqBlock from "@/components/FaqBlock";
 import InquiryForm from "@/components/InquiryForm";
 import ProductGallery from "@/components/ProductGallery";
@@ -25,6 +27,7 @@ function ArrowIcon() {
 }
 
 export default function ProductDetailTemplate({ product }: { product: ProductDetailConfig }) {
+  const compact = product.slug === "jmz-903";
   const sourcePage = `/products/${product.slug}`;
   const productName = `${product.model} – ${product.name}`;
   const whatsappUrl = contactLinks.whatsapp(buildWhatsAppInquiryMessage({ sourcePage, product: productName }));
@@ -50,7 +53,7 @@ export default function ProductDetailTemplate({ product }: { product: ProductDet
 
   return (
     <main className="overflow-x-hidden bg-[#fbfcfe] text-[#334055]">
-      <section className="border-b border-[#dfe5ee] bg-[linear-gradient(135deg,#fbfdff_0%,#eef3f8_55%,#e6edf5_100%)] py-10 sm:py-14 lg:py-20">
+      <section className={`product-overview-compact border-b border-[#dfe5ee] bg-[linear-gradient(135deg,#fbfdff_0%,#eef3f8_55%,#e6edf5_100%)] py-10 sm:py-14 lg:py-20`}>
         <div className={`${shell} grid items-center gap-10 lg:grid-cols-[55fr_45fr] lg:gap-14`}>
           <div className="min-w-0 lg:col-span-2">
             <ProductJsonLd
@@ -67,18 +70,18 @@ export default function ProductDetailTemplate({ product }: { product: ProductDet
             />
             <Breadcrumbs items={breadcrumbs} />
           </div>
-          <ProductGallery model={product.model} images={product.gallery} />
+          <ProductGallery model={product.model} images={product.gallery} showSourceLabel={false} />
 
           <div className="min-w-0">
             <p className={sectionLabel}>{product.model} · {product.eyebrow}</p>
-            <h1 className="mt-4 text-4xl font-semibold leading-[1.05] tracking-[-0.045em] text-[#17243a] sm:text-5xl lg:text-[58px]">{product.name}</h1>
-            <p className="mt-6 max-w-xl text-base leading-7 text-[#607086] sm:text-lg sm:leading-8">{product.description}</p>
+            <h1 className="mt-4 text-4xl font-semibold leading-[1.05] tracking-[-0.045em] text-[#17243a] sm:text-5xl lg:text-[58px]">{compact ? "Electric Cupping Massager with Heat & EMS" : product.name}</h1>
+            <p className="mt-6 max-w-xl text-base leading-7 text-[#607086] sm:text-lg sm:leading-8">{compact ? "Rechargeable cupping and gua sha device with independently adjustable suction, warming and EMS." : product.description}</p>
 
             <div className="mt-7 flex flex-wrap gap-2">
               {product.badges.map((badge) => <span key={badge} className="rounded-full border border-[#ccd8e6] bg-white/85 px-3.5 py-2 text-xs font-bold text-[#24456f]">{badge}</span>)}
             </div>
 
-            {product.regionalPricing ? <RegionalPricingCard config={product.regionalPricing} /> : <div className="mt-8 rounded-2xl border border-white/85 bg-white/82 p-5 shadow-[0_20px_55px_rgba(38,67,105,0.09)] backdrop-blur sm:p-6">
+            {product.regionalPricing ? <RegionalPricingCard config={product.regionalPricing} moq={product.moq} samplePrice={product.samplePrice} leadTime={product.leadTime} /> : <div className="product-overview-price mt-8 rounded-2xl border border-white/85 bg-white/82 p-5 shadow-[0_20px_55px_rgba(38,67,105,0.09)] backdrop-blur sm:p-6">
               {product.customPricing ? (
                 <>
                   <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#718097]">Custom pricing</p>
@@ -99,10 +102,10 @@ export default function ProductDetailTemplate({ product }: { product: ProductDet
                   <div className="mt-5 grid grid-cols-2 overflow-hidden rounded-xl border border-[#dfe5ee] sm:grid-cols-4">
                     {product.priceTiers?.map((tier, index) => <div key={tier.quantity} className={`p-3 ${index % 2 === 0 ? "bg-[#f7faff]" : "bg-white"} ${index > 0 ? "border-l border-[#dfe5ee]" : ""}`}><p className="text-[10px] font-bold uppercase tracking-wider text-[#7a8799]">{tier.quantity}</p><p className="mt-1 text-sm font-black text-[#24344b]">{tier.price}</p></div>)}
                   </div>
-                  <div className="mt-3 flex flex-wrap justify-between gap-2 text-xs text-[#708095]"><span>Sample: <strong className="text-[#334055]">{product.samplePrice}</strong></span><span>Volume prices are confirmed with the final quotation.</span></div>
+                  <div className="sample-price-row mt-3 flex flex-wrap justify-between gap-2 text-xs text-[#708095]"><span>Sample price:  <strong className="text-[#334055]">{product.samplePrice}</strong></span><span>Volume prices are confirmed with the final quotation.</span></div>
                 </>
               )}
-              <p className="mt-4 border-t border-[#dfe5ee] pt-3 text-sm leading-6 text-[#607086]"><span className="font-bold text-[#334055]">Lead time: </span>{product.leadTime ?? "Samples in 7 days after design approval; 50 pcs in 15 days, 500 pcs in 20 days and 3,000 pcs in 35 days. Special configurations, tooling, peak periods and other exceptions are discussed separately."}</p>
+              <ProductLeadTime leadTime={product.leadTime} />
             </div>}
 
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
@@ -115,12 +118,13 @@ export default function ProductDetailTemplate({ product }: { product: ProductDet
 
       {product.procurementSpecItems && <section id="procurement" className="scroll-mt-24 border-b border-[#dfe5ee] bg-white py-8">
         <div className={shell}>
-          <h2 className="text-xl font-semibold text-[#17243a]">{product.model} — Procurement Summary</h2>
+          <h2 className="text-xl font-semibold text-[#17243a]">{product.model} — {compact ? "Technical & Customization Summary" : "Procurement Summary"}</h2>
           <dl className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <div><dt className="text-sm text-slate-500">Standard order</dt><dd className="mt-1 font-semibold">MOQ 50 pcs · Samples available</dd></div>
-            {product.specs.filter(spec => product.procurementSpecItems?.includes(spec.item) && spec.status === "Confirmed").map(spec => <div key={spec.item}><dt className="text-sm text-slate-500">{spec.item}</dt><dd className="mt-1 font-semibold">{spec.value}</dd></div>)}
+            {!compact && <div><dt className="text-sm text-slate-500">Standard order</dt><dd className="mt-1 font-semibold">MOQ 50 pcs · Samples available</dd></div>}
+            {product.specs.filter(spec => product.procurementSpecItems?.includes(spec.item) && (!compact || spec.item !== "Functions") && spec.status === "Confirmed").map(spec => <div key={spec.item}><dt className="text-sm text-slate-500">{spec.item}</dt><dd className="mt-1 font-semibold">{spec.value}</dd></div>)}
+            {compact && <><div><dt className="text-sm text-slate-500">Custom logo &amp; color box</dt><dd className="mt-1 font-semibold">500 pcs</dd></div><div><dt className="text-sm text-slate-500">Corrugated box</dt><dd className="mt-1 font-semibold">300 pcs</dd></div></>}
           </dl>
-          <p className="mt-5 text-sm leading-6 text-slate-600">Custom logo and color box: 500 pcs. Corrugated box: 300 pcs. Send your target market and configuration to confirm available documentation.</p>
+          <p className="mt-5 text-sm leading-6 text-slate-600">{compact ? "Send your target market and configuration to confirm available documentation." : "Custom logo and color box: 500 pcs. Corrugated box: 300 pcs. Send your target market and configuration to confirm available documentation."}</p>
           <div className="mt-3 flex flex-wrap gap-5 text-sm font-semibold text-[#244f82]"><a href="#specifications">Full specifications →</a><a href="#customization">Customization options →</a><a href="#inquiry">Request samples &amp; documents →</a></div>
         </div>
       </section>}

@@ -1,8 +1,10 @@
+import ProductGallery from "@/components/ProductGallery";
+import ProductLeadTime from "@/components/ProductLeadTime";
+import "@/components/product-overview.css";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import InquiryForm from "@/components/InquiryForm";
-import Jmz702Gallery from "@/components/Jmz702Gallery";
 import ProductJsonLd from "@/components/ProductJsonLd";
 import { contactLinks } from "@/lib/company";
 import { jmz702Gallery, jmz702Prices, jmz702Specs, type Jmz702SpecStatus } from "@/lib/preview-products/jmz-702";
@@ -47,7 +49,7 @@ export default function Jmz702PreviewPage() {
 
   return (
     <main className="overflow-x-hidden bg-[#fbfcfe] text-[#334055]">
-      <section className="border-b border-[#dfe5ee] bg-[linear-gradient(135deg,#fbfdff_0%,#eef3f8_55%,#e6edf5_100%)] py-10 sm:py-14 lg:py-20">
+      <section className="product-overview-compact border-b border-[#dfe5ee] bg-[linear-gradient(135deg,#fbfdff_0%,#eef3f8_55%,#e6edf5_100%)] py-10 sm:py-14 lg:py-20">
         <div className={`${shell} grid items-center gap-10 lg:grid-cols-[55fr_45fr] lg:gap-14`}>
           <div className="min-w-0 lg:col-span-2">
             <ProductJsonLd
@@ -60,7 +62,7 @@ export default function Jmz702PreviewPage() {
             />
             <Breadcrumbs items={breadcrumbs} />
           </div>
-          <Jmz702Gallery />
+          <ProductGallery model="JMZ-702" images={jmz702Gallery} showSourceLabel={false} />
 
           <div className="min-w-0">
             <p className={sectionLabel}>JMZ-702 · OEM / ODM MASSAGE SEAT</p>
@@ -77,7 +79,7 @@ export default function Jmz702PreviewPage() {
               ))}
             </div>
 
-            <div className="mt-8 rounded-2xl border border-white/85 bg-white/82 p-5 shadow-[0_20px_55px_rgba(38,67,105,0.09)] backdrop-blur sm:p-6">
+            <div className="product-overview-price mt-8 rounded-2xl border border-white/85 bg-white/82 p-5 shadow-[0_20px_55px_rgba(38,67,105,0.09)] backdrop-blur sm:p-6">
               <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#718097]">Volume price range</p>
               <div className="mt-2 flex flex-wrap items-end gap-x-4 gap-y-1">
                 <p className="text-3xl font-black tracking-tight text-[#244f82]">US$27.50–33.00 / pc</p>
@@ -92,10 +94,10 @@ export default function Jmz702PreviewPage() {
                 ))}
               </div>
               <div className="mt-3 flex flex-wrap justify-between gap-2 text-xs text-[#708095]">
-                <span>Sample: <strong className="text-[#334055]">US$40</strong></span>
+                <span>Sample price: <strong className="text-[#334055]">US$40</strong></span>
                 <span>Volume prices are confirmed with the final quotation.</span>
               </div>
-              <p className="mt-4 border-t border-[#dfe5ee] pt-3 text-sm leading-6 text-[#607086]"><span className="font-bold text-[#334055]">Lead time: </span>Samples in 7 days after design approval; 50 pcs in 15 days, 500 pcs in 20 days and 3,000 pcs in 35 days. Special configurations, tooling, peak periods and other exceptions are discussed separately.</p>
+              <ProductLeadTime />
             </div>
 
             <div className="mt-7 grid gap-3 sm:grid-cols-2">

@@ -1,8 +1,10 @@
+import ProductGallery from "@/components/ProductGallery";
+import ProductLeadTime from "@/components/ProductLeadTime";
+import "@/components/product-overview.css";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import InquiryForm from "@/components/InquiryForm";
-import JmzR006Gallery from "@/components/JmzR006Gallery";
 import ProductJsonLd from "@/components/ProductJsonLd";
 import { contactLinks } from "@/lib/company";
 import { jmzR006Gallery, jmzR006Prices, jmzR006Specs, type JmzR006SpecStatus } from "@/lib/preview-products/jmz-r006";
@@ -47,7 +49,7 @@ export default function JmzR006PreviewPage() {
 
   return (
     <main className="overflow-x-hidden bg-[#fbfcfe] text-[#334055]">
-      <section className="border-b border-[#dfe5ee] bg-[linear-gradient(135deg,#fbfdff_0%,#eef3f8_55%,#e6edf5_100%)] py-10 sm:py-14 lg:py-20">
+      <section className="product-overview-compact border-b border-[#dfe5ee] bg-[linear-gradient(135deg,#fbfdff_0%,#eef3f8_55%,#e6edf5_100%)] py-10 sm:py-14 lg:py-20">
         <div className={`${shell} grid items-center gap-10 lg:grid-cols-[55fr_45fr] lg:gap-14`}>
           <div className="min-w-0 lg:col-span-2">
             <ProductJsonLd
@@ -60,19 +62,19 @@ export default function JmzR006PreviewPage() {
             />
             <Breadcrumbs items={breadcrumbs} />
           </div>
-          <JmzR006Gallery />
+          <ProductGallery model="JMZ-R006" images={jmzR006Gallery} showSourceLabel={false} />
           <div className="min-w-0">
             <p className={sectionLabel}>JMZ-R006 · OEM / ODM NECK MASSAGER</p>
             <h1 className="mt-4 text-4xl font-semibold leading-[1.05] tracking-[-0.045em] text-[#17243a] sm:text-5xl lg:text-[58px]">3D Kneading Neck & Shoulder Massager</h1>
             <p className="mt-6 max-w-xl text-base leading-7 text-[#607086] sm:text-lg sm:leading-8">A rechargeable U-shaped massage device combining 3D kneading movement, warming care and adjustable lanyards for everyday neck and shoulder relaxation.</p>
             <div className="mt-7 flex flex-wrap gap-2">{["3D Kneading", "Heating", "Type-C Rechargeable", "Timing Control"].map((badge) => <span key={badge} className="rounded-full border border-[#ccd8e6] bg-white/85 px-3.5 py-2 text-xs font-bold text-[#24456f]">{badge}</span>)}</div>
 
-            <div className="mt-8 rounded-2xl border border-white/85 bg-white/82 p-5 shadow-[0_20px_55px_rgba(38,67,105,0.09)] backdrop-blur sm:p-6">
+            <div className="product-overview-price mt-8 rounded-2xl border border-white/85 bg-white/82 p-5 shadow-[0_20px_55px_rgba(38,67,105,0.09)] backdrop-blur sm:p-6">
               <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#718097]">Volume price range</p>
               <div className="mt-2 flex flex-wrap items-end gap-x-4 gap-y-1"><p className="text-3xl font-black tracking-tight text-[#244f82]">US$20.90–22.50 / pc</p><p className="pb-1 text-sm font-bold text-[#334055]">MOQ 50 pcs</p></div>
               <div className="mt-5 grid grid-cols-2 overflow-hidden rounded-xl border border-[#dfe5ee] sm:grid-cols-4">{jmzR006Prices.map((tier, index) => <div key={tier.quantity} className={`p-3 ${index % 2 === 0 ? "bg-[#f7faff]" : "bg-white"} ${index > 0 ? "border-l border-[#dfe5ee]" : ""}`}><p className="text-[10px] font-bold uppercase tracking-wider text-[#7a8799]">{tier.quantity}</p><p className="mt-1 text-sm font-black text-[#24344b]">{tier.price}</p></div>)}</div>
-              <div className="mt-3 flex flex-wrap justify-between gap-2 text-xs text-[#708095]"><span>Sample: <strong className="text-[#334055]">US$25</strong></span><span>Volume prices are confirmed with the final quotation.</span></div>
-              <p className="mt-4 border-t border-[#dfe5ee] pt-3 text-sm leading-6 text-[#607086]"><span className="font-bold text-[#334055]">Lead time: </span>Samples in 7 days after design approval; 50 pcs in 15 days, 500 pcs in 20 days and 3,000 pcs in 35 days. Special configurations, tooling, peak periods and other exceptions are discussed separately.</p>
+              <div className="mt-3 flex flex-wrap justify-between gap-2 text-xs text-[#708095]"><span>Sample price: <strong className="text-[#334055]">US$25</strong></span><span>Volume prices are confirmed with the final quotation.</span></div>
+              <ProductLeadTime />
             </div>
 
             <div className="mt-7 grid gap-3 sm:grid-cols-2"><a href="#inquiry" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#244f82] px-6 py-3.5 text-sm font-black tracking-[0.08em] text-white shadow-lg shadow-[#244f82]/20 transition hover:-translate-y-0.5 hover:bg-[#193d69]">REQUEST A QUOTE <ArrowIcon /></a><a href={whatsappUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[#244f82] bg-white px-6 py-3.5 text-sm font-black tracking-[0.08em] text-[#244f82] transition hover:-translate-y-0.5 hover:bg-[#f4f8fc]">WHATSAPP US <ArrowIcon /></a></div>
