@@ -86,7 +86,7 @@ export default function CuppingGuaShaPreviewPage() {
                 ))}
               </div>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <Link href="/rfq" className="inline-flex min-h-12 items-center justify-center rounded-full bg-violet-700 px-7 py-3.5 text-sm font-black text-white transition hover:bg-violet-800">REQUEST A QUOTE</Link>
+                <Link href="/products/jmz-903#inquiry" className="inline-flex min-h-12 items-center justify-center rounded-full bg-violet-700 px-7 py-3.5 text-sm font-black text-white transition hover:bg-violet-800">REQUEST A QUOTE</Link>
                 <Link href="/products/jmz-903" className="inline-flex min-h-12 items-center justify-center rounded-full border border-violet-300 bg-white px-7 py-3.5 text-sm font-black text-violet-800 transition hover:bg-violet-50">VIEW JMZ-903</Link>
               </div>
             </div>
@@ -177,7 +177,7 @@ export default function CuppingGuaShaPreviewPage() {
             <h2 className="text-3xl font-semibold tracking-[-0.035em] sm:text-4xl">Discuss JMZ-903 for your market</h2>
             <p className="mt-4 max-w-3xl leading-7 text-white/72">Send the quantity, destination market and customisation requirements. JAMOOZ will confirm pricing, samples, branding, packaging and applicable documents with the quotation.</p>
           </div>
-          <Link href="/rfq" className="inline-flex min-h-12 shrink-0 items-center justify-center rounded-full bg-white px-7 py-3.5 text-sm font-black text-violet-800 transition hover:bg-violet-50">REQUEST A QUOTE</Link>
+          <Link href="/products/jmz-903#inquiry" className="inline-flex min-h-12 shrink-0 items-center justify-center rounded-full bg-white px-7 py-3.5 text-sm font-black text-violet-800 transition hover:bg-violet-50">REQUEST A QUOTE</Link>
         </div>
       </section>
     </main>
