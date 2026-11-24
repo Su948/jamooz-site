@@ -170,6 +170,7 @@ export const jmz802: ProductDetailConfig = {
 export const jmz903: ProductDetailConfig = {
   procurementSpecItems: ["Functions", "Battery", "Product Size / N.W."],
   relatedLinks: [
+    { href: "/products/cupping-gua-sha", eyebrow: "Category guide", name: "Electric Cupping & Gua Sha Massagers", detail: "Compare the electric cupping format and procurement options before choosing a model.", linkLabel: "Explore Category" },
     { href: "/products/jmz-f002", eyebrow: "Compare models", name: "4-in-1 Pulse Stretch Waist Belt", linkLabel: "View JMZ-F002" },
     { href: "/products/jmz-v002", eyebrow: "Compare models", name: "4-Mode EMS Hip & Body Pad", linkLabel: "View JMZ-V002" },
   ],
