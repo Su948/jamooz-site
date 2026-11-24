@@ -5,14 +5,14 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 const pagePath = "/guides/factory-audit-checklist";
 
 export const metadata: Metadata = {
-  title: "SGS-Assessed Supplier & Factory Audit Checklist | JAMOOZ",
+  title: "Massage Device Factory Audit Checklist | JAMOOZ",
   description:
-    "Review JAMOOZ supplier-assessment evidence and a practical six-step factory audit checklist for massage-device sourcing projects.",
+    "Use a six-step massage device factory audit checklist and review JAMOOZ's SGS supplier-assessment record before sourcing or OEM/ODM production.",
   alternates: { canonical: pagePath },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "SGS-Assessed Supplier & Factory Audit Checklist | JAMOOZ",
-    description: "Supplier-assessment evidence and a practical verification checklist for massage-device sourcing teams.",
+    title: "Massage Device Factory Audit Checklist | JAMOOZ",
+    description: "Six buyer verification steps and JAMOOZ's SGS supplier-assessment record for massage-device sourcing teams.",
     url: pagePath,
     type: "article",
     images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "JAMOOZ massage-device OEM and ODM sourcing" }],
@@ -39,7 +39,7 @@ export default function FactoryAuditChecklistPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "SGS-Assessed Supplier Evidence and Factory Audit Checklist",
+    headline: "Massage Device Factory Audit Checklist",
     description: metadata.description,
     author: { "@type": "Organization", name: "JAMOOZ" },
     publisher: { "@type": "Organization", name: "JAMOOZ" },
@@ -56,7 +56,7 @@ export default function FactoryAuditChecklistPage() {
           <div className="mt-12 max-w-5xl">
             <p className="text-xs font-black uppercase tracking-[0.24em] text-violet-200">Manufacturing evidence</p>
             <h1 className="mt-5 text-[42px] font-semibold leading-[1.03] tracking-[-0.045em] sm:text-6xl lg:text-[70px]">
-              SGS-Assessed Business Operations
+              Massage Device Factory Audit Checklist
             </h1>
             <p className="mt-7 max-w-3xl text-lg leading-8 text-white/75">
               An independent supplier assessment and a practical verification process for massage-device sourcing teams.
