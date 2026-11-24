@@ -31,7 +31,7 @@ export default async function RFQPage({ searchParams }: RFQPageProps) {
           <p className="mono-label text-xs font-bold uppercase tracking-widest text-navy">Secure online inquiry</p>
           <h2 className="serif-display mt-6 text-4xl font-semibold text-foreground">Tell us about your project</h2>
           <p className="mb-10 mt-5 text-muted">Required fields are marked with an asterisk. Your details are sent directly to the JAMOOZ sales team.</p>
-          <InquiryForm id="rfq-page-form" sourcePage={sourcePage} initialProduct={initialProduct} />
+          <InquiryForm id="rfq-page-form" sourcePage={sourcePage} initialProduct={initialProduct} includeTargetMarket />
         </div>
       </div>
     </div>
