@@ -13,7 +13,7 @@ const productLastModified: Record<string, string> = {
   "jmz-729s": "2026-10-24",
   "jmz-908": "2026-11-11",
   "jmz-802": "2026-11-11",
-  "jmz-903": "2026-10-24",
+  "jmz-903": "2026-11-24",
   "jmz-807p": "2026-10-24",
   "jmz-706w": "2026-10-24",
   "jmz-901": "2026-11-11",
@@ -63,7 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${companyFacts.website}/products/neck-shoulder-massagers`,
-      lastModified: "2026-11-11",
+      lastModified: "2026-11-24",
       changeFrequency: "monthly",
       priority: 0.8,
     },
@@ -75,7 +75,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${companyFacts.website}/products/cupping-gua-sha`,
-      lastModified: "2026-10-28",
+      lastModified: "2026-11-24",
       changeFrequency: "monthly",
       priority: 0.8,
     },
@@ -93,13 +93,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${companyFacts.website}/guides/factory-audit-checklist`,
-      lastModified: "2026-10-28",
+      lastModified: "2026-11-24",
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${companyFacts.website}/guides/neck-shoulder-massager-selection`,
-      lastModified: "2026-10-28",
+      lastModified: "2026-11-24",
       changeFrequency: "monthly",
       priority: 0.7,
     },
