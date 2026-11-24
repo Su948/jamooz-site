@@ -2,17 +2,18 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { jmzCspl005 } from "@/lib/preview-products/november-products";
 
 const pagePath = "/guides/neck-shoulder-massager-selection";
 
 export const metadata: Metadata = {
   title: "Neck & Shoulder Massager Selection Guide | JAMOOZ",
-  description: "Compare eight JAMOOZ neck and shoulder massagers by format, confirmed functions and buyer use case for wholesale, private label and OEM/ODM projects.",
+  description: "Compare JAMOOZ neck and shoulder massagers by format, confirmed functions and buyer use case for wholesale, private label and OEM/ODM projects.",
   alternates: { canonical: pagePath },
   robots: { index: true, follow: true },
   openGraph: {
     title: "Neck & Shoulder Massager Selection Guide | JAMOOZ",
-    description: "Compare eight neck and shoulder massage-device formats for wholesale and OEM/ODM projects.",
+    description: "Compare neck and shoulder massage-device formats for wholesale and OEM/ODM projects.",
     url: pagePath,
     type: "article",
     images: [{ url: "/products/jmz-706h/01-home-card-wide.png", width: 1200, height: 630, alt: "JAMOOZ neck and shoulder massage devices" }],
@@ -28,6 +29,7 @@ const products = [
   { model: "JMZ-CSPL002", name: "Neck Pinch Massage Pillow", image: "/products/jmz-cspl002/01-hero.webp", href: "/products/jmz-cspl002", tags: ["Kneading & pinching", "Heating", "2500mAh", "1.4kg"] },
   { model: "JMZ-CSPL003", name: "Mini Kneading Neck Massage Pillow", image: "/products/jmz-cspl003/01-hero.webp", href: "/products/jmz-cspl003", tags: ["4-point kneading", "2 intensity levels", "2000mAh", "1.1kg"] },
   { model: "JMZ-R006", name: "3D Kneading Neck & Shoulder Massager", image: "/products/jmz-r006/JMZ-R006-02-hero.png", href: "/products/jmz-r006", tags: ["3D kneading", "Heating", "Type-C", "USB rechargeable"] },
+  { model: jmzCspl005.model, name: jmzCspl005.name, image: jmzCspl005.gallery[0].src, href: `/products/${jmzCspl005.slug}`, tags: jmzCspl005.badges },
 ] as const;
 
 const buyerChecks = [
@@ -63,9 +65,9 @@ export default function NeckShoulderSelectionGuidePage() {
           <div className="mt-10 max-w-5xl">
             <p className="text-xs font-black uppercase tracking-[0.24em] text-violet-700">Product selection guide</p>
             <h1 className="mt-5 text-[42px] font-semibold leading-[1.03] tracking-[-0.045em] sm:text-6xl lg:text-[68px]">Choose the Right Neck &amp; Shoulder Massager</h1>
-            <p className="mt-7 max-w-3xl text-lg leading-8 text-zinc-600">Compare eight available formats by confirmed functions and physical design, then open the product page for detailed specifications, pricing and OEM/ODM options.</p>
+            <p className="mt-7 max-w-3xl text-lg leading-8 text-zinc-600">Compare {products.length} available models by confirmed functions and physical design, then open the product page for detailed specifications, pricing and OEM/ODM options.</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              {["8 available models", "MOQ from 50 pcs", "Samples available", "OEM/ODM support"].map((item) => <span key={item} className="rounded-full border border-violet-200 bg-white px-4 py-2.5 text-sm font-bold text-violet-800">{item}</span>)}
+              {[`${products.length} available models`, "MOQ from 50 pcs", "Samples available", "OEM/ODM support"].map((item) => <span key={item} className="rounded-full border border-violet-200 bg-white px-4 py-2.5 text-sm font-bold text-violet-800">{item}</span>)}
             </div>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link href="/rfq" className="inline-flex min-h-12 items-center justify-center rounded-full bg-violet-700 px-7 py-3.5 text-sm font-black text-white transition hover:bg-violet-800">REQUEST A RECOMMENDATION</Link>
@@ -78,7 +80,7 @@ export default function NeckShoulderSelectionGuidePage() {
       <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
           <p className="text-xs font-black uppercase tracking-[0.22em] text-violet-700">Compare the range</p>
-          <h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-[-0.035em] sm:text-5xl">Eight formats for different product lines</h2>
+          <h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-[-0.035em] sm:text-5xl">Compare {products.length} models for different product lines</h2>
           <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {products.map((product) => (
               <article key={product.model} className="overflow-hidden rounded-3xl border border-violet-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-violet-950/8">
