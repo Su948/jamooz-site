@@ -26,7 +26,7 @@ const products = [
   { model: "JMZ-729S", name: "Contoured Electric Neck Massage Pillow", image: "/products/jmz-729s/01-hero.webp", href: "/products/jmz-729s", tags: ["3 massage modes", "2 heat levels", "2000mAh", "Removable cover"] },
   { model: "JMZ-801", name: "Cloud Neck Support Pillow", image: "/products/jmz-801/01-hero.webp", href: "/products/jmz-801", tags: ["3 modes", "Cordless", "15-min auto-off", "Foldable"] },
   { model: "JMZ-807P", name: "Cloud Plus Heated Neck Massage Pillow", image: "/products/jmz-807p/01-hero.webp", href: "/products/jmz-807p", tags: ["3 massage modes", "3 heat levels", "2600mAh", "1kg"] },
-  { model: "JMZ-CSPL002", name: "Neck Pinch Massage Pillow", image: "/products/jmz-cspl002/01-hero.webp", href: "/products/jmz-cspl002", tags: ["Kneading & pinching", "Heating", "2500mAh", "1.4kg"] },
+  { model: "JMZ-CSPL002", name: "Neck Pinch Massage Pillow", image: "/products/jmz-cspl002/01-hero.webp", href: "/products/jmz-cspl002", tags: ["Kneading & pinching", "Heating", "2000mAh", "1.4kg"] },
   { model: "JMZ-CSPL003", name: "Mini Kneading Neck Massage Pillow", image: "/products/jmz-cspl003/01-hero.webp", href: "/products/jmz-cspl003", tags: ["4-point kneading", "2 intensity levels", "2000mAh", "1.1kg"] },
   { model: "JMZ-R006", name: "3D Kneading Neck & Shoulder Massager", image: "/products/jmz-r006/JMZ-R006-02-hero.png", href: "/products/jmz-r006", tags: ["3D kneading", "Heating", "Type-C", "USB rechargeable"] },
   { model: jmzCspl005.model, name: jmzCspl005.name, image: jmzCspl005.gallery[0].src, href: `/products/${jmzCspl005.slug}`, tags: jmzCspl005.badges },

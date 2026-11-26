@@ -20,7 +20,7 @@ const productLastModified: Record<string, string> = {
   "jmz-706h": "2026-10-24",
   "jmz-722": "2026-10-24",
   "jmz-801": "2026-10-24",
-  "jmz-cspl002": "2026-10-24",
+  "jmz-cspl002": "2026-11-26",
   "jmz-cspl005": "2026-10-28",
   "jmz-f002": "2026-10-28",
   "jmz-v002": "2026-10-28",
@@ -99,7 +99,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${companyFacts.website}/guides/neck-shoulder-massager-selection`,
-      lastModified: "2026-11-24",
+      lastModified: "2026-11-26",
       changeFrequency: "monthly",
       priority: 0.7,
     },

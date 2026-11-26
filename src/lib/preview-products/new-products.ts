@@ -393,7 +393,7 @@ export const jmzCspl002: ProductDetailConfig = {
     { item: "Kneading", value: "2 speeds with forward and reverse rotation", status: "Confirmed" },
     { item: "Heating", value: "2 levels", status: "Confirmed" },
     { item: "Operating Cycle", value: "25 minutes with automatic shut-off", status: "Confirmed" },
-    { item: "Battery", value: "7.4 V / 2500 mAh rechargeable battery", status: "Confirmed" },
+    { item: "Battery", value: "7.4 V / 2000 mAh rechargeable battery", status: "Confirmed" },
     { item: "Working Voltage", value: "7.4 V", status: "Confirmed" },
     { item: "Rated Input / Power", value: "DC 5 V / 2 A; 20 W", status: "Confirmed" },
     { item: "Control Method", value: "Button control", status: "Confirmed" },
